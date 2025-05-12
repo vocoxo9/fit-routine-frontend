@@ -6,8 +6,7 @@
 
 ## Null 처리 규칙
 
-반환 타입, 필드 타입, 파라미터 타입 등 코드 상에 존재하는 모든 타입은 `null` 일 가능성이 있다면, 반드시 `@Nullable` 어노테이션을 붙여야 합니다. 해당 어노테이션은
-`org.springframework.lang` 에 위치합니다.
+반환 타입, 필드 타입, 파라미터 타입 등 코드 상에 존재하는 모든 타입은 `null` 일 가능성이 있다면, 반드시 `@Nullable` 어노테이션을 붙여야 합니다. 해당 어노테이션은 `org.springframework.lang` 에 위치합니다.
 
 예시는 다음과 같습니다:
 
@@ -67,13 +66,9 @@ class Person {
     private final int age;
     private final int code;
 
-		// 여기서 중요한 점은, `private`로 선언하여 빌더로만 생성할 수 있도록 하는 것입니다.
+    // 여기서 중요한 점은, `private`로 선언하여 빌더로만 생성할 수 있도록 하는 것입니다.
     @Builder
-    private Person(
-		        String name, 
-				    int age, 
-						int code
-		) {
+    private Person(String name, int age, int code) {
         this.name = name;
         this.age = age;
         this.code = code;
