@@ -5,7 +5,7 @@ import ErrorPage from 'pages/common/errorPage/ErrorPage';
 function App() {
   return (
     <div className='container'>
-      <ErrorPage/>
+      
     </div>
   );
 }
