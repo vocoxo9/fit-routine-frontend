@@ -1,0 +1,19 @@
+.errorPage.errorPage-main.main-container {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.errorPage.errorPage-main.text {
+    font-size: 80px;
+}
+
+.errorPage.errorPage-main.warningIcon {
+    font-size: 250px;
+    margin-top: 80px;
+    color: #334EAC;
+}
+
+
+.errorPage.errorPage-main.homeBtn {
+
+}
