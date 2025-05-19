@@ -1,61 +1,63 @@
-
 .header {
-    display : flex;
-    margin : 1rem auto;
+    display: flex;
+    margin: 1rem auto;
 }
-i {
-    font-size : 2rem;
-}
+
 a {
     color: black;
     text-decoration: none;
 }
-.header.left, .header.right {
-    margin : auto;
+
+.header.left,
+.header.right {
+    margin: auto;
     text-align: center;
 }
+
 /* ---------- header left ---------- */
-.header.left.logo > * {
-    color : #081F5C;
+.header.left.logo>* {
+    color: #081F5C;
 }
-.header.left.logo{
-    font-size : 2rem;
-    font-weight : 600;
+
+.header.left.logo {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 /* ---------- header right ---------- */
 
 .header.right {
-    display : inline-block;
-}
-.header.right.icon {
-    color : #D0E3FF;
-    margin : 0 0.5rem;
-    font-size : 2rem;
+    display: inline-block;
 }
 
-.header.right button{
-    width : 15rem;
-    height : 2.5rem;
-    margin : 1rem;
+.header.right.icon {
+    color: #D0E3FF;
+    margin: 0 0.5rem;
+    font-size: 2rem;
+}
+
+.header.right button {
+    width: 15rem;
+    height: 2.5rem;
+    margin: 1rem;
     background-color: #D0E3FF;
-    color : #081F5C;
-    font-weight : bold;
-    font-size : 1.1rem;
-    border-style : none;
-    border-radius : 0.3rem;
+    color: #081F5C;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-style: none;
+    border-radius: 0.3rem;
 }
 
 .header.right.notification {
-    position : absolute;
-    top : 5.7rem;
-    right : 11.8rem;
-    width : 1.3rem;
-    height : 1.3rem;
-    line-height : 1.2;
+    position: absolute;
+    top: 5.7rem;
+    right: 11.8rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    line-height: 1.2;
     background-color: #D9D9D9;
-    color : #FF0000;
-    border-radius : 1rem;
+    color: #FF0000;
+    border-radius: 1rem;
 }
 
 /* ---------- nav bar ---------- */
@@ -72,7 +74,7 @@ a {
 
 .header .menu-item {
     padding: 2rem;
-    margin : auto 1.5rem;
+    margin: auto 1.5rem;
     color: #83818c;
     position: relative;
 }

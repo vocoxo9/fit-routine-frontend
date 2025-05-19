@@ -1,22 +1,20 @@
 import 'assets/styles/common/reset.css';
-import Header from 'pages/common/header/Header';
+
 import { BrowserRouter } from 'react-router-dom';
 
+import Header from 'pages/common/header/Header';
+import ErrorPage from 'pages/common/errorPage/ErrorPage';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-
         <Header />
 
         <div className='container'>
-          {/* hello
-          <div style={{border: 'solid 1px red', width: '2rem', height: '3rem'}}>
-          
-          </div> */}
-        </div>
 
+          
+        </div>
       </BrowserRouter>
     </>
   );
