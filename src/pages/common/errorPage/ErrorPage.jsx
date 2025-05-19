@@ -13,7 +13,7 @@ export default function ErrorPage() {
                    <VscWarning />
                 </div>
                 <div className="errorPage errorPage-main homeBtn"> 
-                    <button id="moveMainPage">HOME</button> {/* 버튼 컴포넌트 사용예정  */}
+                    <button id="moveMainPage">HOME</button> 
                 </div>
             </div>
         </div>

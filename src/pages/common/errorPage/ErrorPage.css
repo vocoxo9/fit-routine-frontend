@@ -14,6 +14,12 @@
 }
 
 
-.errorPage.errorPage-main.homeBtn {
-
+.errorPage.errorPage-main.homeBtn button{
+    width: 250px;
+    height: 50px;
+    background-color: #334EAC;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    font-size: 24px;
 }
