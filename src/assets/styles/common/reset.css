@@ -54,8 +54,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 .container {
     width:70%;
     margin:0 auto;
     /* border: solid 2px aqua; */
+    font-family: "Noto Sans KR", sans-serif;
 }
