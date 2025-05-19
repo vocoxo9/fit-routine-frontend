@@ -14,10 +14,12 @@ ex) memberId | memberLogin
 <hr>
 
 ### 클래스명
-- 3단 표기법 사용
+- 3단 표기법 사용 (페이지명 페이지명-영역/요소 기능명)
 <br>
 
-ex) className='member login form'
+ex) className='loginPage loginPage-input idInput' <br>
+ex) className='loginPage loginPage-input pwdInput' <br>
+ex) className='loginPage loginPage-button loginBtn' <br>
 
 <hr>
 
