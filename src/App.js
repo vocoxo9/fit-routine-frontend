@@ -2,7 +2,8 @@ import 'assets/styles/common/reset.css';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import Header from 'pages/common/header/Header';
+import Header from 'components/common/header/Header';
+import Footer from 'components/common/footer/Footer';
 import ErrorPage from 'pages/common/errorPage/ErrorPage';
 
 function App() {
@@ -11,10 +12,12 @@ function App() {
       <BrowserRouter>
         <Header />
 
-        <div className='container'>
+        <div className='layout'>
 
           
         </div>
+
+        <Footer />
       </BrowserRouter>
     </>
   );

@@ -1,10 +1,10 @@
-import { FaUser, FaBell, FaRunning } from 'react-icons/fa';
-import 'pages/common/header/Header.css';
+import 'components/common/header/Header.css';
 
-import Login from 'components/common/header/Login';
-import Logout from 'components/common/header/Logout';
+import Login from 'components/common/header/LoginForm';
+import Logout from 'components/common/header/LogoutForm';
 
 import { Link } from 'react-router-dom';
+import Logo from 'components/common/header/Logo';
 
 export default function Header() {
 
@@ -12,16 +12,11 @@ export default function Header() {
         <>
             <div className="header">
                 <div className="header left">
-                    <div className="header left logo">
-                        <Link to="#">
-                            <FaRunning />
-                            <span>FIT-ROUTINE</span>
-                        </Link>
-                    </div>
+                    <Logo />
                 </div>
                 <nav>
                     <ul>
-                        <li className="menu-item"> <Link to="#">HOME</Link> </li>
+                        <li className="menu-item"> <Link to="/">HOME</Link> </li>
                         <li className="menu-item"> <Link to="#">식단 추천</Link> </li>
                         <li className="menu-item"> <Link to="#">운동 추천</Link> </li>
                         <li className="menu-item"> <Link to="#">Blog</Link>
