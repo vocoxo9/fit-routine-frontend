@@ -1,4 +1,4 @@
-import '../css/category.css';
+import '../css/Category.css';
 import catImage from "../assests/img/고양이 예시.png";
 
 function Category({size}) {

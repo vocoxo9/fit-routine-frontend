@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
-import '../css/liked.css';
+import '../css/Liked.css';
 
 function Liked ({size}) {
     const heart = size == 'big' ? '2x' : '';

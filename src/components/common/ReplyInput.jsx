@@ -1,7 +1,7 @@
 import Input from "./Input";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import '../css/replyInput.css';
+import '../css/ReplyInput.css';
 
 function ReplyInput({size}) {
     const icon = size == 'first' ? '3x' : '2x';

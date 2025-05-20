@@ -1,5 +1,5 @@
 import Input from "./Input";
-import '../css/info.css';
+import '../css/Info.css';
 
 
 function Info({ kind, text, children}) {

@@ -1,4 +1,4 @@
-import '../css/radio.css';
+import '../css/Radio.css';
 
 
 function Radio({id, text, name}) {
