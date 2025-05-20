@@ -1,0 +1,239 @@
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+ .todoPage.todoPage-header.nameGrade { 
+    width: 100%; 
+    height: 11.3rem; 
+    border: 0.2rem solid #334EAC; 
+    border-radius: 0.625rem;
+    background-color: #E3F2FD; 
+    margin: auto;
+    margin-top: 4.4rem; 
+    box-sizing: border-box;
+    align-content: center; 
+    display: flex; 
+}
+
+.todoPage.todoPage-header.name {
+    display: inline-block; 
+    font-weight: bold;
+    align-content: center;
+    font-size: 2.5rem;
+    margin-left: 1.25rem;
+    width: 31.25rem;
+}
+
+.todoPage.todoPage-header.TODOText {
+    color: #3065AC;
+}
+
+.todoPage.todoPage-header.grade {
+    display: inline-block; 
+    font-size: 7.5rem; 
+    font-weight: bold; 
+    align-content: center; 
+    color: #80CEE1; 
+    margin-left: 50%;
+}
+
+.todoPage.todoPage-calendar.container {
+    justify-content: space-between;
+    border: 0.2rem solid #334EAC;
+    border-radius: 0.625rem;
+    width: 100%; 
+    box-sizing: border-box;
+    margin-top: 3.125rem;
+    overflow: hidden;
+}
+
+.todoPage.todoPage-calendar.fullCalendar {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.todoPage.todoPage-todoList.container {
+  width: 100%;
+  height:28rem; 
+  border: 3px solid #334EAC;
+  border-radius: 0.625rem;
+  background-color: #E3F2FD;
+  margin-top:2rem;
+  margin-bottom: 2rem;
+  display: flex;
+}
+
+.todoPage.todoPage-exercise.headerText {
+  display: inline-block;
+  color: #334EAC;
+  margin-top: 1.8rem;
+  margin-left: 1.2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.todoPage.todoPage-exercise.periodText {
+  margin-top: 1rem;
+  margin-left: 12rem;
+  font-size: 1rem;
+}
+
+.todoPage.todoPage-exercise.todayList {
+  margin-top: 2rem;
+  margin-left: 1.2rem;
+  font-weight: 700;
+}
+
+.todoPage.todoPage-menu.headerText {
+  display: inline-block;
+  color: #334EAC;
+  margin-top: 1.8rem;
+  margin-left: 1.2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.todoPage.todoPage-menu.periodText {
+  margin-top: 1rem;
+  margin-left: 12rem;
+  font-size: 1rem;
+}
+
+.todoPage.todoPage-menu.todayList {
+  margin-top: 2rem;
+  margin-left: 1.2rem;
+  font-weight: 700;
+}
+
+.todoPage.listText {
+  width: 50%;
+}
+
+.todoPage.todoPage-exercise.listText {
+  border-right: 3px solid #334EAC;
+}
+
+.todoPage.todoPage-exercise.todayList ul li{
+  list-style:inside;
+}
+
+.todoPage.todoPage-menu.todayList ul li{
+  list-style:inside;
+}
+
+
+/* 날짜 셀의 스타일을 position: relative로 설정 */
+.fc-daygrid-day {
+    position: relative; /* 날짜 숫자가 이 컨테이너를 기준으로 배치될 수 있도록 */
+  }
+  .fc-daygrid-day-frame {
+    max-height: 6.25rem;     /* 셀 최대 높이 제한 */
+    overflow-y: auto;      /* 내용이 넘치면 스크롤 */
+  }
+
+  .fc-header-toolbar {
+    background-color: #E3F2FD;  /* 원하는 색상 */
+  }
+
+  .fc-header-toolbar.fc-toolbar {
+    margin-bottom: 0 !important;
+    height: 5.375rem;
+    font-weight: bold;
+  }
+
+  .fc-col-header-cell.fc-day {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .fc-col-header-cell.fc-day.fc-day-sun {
+    color: red;
+  }
+
+  .fc-col-header-cell.fc-day.fc-day-sat {
+    color: blue;
+  }
+
+  /* 날짜 숫자의 스타일 */
+  .fc-daygrid-day-number {
+    position: absolute;  /* 상위 컨테이너 기준으로 절대 위치 지정 */
+    top: 0;              /* 날짜 숫자를 상단에 배치 */
+    left: 0;             /* 날짜 숫자를 왼쪽에 배치 */
+    width: 100%;         /* 상위 컨테이너와 동일한 너비 */
+    height: 100%;        /* 상위 컨테이너와 동일한 높이 */
+    text-align: left;    /* 날짜 숫자를 왼쪽에 정렬 */
+    padding-left: 0.3125rem;   /* 왼쪽 여백을 추가하여 날짜 숫자에 여유를 둠 */
+    box-sizing: border-box; /* padding 포함하여 너비 설정 */
+    padding: 0px;
+    z-index: 0;
+  }
+
+  table.fc-scrollgrid-sync-table td{
+    border-collapse: collapse;
+    border: 0.0625rem solid black;
+    height: 6.25rem;
+  }
+
+  table.fc-scrollgrid.fc-scrollgrid-liquid>thead>tr>th{
+    border-top: 0.0625rem solid black;
+    border-bottom: 0.0625rem solid black;
+  }
+
+  tr.fc-scrollgrid-section.fc-scrollgrid-section-header div.fc-scrollgrid-sync-inner {
+    border-left: 0.0625rem solid rgb(158, 158, 158);
+  }
+
+  button.todoPage.todoPage-calendar.addBoard {
+    position: absolute;
+    top: 0px;
+    right: 0.25rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30%;
+    width: 1.875rem;
+    height: 1.875rem;
+    font-size: 0.875rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  div.blog.calendar.dateNum {
+    text-align: left;
+    padding-left: 0.3125rem; 
+    margin-top: 0.3125rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events{
+    min-height: 0;
+  }
+
+  div.blog.calendar.registedBoard {
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #FFF100;
+    border-bottom: 0.0625rem solid gray;
+    font-size: 1rem;
+    padding: 0px 0.3125rem;
+    font-weight: bold;
+    height: 1.2rem;
+    /* 만약 게시물이 10개가 넘어가면 어케되는거임? */
+  }
+
+
+  div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+    overflow: hidden;
+    background-color: white;
+  }
+
+  .fc-day.fc-daygrid-day.oneTodo > div {
+    background-color: #E3F2FD !important;
+  }
+
+  .fc-day.fc-daygrid-day.multiTodo > div {
+    background-color: #89B6E7 !important;
+  }
