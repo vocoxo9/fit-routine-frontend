@@ -1,0 +1,31 @@
+.btn {
+    border: solid 3px #334EAC;
+    border-radius: 8px;
+    font-size: 1.7rem;
+    font-weight: 800;
+    padding: 0.7rem 1.3rem;
+    cursor: pointer;
+    background-color: #D0E3FF;
+    color: #334EAC;
+    margin: 0 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #334EAC;
+    color: white;
+  }
+  
+  .btn.short {
+    width: 170px;
+  }
+  
+  .btn.medium {
+    width: 250px;
+    height: 80px;
+  }
+  
+  .btn.long {
+    width: 450px;
+  }
+  

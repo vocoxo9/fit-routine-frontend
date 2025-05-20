@@ -1,0 +1,8 @@
+.container {
+    border: solid 3px aqua;
+    width: 100%;
+    /* margin: 0 auto; */
+    margin-left: auto;
+    margin-right: auto;
+    /* padding: 0 var(--bs-gutter-x, 0.75rem); */
+  }
