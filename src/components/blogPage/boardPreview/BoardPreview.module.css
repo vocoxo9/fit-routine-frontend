@@ -1,0 +1,53 @@
+
+.container {
+    border: 3px solid #334EAC;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.previewImg {
+    width:10rem; 
+    height:10rem;
+    margin-top:0.5rem;
+}
+
+.horizon {
+    border:1px solid #334EAC;
+}
+
+.nameText {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-align: right;
+    margin-right: 0.7rem;
+}
+
+.titleText {
+    font-weight: 700;
+    margin-top: 0.2rem;
+}
+
+.heartComponent {
+    text-align: right;
+    margin-top: 1rem;
+    margin-right: 0.7rem;
+}
+
+
+
+
+
+
+
+
+
+

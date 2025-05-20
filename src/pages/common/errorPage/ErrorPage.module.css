@@ -1,0 +1,26 @@
+.mainContainer {
+    text-align: center;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.text {
+    font-size: 5rem;
+}
+
+.warningIcon {
+    font-size: 15.625rem;
+    margin-top: 5rem;
+    color: #334EAC;
+}
+
+
+.homeBtn{
+    width: 15.625rem;
+    height: 3.125rem;
+    background-color: #334EAC;
+    border: 0;
+    border-radius: 0.625rem;
+    color: white;
+    font-size: 1.5rem;
+}
