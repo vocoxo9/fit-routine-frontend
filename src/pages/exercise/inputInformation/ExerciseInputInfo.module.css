@@ -1,5 +1,5 @@
 
-.exerciseInformation.container.mainContainer {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
 
 
 /* 메인 폼 영역 */
-.exerciseInformation.form.formBox {
+.formBox {
     width: 50rem;
     height: 50rem;
     margin: 10rem auto;
@@ -16,13 +16,12 @@
     box-shadow: 0px 16px 48px rgb(0, 0, 0, 0.1);
 }
 
-.exerciseInformation.form.formBox input:focus,
-.exerciseInformation.form.formBox select:focus {
+.input:focus, .select:focus {
     outline: 1px solid #081F5C;
 }
 
 /* 타이틀 */
-.exerciseInformation.form.title {
+.formTitle {
     font-size: 2rem;
     color: #081F5C;
     text-align: center;
@@ -30,7 +29,7 @@
 }
 
 /* form 영역 */
-.exerciseInformation.form.inputForm {
+.inputForm {
     width: 45%;
     margin: auto;
     text-align : center;
@@ -38,7 +37,7 @@
 
 
 /* label */
-.exerciseInformation.form.inputForm label {
+.label {
     color: #081F5C;
     display: block;
     margin-bottom: 1rem;
@@ -46,16 +45,16 @@
 }
 
 /* select */
-.exerciseInformation.form.inputForm select {
-    width: 22.2rem;
+.select {
+    width: 22rem;
     height: 2.5rem;
-    border: 1px solid #a0a0a0;
+    border: 1px solid #d0d0d0;
     border-radius: 0.3rem;
     margin-bottom: 1rem;
 }
 
 /* input */
-.exerciseInformation.form.inputForm input {
+.input {
     width: 22rem;
     height: 2.5rem;
     border: 1px solid #d0d0d0;
@@ -65,14 +64,14 @@
 }
 
 /* next button */
-.exerciseInformation.form.nextButton {
+.nextButton {
     width: 22rem;
     height: 3rem;
     margin-top: 3rem;
-    border: 1px solid #081F5C;
+    border: 1px solid #334EAC;
     border-radius: 0.5rem;
     background-color: #D0E3FF;
-    color: #081F5C;
+    color: #334EAC;
     font-size: 1rem;
     font-weight: bold;
 }

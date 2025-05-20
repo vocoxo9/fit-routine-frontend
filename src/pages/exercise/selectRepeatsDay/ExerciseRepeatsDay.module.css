@@ -1,0 +1,66 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 메인 폼 영역 */
+.formBox {
+    width: 50rem;
+    height: 50rem;
+    margin: 10rem auto;
+    border: 1px solid #081F5C;
+    border-radius: 1.3rem;
+    box-shadow: 0px 16px 48px rgb(0, 0, 0, 0.1);
+}
+
+.formTitle {
+    font-size: 2rem;
+    color: #081F5C;
+    text-align: center;
+    margin: 4rem;
+    margin-bottom : 7rem;
+}
+
+.inputForm > * {
+    margin : auto;
+}
+
+/* radio form */
+.radioForm {
+    width: 22rem;
+    height: 2.5rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.3rem;
+    margin : 1rem auto;
+}
+.radioForm > * {
+    line-height : 2.3;
+}
+
+/* label */
+.label {
+    text-align : left;
+    margin : 0 0.8rem;
+}
+
+.input[type=radio] {
+    float : right;
+    accent-color: black;
+    margin : 0.8rem;
+}
+
+/* next button */
+.nextButton {
+    display : block;
+    width: 22rem;
+    height: 3rem;
+    margin-top : 6rem;
+    border: 1px solid #334EAC;
+    border-radius: 0.5rem;
+    background-color: #D0E3FF;
+    color: #334EAC;
+    font-size: 1rem;
+    font-weight: bold;
+}
