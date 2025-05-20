@@ -1,0 +1,86 @@
+button:disabled {
+  background-color: #ccc;
+  opacity: 0.6;
+  cursor: default;
+}
+
+
+/* 날짜 셀의 스타일을 position: relative로 설정 */
+.fc-daygrid-day {
+    position: relative; /* 날짜 숫자가 이 컨테이너를 기준으로 배치될 수 있도록 */
+  }
+  .fc-daygrid-day-frame {
+    max-height: 6.25rem;     /* 셀 최대 높이 제한 */
+    overflow-y: auto;      /* 내용이 넘치면 스크롤 */
+  }
+
+  .fc-header-toolbar {
+    background-color: #E3F2FD;  /* 원하는 색상 */
+  }
+
+  .fc-header-toolbar.fc-toolbar {
+    margin-bottom: 0 !important;
+    height: 5.375rem;
+    font-weight: bold;
+  }
+
+  .fc-col-header-cell.fc-day {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .fc-col-header-cell.fc-day.fc-day-sun {
+    color: red;
+  }
+
+  .fc-col-header-cell.fc-day.fc-day-sat {
+    color: blue;
+  }
+
+  /* 날짜 숫자의 스타일 */
+  .fc-daygrid-day-number {
+    position: absolute;  /* 상위 컨테이너 기준으로 절대 위치 지정 */
+    top: 0;              /* 날짜 숫자를 상단에 배치 */
+    left: 0;             /* 날짜 숫자를 왼쪽에 배치 */
+    width: 100%;         /* 상위 컨테이너와 동일한 너비 */
+    height: 100%;        /* 상위 컨테이너와 동일한 높이 */
+    text-align: left;    /* 날짜 숫자를 왼쪽에 정렬 */
+    padding-left: 0.3125rem;   /* 왼쪽 여백을 추가하여 날짜 숫자에 여유를 둠 */
+    box-sizing: border-box; /* padding 포함하여 너비 설정 */
+    padding: 0px;
+    z-index: 0;
+  }
+
+  table.fc-scrollgrid-sync-table td{
+    border-collapse: collapse;
+    border: 0.0625rem solid black;
+    height: 6.25rem;
+  }
+
+  table.fc-scrollgrid.fc-scrollgrid-liquid>thead>tr>th{
+    border-top: 0.0625rem solid black;
+    border-bottom: 0.0625rem solid black;
+  }
+
+  tr.fc-scrollgrid-section.fc-scrollgrid-section-header div.fc-scrollgrid-sync-inner {
+    border-left: 0.0625rem solid rgb(158, 158, 158);
+  }
+
+  
+  .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events{
+    min-height: 0;
+  }
+
+  
+  div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+    overflow: hidden;
+    background-color: white;
+  }
+
+  .fc-day.fc-daygrid-day.oneTodo > div {
+    background-color: #E3F2FD !important;
+  }
+
+  .fc-day.fc-daygrid-day.multiTodo > div {
+    background-color: #89B6E7 !important;
+  }
