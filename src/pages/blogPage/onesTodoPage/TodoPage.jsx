@@ -2,7 +2,8 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import koLocale from '@fullcalendar/core/locales/ko';
-import "./TodoPage.css";
+import "./FullCalendar.css";
+import styles from './TodoPage.module.css';
 import { useState, useEffect } from 'react';
 
 export default function TodoPage() {
@@ -52,15 +53,15 @@ export default function TodoPage() {
 
     return (
         <div className='todoPage todoPage-main container'>
-            <div className='todoPage todoPage-header nameGrade'>
-                <span className='todoPage todoPage-header name'>유성재 &nbsp;
-                    <span className='todoPage todoPage-header TODOText'>TODO</span>
+            <div className={styles.nameGrade}>
+                <span className={styles.name}>유성재 &nbsp;
+                    <span className={styles.TODOText}>TODO</span>
                 </span>
-                <span className='todoPage todoPage-header grade'>S</span>
+                <span className={styles.grade}>S</span>
             </div>
 
-            <div className='todoPage todoPage-calendar container'>
-                <div className='todoPage todoPage-calendar fullCalendar'>
+            <div className={styles.calendarContainer}>
+                <div className={styles.fullCalendar}>
                     <FullCalendar
                     key={JSON.stringify(dateData)} // 상태 변경 시 리렌더 유도하는 속성. 외부에서 컴포넌트 사용할때 key예약어로 값을 지정하면 값에 변경이 있을때마다 리렌더를 시킨다.
                     plugins={[dayGridPlugin, interactionPlugin]} // dayGridPlugin : 한 달 달력 보기, interactionPlugin : 클릭, 선택 등 사용자 상호작용 활성화
@@ -73,11 +74,11 @@ export default function TodoPage() {
 
                         return (
                         <div style={{ position: 'relative', height: '100%', width: '100%' }}>
-                            <div className='blog calendar dateNum'>
+                            <div className={styles.dateNum}>
                             {arg.dayNumberText}
                             </div>
                             <button
-                            className='todoPage todoPage-calendar addBoard'
+                            className={styles.addBoard}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 alert(`${currDate} 클릭됨`);
@@ -87,7 +88,7 @@ export default function TodoPage() {
                             +
                             </button>
                             {dateData[currDate]?.map(todo => (
-                            <div className='blog calendar registedBoard' key={todo.id}>
+                            <div className={styles.registedBoard} key={todo.id}>
                                 {overTitle(todo.title)}
                             </div>
                             ))}
@@ -111,12 +112,12 @@ export default function TodoPage() {
 
                 </div>
             </div>
-            <div className='todoPage todoPage-todoList container'>
-                <div className='todoPage todoPage-exercise listText'>
-                    <span className='todoPage todoPage-exercise headerText'>TODO 운동</span>
-                    <span className='todoPage todoPage-exercise periodText'>*기간 : 2023.01.01 ~ 2023.01.07 (7일)</span>
-                    <div className='todoPage todoPage-exercise todayList'>오늘의 운동 (총 266kcal)
-                        <ul style={{marginLeft:'0.5rem'}}>
+            <div className={styles.todoContainer}>
+                <div className={styles.listText}>
+                    <span className={styles.headerText}>TODO 운동</span>
+                    <span className={styles.periodText}>*기간 : 2023.01.01 ~ 2023.01.07 (7일)</span>
+                    <div className={styles.todayList}>오늘의 운동 (총 266kcal)
+                        <ul className={styles.ul}>
                             <li>스쿼트</li>
                             <li>벤치프레스</li>
                             <li>달리기</li>
@@ -125,11 +126,11 @@ export default function TodoPage() {
                         </ul>
                     </div>
                 </div>
-                <div className='todoPage todoPage-menu listText'>
-                    <span className='todoPage todoPage-menu headerText'>TODO 식단</span>
-                    <span className='todoPage todoPage-menu periodText'>*기간 : 2023.01.01 ~ 2023.01.07 (7일)</span>
-                    <div className='todoPage todoPage-menu todayList'>오늘의 식단 (총 1197kcal)
-                        <ul style={{marginLeft:'0.5rem'}}>
+                <div className={styles.listText}>
+                    <span className={styles.headerText}>TODO 식단</span>
+                    <span className={styles.periodText}>*기간 : 2023.01.01 ~ 2023.01.07 (7일)</span>
+                    <div className={styles.todayList}>오늘의 식단 (총 1197kcal)
+                        <ul className={styles.ul}>
                             <li>북어조림 (182kcal)</li>
                             <li>모듬회 (133kcal)</li>
                             <li>달걀_삶은것 (150kcal) </li>
