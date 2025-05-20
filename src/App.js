@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Header from 'components/common/header/Header';
 import Footer from 'components/common/footer/Footer';
-import TodoPage from 'pages/blogPage/onesTodoPage/TodoPage';
 
 function App() {
   return (

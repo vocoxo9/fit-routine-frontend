@@ -124,6 +124,7 @@ a {
 .header .submenu li a:hover {
     font-weight: bold;
     color: #081f5c;
+    transition : 0.2s;
 }
 
 .header .menu-item:hover .submenu {
