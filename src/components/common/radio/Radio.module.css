@@ -1,15 +1,23 @@
 .container {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
+    width: 22rem;
+    height: 2.5rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.3rem;
+    margin : 1rem auto;
+}
+
+.container:focus{
+    border : 2px solid #081F5C;
 }
 
 .input {
-    width: 1.25rem;
-    height: 1.25rem;
+    float : right;
+    accent-color: black;
+    margin : 0.8rem;
 }
 
 .label {
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 2.3;
+    margin-left : 0.6rem;
 }
