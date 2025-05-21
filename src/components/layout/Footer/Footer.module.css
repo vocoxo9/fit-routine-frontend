@@ -1,0 +1,93 @@
+/*  common  */
+.footerContainer {
+    background-color: #EFF4FF;
+    display: flex;
+    padding: 3rem 0;
+}
+
+.footerContainer>* {
+    width: 20%;
+    display: inline-block;
+}
+
+.footerContainer h2,
+.footerContainer th {
+    font-weight: bold;
+    color: #081F5C;
+}
+
+.footerContainer p,
+.footerContainer td {
+    color: #3065AC;
+}
+
+.item1,
+.item2 {
+    line-height: 2;
+}
+
+.item1 a,
+.item2 a {
+    color: #3065AC;
+    text-decoration: none;
+}
+
+.item1 a:hover,
+.item2 a:hover {
+    color: #081F5C;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+
+/*  Footer content item1  */
+.item1 {
+    margin-left: 5rem;
+}
+
+/*  Footer content item2  */
+.item2 {
+    margin-left: 2rem;
+}
+
+/*  Footer content item3  */
+.item3 {
+    width: 40%;
+}
+
+.item3 table {
+    height: 100%;
+    margin-top: 0.5rem;
+}
+
+.item3 table th {
+    width: 35%;
+    text-align: left;
+}
+
+.item3 table td {
+    width: 20%;
+}
+
+/*  Footer content item4  */
+.item4 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.item4 a {
+    text-decoration : none;
+}
+
+.item4>* {
+    color: #081F5C;
+    text-decoration: none;
+}
+
+.item4 p {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 3;
+    color: #3065AC;
+    margin-left: 0.5rem;
+}
