@@ -1,5 +1,6 @@
-import BoardPreview from 'components/blogPage/boardPreview/BoardPreview';
+
 import styles from './AllBoardsPage.module.css';
+import BoardsPaging from 'components/blogPage/boardsPaging/BoardsPaging';
 
 export default function AllBoardsPage() {
 
@@ -15,42 +16,7 @@ export default function AllBoardsPage() {
                     <option>체력 증진</option>
                 </select>
             </div>
-            <table className={styles.table}>
-                <tr>
-                    <td className={styles.td}>
-                        <BoardPreview/>
-                    </td>
-                    <td className={styles.td}>
-                        <BoardPreview/>
-                    </td>
-                    <td className={styles.td}>
-                        <BoardPreview/>
-                    </td>
-                </tr>
-                <tr>
-                    <td className={styles.td}>
-                        <BoardPreview/>
-                    </td>
-                    <td className={styles.td}>
-                        <BoardPreview/>
-                    </td>
-                    <td className={styles.td}>
-                        <BoardPreview/>
-                    </td>
-                </tr>
-            </table>
-
-        <nav className={styles.nav}>
-            <ul className={styles.ul} id="pagination-area">
-                <li>Prev</li>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-                <li>Next</li>
-            </ul>
-		</nav>
+            <BoardsPaging/>
         </div>
     )
 }

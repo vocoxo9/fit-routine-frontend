@@ -1,36 +1,39 @@
 /*  common  */
-.footer {
+.footerContainer {
     background-color: #EFF4FF;
     display: flex;
     padding: 1rem;
 }
 
-.footer.content {
+.footerContainer>* {
     width: 20%;
     display: inline-block;
 }
 
-.footer.content h2,
-.footer.content th {
+.footerContainer h2,
+.footerContainer th {
     font-weight: bold;
-    color : #081F5C;
+    color: #081F5C;
 }
 
-.footer.content p,
-.footer.content td {
+.footerContainer p,
+.footerContainer td {
     color: #3065AC;
 }
 
-.footer.content.item1,
-.footer.content.item2 {
+.item1,
+.item2 {
     line-height: 2;
 }
 
-.footer.content a{
+.item1 a,
+.item2 a {
     color: #3065AC;
     text-decoration: none;
 }
-.footer.content a:hover {
+
+.item1 a:hover,
+.item2 a:hover {
     color: #081F5C;
     font-weight: bold;
     transition: 0.2s;
@@ -38,48 +41,49 @@
 
 
 /*  footer content item1  */
-.footer.content.item1 {
-    margin-left: 2rem;
+.item1 {
+    margin-left: 5rem;
 }
 
 /*  footer content item2  */
-.footer.content.item2 {
+.item2 {
     margin-left: 2rem;
 }
 
 /*  footer content item3  */
-.footer.content.item3 {
+.item3 {
     width: 40%;
 }
 
-.footer.content.item3 table {
+.item3 table {
     height: 100%;
     margin-top: 0.5rem;
 }
 
-.footer.content.item3 table th {
+.item3 table th {
     width: 35%;
     text-align: left;
 }
-.footer.content.item3 table td {
-    width : 20%;
+
+.item3 table td {
+    width: 20%;
 }
 
 /*  footer content item4  */
-.footer.content.item4 {
+.item4 {
     font-size: 2rem;
     font-weight: 600;
 }
 
-.footer.content.item4>* {
+.item4>* {
     color: #081F5C;
     text-decoration: none;
 }
 
-.footer.content.item4 p {
+.item4 p {
     font-size: 1rem;
     font-weight: normal;
     line-height: 3;
     color: #3065AC;
-    margin-left : 0.5rem;
+    margin-left: 0.5rem;
 }

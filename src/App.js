@@ -1,4 +1,4 @@
-import 'assets/styles/common/reset.css';
+import styles from './assets/styles/common/Reset.module.css'
 
 import { BrowserRouter } from 'react-router-dom';
 
