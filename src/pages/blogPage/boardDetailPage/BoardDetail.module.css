@@ -1,0 +1,93 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid rgb(184, 184, 184);
+}
+
+.boardTitle {
+    margin-top: 5rem;
+    font-weight: 600;
+    font-size: 2.6rem;
+}
+
+
+.flex {
+    display: flex;
+    margin-top: 1rem;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.imageContainer {
+    display: flex;
+    margin: 0 auto;
+}
+
+.image {
+    width: 25rem;
+    height: 25rem;
+}
+
+.imgBtn {
+    background-color: white;
+    border: none;
+    font-size: 5rem;
+}
+
+.imgBtn:hover {
+    cursor: pointer;
+}
+
+.boardContent {
+    border: 1px solid rgb(175, 175, 175);
+    padding: 1rem;
+    width: 55rem;
+    height: 20rem;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.boardEditContainer {
+    display: flex;
+}
+
+.editBtns {
+    margin-left: 75%;
+}
+
+.deleteBtns {
+    margin-left: 1.2%;
+}
+
+.heartContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5.7rem;
+}
+
+.replyInputContainer {
+    margin: 0 auto;
+    display: flex;
+    width: 55rem;
+    height: 5rem;
+    border: 1px solid;
+    padding: 0.2rem;
+}
+
+.replyInput {
+    width: 80%;
+}
+
+
+
+
+
+
+
+
