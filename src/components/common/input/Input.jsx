@@ -1,4 +1,4 @@
-import './Input.css';
+import styles from './Input.module.css';
 
 /**
  * 사용자 입력을 받는 Input 컴포넌트입니다.
@@ -39,7 +39,7 @@ function Input(
                 </label>
             )}
             <input 
-                className={`input ${size}`} 
+                className={styles[size]}
                 type={type} 
                 id={id}
                 name={name}

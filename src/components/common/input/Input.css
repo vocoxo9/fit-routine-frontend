@@ -19,7 +19,7 @@
     border: solid 2px #334EAC;
 }
 
-.input.short {
+.short {
     /* width: 11.6rem;
     height: 4.2rem; */
     /* font-size: 1.4rem;
@@ -30,39 +30,39 @@
     height: 2.3em;
 }
 
-.input.medium {
+.medium {
     width: 5rem;
     height: 2.3rem;
 }
 
-.input.long {
+.long {
     width: 25rem;
     height: 2.3rem;
 }
 
-.input.title {
+.title {
     width: 50rem;
     height: 150px;
     font-size: 2rem;
 }
 
 
-.input.content {
+.content {
     width: 64.7rem;
     height: 400px;
 }
 
-.input:read-only {
+input:read-only {
     background-color: #d9d9d9;
 }
 
-.input.reply {
+.reply {
     width: 830px;
     height: 50px;
     padding-left: 2rem;
 }
 
-.input.secondReply {
+.secondReply {
     width: 760px;
     height: 50px;
     padding-left: 1.5rem;
