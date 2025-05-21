@@ -1,0 +1,36 @@
+.comment {
+    border: solid 2px #334EAC;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #E3F2FD;
+  }
+  
+  .comment.first {
+    width: 1000px;
+  }
+  
+  .comment.second {
+    width: 920px;
+  }
+  
+  .sendBtn {
+    display: flex; /* ✅ */
+    justify-content: center;
+    align-items: center;
+    border: solid 2px #334EAC;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+  
+  .sendBtn.first {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .sendBtn.second {
+    width: 65px;
+    height: 65px;
+  }
+  

@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+}
+
+.container.big {
+    gap: 0.5rem;
+}
+
+.count {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.count.big {
+    font-size: 1.5rem;
+}
+
+.icon {
+    color: red;
+    font-size: 1rem;
+}
+
+.icon.big {
+    font-size: 1.5rem;
+}

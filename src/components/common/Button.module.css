@@ -1,0 +1,57 @@
+button {
+  border: solid 2px #334EAC;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #D0E3FF;
+  color: #334EAC;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #334EAC;
+  color: white;
+}
+
+.short {
+  width: 5rem;
+  height: 2.3rem;
+  font-size: 1rem;
+}
+
+.medium {
+  width: 7rem;
+  height: 3rem;
+  font-size: 1.5rem;
+}
+
+.bold {
+  width: 15rem;
+  height: 3rem;
+  font-size: 1.3rem;
+}
+
+.long {
+  width: 18rem;
+  height: 2.3rem;
+  font-size: 1rem;
+}
+
+.delete {
+  border: solid 2px #FF4D4D;
+  background-color: #FFFFFF;
+  color: #FF4D4D;
+  width: 5rem;
+  height: 2.3rem;
+}
+
+.delete:hover {
+  background-color: #FF4D4D;
+  color: white;
+}
+
+.small {
+  border-radius: 0.3rem;
+  width: 5rem;
+  height: 2.3rem;
+}
