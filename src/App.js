@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Header from 'components/common/header/Header';
 import Footer from 'components/common/footer/Footer';
+import MainPage from 'pages/common/mainPage/MainPage';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Header />
 
         <div className={styles.layout}>
-          
+          <MainPage />
         </div>
 
         <Footer />
