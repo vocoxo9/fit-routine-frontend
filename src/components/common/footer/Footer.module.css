@@ -75,6 +75,10 @@
     font-weight: 600;
 }
 
+.item4 a {
+    text-decoration : none;
+}
+
 .item4>* {
     color: #081F5C;
     text-decoration: none;

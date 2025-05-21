@@ -55,3 +55,14 @@ button:hover {
   width: 5rem;
   height: 2.3rem;
 }
+
+.logInOut {
+  width: 15rem;
+  height: 2.5rem;
+  background-color: #D0E3FF;
+  color: #081F5C;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-style: none;
+  border-radius: 0.3rem;
+}
