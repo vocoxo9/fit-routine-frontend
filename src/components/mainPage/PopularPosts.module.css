@@ -1,0 +1,9 @@
+.title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.post {
+    display: flex;
+    justify-content: space-around;
+}

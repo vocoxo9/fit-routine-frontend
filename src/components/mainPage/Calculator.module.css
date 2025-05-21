@@ -1,0 +1,56 @@
+.border {
+    border: solid 2px #000000;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 1rem 0 #D9D9D9;
+}
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+.title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+}
+.inputArea {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.label {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.buttonArea {
+        display: flex;
+        justify-content: flex-end; /* 오른쪽 정렬 */
+        padding-right: 3.4rem;
+}
+
+.leftArea {
+    width: 35%;
+    align-content: center;
+}
+.rightArea {
+    width: 55%;
+}
+.p {
+    font-size: 1.3rem;
+    margin: 1rem 3rem;
+}
+.resultArea {
+    display: flex;
+    margin-bottom: 2rem;
+}
+.doughnutArea {
+    width: 15rem;
+    height: 15rem;
+}
+.kcalArea {
+    align-items: center;
+    align-content: center;
+}
