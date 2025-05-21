@@ -40,7 +40,7 @@
 .label {
     color: #081F5C;
     display: block;
-    margin-bottom: 1rem;
+    margin : 0 0 1rem 0.3rem;
     text-align : left;
 }
 
