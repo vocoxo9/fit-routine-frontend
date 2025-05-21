@@ -1,4 +1,4 @@
-import '../css/Input.css';
+import './Input.css';
 
 /**
  * 사용자 입력을 받는 Input 컴포넌트입니다.

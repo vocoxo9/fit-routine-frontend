@@ -10,7 +10,7 @@
 }
 
 .count.big {
-    margin-top: 0.6rem;
+    font-size: 1.625rem;
 }
 
 .icon {
@@ -19,5 +19,5 @@
 }
 
 .icon.big {
-    font-size: 2rem;
+    font-size: 1.625rem;
 }

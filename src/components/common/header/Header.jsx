@@ -28,8 +28,8 @@ export default function Header() {
                     </ul>
                 </nav>
 
-                {/* <Login /> */}
-                <Logout />
+                <Login />
+                {/* <Logout /> */}
             </div>
         </>
 
