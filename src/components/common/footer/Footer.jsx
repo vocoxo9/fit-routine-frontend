@@ -1,24 +1,25 @@
-import Logo from 'components/common/header/Logo';
-import 'components/common/footer/Footer.css';
+import styles from 'components/common/footer/Footer.module.css';
+
+import Logo from 'components/common/logo/Logo';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
 
     return (
-        <div className="footer">
-            <div className="footer content item1">
+        <div className={styles.footerContainer}>
+            <div className={styles.item1}>
                 <h2>KH 정보교육원 Final 팀 프로젝트</h2>
                 <p>팀명 : Basic</p>
                 <p><Link to="https://github.com/basic-stack">프로젝트명 : Fit-Routine</Link></p>
             </div>
-            <div className="footer content item2">
+            <div className={styles.item2}>
                 <h2>Introduce Team</h2>
                 <p><Link to="https://github.com/Kim-ilhyeon">팀장 : 김일현</Link></p>
                 <p><Link to="https://github.com/Tokemo">형상관리 : 안민영</Link></p>
                 <p><Link to="https://github.com/seongjae213">DB관리 : 유성재</Link></p>
                 <p><Link to="https://github.com/vocoxo9">이슈관리 : 정혜영</Link></p>
             </div>
-            <div className="footer content item3">
+            <div className={styles.item3}>
                 <table>
                     <tbody>
                         <tr>
@@ -55,7 +56,7 @@ export default function Footer() {
                     </tbody>
                 </table>
             </div>
-            <div className="footer content item4">
+            <div className={styles.item4}>
                 <Logo />
                 <p>문의 메일 : basic-team@com.kh</p>
             </div>

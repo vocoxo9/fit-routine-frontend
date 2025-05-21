@@ -1,0 +1,8 @@
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.logo>* {
+    color: #081F5C;
+}
