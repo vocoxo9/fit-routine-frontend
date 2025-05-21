@@ -1,4 +1,4 @@
-import './Input.css';
+import styles from './Input.module.css';
 
 /**
  * 사용자 입력을 받는 Input 컴포넌트입니다.
@@ -15,12 +15,13 @@ import './Input.css';
  * @param {string} [props.error] - 에러 메시지 (선택)
  * @param {boolean} [props.readOnly] - 읽기 전용 여부 (선택)
  * @param {String} [props.placeHolder] - 입력 전 텍스트 (선택)
+ * @param {String} [props.maxLength] - 입력 전 텍스트 (선택)
  */
 function Input(
-    { 
+    {
         size,
-        type, 
-        id, 
+        type,
+        id,
         name,
         value,
         label,
@@ -28,7 +29,8 @@ function Input(
         onBlur,
         error,
         readOnly,
-        placeHolder
+        placeHolder,
+        maxLength
     }
 ) {
     return (
@@ -38,22 +40,25 @@ function Input(
                     {label}
                 </label>
             )}
-            <input 
-                className={`input ${size}`} 
-                type={type} 
-                id={id}
-                name={name}
-                value={value}
-                readOnly={readOnly}
-                placeholder={placeHolder}
-                onChange={onChange}
-                onBlur={onBlur}
-            />
-            {error && (
-                <p>
-                    {error}
-                </p>
-            )}
+            <div>
+                <input
+                    className={styles[size]}
+                    type={type}
+                    id={id}
+                    name={name}
+                    value={value}
+                    readOnly={readOnly}
+                    placeholder={placeHolder}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    maxLength={maxLength}
+                />
+                {error && (
+                    <p className={styles.error}>
+                        {error}
+                    </p>
+                )}
+            </div>
         </div>
     );
 }
