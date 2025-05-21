@@ -1,18 +1,25 @@
-import '../css/Category.css';
-import catImage from "../assests/img/고양이 예시.png";
+import styles from './Category.module.css';
 
-function Category({size}) {
+
+/**
+ * 공통 카테고리 컴포넌트
+ *
+ * @param {Object} props - 컴포넌트에 전달되는 props
+ * @param {string} props.text - 버튼 내 글자 (예: 상체, 하체, 생활운동, 밥, 반찬)
+ */
+function Category(
+    { 
+        text,
+        onClick,
+        onMouseEnter,
+        onMouseLeave
+    }
+) {
     return (
         <>
-            <div className={`category ${size}`}>
-                <div className='img'>
-                    <img src={catImage} alt="카테고리 이미지" />
-                </div>
-                <div className='text'>
-                    텍스트
-                </div>
+            <div className={styles.text} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
+                {text}
             </div>
-            <br />
         </>
     );
 }
