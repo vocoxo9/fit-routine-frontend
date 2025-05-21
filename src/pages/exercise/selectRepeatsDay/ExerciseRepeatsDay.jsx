@@ -1,14 +1,28 @@
+import Radio from 'components/common/radio/Radio';
+import RadioGroup from 'components/common/radioGroup/RadioGroup';
+import FormBox from 'components/recommend/form/FormContainer';
+import FormTitle from 'components/recommend/title/FormTitle';
+
 import styles from 'pages/exercise/selectRepeatsDay/ExerciseRepeatsDay.module.css';
+
+import { useState } from 'react';
 
 export default function ExerciseRepeatsDay() {
 
+    const [repeats, setRepeats] = useState('');
+
     return (
-        <div className={styles.container}>
-            <div className={styles.formBox}>
-                <div className={styles.formTitle}>
-                    <p>반복일</p>
-                </div>
+            <FormBox>
+                <FormTitle text="반복일"/>
                 <div className={styles.inputForm}>
+                    {/* <RadioGroup >
+                        <Radio 
+                        id="day1"
+                        name="selectRepeats"
+                        value="1"
+                        label="1일 반복"/>
+                    </RadioGroup> */}
+
                     <div className={styles.radioForm}>
                         <label className={styles.label} htmlFor="day1">1일 반복</label>
                         <input className={styles.input} type="radio" name="selectRepeats" id="day1" />
@@ -46,8 +60,7 @@ export default function ExerciseRepeatsDay() {
 
                     <button className={styles.nextButton} >다음</button>
                 </div>
-            </div>
-        </div>
+            </FormBox>
     );
 
 };

@@ -4,9 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Header from 'components/common/header/Header';
 import Footer from 'components/common/footer/Footer';
-// import ExerciseInputInfo from 'pages/exercise/inputInformation/ExerciseInputInfo';
-// import ExerciseRepeatsDay from 'pages/exercise/selectRepeatsDay/ExerciseRepeatsDay';
 import SuggestRoutine from 'pages/exercise/suggestRoutine/SuggestRoutine';
+import ExerciseInputInfo from 'pages/exercise/inputInformation/ExerciseInputInfo';
+import ExerciseRepeatsDay from 'pages/exercise/selectRepeatsDay/ExerciseRepeatsDay';
 
 function App() {
   return (
@@ -15,9 +15,7 @@ function App() {
         <Header />
 
         <div className='layout'>
-          {/* <ExerciseInputInfo /> */}
-          {/* <ExerciseRepeatsDay /> */}
-          <SuggestRoutine />
+          
         </div>
 
         <Footer />
