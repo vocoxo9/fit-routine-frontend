@@ -39,7 +39,6 @@ a {
 .button {
     width: 15rem;
     height: 2.5rem;
-    margin: 1rem;
     background-color: #D0E3FF;
     color: #081F5C;
     font-weight: bold;
@@ -50,8 +49,8 @@ a {
 
 .notification {
     position: absolute;
-    top: 5.7rem;
-    right: 11.8rem;
+    top: 6.7rem;
+    right: 11.6rem;
     width: 1.3rem;
     height: 1.3rem;
     line-height: 1.2;

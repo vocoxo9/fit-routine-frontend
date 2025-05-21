@@ -2,7 +2,7 @@
 .footerContainer {
     background-color: #EFF4FF;
     display: flex;
-    padding: 1rem;
+    padding: 3rem 0;
 }
 
 .footerContainer>* {
