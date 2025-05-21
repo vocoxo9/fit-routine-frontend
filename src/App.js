@@ -4,9 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Header from 'components/common/header/Header';
 import Footer from 'components/common/footer/Footer';
-import BoardDetail from 'pages/blogPage/boardDetailPage/BoardDetail';
-import AllBoardsPage from 'pages/blogPage/allBoardsPage/AllBoardsPage';
-import OnesBlogPage from 'pages/blogPage/onesBlogPage/OnesBlogPage';
 
 function App() {
   return (
@@ -15,7 +12,7 @@ function App() {
         <Header />
 
         <div className={styles.layout}>
-          <BoardDetail/>
+    
         </div>
 
         <Footer />
