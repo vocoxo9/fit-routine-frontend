@@ -12,7 +12,7 @@ function App() {
         <Header />
 
         <div className={styles.layout}>
-          sadf
+          
         </div>
 
         <Footer />

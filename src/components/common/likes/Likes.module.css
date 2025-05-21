@@ -4,17 +4,13 @@
     gap: 0.25rem;
 }
 
-.container.big {
-    gap: 0.5rem;
-}
-
 .count {
     font-size: 1rem;
     line-height: 1.5;
 }
 
 .count.big {
-    font-size: 1.5rem;
+    margin-top: 0.6rem;
 }
 
 .icon {
@@ -23,5 +19,5 @@
 }
 
 .icon.big {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
