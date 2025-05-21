@@ -1,0 +1,79 @@
+.mypage.mypage-info.nickName {
+    display: flex;
+}
+.textBox.nickName {
+    border: solid 1px #334EAC;
+    width: 12rem;
+    height: 5rem;
+    background-color: #D0E3FF;
+
+}
+.h4.nickName {
+    margin: 1rem;
+    color: #334EAC;
+}
+.inputBox.nickName {
+    border: solid 1px #334EAC;
+    width: 37.7rem;
+    align-content: center;
+}
+/* ------------ */
+
+.mypage.mypage-info.password {
+    display: flex;
+}
+.textBox.password {
+    border: solid 1px #334EAC;
+    width: 12rem;
+    height: 17rem;
+    background-color: #D0E3FF;
+    
+}
+.h4.password {
+    margin: 1rem;
+    color: #334EAC;
+}
+.inputBox.password {
+    border: solid 1px #334EAC;
+    width: 37.7rem;
+    align-content: center;
+    justify-content: space-between;
+}
+/* --------- */
+.mypage.mypage-info.phone {
+    display: flex;
+}
+.textBox.phone {
+    border: solid 1px #334EAC;
+    width: 12rem;
+    height: 5rem;
+    background-color: #D0E3FF;   
+}
+.h4.phone {
+    margin: 1rem;
+    color: #334EAC;
+}
+.inputBox.phone {
+    border: solid 1px #334EAC;
+    width: 37.7rem;
+    display: flex;
+}
+/* ------------ */
+.mypage.mypage-info.body {
+    display: flex;
+}
+.textBox.body {
+    border: solid 1px #334EAC;
+    width: 12rem;
+    height: 14rem;
+    background-color: #D0E3FF;
+}
+.h4.body {
+    margin: 1rem;
+    color: #334EAC;
+}
+.inputBox.body {
+    border: solid 1px #334EAC;
+    width: 37.7rem;
+    align-content: center;
+}
