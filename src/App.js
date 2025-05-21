@@ -1,4 +1,4 @@
-import 'assets/styles/common/reset.css';
+import 'assets/styles/common/Reset.css';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ function App() {
         <Header />
 
         <div className='layout'>
-          
+
         </div>
 
         <Footer />

@@ -14,6 +14,7 @@ import '../css/Input.css';
  * @param {function} [props.onBlur] - 포커스를 잃었을 때 호출되는 함수 (선택)
  * @param {string} [props.error] - 에러 메시지 (선택)
  * @param {boolean} [props.readOnly] - 읽기 전용 여부 (선택)
+ * @param {String} [props.placeHolder] - 입력 전 텍스트 (선택)
  */
 function Input(
     { 
