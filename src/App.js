@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Header />
 
-        <div className='layout'>
+        <div className={styles.layout}>
           
         </div>
 

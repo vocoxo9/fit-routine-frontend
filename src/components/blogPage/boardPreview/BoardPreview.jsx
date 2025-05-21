@@ -1,3 +1,4 @@
+import Likes from 'components/common/likes/Likes';
 import styles from './BoardPreview.module.css';
 export default function BoardPreview() {
 
@@ -17,7 +18,9 @@ export default function BoardPreview() {
                         <hr className={styles.horizon}></hr>
                         <div className={styles.nameText}>유성재</div>
                         <div className={styles.titleText}>{overTitle('오늘의 운동 인증 게시물입니다')}</div>{/* 최대 14 */}
-                        <div className={styles.heartComponent}>하투컴포넌트</div>
+                        <div className={styles.heartComponent}>
+                            <Likes count={1554} isBig={true}/>
+                        </div>
                     </div>
     )
 }
