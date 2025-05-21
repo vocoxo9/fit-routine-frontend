@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './BoardDetail.module.css';
-import { VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
+import { VscTriangleLeft, VscTriangleRight, VscSend } from "react-icons/vsc";
 import Button from 'components/common/button/Button';
 import Likes from 'components/common/likes/Likes';
 
@@ -80,8 +80,12 @@ export default function BoardDetail({boardDetail, boardImgs}) {
             </div>
             
             <div className={styles.replyInputContainer}>
-                <input className={styles.replyInput}/>
-                <button></button>
+                <textarea className={styles.replyInput}/>
+                <button className={styles.inputBtn}><VscSend /></button>
+            </div>
+
+            <div className={styles.replyListContainer}>
+                
             </div>
 
         </div>

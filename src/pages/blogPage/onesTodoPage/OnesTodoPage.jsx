@@ -3,7 +3,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import koLocale from '@fullcalendar/core/locales/ko';
 import "./FullCalendar.css";
-import styles from './TodoPage.module.css';
+import styles from './OnesTodoPage.module.css';
 import { useState, useEffect } from 'react';
 
 export default function TodoPage() {

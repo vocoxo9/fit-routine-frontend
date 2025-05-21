@@ -1,0 +1,11 @@
+.male {
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: rgb(75, 75, 255);
+}
+
+.female {
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: rgb(255, 135, 155);
+}

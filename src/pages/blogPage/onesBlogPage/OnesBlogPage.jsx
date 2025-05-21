@@ -1,10 +1,10 @@
 
 import styles from './OnesBlogPage.module.css';
-import { VscAccount } from "react-icons/vsc";
 import BoardsPaging from 'components/blogPage/boardsPaging/BoardsPaging';
 import Likes from 'components/common/likes/Likes';
 import BlogGrade from 'components/common/blogGrade/BlogGrade';
 import { VscEdit } from "react-icons/vsc";
+import GenderImage from 'components/common/genderImage/GenderImage';
 
 export default function OnesBlogPage() {
 
@@ -13,9 +13,7 @@ export default function OnesBlogPage() {
             <div className={styles.blogHeader}>
                 <div className={styles.ownerCard}>
                     <div className={styles.cardHeader}>
-                        <div className={styles.maleImage}>
-                            <VscAccount />
-                        </div>
+                        <GenderImage gender='female'/>
                         <div className={styles.ownerName}>
                             일김현's Blog
                         </div>
