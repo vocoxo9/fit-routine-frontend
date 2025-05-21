@@ -22,7 +22,8 @@ const Radio = (
     }
 ) => {
     return (
-        <div className={styles.container}>
+        <label className={styles.container}>
+            <span className={styles.labelText}>{label}</span>
             <input
                 className={styles.input}
                 type="radio"
@@ -32,10 +33,7 @@ const Radio = (
                 checked={checked}
                 onChange={onChange}
             />
-            <label className={styles.label} htmlFor={id}>
-                {label}
-            </label>
-        </div>
+        </label>
     )
 }
 
