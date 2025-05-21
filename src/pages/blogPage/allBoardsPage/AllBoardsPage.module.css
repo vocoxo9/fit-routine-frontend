@@ -1,0 +1,48 @@
+.mainContainer {
+    height: 55rem;
+}
+
+.buttonContainer {
+    display: flex;
+    margin-top: 5rem;
+}
+
+.likeBtn {
+    margin-left: 10rem;
+}
+
+.latestBtn {
+    margin-left: 1rem;
+}
+
+
+.td {
+    padding: 1rem;
+    vertical-align: top; 
+}
+
+.table {
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+
+.select {
+    margin-left: auto;
+    text-align: center;
+    margin-right: 10rem;
+}
+
+.ul {
+    margin: 0 auto;
+    width: 25%;
+    display: flex;
+}
+
+.ul li {
+    margin: 0 auto;
+}
+
+.nav {
+    margin-top: 2rem;
+}
+

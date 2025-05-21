@@ -1,21 +1,21 @@
-.errorPage.errorPage-main.main-container {
+.mainContainer {
     text-align: center;
     margin-top: 10rem;
     margin-bottom: 10rem;
 }
 
-.errorPage.errorPage-main.text {
+.text {
     font-size: 5rem;
 }
 
-.errorPage.errorPage-main.warningIcon {
+.warningIcon {
     font-size: 15.625rem;
     margin-top: 5rem;
     color: #334EAC;
 }
 
 
-.errorPage.errorPage-main.homeBtn button{
+.homeBtn{
     width: 15.625rem;
     height: 3.125rem;
     background-color: #334EAC;
