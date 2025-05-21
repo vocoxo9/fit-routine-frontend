@@ -13,6 +13,12 @@ button:hover {
   color: white;
 }
 
+button:disabled {
+  border: solid 2px #787878;
+  background-color: #D9D9D9;
+  color: #787878;
+}
+
 .short {
   width: 5rem;
   height: 2.3rem;
