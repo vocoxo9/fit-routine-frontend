@@ -2,8 +2,8 @@
 .container {
     border: 3px solid #334EAC;
     width: 20rem;
-    height: 20rem;
-    border-radius: 20px;
+    height: 19.3rem;
+    border-radius: 10px;
     overflow: hidden;
     text-align: center;
 }
@@ -38,8 +38,9 @@
 }
 
 .heartComponent {
-    text-align: right;
-    margin-top: 1.1rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
     margin-right: 0.7rem;
 }
 
