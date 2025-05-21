@@ -1,4 +1,4 @@
-import 'assets/styles/common/Reset.css';
+import styles from './assets/styles/common/Reset.module.css'
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -11,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Header />
 
-        <div className='layout'>
-
+        <div className={styles.layout}>
+          sadf
         </div>
 
         <Footer />

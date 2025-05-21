@@ -1,0 +1,60 @@
+.blogContainer {
+    height: 70rem;
+    margin-top: 2rem;
+}
+
+.ownerCard {
+    border: 1px solid #334EAC;
+    width: 25rem;
+    height: 15rem;
+    border-radius: 20px;
+    margin-left: 5rem;
+    overflow: hidden;
+    background-color: #E3F2FD;
+}
+
+.cardHeader {
+    display: flex;
+    margin-top: 0.7rem;
+}
+
+.maleImage {
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: rgb(75, 75, 255);
+}
+
+.femaleImage {
+    font-size: 3rem;
+    margin-left: 1rem;
+    color: rgb(255, 135, 155);
+}
+
+.ownerName {
+    text-align: center;
+    padding-top: 0.6rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.follow {
+    padding-top: 1rem;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.gradeContainer {
+    position: absolute;
+    right: 20rem;
+    width: 10rem;
+    height: 5rem;
+    border: 1px solid;
+}
+
+
+
+
+.boardsContainer {
+    margin-top: 6rem;
+    margin-bottom: 10rem;
+}
