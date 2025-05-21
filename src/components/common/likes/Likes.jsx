@@ -1,7 +1,6 @@
 import styles from './Likes.module.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart as solidHeart} from "@fortawesome/free-solid-svg-icons";
-import {faHeart as regularHeart} from "@fortawesome/free-regular-svg-icons";
+import {FaHeart} from "react-icons/fa6";
+import {FaRegHeart} from "react-icons/fa";
 
 /**
  * 좋아요를 나타내는 컴포넌트.
@@ -24,7 +23,7 @@ const Likes = (
             {count}
         </span>
         <span className={`${styles.icon} ${isBig && styles.big}`}>
-            <FontAwesomeIcon icon={isLiked ? solidHeart : regularHeart}/>
+            {isLiked ? <FaHeart/> : <FaRegHeart/>}
         </span>
     </div>
 }
