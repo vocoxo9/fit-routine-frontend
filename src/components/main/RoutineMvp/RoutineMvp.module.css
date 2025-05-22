@@ -1,0 +1,19 @@
+.title {
+    font-size: 2rem;
+    margin: 3rem 0;
+    display: flex;
+    font-weight: bold;
+    align-items: end;
+}
+
+.myRank {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-left: 1.5rem;
+}
+
+.rank {
+    width: 50rem;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+}
