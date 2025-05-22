@@ -34,13 +34,16 @@ export default function SuggestRoutine() {
     ];
 
     // 카테고리 상태 관리
-    const [showCategory, setShowCategory] = useState(false);
+    const [visibleCategory, setVisibleCategory] = useState({});
     const [showCategoryItems, setShowCategoryItems] = useState(false);
 
     // + 버튼 클릭 시 카테고리 보이게
-    const showCategories = () => {
-        setShowCategory((prev) => !prev);
-    }
+    const visibleCategoryForDay = (dayNo) => {
+        setVisibleCategory((prev) => ({
+            ...prev,
+            [dayNo]: !prev[dayNo],
+        }));
+    };
 
     // 상체 운동
     const upperBodyExercise = [
@@ -61,41 +64,41 @@ export default function SuggestRoutine() {
 
             <div className={styles.formBox}>
                 {templates.map((template) => (
-                    <div className={styles.suggestForm}
-                        key={`template_${template.dayNo}`}>
-                        <div className={styles.repeatsDay}>
-                            <span>{template.dayNo}일차</span>
-                            <span>{template.kcal}kcal</span>
+                    <div key={`template_${template.dayNo}`}>
+                        <div className={styles.suggestForm}>
+                            <div className={styles.repeatsDay}>
+                                <span>{template.dayNo}일차</span>
+                                <span>{template.kcal}kcal</span>
+                            </div>
+
+                            <div className={styles.formLeft}>
+                                {template.exerciseList.map((exercise) => (
+                                    <CheckBox
+                                        key={`template_${template.dayNo}_exercise${exercise.id}`}
+                                        id={exercise.id}
+                                        name={exercise.name}
+                                        label={exercise.label}
+                                    />
+                                ))}
+                            </div>
+
+                            <div className={styles.formRight}>
+                                <button className={styles.plusButton}
+                                    onClick={() => visibleCategoryForDay(template.dayNo)}
+                                > + </button>
+                            </div>
                         </div>
 
-                        <div className={styles.formLeft}>
-                            {template.exerciseList.map((exercise) => (
-                                <CheckBox
-                                    key={`template_${template.dayNo}_exercise${exercise.id}`}
-                                    id={exercise.id}
-                                    name={exercise.name}
-                                    label={exercise.label}
-                                />
-                            ))}
-
-                        </div>
-                        <div className={styles.formRight}>
-                            <button className={styles.plusButton} onClick={showCategories}>+</button>
-                        </div>
+                        {visibleCategory[template.dayNo] && (
+                            <div className={styles.category}>
+                                <Category text="상체" />
+                                <Category text="하체" />
+                                <Category text="전신" />
+                                <Category text="생활운동" />
+                            </div>
+                        )}
                     </div>
                 ))}
-
-                <div className={styles.recommendCheckBox} >
-                </div>
-                {showCategory && (
-                    <div className={styles.category}>
-                        <Category text="상체" onClick={showCategoryAllItems} >
-                        </Category>
-                        <Category text="하체" />
-                        <Category text="전신" />
-                        <Category text="생활운동" />
-                    </div>
-                )}
             </div>
 
             <Button className={styles.registButton} size="bold" text="루틴 등록" />

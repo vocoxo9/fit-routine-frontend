@@ -64,5 +64,5 @@
 .category {
     display : flex;
     justify-content: center;
-    margin : auto;
+    margin : 3rem auto;
 }
