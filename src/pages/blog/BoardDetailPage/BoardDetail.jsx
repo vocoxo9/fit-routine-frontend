@@ -5,10 +5,12 @@ import Button from 'components/common/Button/Button';
 import Likes from 'components/common/Likes/Likes';
 import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
 import Reply from 'components/blog/Reply/Reply';
+import { useNavigate } from 'react-router-dom';
 
-export default function BoardDetail({boardDetail, boardImgs}) {
+export default function BoardDetail({boardId}) {
 
     const [imgCount, setImgCount] = useState(0);
+    const navigate = useNavigate();
 
     const imgList = [
         {   /* 예시 이미지 리스트 */
@@ -32,6 +34,19 @@ export default function BoardDetail({boardDetail, boardImgs}) {
         setImgCount(count);
     }
 
+    // 수정 클릭시 해당 게시물에대한 수정 페이지로 이동 함수
+    const boardEditHandler = () => {
+        // navigate('/board/edit?boardId='+boardId);
+    }
+
+    // 삭제 클릭시 삭제 여부 + 삭제 api 요청 함수
+    const boardDeleteHandler = () => {
+        const isDelete = window.confirm('해당 게시물을 삭제하시겠습니까?');
+        if(isDelete === true) {
+            alert('삭제!');
+            // api요청
+        }
+    }
     
     return (
         <div className={styles.container}>
@@ -40,10 +55,10 @@ export default function BoardDetail({boardDetail, boardImgs}) {
                     <span>운동 인증을 하는 이유</span>
                     <div className={styles.boardEditContainer}>
                         <div className={styles.editBtns}>
-                            <Button size='small' text='수정'/>
+                            <Button size='small' text='수정' onClick={boardEditHandler}/>
                         </div>
                         <div className={styles.deleteBtns}>
-                            <Button size='small' text='삭제'/>
+                            <Button size='small' text='삭제' onClick={boardDeleteHandler}/>
                         </div>
                     </div>
                 </div><br/>
