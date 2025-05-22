@@ -9,12 +9,15 @@ ex) memberId | memberLogin
 <hr>
 
 ### 클래스명
-- 3단 표기법 사용 (페이지명 페이지명-영역/요소 기능명)
+- module.css 방식을 사용하기로 하여 [ className={styles.클래스명} ] 으로 표기
+
 <br>
 
-ex) className='loginPage loginPage-input idInput' <br>
-ex) className='loginPage loginPage-input pwdInput' <br>
-ex) className='loginPage loginPage-button loginBtn' <br>
+1. 일반 적용 <br/>
+ex) className={ styles.div } <br>
+
+2. 공통 컴포넌트의 전달받는 값으로 사용하는 경우 <br/>
+ex) className={ styles[size] } <br>
 
 <hr>
 
@@ -33,6 +36,8 @@ ex) id='inputId'
 
 ### 폴더명
 - 소문자로 구성
+<br/>
+(폴더 내 파일명이 같을 경우에만 파일명과 동일하게 PascalCase사용)
 
 <hr>
 
@@ -45,10 +50,11 @@ ex) MainPage.jsx
 <hr>
 
 ### CSS 파일명
-- 페이지명 기반
+: module.css 사용
+- 페이지명 기반.module.css
 <br>
 
-ex) MainPage.css
+ex) MainPage.module.css
 
 <hr>
 
