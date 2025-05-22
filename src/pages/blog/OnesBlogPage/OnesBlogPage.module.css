@@ -22,17 +22,7 @@
     margin-top: 0.7rem;
 }
 
-.maleImage {
-    font-size: 3rem;
-    margin-left: 1rem;
-    color: rgb(75, 75, 255);
-}
 
-.femaleImage {
-    font-size: 3rem;
-    margin-left: 1rem;
-    color: rgb(255, 135, 155);
-}
 
 .ownerName {
     text-align: center;
