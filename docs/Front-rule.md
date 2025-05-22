@@ -68,11 +68,3 @@ ex) memberLogin.js
 ex) import 'reset.css' from 'assets/common/reset.css';
 
 <hr>
-
-### commit 메시지
-- 케밥 표기법
-<br>
-
-ex) 
-1. 추가 feat-기능명-페이지명
-2. 수정 fix-기능명-페이지명
