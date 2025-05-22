@@ -1,5 +1,6 @@
 import MyPageForm from 'components/member/mypage/MyPageForm';
 import styles from './MyPage.module.css';
+import ReSign from 'components/member/mypage/ReSign/ReSign';
 
 function MyPage() {
     return (
@@ -8,7 +9,8 @@ function MyPage() {
                 마이페이지
             </div>
             <div className={styles.content}>
-                <MyPageForm />
+                {/* <MyPageForm /> */}
+                <ReSign />
             </div>
         </div>
     );

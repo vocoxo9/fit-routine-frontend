@@ -1,0 +1,56 @@
+.subTitle {
+    color: #334EAC;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 3rem auto;
+    margin-left: 5rem;
+}
+
+.table {
+    margin-bottom: 8rem;
+}
+
+.reasontitle {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.reasonSubTitle {
+    color: #787878;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    margin-left: 1rem;
+}
+
+.reSignReason {
+    margin-bottom: 4rem;
+}
+
+.reasonInput {
+    border: solid 1px #334EAC;
+    border-radius: 0.5rem;
+    background-color: #D0E3FF;
+    width: 56rem;
+    height: 18rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+    box-shadow: 0 0 1rem 0 #D9D9D9;
+}
+.checkBox {
+    width: 75%;
+    margin: 1rem 0;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnArea {
+    display: flex;
+    justify-content: center;
+}
+.btns {
+    width: 12rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}

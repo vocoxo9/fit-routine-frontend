@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Header from 'components/layout/Header/Header';
 import Footer from 'components/layout/Footer/Footer';
+import MyPage from 'pages/member/MyPage/MyPage';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Header />
 
         <div className={styles.layout}>
+          <MyPage />
         </div>
 
         <Footer />

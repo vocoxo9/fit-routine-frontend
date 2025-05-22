@@ -1,0 +1,30 @@
+.table {
+    display: flex;
+    justify-content: center;
+}
+
+.subTitle {
+    border: solid 1px #334EAC;
+    background-color: #D0E3FF;
+    width: 12rem;
+    height: 4.3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.h4 {
+    color: #334EAC;
+    margin: 1rem;
+}
+
+.info {
+    border: solid 1px #787878;
+    width: 45rem;
+    height: 4.3rem;
+    font-size: 1rem;
+    align-content: center;
+    align-items: center;
+}
+
+.infoText {
+    margin-left: 1rem;
+}
