@@ -54,7 +54,8 @@ input:focus {
 
 input:read-only {
     background-color: #d9d9d9;
-}.error {
+}
+.error {
     color: #CC0000;
     margin: 0.3rem 1rem;
     margin-bottom: 0.5rem;

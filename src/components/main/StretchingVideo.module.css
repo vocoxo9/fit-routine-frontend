@@ -1,0 +1,20 @@
+.title {
+    font-size: 2rem;
+    margin: 3rem 0;
+}
+
+.iframe {
+    width: 31.25rem;
+    height: 17.5rem;
+}
+
+.video {
+    display: flex;
+    flex-direction: column;
+}
+
+.videos {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:5rem;
+}
