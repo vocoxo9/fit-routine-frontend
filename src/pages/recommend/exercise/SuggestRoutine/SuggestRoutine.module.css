@@ -46,8 +46,9 @@
     border-radius : 50%;
     font-size : 2rem;
     background-color: white;
+    margin : 0.5rem 1rem;
 }
 
-button {
+.container button {
     float : right;
 }
