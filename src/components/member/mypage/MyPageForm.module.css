@@ -1,0 +1,45 @@
+.menu {
+    display: flex;
+    width: 50rem;
+}
+
+.profile,
+.likeList {
+    border: solid 2px #334EAC;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    width: 25rem;
+    height: 4rem;
+    background-color: #D0E3FF;
+    color: #334EAC;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: center;
+    align-content: center;
+}
+
+.profile:hover,
+.likeList:hover {
+    background-color: #334EAC;
+    color: #FFFFFF;
+    transition: 0.3s;
+}
+
+/* 활성 탭 */
+.active {
+    background-color: #334EAC;
+    color: #FFFFFF;
+}
+
+.between {
+    width: 0.01rem;
+}
+
+.content {
+    border: solid 2px #000000;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    width: 50rem;
+    height: 55rem;
+    box-shadow: 0 0 1rem 0 #d9d9d9;
+}

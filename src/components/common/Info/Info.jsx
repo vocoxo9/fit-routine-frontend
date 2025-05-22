@@ -1,4 +1,4 @@
-import '../css/Info.css';
+import './Info.css';
 
 
 function Info({ kind, text, children}) {
