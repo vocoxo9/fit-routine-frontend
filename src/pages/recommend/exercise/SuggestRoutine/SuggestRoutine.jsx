@@ -23,32 +23,45 @@ export default function SuggestRoutine() {
         { name: 'exercise', id: '15', label: "필라테스" },
     ];
 
+    const templates = [
+        { dayNo: 1, kcal: 430, exerciseList: exerciseList },
+        // { dayNo: 2, kcal: 300, exerciseList: exerciseList },
+        // { dayNo: 3, kcal: 345, exerciseList: exerciseList },
+        // { dayNo: 4, kcal: 404, exerciseList: exerciseList },
+    ];
+
     return (
         <div className={styles.container}>
             <FormTitle text="FIT-ROUTINE" />
 
-            <div className={styles.suggestForm}>
-                <div className={styles.repeatsDay}>
-                    <span>1일차</span>
-                    <span>435kcal</span>
-                </div>
+            <div className={styles.formBox}>
+                {templates.map((template) => (
+                    <div className={styles.suggestForm}
+                        key={`template_${template.dayNo}`}>
+                        <div className={styles.repeatsDay}>
+                            <span>{template.dayNo}일차</span>
+                            <span>{template.kcal}kcal</span>
+                        </div>
 
-                <div className={styles.formLeft}>
-                    {exerciseList.map((exercise) => (
-                        <CheckBox
-                            key={`${exercise}+_index`}
-                            id={exercise.id}
-                            name={exercise.name}
-                            label={exercise.label}
-                        />
-                    ))}
-                </div>
-                <div className={styles.formRight}>
-                    <button className={styles.plusButton}>+</button>
-                </div>
+                        <div className={styles.formLeft}>
+                            {template.exerciseList.map((exercise) => (
+                                <CheckBox
+                                    key={`template_${template.dayNo}_exercise${exercise.id}`}
+                                    id={exercise.id}
+                                    name={exercise.name}
+                                    label={exercise.label}
+                                />
+                            ))}
+
+                        </div>
+                        <div className={styles.formRight}>
+                            <button className={styles.plusButton}>+</button>
+                        </div>
+                    </div>
+                ))}
             </div>
 
-            <Button size="bold" text="루틴 등록" />
+            <Button className={styles.registButton} size="bold" text="루틴 등록" />
         </div>
     );
 
