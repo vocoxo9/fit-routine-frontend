@@ -1,0 +1,80 @@
+
+.oneReply {
+    width: 100%;
+    margin:auto
+}
+
+.replyHeader {
+    display: flex;
+    position: relative;
+}
+
+.replyWriter {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-left: 4rem;
+    cursor: pointer;
+}
+
+.edit {
+    font-size: 1.3rem;
+    margin-left: 33rem;
+    cursor: pointer;
+}
+
+.trash {
+    font-size: 1.3rem;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+.replyDate {
+    position: absolute;
+    right: 0;
+}
+
+
+.replyMain {
+    display: flex;
+}
+
+.genderImg {
+    font-size: 2.5rem;
+    align-content: center;
+}
+
+.replyContent {
+    align-content: center;
+    width: 85%;
+    margin-left: 1rem;
+}
+
+.replyFooter {
+    display: flex;
+    position: relative;
+    margin-top: 0.4rem;
+}
+
+.replyBtn {
+    margin-left: 5rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.likeBtn {
+    position: absolute;
+    right: 0;
+}
+
+.horizon {
+    width: 98%;
+    margin-left: 1rem;
+}
+
+.reComment {
+    display:none;
+}
+
+.arrow {
+    font-size: 6.8rem;
+}
