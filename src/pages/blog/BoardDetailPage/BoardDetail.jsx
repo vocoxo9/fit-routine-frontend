@@ -1,8 +1,10 @@
 import {useState} from 'react';
 import styles from './BoardDetail.module.css';
-import {VscTriangleLeft, VscTriangleRight} from "react-icons/vsc";
+import {VscTriangleLeft, VscTriangleRight, VscEdit, VscTrash, VscIndent } from "react-icons/vsc";
 import Button from 'components/common/Button/Button';
 import Likes from 'components/common/Likes/Likes';
+import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
+import Reply from 'components/blog/Reply/Reply';
 
 export default function BoardDetail({boardDetail, boardImgs}) {
 
@@ -30,24 +32,26 @@ export default function BoardDetail({boardDetail, boardImgs}) {
         setImgCount(count);
     }
 
+    
     return (
         <div className={styles.container}>
             <div>
                 <div className={styles.boardTitle}>
-                    운동 인증을 하는 이유
+                    <span>운동 인증을 하는 이유</span>
+                    <div className={styles.boardEditContainer}>
+                        <div className={styles.editBtns}>
+                            <Button size='small' text='수정'/>
+                        </div>
+                        <div className={styles.deleteBtns}>
+                            <Button size='small' text='삭제'/>
+                        </div>
+                    </div>
                 </div><br/>
                 <div className={styles.nameDate}>
                     일김현 / 25.05.01
                 </div>
 
-                <div className={styles.boardEditContainer}>
-                    <div className={styles.editBtns}>
-                        <Button size='small' text='수정'/>
-                    </div>
-                    <div className={styles.deleteBtns}>
-                        <Button size='small' text='삭제'/>
-                    </div>
-                </div>
+                
             </div>
 
             
@@ -79,13 +83,10 @@ export default function BoardDetail({boardDetail, boardImgs}) {
                 <Likes count={213} isBig={true}/>
             </div>
             
-            <div className={styles.replyInputContainer}>
-                <textarea className={styles.replyInput}/>
-                <button className={styles.inputBtn}><VscSend /></button>
-            </div>
+            <ReplyInput/>
 
             <div className={styles.replyListContainer}>
-
+                <Reply/>
             </div>
 
         </div>
