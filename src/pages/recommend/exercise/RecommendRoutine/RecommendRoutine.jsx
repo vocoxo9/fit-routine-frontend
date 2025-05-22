@@ -1,10 +1,13 @@
 import Button from 'components/common/Button/Button';
+import Category from 'components/common/Category/Category';
 import CheckBox from 'components/common/CheckBox/CheckBox';
 import FormTitle from 'components/recommend/FormTitle/FormTitle';
-import styles from 'pages/recommend/exercise/SuggestRoutine/SuggestRoutine.module.css';
+import styles from 'pages/recommend/exercise/RecommendRoutine/RecommendRoutine.module.css';
+import { useState } from 'react';
 
 export default function SuggestRoutine() {
 
+    // 샘플 데이터
     const exerciseList = [
         { name: 'exercise', id: '1', label: "크런치" },
         { name: 'exercise', id: '2', label: "런지" },
@@ -25,10 +28,32 @@ export default function SuggestRoutine() {
 
     const templates = [
         { dayNo: 1, kcal: 430, exerciseList: exerciseList },
-        // { dayNo: 2, kcal: 300, exerciseList: exerciseList },
-        // { dayNo: 3, kcal: 345, exerciseList: exerciseList },
-        // { dayNo: 4, kcal: 404, exerciseList: exerciseList },
+        { dayNo: 2, kcal: 300, exerciseList: exerciseList },
+        { dayNo: 3, kcal: 345, exerciseList: exerciseList },
+        { dayNo: 4, kcal: 404, exerciseList: exerciseList }
     ];
+
+    // 카테고리 상태 관리
+    const [showCategory, setShowCategory] = useState(false);
+    const [showCategoryItems, setShowCategoryItems] = useState(false);
+
+    // + 버튼 클릭 시 카테고리 보이게
+    const showCategories = () => {
+        setShowCategory((prev) => !prev);
+    }
+
+    // 상체 운동
+    const upperBodyExercise = [
+        { category: "상체", name: "푸시업" },
+        { category: "상체", name: "벤치프레스" },
+        { category: "상체", name: "체스트 프레스 머신" },
+        { category: "상체", name: "프론트 레이즈" },
+    ];
+
+    // 카테고리 클릭 시 운동리스트 보이게
+    const showCategoryAllItems = () => {
+        setShowCategoryItems((prev) => !prev);
+    }
 
     return (
         <div className={styles.container}>
@@ -55,10 +80,22 @@ export default function SuggestRoutine() {
 
                         </div>
                         <div className={styles.formRight}>
-                            <button className={styles.plusButton}>+</button>
+                            <button className={styles.plusButton} onClick={showCategories}>+</button>
                         </div>
                     </div>
                 ))}
+
+                <div className={styles.recommendCheckBox} >
+                </div>
+                {showCategory && (
+                    <div className={styles.category}>
+                        <Category text="상체" onClick={showCategoryAllItems} >
+                        </Category>
+                        <Category text="하체" />
+                        <Category text="전신" />
+                        <Category text="생활운동" />
+                    </div>
+                )}
             </div>
 
             <Button className={styles.registButton} size="bold" text="루틴 등록" />

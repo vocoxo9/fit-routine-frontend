@@ -60,3 +60,9 @@
 .registButton {
     margin : 3rem auto;
 }
+
+.category {
+    display : flex;
+    justify-content: center;
+    margin : auto;
+}
