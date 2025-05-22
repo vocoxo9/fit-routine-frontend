@@ -1,0 +1,35 @@
+.subTitle {
+    color: #334EAC;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 3rem auto;
+    margin-left: 6rem;
+    margin-bottom: 1.5rem;
+}
+
+.table {
+    width: 40rem;
+    height: 39rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.body {
+    display: flex;
+}
+
+.p {
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+.btnArea {
+    display: flex;
+    justify-content: end;
+    margin-right: 5.3rem;
+}
+.btn {
+    width: 11rem;
+    display: flex;
+    justify-content: space-between;
+}
