@@ -8,7 +8,7 @@ import { IoScaleOutline } from "react-icons/io5";
 
 import styles from './ProfileInfo.module.css';
 
-function ProFileInfo({ kind, text, info }) {
+function ProfileInfo({ kind, text, info }) {
     let icon;
 
     switch (kind) {
@@ -59,4 +59,4 @@ function ProFileInfo({ kind, text, info }) {
     );
 }
 
-export default ProFileInfo;
+export default ProfileInfo;

@@ -1,12 +1,12 @@
-.mypage.mypage-info.nickName {
+.nickName {
     display: flex;
 }
 .textBox.nickName {
     border: solid 1px #334EAC;
-    width: 12rem;
+    width: 11.5rem;
     height: 5rem;
     background-color: #D0E3FF;
-
+    font-weight: 600;
 }
 .h4.nickName {
     margin: 1rem;
@@ -14,20 +14,23 @@
 }
 .inputBox.nickName {
     border: solid 1px #334EAC;
-    width: 37.7rem;
-    align-content: center;
+    width: 28.5rem;
+    align-items: center;
+}
+.inputBox.nickName > div {
+    margin-bottom: 1rem;
 }
 /* ------------ */
 
-.mypage.mypage-info.password {
+.password {
     display: flex;
 }
 .textBox.password {
     border: solid 1px #334EAC;
-    width: 12rem;
+    width: 11.5rem;
     height: 17rem;
     background-color: #D0E3FF;
-    
+    font-weight: 600;
 }
 .h4.password {
     margin: 1rem;
@@ -35,19 +38,20 @@
 }
 .inputBox.password {
     border: solid 1px #334EAC;
-    width: 37.7rem;
-    align-content: center;
-    justify-content: space-between;
+    width: 28.5rem;
+    justify-content: space-around;
+    flex-direction: column;
 }
 /* --------- */
-.mypage.mypage-info.phone {
+.phone {
     display: flex;
 }
 .textBox.phone {
     border: solid 1px #334EAC;
-    width: 12rem;
+    width: 11.5rem;
     height: 5rem;
-    background-color: #D0E3FF;   
+    background-color: #D0E3FF;
+    font-weight: 600;
 }
 .h4.phone {
     margin: 1rem;
@@ -55,25 +59,36 @@
 }
 .inputBox.phone {
     border: solid 1px #334EAC;
-    width: 37.7rem;
+    width: 28.5rem;
     display: flex;
+    align-items: center;
+}
+.inputBox.phone > div {
+    margin-bottom: 1rem;
 }
 /* ------------ */
-.mypage.mypage-info.body {
+.body {
     display: flex;
 }
 .textBox.body {
     border: solid 1px #334EAC;
-    width: 12rem;
-    height: 14rem;
+    width: 11.5rem;
+    height: 12rem;
     background-color: #D0E3FF;
+    font-weight: 600;
 }
 .h4.body {
     margin: 1rem;
     color: #334EAC;
+    /* font-weight: 600; */
 }
 .inputBox.body {
     border: solid 1px #334EAC;
-    width: 37.7rem;
-    align-content: center;
+    width: 28.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.inputBox.body > div {
+    margin-bottom: 1rem;
 }

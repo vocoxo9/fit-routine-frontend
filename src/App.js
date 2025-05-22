@@ -13,7 +13,7 @@ function App() {
         <Header />
 
         <div className={styles.layout}>
-
+          
         </div>
 
         <Footer />
