@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;;
+}
+.title {
+    color: #334EAC;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 10rem;
+}
+.content {
+    margin: 0 auto ;
+    margin-bottom: 5rem;
+}
