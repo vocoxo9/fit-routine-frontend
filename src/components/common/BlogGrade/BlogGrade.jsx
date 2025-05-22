@@ -1,9 +1,10 @@
 import styles from './BlogGrade.module.css';
 
 /**
+ * 블로그 등급 컴포넌트
  * 
- * @param {grade} 블로그 점수값
- * @returns 
+ * @param {number} grade 블로그 점수값
+ * @returns 점수에 따른 문자 형태 ex) S, A
  */
 function BlogGrade({ grade }) {
 

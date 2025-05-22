@@ -16,6 +16,7 @@
 .icon {
     color: red;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .icon.big {

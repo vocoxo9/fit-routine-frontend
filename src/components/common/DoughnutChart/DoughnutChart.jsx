@@ -3,7 +3,7 @@ import {Doughnut} from 'react-chartjs-2';
 import {ArcElement, Chart as ChartJS, Legend, Tooltip} from 'chart.js';
 
 
-// Chart.js 요소 등록 (반드시 필요)
+// Chart.js 요소 등록 (반드시 필요함)
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 /**
