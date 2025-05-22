@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './MyPageForm.module.css';
-import Profile from './Profile';
+import Profile from './profile/Profile';
+import LikeList from './likeList/LikeList';
 
 function MyPageForm() {
     const [activeTab, setActiveTab] = useState('profile'); // 기본값: profile
@@ -24,7 +25,7 @@ function MyPageForm() {
                     </div>
                 </div>
                 <div className={styles.content}>
-                    {activeTab === 'profile' ? <Profile/> : <Profile/>}
+                    {activeTab === 'profile' ? <Profile /> : <LikeList />}
                 </div>
             </div>
         </>
