@@ -3,6 +3,7 @@ import {VscAccount, VscEdit} from "react-icons/vsc";
 import BoardsPaging from 'components/blog/BoardsPaging/BoardsPaging';
 import Likes from 'components/common/Likes/Likes';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
+import GenderImage from 'components/common/genderImage/GenderImage';
 
 export default function OnesBlogPage() {
 
@@ -11,9 +12,7 @@ export default function OnesBlogPage() {
             <div className={styles.blogHeader}>
                 <div className={styles.ownerCard}>
                     <div className={styles.cardHeader}>
-                        <div className={styles.maleImage}>
-                            <VscAccount />
-                        </div>
+                        <GenderImage gender='female'/>
                         <div className={styles.ownerName}>
                             일김현's Blog
                         </div>
