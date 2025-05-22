@@ -1,7 +1,7 @@
 import styles from './PopularPosts.module.css';
 import BoardPreview from 'components/blog/BoardPreview/BoardPreview';
 
-function PopulatorPost() {
+function PopularPost() {
     return (
         <>
             <div className={styles.title}>
@@ -16,4 +16,4 @@ function PopulatorPost() {
     );
 }
 
-export default PopulatorPost;
+export default PopularPost;

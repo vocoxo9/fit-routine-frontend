@@ -1,6 +1,14 @@
 .container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin : 10rem auto;
+}
+
+.container button {
+    float : right;
+}
+
+.formBox {
+    margin : 5rem auto;
 }
 
 .repeatsDay span:first-child{
@@ -46,8 +54,9 @@
     border-radius : 50%;
     font-size : 2rem;
     background-color: white;
+    margin : 0.5rem 1rem;
 }
 
-button {
-    float : right;
+.registButton {
+    margin : 3rem auto;
 }
