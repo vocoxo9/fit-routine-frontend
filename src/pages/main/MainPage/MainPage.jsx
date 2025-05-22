@@ -1,14 +1,15 @@
 import Calculator from 'components/main/Calculator/Calculator';
-import PopularPosts from 'components/main/PopularPost/PopularPost';
+import PopularPost from 'components/main/PopularPost/PopularPost';
+import StretchingVideo from 'components/main/StretchingVideo/StretchingVideo';
+
 import './MainPage.module.css';
-import StretchingVideo from 'components/mainPage/StretchingVideo';
 
 function MainPage () {
     return (
         <>
             <Calculator />
             <br/>
-            <PopularPosts />
+            <PopularPost />
             <StretchingVideo />
         </>
     );
