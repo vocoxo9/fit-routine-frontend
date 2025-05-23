@@ -102,6 +102,8 @@ export default function BoardDetail({boardId}) {
 
             <div className={styles.replyListContainer}>
                 <Reply/>
+                <Reply/>
+                <Reply/>
             </div>
 
         </div>

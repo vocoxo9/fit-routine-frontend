@@ -7,6 +7,17 @@ import { useState } from 'react';
 export default function AllBoardsPage() {
 
     const [category, setCategory] = useState('자유');
+
+    // 임시데이터
+    const boardList = [
+        {src:'jae3.jpg', boardWriter:'김일현', boardTitle:'사진1', boardId:1},
+        {src:'jae4.jpg', boardWriter:'유성재', boardTitle:'사진2', boardId:2},
+        {src:'jae5.jpg', boardWriter:'정혜영', boardTitle:'사진3', boardId:3},
+        {src:'jae3.jpg', boardWriter:'안민영', boardTitle:'사진4', boardId:4},
+        {src:'jae4.jpg', boardWriter:'임성준', boardTitle:'사진5', boardId:5},
+        {src:'jae5.jpg', boardWriter:'강사님', boardTitle:'사진6', boardId:6}
+    ]
+    
     const categoryOptions = [
         { value: 'free', label: '자유' },
         { value: 'muscle', label: '근육 증진' },
@@ -27,7 +38,7 @@ export default function AllBoardsPage() {
                 <span className={`${styles.latestBtn}`}><Button text={'최신순'} size='small'/></span>
                 <CategorySelect options={categoryOptions} value={category} onChange={changeBoardsByCategory}/>
             </div>
-            <BoardsPaging/>
+            <BoardsPaging boardList={boardList}/>
         </div>
     )
 }

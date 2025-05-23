@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.textarea {
+.resign {
     width: 52rem;
     height: 12rem;
     resize: none;
@@ -12,3 +12,4 @@
     font-weight: bold;
     overflow: hidden;
 }
+

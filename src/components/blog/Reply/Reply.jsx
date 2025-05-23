@@ -3,6 +3,7 @@ import Likes from "components/common/Likes/Likes";
 import { VscEdit, VscIndent, VscTrash } from "react-icons/vsc";
 import ReplyInput from "../ReplyInput/ReplyInput";
 import styles from './Reply.module.css';
+import { useRef } from "react";
 
 /**
  * 
@@ -22,14 +23,16 @@ export default function Reply(
     }
 ) {
 
+    const replyInputRef = useRef(null);
+
     //날짜 계산 함수 필요
     
 
     // 댓글 달기 눌렀을때 댓글 입력칸 나오도록
-    const showReplyInput = ({replyId}) => {
-        const replyInputBox = document.getElementById("replyId");
-        const state = ((replyInputBox.style.display === 'flex') ? 'none':'flex');
-        replyInputBox.style.display = state;
+    const showReplyInput = () => {
+        const el = replyInputRef.current;
+        if(!el) return;
+        el.style.display = (el.style.display==='flex')?'none':'flex';
         
     }
 
@@ -61,7 +64,7 @@ export default function Reply(
                         <div className={styles.likeBtn}><Likes count={21}/></div>
                     </div>
                     <hr className={styles.horizon}/>
-                    <div className={styles.reComment} id='replyId'>
+                    <div className={styles.reComment} id='replyId' ref={replyInputRef}>
                         {/* 전달받은 replyId로 id값을 판별예정 */}
                         <div className={styles.arrow}><VscIndent/></div>
                         <ReplyInput replyId={1} size={'small'}/>
