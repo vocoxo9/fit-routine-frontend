@@ -10,6 +10,7 @@ import styles from './Button.module.css';
  * @param {function} [props.onMouseEnter] - 마우스 오버 이벤트 핸들러
  * @param {function} [props.onMouseLeave] - 마우스 아웃 이벤트 핸들러
  * @param {boolean} [props.disabled] - 버튼 비활성화 여부
+ * @param {string} [props.type] - 버튼 타입여부 (submit:기본값, button:form 제출하지 않는 버튼)
  */
 function Button(
     {
@@ -18,7 +19,8 @@ function Button(
         onClick,
         onMouseEnter,
         onMouseLeave,
-        disabled
+        disabled,
+        type
     }
 ) {
     return (
@@ -28,6 +30,7 @@ function Button(
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
                 disabled={disabled}
+                type={type}
             >
                 {text}
             </button>

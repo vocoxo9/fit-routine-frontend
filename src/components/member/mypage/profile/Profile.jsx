@@ -3,8 +3,7 @@ import { BsChevronDoubleRight } from "react-icons/bs"
 import Button from 'components/common/Button/Button';
 
 import styles from './Profile.module.css';
-import Info from "components/common/info/Info";
-import ProFileInfo from "components/common/info/ProfileInfo";
+import ProFileInfo from "components/common/Info/ProfileInfo";
 
 function Profile() {
     return (
