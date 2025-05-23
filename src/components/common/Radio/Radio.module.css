@@ -1,4 +1,21 @@
-.container {
+/* 일반 라디오 스타일 */
+.commonContainer {
+    display : inline-flex;
+    flex-direction: row-reverse;
+    margin : 1rem;
+}
+
+.commonInput {
+    accent-color: #334EAC;
+}
+
+.commonLabel {
+    margin-left : 0.4rem;
+}
+
+
+/* 추천 페이지 용 라디오 스타일 */
+.longContainer {
     display: flex;
     align-items: center;
     width: 22rem;
@@ -9,17 +26,17 @@
     cursor: pointer;
 }
 
-.container:has(input:checked) {
+.longContainer:has(input:checked) {
     border: solid 2px #334EAC;
 }
 
-.labelText {
+.longLabel {
     font-size: 1rem;
     line-height: 2.3;
     margin-left: 0.6rem;
 }
 
-.input {
+.longInput {
     margin-left: auto;
     width: 1rem;
     height: 1rem;

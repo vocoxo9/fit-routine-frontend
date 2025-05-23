@@ -9,6 +9,7 @@ import styles from './Radio.module.css'
  * @param label Radio 태그에 대한 label 텍스트
  * @param [checked] Radio 태그의 checked (선택)
  * @param [onChange] Radio 태그의 onChange (선택)
+ * @style Radio 태그의 CSS 스타일 ['common : 기본값', 'long']
  * @returns {JSX.Element} 라디오 컴포넌트
  */
 const Radio = (
@@ -18,14 +19,15 @@ const Radio = (
         value,
         label,
         checked,
-        onChange
+        onChange,
+        style = 'common'
     }
 ) => {
     return (
-        <label className={styles.container}>
-            <span className={styles.labelText}>{label}</span>
+        <label className={styles[`${style}Container`]}>
+            <span className={styles[`${style}Label`]}>{label}</span>
             <input
-                className={styles.input}
+                className={styles[`${style}Input`]}
                 type="radio"
                 id={id}
                 name={name}
