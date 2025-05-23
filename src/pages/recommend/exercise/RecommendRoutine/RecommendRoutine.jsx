@@ -5,10 +5,14 @@ import Category from 'components/common/Category/Category';
 import CheckBox from 'components/common/CheckBox/CheckBox';
 import FormTitle from 'components/recommend/FormTitle/FormTitle';
 import styles from 'pages/recommend/exercise/RecommendRoutine/RecommendRoutine.module.css';
+import RecommendForDay from 'components/recommend/RecommendForDay/RecommendForDay';
+import SelectByCategoryList from 'components/recommend/SelectByCategoryList/SelectByCategoryList';
 
 export default function RecommendRoutine() {
-    
+
     // 샘플 데이터
+    const data = [];
+    
     const exerciseList = [
         { name: 'exercise', id: '1', label: "크런치", category: '상체' },
         { name: 'exercise', id: '2', label: "런지", category: '상체' },
@@ -26,7 +30,7 @@ export default function RecommendRoutine() {
         { name: 'exercise', id: '14', label: "레그 프레스", category: '전신' },
         { name: 'exercise', id: '15', label: "필라테스", category: '생활운동' },
     ];
-    
+
     const templates = [
         { dayNo: 1, kcal: 430, exerciseList: exerciseList },
         { dayNo: 2, kcal: 300, exerciseList: exerciseList },
@@ -81,7 +85,8 @@ export default function RecommendRoutine() {
             const currentList = prev[dayNo];
 
             // 다른 카테고리 선택하면 새로 보이게
-            return { ...prev,
+            return {
+                ...prev,
                 [dayNo]: currentList && currentList.length > 0 ? null : filtered
             };
         });
@@ -113,13 +118,21 @@ export default function RecommendRoutine() {
                 {templates.map((template) => (
                     <div key={`template_${template.dayNo}`}>
                         {/* n일차 폼 */}
-                        <div className={styles.recommendForm}>
+                        <RecommendForDay
+                            template={template}
+                            selectedExercises={selectedExercisesByDay[template.dayNo] || []}
+                            onChange={(exercise) => handleExerciseToggle(template.dayNo, exercise)}
+                            onClick={() => visibleCategoryForDay(template.dayNo)}
+                        />
+
+
+                        {/* <div className={styles.recommendForm}>
                             <div className={styles.repeatsDay}>
                                 <span>{template.dayNo}일차</span>
                                 <span>{template.kcal}kcal</span>
                             </div>
 
-                            {/* 운동 리스트 */}
+                            {/* 운동 리스트 
                             <div className={styles.formLeft}>
                                 {(selectedExercisesByDay[template.dayNo] || []).map((exercise) => (
                                     <CheckBox
@@ -132,14 +145,15 @@ export default function RecommendRoutine() {
                                     />
                                 ))}
                             </div>
-                            
-                            {/* + 버튼 : 카테고리 */}
+
+                            {/* + 버튼 : 카테고리 
                             <div className={styles.formRight}>
                                 <button className={styles.plusButton}
                                     onClick={() => visibleCategoryForDay(template.dayNo)}
                                 > + </button>
                             </div>
-                        </div>
+                        </div> */}
+
 
                         {/* 카테고리 표기 */}
                         {visibleCategory[template.dayNo] && (
@@ -153,7 +167,7 @@ export default function RecommendRoutine() {
                         )}
 
                         {/* 카테고리별 운동 리스트 */}
-                        {selectedCategory[template.dayNo] && (
+                        {/* {selectedCategory[template.dayNo] && (
                             <div className={styles.selectedByCategory}>
                                 {selectedCategory[template.dayNo].map((exercise) => (
                                     <CheckBox
@@ -165,9 +179,20 @@ export default function RecommendRoutine() {
                                             (selectedExercisesByDay[template.dayNo] || []).some((e) => e.id === exercise.id)
                                         }
                                         onChange={() => handleExerciseToggle(template.dayNo, exercise)}
+                                        styleType='category'
+
                                     />
                                 ))}
                             </div>
+                        )} */}
+
+                        {selectedCategory[template.dayNo] && (
+                            <SelectByCategoryList
+                                dayNo={template.dayNo}
+                                categoryExercises={selectedCategory[template.dayNo]}
+                                checked={selectedExercisesByDay[template.dayNo] || []}
+                                onChange={(exercise) => handleExerciseToggle(template.dayNo, exercise)}
+                            />
                         )}
                     </div>
                 ))}

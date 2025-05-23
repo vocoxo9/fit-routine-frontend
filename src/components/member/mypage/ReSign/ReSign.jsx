@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import styles from './ReSign.module.css';
-import ReSignInfo from 'components/common/info/ResignInfo';
+import ReSignInfo from 'components/common/Info/ResignInfo';
 import CheckBox from 'components/common/CheckBox/CheckBox';
 import TextArea from 'components/common/TextArea/TextArea';
 import Button from 'components/common/Button/Button';

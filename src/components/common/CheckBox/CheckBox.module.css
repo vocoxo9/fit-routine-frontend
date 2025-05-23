@@ -1,17 +1,49 @@
-.container {
+/* 기본 체크박스 스타일 */
+.commonContainer {
     display: inline-flex;
     align-items: center;
     gap: 0.1rem;
     margin : 0.3rem;
 }
 
-.input {
+.commonInput {
     width: 1.1rem;
     height: 1.1rem;
     accent-color: #334EAC;
 }
 
-.label {
+.commonLabel {
     font-size: 1rem;
     line-height: 1.5;
+}
+
+
+/* 추천 페이지 카테고리 하위 체크박스 스타일 */
+.categoryContainer {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding : 0.3rem 1rem;
+    width: 12rem;
+    height: 2.5rem;
+    margin: 1rem;
+    border: 1px solid #D0E3FF;
+    border-radius: 0.2rem;
+    background: #D0E3FF;
+    box-shadow: 0px 0px 5px #d9d9d9;
+}
+
+.categoryInput {
+    float : right;
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: #334EAC;
+}
+
+.categoryLabel{
+    float : left;
+    font-size: 1rem;
+    display : flex;
+    align-items: center;
 }

@@ -10,6 +10,7 @@
     margin: 5rem auto;
 }
 
+/* -------- 1*/
 .repeatsDay span:first-child {
     display: inline-block;
     font-size: 1.1rem;
@@ -58,6 +59,9 @@
     margin: 0.5rem 1rem;
 }
 
+/* -------  1 */
+
+
 .registButton {
     margin: 3rem auto;
 }
@@ -68,19 +72,9 @@
     margin: 3rem auto;
 }
 
-.selectedByCategory {
+.selectedByCategory{
+    margin : 3rem auto;
     text-align: center;
-    margin: 3rem;
-}
-
-.selectedByCategory>* {
-    width: 11.5rem;
-    height: 2.5rem;
-    margin: 1rem;
-    border: 1px solid #D0E3FF;
-    border-radius: 0.2rem;
-    background: #D0E3FF;
-    box-shadow: 0px 0px 5px #d9d9d9;
 }
 
 .message {
