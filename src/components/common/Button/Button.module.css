@@ -57,7 +57,7 @@ button:disabled {
 }
 
 .small {
-  border-radius: 0.3rem;
+  border-radius: 0.15rem;
   width: 5rem;
   height: 2.3rem;
 }

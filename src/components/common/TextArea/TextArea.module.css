@@ -1,0 +1,14 @@
+.textArea {
+    display: flex;
+    justify-content: center;
+}
+
+.textarea {
+    width: 52rem;
+    height: 12rem;
+    resize: none;
+    padding-left: 0.9rem;
+    padding-top: 0.9rem;
+    font-weight: bold;
+    overflow: hidden;
+}
