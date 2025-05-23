@@ -35,8 +35,8 @@ export default function BoardAddEditPage() {
                     <CategorySelect options={options} value={category} onChange={categoryHandler}/>
                 </div>
                 <div className={styles.attachFile}>
-                    <input type="file" text="파일첨부" className={styles.fileInputBtn} />
-                    <Button size="medium" text="파일첨부" type="button"/>
+                    <input type="file" text="파일첨부" className={styles.fileInputBtn} id="fileInput"/>
+                    <label htmlFor="fileInput"><Button size="medium" text="파일첨부" type="button"/></label>
                     <div className={styles.imgContainer}>
                         <table className={styles.table}>
                             <tr>
