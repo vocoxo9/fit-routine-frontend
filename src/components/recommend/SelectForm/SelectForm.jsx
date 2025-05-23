@@ -13,15 +13,17 @@ export default function SelectForm({ id, label, value, onChange, options }) {
 
     return (
         <div className={styles.selectArea}>
-            <label className={styles.label} htmlFor={id}>{label}</label>
+            <label className={styles.label}
+                htmlFor={id}>{label}
+            </label>
             <select
                 className={styles.select}
                 id={id}
                 value={value}
                 onChange={onChange}
             >
-                {options.map(opt => (
-                    <option key={opt.value} value={opt.value}>
+                {options.map((opt, idx) => (
+                    <option key={`${opt.value}_${idx}`} value={opt.value}>
                         {opt.label}
                     </option>
                 ))}

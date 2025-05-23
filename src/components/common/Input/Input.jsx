@@ -34,7 +34,7 @@ function Input(
     }
 ) {
     return (
-        <div className='inputArea'>
+        <div className={styles.inputArea}>
             {label && (
                 <label htmlFor={id}>
                     {label}

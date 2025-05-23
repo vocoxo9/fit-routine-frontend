@@ -5,9 +5,11 @@
     justify-content: center;
     margin: 0.5rem 0;
 }
-.selectArea > label {
-    margin-left: 1rem;
+
+.label {
+    margin: 0.3rem 1rem;
 }
+
 .select {
     width: 25rem;
     height: 2.3rem;
@@ -15,8 +17,10 @@
     border-radius: 8px;
     text-align: center;
     cursor: pointer;
-    margin: 0 0.7rem;
+    padding-left: 2%;
+    margin : 0.5rem 0.3rem 0 0.7rem;
 }
+
 .select:focus {
     outline: none;
     border: solid 2px #334EAC;
