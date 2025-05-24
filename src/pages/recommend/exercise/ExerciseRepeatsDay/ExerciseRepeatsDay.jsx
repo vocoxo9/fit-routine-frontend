@@ -1,8 +1,8 @@
 import Button from 'components/common/Button/Button';
 import Radio from 'components/common/Radio/Radio';
 import RadioGroup from 'components/common/RadioGroup/RadioGroup';
-import FormBox from 'components/recommend/FormContainer/FormContainer';
-import FormTitle from 'components/recommend/FormTitle/FormTitle';
+import FormBox from 'components/common/FormContainer/FormContainer';
+import FormTitle from 'components/common/FormTitle/FormTitle';
 
 import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay.module.css';
 
