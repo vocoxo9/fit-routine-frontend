@@ -1,4 +1,4 @@
-.recommendForm {
+.dayForm {
     width: 50rem;
     height: 8rem;
     border: solid 2px #d9d9d9;
@@ -8,7 +8,7 @@
     padding: 0.5rem;
 }
 
-.repeatsDay span:first-child {
+.dayTitle span:first-child {
     display: inline-block;
     font-size: 1.1rem;
     font-weight: bold;
@@ -16,7 +16,7 @@
     margin: 0.6rem;
 }
 
-.repeatsDay span:last-child {
+.dayTitle span:last-child {
     display: inline-block;
     font-weight: bold;
     font-size: 0.9rem;
@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-.plusButton {
+.plusBtn {
     width: 2.5rem;
     height: 2.5rem;
     color: #081F5C;

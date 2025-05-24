@@ -1,7 +1,7 @@
 import FormContainer from 'components/common/FormContainer/FormContainer';
 import FormTitle from 'components/common/FormTitle/FormTitle';
 import FormContent from 'components/common/FormContent/FormContent';
-import RecommendForm from 'components/recommend/RecommencForm/RecommendForm';
+import RecommendInputForm from 'components/recommend/RecommendInputForm/RecommendInputForm';
 
 export default function ExerciseInputInfo() {
 
@@ -9,7 +9,7 @@ export default function ExerciseInputInfo() {
         <FormContainer>
             <FormTitle text="운동 추천" />
             <FormContent>
-                <RecommendForm />
+                <RecommendInputForm />
             </FormContent>
         </FormContainer>
     );

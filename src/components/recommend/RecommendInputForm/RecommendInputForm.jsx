@@ -3,7 +3,7 @@ import { useState } from 'react';
 import SelectForm from '../SelectForm/SelectForm';
 import Input from 'components/common/Input/Input';
 
-const RecommendForm = () => {
+const RecommendInputForm = () => {
     const [selected, setSelected] = useState('');
     const [tdee, setTdee] = useState('');
 
@@ -60,4 +60,4 @@ const RecommendForm = () => {
 
 }
 
-export default RecommendForm;
+export default RecommendInputForm;
