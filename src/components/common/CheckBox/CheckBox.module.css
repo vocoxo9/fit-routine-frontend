@@ -12,18 +12,13 @@
     accent-color: #334EAC;
 }
 
-.commonLabel {
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
 
 /* 추천 페이지 카테고리 하위 체크박스 스타일 */
-.categoryContainer {
+.squareContainer {
     display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-direction: row-reverse;
     padding : 0.3rem 1rem;
     width: 12rem;
     height: 2.5rem;
@@ -34,16 +29,8 @@
     box-shadow: 0px 0px 5px #d9d9d9;
 }
 
-.categoryInput {
-    float : right;
-    width: 1.2rem;
-    height: 1.2rem;
+.squareInput {
+    width: 1.1rem;
+    height: 1.1rem;
     accent-color: #334EAC;
-}
-
-.categoryLabel{
-    float : left;
-    font-size: 1rem;
-    display : flex;
-    align-items: center;
 }

@@ -1,16 +1,16 @@
-// import styles from 'pages/helpers/ExerciseInputInfo/FormContent.module.css';
-import 'utils/helpers/exerciseInputInfo.js';
-
-import FormContainer from 'components/recommend/FormContainer/FormContainer';
-import FormTitle from 'components/recommend/FormTitle/FormTitle';
-import FormContent from 'components/recommend/FormContent/FormContent';
+import FormContainer from 'components/common/FormContainer/FormContainer';
+import FormTitle from 'components/common/FormTitle/FormTitle';
+import FormContent from 'components/common/FormContent/FormContent';
+import RecommendForm from 'components/recommend/RecommencForm/RecommendForm';
 
 export default function ExerciseInputInfo() {
 
     return (
         <FormContainer>
             <FormTitle text="운동 추천" />
-            <FormContent />
+            <FormContent>
+                <RecommendForm />
+            </FormContent>
         </FormContainer>
     );
 };
