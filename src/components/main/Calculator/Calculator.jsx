@@ -2,10 +2,91 @@ import Input from 'components/common/Input/Input';
 import styles from './Calculator.module.css';
 import Button from 'components/common/Button/Button';
 import DoughnutChart from 'components/common/DoughnutChart/DoughnutChart';
-import {FcCalculator} from "react-icons/fc";
+import { FcCalculator } from "react-icons/fc";
+import { useState } from 'react';
 
 
 function Calculator() {
+    // 입력한 사용자의 정보 (나이, 성별, 신장, 체중)
+    const [userData, setUserData] = useState({
+        age: '',    // 나이
+        gender: '', // 성별
+        height: '', // 신장
+        weight: '', // 체중
+    });
+
+    // 계산 결과 (탄수화물, 단백질, 지방)
+    const [result, setResult] = useState({
+        carb: 0,    // 탄수화물
+        protein: 0, // 단백질
+        fat: 0,     // 지방
+    });
+
+    // 입력값 변경 핸들러
+    const inputHandler = (e) => {
+        const { name, value } = e.target;
+        setUserData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    // 차트의 새로 랜더링 하기위한 키 값
+    const [chartKey, setChartKey] = useState(0);
+
+    // 일일 권장 섭취량 계산 핸들러
+    const calculatorHandler = () => {
+        const { age, gender, height, weight, } = userData;
+
+        // 값 유효성 검사
+        if (!age || !gender || !height || !weight) {
+            alert("모든 항목을 입력해주세요.");
+            return;
+        }
+
+        // 문자열 → 숫자 변환
+        const ageNum = Number(age);
+        const heightNum = Number(height);
+        const weightNum = Number(weight);
+        const activity = 1.55;
+
+        // BMR 계산 (Harris-Benedict 공식)
+        let bmr = 0;
+        if (gender === '남') {
+            bmr = 66.47 + (13.75 * weightNum) + (5.003 * heightNum) - (6.755 * ageNum);
+        } else if (gender === '여') {
+            bmr = 655.1 + (9.563 * weightNum) + (1.850 * heightNum) - (4.676 * ageNum);
+        }
+
+        // TDEE 계산
+        const tdee = bmr * activity;
+
+        const carbKcal = tdee * 0.5;    // 탄수화물: 50%
+        const proteinKcal = tdee * 0.2; // 단백질: 20%
+        const fatKcal = tdee * 0.3;     // 지방: 30%
+
+        // kcal → gram 환산
+        const carbGram = Math.round(carbKcal / 4);
+        const proteinGram = Math.round(proteinKcal / 4);
+        const fatGram = Math.round(fatKcal / 9);
+
+        //  결과 값 상태 업데이트
+        setResult({
+            carb: carbGram,
+            protein: proteinGram,
+            fat: fatGram
+        });
+
+        // DoughnutChart 새로 랜더링
+        setChartKey(prev => prev + 1);
+    }
+
+    // 식단 추천 페이지로 이동 핸들러
+    const foodRecommendHandler = () => {
+        alert("식단 추천 페이지로 이동");
+    }
+
+
     return (
         <div className={styles.border}>
             <div className={styles.title}>
@@ -21,36 +102,73 @@ function Calculator() {
                     <div>
                         <div className={styles.inputArea}>
                             <labe className={styles.label} htmlFor="age">나이</labe>
-                            <Input size='short' type='number' id='age' name='age' />
+                            <Input
+                                size='short'
+                                type='number'
+                                id='age'
+                                name='age'
+                                value={userData.age}
+                                onChange={inputHandler} />
                         </div>
                         <div className={styles.inputArea}>
                             <label className={styles.label} htmlFor="gender">성별</label>
-                            <Input size='short' type='number' id='gender' name='gender' />
+                            <Input
+                                size='short'
+                                type='text'
+                                id='gender'
+                                name='gender'
+                                value={userData.gender}
+                                onChange={inputHandler} />
                         </div>
                         <div className={styles.inputArea}>
                             <label className={styles.label} htmlFor="gender">신장</label>
-                            <Input size='short' type='number' id='height' name='height' />
+                            <Input
+                                size='short'
+                                type='number'
+                                id='height'
+                                name='height'
+                                value={userData.height}
+                                onChange={inputHandler} />
                             <label className={styles.label} htmlFor="gender">체중</label>
-                            <Input size='short' type='number' id='weight' name='weight' />
+                            <Input
+                                size='short'
+                                type='number'
+                                id='weight'
+                                name='weight'
+                                value={userData.weight}
+                                onChange={inputHandler} />
                         </div>
                     </div>
                     <div className={styles.buttonArea}>
-                        <Button size='short' text='확인' />
+                        <div className={styles.btn}>
+                            <Button
+                                size='short'
+                                text='확인'
+                                onClick={calculatorHandler} />
+                        </div>
                     </div>
                 </div>
                 <div className={styles.rightArea}>
                     <div className={styles.resultArea}>
                         <div className={styles.doughnutArea}>
-                            <DoughnutChart labels={["탄수화물", "단백질", "지방"]} data={["100", "50", "20"]} />
+                            <DoughnutChart
+                                key={chartKey}
+                                labels={["탄수화물", "단백질", "지방"]}
+                                data={[result.carb, result.protein, result.fat]} />
                         </div>
                         <div className={styles.kcalArea}>
-                            <p className={styles.p}>탄수화물 : <u>12</u> kcal</p>
-                            <p className={styles.p}>단백질 : <u>12</u> kcal</p>
-                            <p className={styles.p}>지방 : <u>12</u> kcal</p>
+                            <p className={styles.p}>탄수화물 : <u>{result.carb}</u> kcal</p>
+                            <p className={styles.p}>단백질 : <u>{result.protein}</u> kcal</p>
+                            <p className={styles.p}>지방 : <u>{result.fat}</u> kcal</p>
                         </div>
                     </div>
                     <div className={styles.buttonArea}>
-                        <Button size='bold' text='루틴 추천 받으러 가기' />
+                        <div className={styles.btn}>
+                            <Button
+                                size='bold'
+                                text='루틴 추천 받으러 가기'
+                                onClick={foodRecommendHandler} />
+                        </div>
                     </div>
                 </div>
             </div>
