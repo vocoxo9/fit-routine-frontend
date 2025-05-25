@@ -1,7 +1,7 @@
 import styles from './Info.module.css';
 
 
-function Info({ kind, text, children}) {
+function Info({ kind, text, children }) {
     return (
         <>
             <div className={styles[kind]}>
