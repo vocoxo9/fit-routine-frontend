@@ -18,6 +18,9 @@ const Likes = (
         isBig
     }
 ) => {
+
+    
+
     return <div className={`${styles.container} ${isBig && styles.big}`} onClick={onClick}>
         <span className={`${styles.count} ${isBig && styles.big}`}>
             {count}
