@@ -1,6 +1,6 @@
 /*  common  */
 .footerContainer {
-    background-color: #EFF4FF;
+    background-color: #eff4ff;
     display: flex;
     padding: 3rem 0;
 }
@@ -13,12 +13,12 @@
 .footerContainer h2,
 .footerContainer th {
     font-weight: bold;
-    color: #081F5C;
+    color: #081f5c;
 }
 
 .footerContainer p,
 .footerContainer td {
-    color: #3065AC;
+    color: #3065ac;
 }
 
 .item1,
@@ -28,17 +28,16 @@
 
 .item1 a,
 .item2 a {
-    color: #3065AC;
+    color: #3065ac;
     text-decoration: none;
 }
 
 .item1 a:hover,
 .item2 a:hover {
-    color: #081F5C;
+    color: #081f5c;
     font-weight: bold;
     transition: 0.2s;
 }
-
 
 /*  Footer content item1  */
 .item1 {
@@ -80,7 +79,7 @@
 }
 
 .item4 > * {
-    color: #081F5C;
+    color: #081f5c;
     text-decoration: none;
 }
 
@@ -88,6 +87,6 @@
     font-size: 1rem;
     font-weight: normal;
     line-height: 3;
-    color: #3065AC;
+    color: #3065ac;
     margin-left: 0.5rem;
 }

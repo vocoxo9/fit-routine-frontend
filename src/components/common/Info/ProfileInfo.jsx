@@ -41,16 +41,12 @@ function ProfileInfo({ kind, text, info }) {
         <>
             <div className={styles.table}>
                 <div className={styles.subTitle}>
-                    <h4 className={styles.h4}>
-                        {text}
-                    </h4>
+                    <h4 className={styles.h4}>{text}</h4>
                 </div>
                 <div className={styles.info}>
                     <div className={styles.infoText}>
                         {icon}
-                        <div className={styles.text}>
-                            |
-                        </div>
+                        <div className={styles.text}>|</div>
                         {info}
                     </div>
                 </div>

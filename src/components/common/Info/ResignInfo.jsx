@@ -5,14 +5,10 @@ function ReSignInfo({ text, info }) {
         <>
             <div className={styles.table}>
                 <div className={styles.subTitle}>
-                    <h4 className={styles.h4}>
-                        {text}
-                    </h4>
+                    <h4 className={styles.h4}>{text}</h4>
                 </div>
                 <div className={styles.info}>
-                    <div className={styles.infoText}>
-                        {info}
-                    </div>
+                    <div className={styles.infoText}>{info}</div>
                 </div>
             </div>
         </>

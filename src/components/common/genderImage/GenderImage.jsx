@@ -6,12 +6,7 @@ import { VscAccount } from 'react-icons/vsc';
  *
  * @param {string} gender - 성별 (male, female)
  */
-export default function GenderImage(
-    {
-        gender,
-    },
-) {
-
+export default function GenderImage({ gender }) {
     return (
         <div className={`${styles[gender]}`}>
             <VscAccount />

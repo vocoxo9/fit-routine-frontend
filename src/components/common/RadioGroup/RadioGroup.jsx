@@ -7,11 +7,7 @@ import styles from './RadioGroup.module.css';
  * @returns {JSX.Element} 라디오 그룹 컴포넌트
  */
 const RadioGroup = ({ children }) => {
-    return (
-        <div className={styles.container}>
-            {children}
-        </div>
-    );
+    return <div className={styles.container}>{children}</div>;
 };
 
 export default RadioGroup;

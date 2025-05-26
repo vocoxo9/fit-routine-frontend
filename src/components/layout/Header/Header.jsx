@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Logo from 'components/layout/Logo/Logo';
 
 export default function Header() {
-
     return (
         <>
             <div className={styles.headerContainer}>
@@ -15,13 +14,24 @@ export default function Header() {
                 </div>
                 <nav className={styles.navigation}>
                     <ul>
-                        <li className={styles.menuItem}><Link to="/">HOME</Link></li>
-                        <li className={styles.menuItem}><Link to="#">식단 추천</Link></li>
-                        <li className={styles.menuItem}><Link to="#">운동 추천</Link></li>
-                        <li className={styles.menuItem}><Link to="#">Blog</Link>
+                        <li className={styles.menuItem}>
+                            <Link to="/">HOME</Link>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <Link to="#">식단 추천</Link>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <Link to="#">운동 추천</Link>
+                        </li>
+                        <li className={styles.menuItem}>
+                            <Link to="#">Blog</Link>
                             <ul className={styles.subMenu}>
-                                <li><Link to="#">내 블로그</Link></li>
-                                <li><Link to="#">내 TodoList</Link></li>
+                                <li>
+                                    <Link to="#">내 블로그</Link>
+                                </li>
+                                <li>
+                                    <Link to="#">내 TodoList</Link>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -31,6 +41,5 @@ export default function Header() {
                 {/* <Logout /> */}
             </div>
         </>
-
     );
-};
+}
