@@ -5,7 +5,7 @@
     padding: 3rem 0;
 }
 
-.footerContainer>* {
+.footerContainer > * {
     width: 20%;
     display: inline-block;
 }
@@ -76,10 +76,10 @@
 }
 
 .item4 a {
-    text-decoration : none;
+    text-decoration: none;
 }
 
-.item4>* {
+.item4 > * {
     color: #081F5C;
     text-decoration: none;
 }

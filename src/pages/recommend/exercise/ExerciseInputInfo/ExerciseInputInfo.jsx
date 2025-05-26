@@ -1,7 +1,7 @@
 import FormContainer from 'components/common/FormContainer/FormContainer';
 import FormTitle from 'components/common/FormTitle/FormTitle';
 import FormContent from 'components/common/FormContent/FormContent';
-import RecommendInputForm from 'components/recommend/RecommendInputForm/RecommendInputForm';
+import RecommendForm from 'components/recommend/RecommendForm/RecommendForm';
 
 export default function ExerciseInputInfo() {
 

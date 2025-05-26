@@ -1,4 +1,4 @@
-import styles from './assets/styles/common/Reset.module.css'
+import styles from './assets/styles/common/Reset.module.css';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -10,21 +10,18 @@ import ExerciseRepeatsDay from 'pages/recommend/exercise/ExerciseRepeatsDay/Exer
 // import ExerciseRepeatsDay from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay';
 
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Header />
+    return (
+        <>
+            <BrowserRouter>
+                <Header />
 
-        <div className={styles.layout}>
-          <ExerciseInputInfo/>
-            <ExerciseRepeatsDay/>
-            <RecommendExercise />
-        </div>
+                <div className={styles.layout}>
+                </div>
 
-        <Footer />
-      </BrowserRouter>
-    </>
-  );
+                <Footer />
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App;

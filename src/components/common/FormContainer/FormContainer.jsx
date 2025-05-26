@@ -1,16 +1,16 @@
 import styles from './FormContainer.module.css';
 
 /**
- * 
+ *
  * @children FormContainer 자식 요소
  * @style  FormContainer 스타일 ['common : 기본스타일', 'short']
- * @returns 
+ * @returns
  */
 const FormContainer = (
     {
         children,
-        style = 'common'
-    }
+        style = 'common',
+    },
 ) => {
 
     return (

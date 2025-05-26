@@ -8,7 +8,9 @@ import Radio from 'components/common/Radio/Radio';
 
 import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay.module.css';
 
-const ExerciseRepeatsDay = () => {
+import { useState } from 'react';
+
+export default function ExerciseRepeatsDay() {
 
     const [repeat, setRepeat] = useState('');
     const repeatDay = [1, 2, 3, 4, 5, 6, 7];
@@ -21,8 +23,8 @@ const ExerciseRepeatsDay = () => {
         <FormBox>
             <FormTitle text="반복일" />
             <div className={styles.inputForm}>
-                <RadioGroup >
-                    {repeatDay.map((day) => (
+                <RadioGroup>
+                    {repeatOptions.map((day) => (
                         <Radio
                             key={`${day}_index`}
                             id={`day${day}`}

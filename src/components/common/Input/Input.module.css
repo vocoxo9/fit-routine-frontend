@@ -10,7 +10,7 @@
     border-radius: 8px;
     padding-left: 2%;
     cursor: pointer;
-    margin : 0.5rem 0.3rem 0 0.7rem;
+    margin: 0.5rem 0.3rem 0 0.7rem;
     text-align: left;
 }
 .inputArea label {
@@ -20,7 +20,7 @@
 }
 
 input::-webkit-inner-spin-button {
-  -webkit-appearance:none;
+    -webkit-appearance: none;
 }
 
 
@@ -39,7 +39,7 @@ input:focus {
 .medium {
     width: 8em;
     height: 2.3em;
-    padding-left:0%;
+    padding-left: 0%;
     text-align: center;
 }
 
@@ -58,6 +58,7 @@ input:focus {
 input:read-only {
     background-color: #d9d9d9;
 }
+
 .error {
     color: #CC0000;
     margin: 0.3rem 1rem;

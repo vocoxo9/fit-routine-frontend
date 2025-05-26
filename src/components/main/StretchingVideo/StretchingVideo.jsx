@@ -9,22 +9,22 @@ function StretchingVideo() {
             <div className={styles.videos}>
                 <div className={styles.video}>
                     <iframe className={styles.iframe}
-                        src="https://www.youtube.com/embed/yyjOhsNEqtE?si=BM_xHiAZwjqUITTZ"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
+                            src="https://www.youtube.com/embed/yyjOhsNEqtE?si=BM_xHiAZwjqUITTZ"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
                     </iframe>
                 </div>
                 <div className={styles.video}>
                     <iframe className={styles.iframe}
-                        src="https://www.youtube.com/embed/4TwQwVFLi4Q?si=4uvnoYEYksOWFvCW"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
+                            src="https://www.youtube.com/embed/4TwQwVFLi4Q?si=4uvnoYEYksOWFvCW"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
                     </iframe>
                 </div>
             </div>
