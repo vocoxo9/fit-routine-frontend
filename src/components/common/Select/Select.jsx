@@ -9,6 +9,7 @@ import styles from './Select.module.css'
  * @param value select의 value 값
  * @param onChange 값이 변경될 때 호출되는 함수
  * @param options select 하위 옵션 목록
+ * @param error - 에러 메시지 (선택)
  */
 const Select = (
     {
@@ -17,7 +18,8 @@ const Select = (
         label,
         value,
         onChange,
-        options
+        options,
+        error
     }
 ) => <div className={styles.container}>
     <label
@@ -42,6 +44,11 @@ const Select = (
             </option>
         ))}
     </select>
+    {error && (
+        <p className={styles.error}>
+            {error}
+        </p>
+    )}
 </div>
 
 export default Select
