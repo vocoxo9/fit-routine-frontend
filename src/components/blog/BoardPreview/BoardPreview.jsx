@@ -53,7 +53,7 @@ export default function BoardPreview(
                         <div className={styles.imgContainer}>
                             <img className={styles.previewImg} src={imgSrc} alt='게시물 미리보기'/>
                         </div>
-                        <hr className={styles.horizon}></hr>
+                        <hr className={styles.horizon}/>
                         <div className={styles.nameText}>{boardWriter}</div>
                         <div className={styles.titleText}>{overTitle(boardTitle)}</div>{/* 최대 14 */}
                         <div className={styles.heartComponent}>
