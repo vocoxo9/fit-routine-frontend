@@ -20,17 +20,17 @@ function Button(
         onMouseEnter,
         onMouseLeave,
         disabled,
-        type
-    }
+        type,
+    },
 ) {
     return (
         <>
             <button className={styles[size]}
-                onClick={onClick}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                disabled={disabled}
-                type={type}
+                    onClick={onClick}
+                    onMouseEnter={onMouseEnter}
+                    onMouseLeave={onMouseLeave}
+                    disabled={disabled}
+                    type={type}
             >
                 {text}
             </button>

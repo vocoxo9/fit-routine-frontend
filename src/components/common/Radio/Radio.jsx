@@ -1,4 +1,4 @@
-import styles from './Radio.module.css'
+import styles from './Radio.module.css';
 
 /**
  * 라디오 컴포넌트.
@@ -20,8 +20,8 @@ const Radio = (
         label,
         checked,
         onChange,
-        style = 'common'
-    }
+        style = 'common',
+    },
 ) => {
     return (
         <label className={styles[`${style}Container`]}>
@@ -36,7 +36,7 @@ const Radio = (
                 onChange={onChange}
             />
         </label>
-    )
-}
+    );
+};
 
-export default Radio
+export default Radio;

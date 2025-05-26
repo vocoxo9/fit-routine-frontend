@@ -1,6 +1,6 @@
 import styles from './FormTitle.module.css';
 
-export default function FormTitle({text}){
+export default function FormTitle({ text }) {
 
     return (
         <div className={styles.formTitle}>

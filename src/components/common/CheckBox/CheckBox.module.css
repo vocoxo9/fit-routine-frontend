@@ -3,7 +3,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.1rem;
-    margin : 0.3rem;
+    margin: 0.3rem;
 }
 
 .commonInput {
@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
-    padding : 0.3rem 1rem;
+    padding: 0.3rem 1rem;
     width: 12rem;
     height: 2.5rem;
     margin: 1rem;

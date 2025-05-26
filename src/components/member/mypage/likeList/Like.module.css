@@ -6,9 +6,11 @@
     margin: 0 auto;
     border-bottom: solid 1px #787878;
 }
+
 .iconArea {
     display: flex;
 }
+
 .icon {
     display: flex;
     width: 7rem;
@@ -26,10 +28,12 @@
     height: 3rem;
     margin-top: 1.7rem;
 }
+
 .nickName {
     font-size: 1.7rem;
     align-content: center;
 }
+
 .cutBtn {
     margin-right: 1rem;
 }

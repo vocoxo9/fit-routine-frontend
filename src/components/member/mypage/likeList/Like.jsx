@@ -20,7 +20,7 @@ function Like({ gender, nickName, grade }) {
                 </div>
             </div>
             <div className={styles.cutBtn}>
-                <Button size='delete' text='관심 끊기' />
+                <Button size="delete" text="관심 끊기" />
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import Input from 'components/common/Input/Input';
 import styles from './Calculator.module.css';
 import Button from 'components/common/Button/Button';
 import DoughnutChart from 'components/common/DoughnutChart/DoughnutChart';
-import { FcCalculator } from "react-icons/fc";
+import { FcCalculator } from 'react-icons/fc';
 import { useState } from 'react';
 
 
@@ -27,7 +27,7 @@ function Calculator() {
         const { name, value } = event.target;
         setUserData(prev => ({
             ...prev,
-            [name]: value
+            [name]: value,
         }));
     };
 
@@ -36,11 +36,11 @@ function Calculator() {
 
     // 일일 권장 섭취량 계산 핸들러
     const calculatorHandler = () => {
-        const { age, gender, height, weight, } = userData;
+        const { age, gender, height, weight } = userData;
 
         // 값 유효성 검사
         if (!age || !gender || !height || !weight) {
-            alert("모든 항목을 입력해주세요.");
+            alert('모든 항목을 입력해주세요.');
             return;
         }
 
@@ -74,17 +74,17 @@ function Calculator() {
         setResult({
             carb: carbGram,
             protein: proteinGram,
-            fat: fatGram
+            fat: fatGram,
         });
 
         // DoughnutChart 새로 랜더링
         setChartKey(prev => prev + 1);
-    }
+    };
 
     // 식단 추천 페이지로 이동 핸들러
     const foodRecommendHandler = () => {
-        alert("식단 추천 페이지로 이동");
-    }
+        alert('식단 추천 페이지로 이동');
+    };
 
 
     return (
@@ -103,38 +103,38 @@ function Calculator() {
                         <div className={styles.inputArea}>
                             <labe className={styles.label} htmlFor="age">나이</labe>
                             <Input
-                                size='short'
-                                type='number'
-                                id='age'
-                                name='age'
+                                size="short"
+                                type="number"
+                                id="age"
+                                name="age"
                                 value={userData.age}
                                 onChange={inputHandler} />
                         </div>
                         <div className={styles.inputArea}>
                             <label className={styles.label} htmlFor="gender">성별</label>
                             <Input
-                                size='short'
-                                type='text'
-                                id='gender'
-                                name='gender'
+                                size="short"
+                                type="text"
+                                id="gender"
+                                name="gender"
                                 value={userData.gender}
                                 onChange={inputHandler} />
                         </div>
                         <div className={styles.inputArea}>
                             <label className={styles.label} htmlFor="gender">신장</label>
                             <Input
-                                size='short'
-                                type='number'
-                                id='height'
-                                name='height'
+                                size="short"
+                                type="number"
+                                id="height"
+                                name="height"
                                 value={userData.height}
                                 onChange={inputHandler} />
                             <label className={styles.label} htmlFor="gender">체중</label>
                             <Input
-                                size='short'
-                                type='number'
-                                id='weight'
-                                name='weight'
+                                size="short"
+                                type="number"
+                                id="weight"
+                                name="weight"
                                 value={userData.weight}
                                 onChange={inputHandler} />
                         </div>
@@ -142,8 +142,8 @@ function Calculator() {
                     <div className={styles.buttonArea}>
                         <div className={styles.btn}>
                             <Button
-                                size='short'
-                                text='확인'
+                                size="short"
+                                text="확인"
                                 onClick={calculatorHandler} />
                         </div>
                     </div>
@@ -153,7 +153,7 @@ function Calculator() {
                         <div className={styles.doughnutArea}>
                             <DoughnutChart
                                 key={chartKey}
-                                labels={["탄수화물", "단백질", "지방"]}
+                                labels={['탄수화물', '단백질', '지방']}
                                 data={[result.carb, result.protein, result.fat]} />
                         </div>
                         <div className={styles.kcalArea}>
@@ -165,8 +165,8 @@ function Calculator() {
                     <div className={styles.buttonArea}>
                         <div className={styles.btn}>
                             <Button
-                                size='bold'
-                                text='루틴 추천 받으러 가기'
+                                size="bold"
+                                text="루틴 추천 받으러 가기"
                                 onClick={foodRecommendHandler} />
                         </div>
                     </div>

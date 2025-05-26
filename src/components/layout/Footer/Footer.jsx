@@ -1,7 +1,7 @@
 import styles from 'components/layout/Footer/Footer.module.css';
 
 import Logo from 'components/layout/Logo/Logo';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
 
@@ -22,37 +22,37 @@ export default function Footer() {
             <div className={styles.item3}>
                 <table>
                     <tbody>
-                        <tr>
-                            <th>Tool</th>
-                            <td>VS Code</td>
-                            <td>IntelliJ</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <th>Library</th>
-                            <td>React</td>
-                            <td>Lombok</td>
-                        </tr>
-                        <tr>
-                            <th>Tech stack</th>
-                            <td>HTML</td>
-                            <td>CSS</td>
-                            <td>Java</td>
-                        </tr>
-                        <tr>
-                            <th>Framework</th>
-                            <td>MyBatis</td>
-                            <td>Spring</td>
-                        </tr>
-                        <tr>
-                            <th>DB</th>
-                            <td>Oracle DB</td>
-                        </tr>
-                        <tr>
-                            <th>API</th>
-                            <td>Google</td>
-                            <td>Apple</td>
-                        </tr>
+                    <tr>
+                        <th>Tool</th>
+                        <td>VS Code</td>
+                        <td>IntelliJ</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Library</th>
+                        <td>React</td>
+                        <td>Lombok</td>
+                    </tr>
+                    <tr>
+                        <th>Tech stack</th>
+                        <td>HTML</td>
+                        <td>CSS</td>
+                        <td>Java</td>
+                    </tr>
+                    <tr>
+                        <th>Framework</th>
+                        <td>MyBatis</td>
+                        <td>Spring</td>
+                    </tr>
+                    <tr>
+                        <th>DB</th>
+                        <td>Oracle DB</td>
+                    </tr>
+                    <tr>
+                        <th>API</th>
+                        <td>Google</td>
+                        <td>Apple</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

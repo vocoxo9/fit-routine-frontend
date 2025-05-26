@@ -20,8 +20,8 @@ function LikeList() {
             { nickName: '팔굽혀달인', gender: 'male', grade: 58 },
             { nickName: '스트레칭요정', gender: 'female', grade: 230 },
             { nickName: '턱걸이장인', gender: 'male', grade: 315 },
-            { nickName: '워밍업요정', gender: 'female', grade: 199 }
-        ]
+            { nickName: '워밍업요정', gender: 'female', grade: 199 },
+        ],
     );
 
     return (
@@ -33,11 +33,11 @@ function LikeList() {
                 {
                     likeList.map((like, index) => {
                         return (
-                            <Like key={index} 
-                            nickName={like.nickName} 
-                            gender={like.gender}
-                            grade={like.grade} />
-                        )
+                            <Like key={index}
+                                  nickName={like.nickName}
+                                  gender={like.gender}
+                                  grade={like.grade} />
+                        );
                     })
                 }
             </div>
