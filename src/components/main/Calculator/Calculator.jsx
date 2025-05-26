@@ -5,6 +5,32 @@ import DoughnutChart from 'components/common/DoughnutChart/DoughnutChart';
 import { FcCalculator } from 'react-icons/fc';
 import { useState } from 'react';
 
+// 유효성 검사
+const checkForm = (FormData) => {
+    const errors = {};
+
+    const {
+        age,
+        gender,
+        height,
+        weight,
+    } = FormData;
+
+    if (!age) {
+        errors.age = '나이를 입력해주세요';
+    }
+    if (!gender) {
+        errors.gender = '성별을 입력해주세요';
+    }
+    if (!height) {
+        errors.height = '신장을 입력해주세요';
+    }
+    if (!weight) {
+        errors.weight = '체중을 입력해주세요';
+    }
+
+    return errors;
+}
 
 function Calculator() {
     // 입력한 사용자의 정보 (나이, 성별, 신장, 체중)
@@ -13,6 +39,13 @@ function Calculator() {
         gender: '', // 성별
         height: '', // 신장
         weight: '', // 체중
+    });
+
+    const [errors, setErrors] = useState({
+        age: '',
+        gender: '',
+        height: '',
+        weight: '',
     });
 
     // 계산 결과 (탄수화물, 단백질, 지방)
@@ -39,8 +72,10 @@ function Calculator() {
         const { age, gender, height, weight } = userData;
 
         // 값 유효성 검사
-        if (!age || !gender || !height || !weight) {
-            alert('모든 항목을 입력해주세요.');
+        const checkErrors = checkForm(userData);
+        setErrors(checkErrors);
+
+        if (Object.keys(checkErrors).length > 0) {
             return;
         }
 
@@ -82,7 +117,7 @@ function Calculator() {
     };
 
     // 식단 추천 페이지로 이동 핸들러
-    const foodRecommendHandler = () => {
+    const handleNavigateFoodRecommend = () => {
         alert('식단 추천 페이지로 이동');
     };
 
@@ -101,13 +136,14 @@ function Calculator() {
                 <div className={styles.leftArea}>
                     <div>
                         <div className={styles.inputArea}>
-                            <labe className={styles.label} htmlFor="age">나이</labe>
+                            <label className={styles.label} htmlFor="age">나이</label>
                             <Input
                                 size="short"
                                 type="number"
                                 id="age"
                                 name="age"
                                 value={userData.age}
+                                error={errors.age}
                                 onChange={inputHandler} />
                         </div>
                         <div className={styles.inputArea}>
@@ -118,9 +154,11 @@ function Calculator() {
                                 id="gender"
                                 name="gender"
                                 value={userData.gender}
+                                error={errors.gender}
                                 onChange={inputHandler} />
                         </div>
-                        <div className={styles.inputArea}>
+                        <div className={`${styles.inputArea} ${styles.bodyInputs}`}>
+                            <div className={styles.bodyInput}>
                             <label className={styles.label} htmlFor="gender">신장</label>
                             <Input
                                 size="short"
@@ -128,7 +166,11 @@ function Calculator() {
                                 id="height"
                                 name="height"
                                 value={userData.height}
+                                error={errors.height}
                                 onChange={inputHandler} />
+                                </div>
+                            {/* <div className={styles.between}></div> */}
+                                <div className={styles.bodyInput}>
                             <label className={styles.label} htmlFor="gender">체중</label>
                             <Input
                                 size="short"
@@ -136,7 +178,9 @@ function Calculator() {
                                 id="weight"
                                 name="weight"
                                 value={userData.weight}
+                                error={errors.weight}
                                 onChange={inputHandler} />
+                                </div>
                         </div>
                     </div>
                     <div className={styles.buttonArea}>
@@ -167,7 +211,7 @@ function Calculator() {
                             <Button
                                 size="bold"
                                 text="루틴 추천 받으러 가기"
-                                onClick={foodRecommendHandler} />
+                                onClick={handleNavigateFoodRecommend} />
                         </div>
                     </div>
                 </div>
