@@ -15,10 +15,10 @@
     padding: 1rem;
 }
 
-.message p:last-child {
+.message .burnKcal {
     color: #081F5C;
 }
 
-.message span {
+.kcal span {
     color: red;
 }
