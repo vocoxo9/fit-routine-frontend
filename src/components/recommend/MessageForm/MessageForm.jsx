@@ -1,8 +1,8 @@
 import styles from './MessageForm.module.css';
 
 /**
- * @data
- * @returns 
+ * @data 사용자에게 추천되는 리스트
+ * @returns {JSX.Element} 소모칼로리 미달 시 메세지 컴포넌트
  */
 const MessageForm = (
     {
