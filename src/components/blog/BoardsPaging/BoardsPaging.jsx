@@ -86,7 +86,7 @@ export default function BoardsPaging(
             {/* 페이징처리 */}
             <nav className={styles.nav}>
                 <ul className={styles.ul} id="pagination-area">
-                    <li><a href="#" onClick={() => changeCurrentPageNum(currentPage - 1)}>Prev</a></li>
+                    <li><a href="#" onClick={() => changeCurrentPageNum(currentPage - 1)}>이전</a></li>
                     {Array.from({ length: totalPages }, (_, i) => (
                         <li key={i}>
                             <a
@@ -98,7 +98,7 @@ export default function BoardsPaging(
                             </a>
                         </li>
                     ))}
-                    <li><a href="#" onClick={() => changeCurrentPageNum(currentPage + 1)}>Next</a></li>
+                    <li><a href="#" onClick={() => changeCurrentPageNum(currentPage + 1)}>다음</a></li>
                 </ul>
             </nav>
         </>
