@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import SelectForm from '../SelectForm/SelectForm';
 import Input from 'components/common/Input/Input';
+import Select from 'components/common/Select/Select';
 
 const RecommendForm = () => {
     const [selected, setSelected] = useState('');
@@ -27,8 +27,9 @@ const RecommendForm = () => {
 
     return (
         <>
-            <SelectForm
-                id="purpose"
+            <Select
+                id='purpose'
+                name='purpose'
                 label="운동 목적"
                 value={selected}
                 onChange={(e) => setSelected(e.target.value)}
@@ -44,8 +45,9 @@ const RecommendForm = () => {
             {/* 목적 : 체중감량일 때 추가로 입력할 폼 */}
             {selected === 'diet' &&
                 <div>
-                    <SelectForm
+                    <Select
                         id='tdee'
+                        name='tdee'
                         label='활동수준'
                         value={tdee}
                         onChange={(e) => setTdee(e.target.value)}
