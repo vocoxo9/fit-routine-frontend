@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
  */
 export default function AllBoardsPage() {
 
-    const [category, setCategory] = useState('자유');
+    const [category, setCategory] = useState('free');
     const [order, setOrder] = useState('like');
 
     // 임시데이터
@@ -36,12 +36,8 @@ export default function AllBoardsPage() {
     };
 
     
-    const likeHandler = () =>{
-        setOrder('like');
-    }
-    
-    const latestHandler = () =>{
-        setOrder('latest');
+    const changeOrder = (param) =>{
+        setOrder(param);
     }
 
     useEffect(()=> {
@@ -50,10 +46,10 @@ export default function AllBoardsPage() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.buttonContainer}>
-                <span onClick={likeHandler} className={`${styles.likeBtn}`}>
+                <span onClick={()=>changeOrder('like')} className={`${styles.likeBtn}`}>
                     <Button text={'좋아요순'} size='small'/>
                 </span>
-                <span onClick={latestHandler} className={`${styles.latestBtn}`}>
+                <span onClick={()=>changeOrder('latest')} className={`${styles.latestBtn}`}>
                     <Button text={'최신순'} size='small'/>
                 </span>
                 <CategorySelect options={categoryOptions} value={category} onChange={changeBoardsByCategory}/>
