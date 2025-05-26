@@ -87,7 +87,7 @@ export default function OnesTodoPage() {
     return (
         <div className='todoPage todoPage-main container'>
             <div className={styles.nameGrade}>
-                <span className={styles.name}>{nickname} &nbsp;
+                <span className={styles.name}>{nickname}
                     <span className={styles.TODOText}>TODO</span>
                 </span>
                 <span className={styles.grade}><BlogGrade grade={grade}/></span>
