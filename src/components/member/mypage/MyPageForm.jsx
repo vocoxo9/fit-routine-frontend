@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styles from './MyPageForm.module.css';
 import Profile from './profile/Profile';
 import LikeList from './likeList/LikeList';
+import FormContainer from 'components/common/FormContainer/FormContainer';
+import InfoEdit from './InfoEdit';
 
 
 function MyPageForm() {
@@ -25,11 +27,16 @@ function MyPageForm() {
                         관심 목록
                     </div>
                 </div>
-                <div className={styles.content}>
+                <FormContainer style='mypage'>
                     {activeTab === 'profile' ? <Profile /> : <LikeList />}
-                    {/* {activeTab === 'profile' ? <Profile /> : <InfoEdit />} */}
+                    {/* <InfoEdit /> */}
 
-                </div>
+                </FormContainer>
+                {/* <div className={styles.content}>
+                    {activeTab === 'profile' ? <Profile /> : <LikeList />}
+                    {activeTab === 'profile' ? <Profile /> : <InfoEdit />} 
+
+                </div> */}
             </div>
         </>
     );
