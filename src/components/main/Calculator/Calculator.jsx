@@ -23,8 +23,8 @@ function Calculator() {
     });
 
     // 입력값 변경 핸들러
-    const inputHandler = (e) => {
-        const { name, value } = e.target;
+    const inputHandler = (event) => {
+        const { name, value } = event.target;
         setUserData(prev => ({
             ...prev,
             [name]: value
