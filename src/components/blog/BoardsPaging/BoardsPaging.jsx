@@ -25,29 +25,28 @@ export default function BoardsPaging(
     // 페이지, 순서, 카테고리 변경 시 게시물 요청
     useEffect(() => {
         if (nickname) {
-            getBoardsByNickname(currentPage);
+            fetchBoardsByNickname(currentPage);
         } else {
-            fetchBoards(currentPage); // 전체 게시물
+            fetchBoardsByOrderCategory(currentPage); // 전체 게시물
         }
     }, [currentPage, nickname, order, category]);
 
     // 특정 유저의 게시물만 불러오는 함수
-    const getBoardsByNickname = async (pageNum) => {
+    const fetchBoardsByNickname = async (pageNum) => {
         if (!nickname) return;
         // const res = await axios.get('/api/boards/user');
         // setBoardList(res.data.boardList);   // 게시물 목록
         // setTotalPages(res.data.totalPages); // 전체 페이지 수
     };
 
-    // order,category값으로 게시물 api요청
-    const fetchBoards = async (pageNum) => {
+    // order,category값으로 전체 게시물 api요청
+    const fetchBoardsByOrderCategory = async (pageNum) => {
         // const res = await axios.get(); 추후 게시물6개 데이터 요청예정
         setBoardList(boardList); // 서버가 보내준 게시물 6개
         setTotalPages(5); // 서버가 보내준 전체 페이지 수
     };
 
-    // 현재 페이지 번호 변경
-    const goToPage = (pageNum) => {
+    const changeCurrentPageNum = (pageNum) => {
         if (pageNum >= 1 && pageNum <= totalPages) {
             setCurrentPage(pageNum);
         }
@@ -75,7 +74,6 @@ export default function BoardsPaging(
                                     />
                                 </td>
                             ))}
-                            {/* 빈칸 채우기 (3개 미만일 때 레이아웃 유지) */}
                             {row.length < 3 &&
                                 Array.from({ length: 3 - row.length }).map((_, i) => (
                                     <td key={`empty-${i}`} className={styles.td}></td>
@@ -88,20 +86,19 @@ export default function BoardsPaging(
             {/* 페이징처리 */}
             <nav className={styles.nav}>
                 <ul className={styles.ul} id="pagination-area">
-                    <li><a href="#" onClick={() => goToPage(currentPage - 1)}>Prev</a></li>
-                    {/* 리액트식 for문 : totalPages만큼 함수반복 */}
+                    <li><a href="#" onClick={() => changeCurrentPageNum(currentPage - 1)}>Prev</a></li>
                     {Array.from({ length: totalPages }, (_, i) => (
                         <li key={i}>
                             <a
                                 href="#"
-                                onClick={() => goToPage(i + 1)}
-                                style={{ fontWeight: currentPage === i + 1 ? "bold" : "normal" }}
+                                onClick={() => changeCurrentPageNum(i + 1)}
+                                className={(currentPage===i+1) ? styles.current : styles.others}
                             >
                                 {i + 1}
                             </a>
                         </li>
                     ))}
-                    <li><a href="#" onClick={() => goToPage(currentPage + 1)}>Next</a></li>
+                    <li><a href="#" onClick={() => changeCurrentPageNum(currentPage + 1)}>Next</a></li>
                 </ul>
             </nav>
         </>
