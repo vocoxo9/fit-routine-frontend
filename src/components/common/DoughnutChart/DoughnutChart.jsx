@@ -13,7 +13,13 @@ ChartJS.register(ArcElement, Tooltip, Legend);
  * @param {number[]} props.data - 각 항목의 값
  * @param {string[]} [props.colors] - 각 항목의 색상
  */
-function DoughnutChart({ labels, data, colors }) {
+function DoughnutChart(
+  { 
+    labels, 
+    data, 
+    colors 
+  }
+) {
   const chartData = {
     labels,
     datasets: [
