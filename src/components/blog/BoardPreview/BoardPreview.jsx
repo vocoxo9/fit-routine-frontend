@@ -36,7 +36,7 @@ export default function BoardPreview(
     },[]);
 
     // 게시물 클릭시 해당 게시물 상세 정보 페이지 이동
-    const boardDetailHandler = (boardId) => {
+    const handleBoardClick = (boardId) => {
         // navigate('/board/detail?boardId='+boardId);
     }
 
@@ -49,7 +49,7 @@ export default function BoardPreview(
     }
 
     return(
-                    <div className={styles.container} onClick={boardDetailHandler(boardId)}>
+                    <div className={styles.container} onClick={()=>handleBoardClick(boardId)}>
                         <div className={styles.imgContainer}>
                             <img className={styles.previewImg} src={imgSrc} alt='게시물 미리보기'/>
                         </div>
