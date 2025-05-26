@@ -23,8 +23,8 @@ export default function BoardPreview(
     const [isLiked, setIsLiked] = useState(null);
     const navigate = useNavigate();
 
-    // Likes 컴포넌트에 데이터 보내는 함수
-    const likesData = async () => {
+    // api요청으로 Like에 보낼 데이터 저장
+    const fetchLikeByBoardId = async () => {
         // [임시데이터]추후 boardId로 좋아요 수, 로그인 유저의 좋아요 클릭 유무 api요청
         const items = {likeCount:300, isLiked:true} 
         setLikeCount(items.likeCount);
@@ -32,7 +32,7 @@ export default function BoardPreview(
     }
 
     useEffect(()=>{
-        likesData(); // boardId 들어갈 예정
+        fetchLikeByBoardId(); // boardId 들어갈 예정
     },[]);
 
     // 게시물 클릭시 해당 게시물 상세 정보 페이지 이동
