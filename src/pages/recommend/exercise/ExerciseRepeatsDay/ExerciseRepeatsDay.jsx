@@ -6,7 +6,7 @@ import FormTitle from 'components/common/FormTitle/FormTitle';
 
 import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay.module.css';
 
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function ExerciseRepeatsDay() {
 
@@ -17,7 +17,7 @@ export default function ExerciseRepeatsDay() {
         <FormBox>
             <FormTitle text="반복일" />
             <div className={styles.inputForm}>
-                <RadioGroup >
+                <RadioGroup>
                     {repeatOptions.map((day) => (
                         <Radio
                             key={`${day}+_index`}

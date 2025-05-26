@@ -30,8 +30,8 @@ function Input(
         error,
         readOnly,
         placeHolder,
-        maxLength
-    }
+        maxLength,
+    },
 ) {
     return (
         <div className={styles.inputArea}>

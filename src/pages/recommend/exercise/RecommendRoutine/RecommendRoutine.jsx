@@ -7,26 +7,26 @@ import FormTitle from 'components/recommend/FormTitle/FormTitle';
 import styles from 'pages/recommend/exercise/RecommendRoutine/RecommendRoutine.module.css';
 
 export default function RecommendRoutine() {
-    
+
     // 샘플 데이터
     const exerciseList = [
-        { name: 'exercise', id: '1', label: "크런치", category: '상체' },
-        { name: 'exercise', id: '2', label: "런지", category: '상체' },
-        { name: 'exercise', id: '3', label: "걷기", category: '상체' },
-        { name: 'exercise', id: '4', label: "달리기", category: '상체' },
-        { name: 'exercise', id: '5', label: "수영", category: '상체' },
-        { name: 'exercise', id: '6', label: "줄넘기", category: '하체' },
-        { name: 'exercise', id: '7', label: "등산", category: '하체' },
-        { name: 'exercise', id: '8', label: "에어로빅", category: '하체' },
-        { name: 'exercise', id: '9', label: "바벨 운동", category: '생활운동' },
-        { name: 'exercise', id: '10', label: "계단 오르기", category: '전신' },
-        { name: 'exercise', id: '11', label: "스쿼트", category: '전신' },
-        { name: 'exercise', id: '12', label: "벤치프레스", category: '전신' },
-        { name: 'exercise', id: '13', label: "플랭크", category: '전신' },
-        { name: 'exercise', id: '14', label: "레그 프레스", category: '전신' },
-        { name: 'exercise', id: '15', label: "필라테스", category: '생활운동' },
+        { name: 'exercise', id: '1', label: '크런치', category: '상체' },
+        { name: 'exercise', id: '2', label: '런지', category: '상체' },
+        { name: 'exercise', id: '3', label: '걷기', category: '상체' },
+        { name: 'exercise', id: '4', label: '달리기', category: '상체' },
+        { name: 'exercise', id: '5', label: '수영', category: '상체' },
+        { name: 'exercise', id: '6', label: '줄넘기', category: '하체' },
+        { name: 'exercise', id: '7', label: '등산', category: '하체' },
+        { name: 'exercise', id: '8', label: '에어로빅', category: '하체' },
+        { name: 'exercise', id: '9', label: '바벨 운동', category: '생활운동' },
+        { name: 'exercise', id: '10', label: '계단 오르기', category: '전신' },
+        { name: 'exercise', id: '11', label: '스쿼트', category: '전신' },
+        { name: 'exercise', id: '12', label: '벤치프레스', category: '전신' },
+        { name: 'exercise', id: '13', label: '플랭크', category: '전신' },
+        { name: 'exercise', id: '14', label: '레그 프레스', category: '전신' },
+        { name: 'exercise', id: '15', label: '필라테스', category: '생활운동' },
     ];
-    
+
     const templates = [
         { dayNo: 1, kcal: 430, exerciseList: exerciseList },
         { dayNo: 2, kcal: 300, exerciseList: exerciseList },
@@ -60,16 +60,16 @@ export default function RecommendRoutine() {
             if (!newVisible) {
                 setSelectedCategory((prevSelected) => ({
                     ...prevSelected,
-                    [dayNo]: null
+                    [dayNo]: null,
                 }));
             }
 
             return {
                 ...prev,
-                [dayNo]: newVisible
-            }
-        })
-    }
+                [dayNo]: newVisible,
+            };
+        });
+    };
 
     // 카테고리별 운동리스트 상태
     const [selectedCategory, setSelectedCategory] = useState({});
@@ -81,8 +81,9 @@ export default function RecommendRoutine() {
             const currentList = prev[dayNo];
 
             // 다른 카테고리 선택하면 새로 보이게
-            return { ...prev,
-                [dayNo]: currentList && currentList.length > 0 ? null : filtered
+            return {
+                ...prev,
+                [dayNo]: currentList && currentList.length > 0 ? null : filtered,
             };
         });
     };
@@ -101,7 +102,7 @@ export default function RecommendRoutine() {
 
             return {
                 ...prev,
-                [dayNo]: updatedList
+                [dayNo]: updatedList,
             };
         });
     };
@@ -132,12 +133,13 @@ export default function RecommendRoutine() {
                                     />
                                 ))}
                             </div>
-                            
+
                             {/* + 버튼 : 카테고리 */}
                             <div className={styles.formRight}>
                                 <button className={styles.plusButton}
-                                    onClick={() => visibleCategoryForDay(template.dayNo)}
-                                > + </button>
+                                        onClick={() => visibleCategoryForDay(template.dayNo)}
+                                > +
+                                </button>
                             </div>
                         </div>
 

@@ -11,7 +11,7 @@ const RadioGroup = ({ children }) => {
         <div className={styles.container}>
             {children}
         </div>
-    )
-}
+    );
+};
 
 export default RadioGroup;

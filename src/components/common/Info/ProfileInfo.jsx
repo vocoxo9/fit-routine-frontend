@@ -1,10 +1,10 @@
-import { TfiEmail } from "react-icons/tfi";
-import { FiUser } from "react-icons/fi";
-import { IoIosPhonePortrait } from "react-icons/io";
-import { BsCake2 } from "react-icons/bs";
-import { BsGenderAmbiguous } from "react-icons/bs";
-import { LiaRulerVerticalSolid } from "react-icons/lia";
-import { IoScaleOutline } from "react-icons/io5";
+import { TfiEmail } from 'react-icons/tfi';
+import { FiUser } from 'react-icons/fi';
+import { IoIosPhonePortrait } from 'react-icons/io';
+import { BsCake2 } from 'react-icons/bs';
+import { BsGenderAmbiguous } from 'react-icons/bs';
+import { LiaRulerVerticalSolid } from 'react-icons/lia';
+import { IoScaleOutline } from 'react-icons/io5';
 
 import styles from './ProfileInfo.module.css';
 
@@ -45,7 +45,7 @@ function ProfileInfo({ kind, text, info }) {
                         {text}
                     </h4>
                 </div>
-                <div className={styles.info} >
+                <div className={styles.info}>
                     <div className={styles.infoText}>
                         {icon}
                         <div className={styles.text}>

@@ -1,4 +1,4 @@
-import styles from './Select.module.css'
+import styles from './Select.module.css';
 
 /**
  * 선택 컴포넌트.
@@ -19,8 +19,8 @@ const Select = (
         value,
         onChange,
         options,
-        error
-    }
+        error,
+    },
 ) => <div className={styles.container}>
     <label
         className={styles.label}
@@ -49,6 +49,6 @@ const Select = (
             {error}
         </p>
     )}
-</div>
+</div>;
 
-export default Select
+export default Select;
