@@ -8,16 +8,18 @@ import styles from './Category.module.css';
  * @param {string} props.text - 버튼 내 글자 (예: 상체, 하체, 생활운동, 밥, 반찬)
  */
 function Category(
-    { 
+    {
         text,
         onClick,
         onMouseEnter,
-        onMouseLeave
+        onMouseLeave,
+        isSelected
     }
 ) {
     return (
         <>
-            <div className={styles.text} onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
+            <div className={`${styles.text} ${isSelected ? styles.selected : ''}`} onClick={onClick} 
+            onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
                 {text}
             </div>
         </>

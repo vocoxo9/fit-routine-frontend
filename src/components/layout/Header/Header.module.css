@@ -23,7 +23,7 @@
     font-weight: 600;
 }
 
-.logo>* {
+.logo > * {
     color: #081F5C;
 }
 
@@ -95,7 +95,7 @@
     position: relative;
 }
 
-.menuItem>a {
+.menuItem > a {
     font-weight: bold;
     font-size: 1.1rem;
     line-height: 2rem;

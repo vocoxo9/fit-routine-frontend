@@ -2,12 +2,13 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import koLocale from '@fullcalendar/core/locales/ko';
-import "./FullCalendar.css";
+import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
 import {useEffect, useState} from 'react';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import { useNavigate } from 'react-router-dom';
 import TodoList from 'components/blog/TodoList/TodoList';
+
 
 /**
  * TODO 페이지
@@ -26,14 +27,14 @@ export default function OnesTodoPage() {
             '2025-05-01': [
                 { id: 1, title: '오운완아진짜아 알베겼어' },
                 { id: 2, title: '오식완' },
-                { id: 3, title: '가'}
+                { id: 3, title: '가' },
             ],
             '2025-05-03': [
-                { id: 3, title: '회식' }
+                { id: 3, title: '회식' },
             ],
             '2025-05-10': [
-                { id: 4, title: '스터디' }
-            ]
+                { id: 4, title: '스터디' },
+            ],
         };
         return data;
     };
@@ -71,21 +72,21 @@ export default function OnesTodoPage() {
 
     // 달력에 표시할 제목이 너무 길면 ...으로 축약
     const overTitle = (title) => {
-        if(title.length > 11){
+        if (title.length > 11) {
             return title.slice(0, 10) + '...';
         }
         return title;
-    }
+    };
 
     // 게시물이 3개까지 꽉 찼다면 + 버튼 비활성화
     const isOverBoard = (data) => {
-        if(data.length >= 3) {
+        if (data.length >= 3) {
             return true;
         }
-    }
+    };
 
     return (
-        <div className='todoPage todoPage-main container'>
+        <div className="todoPage todoPage-main container">
             <div className={styles.nameGrade}>
                 <span className={styles.name}>{nickname}
                     <span className={styles.TODOText}>TODO</span>
@@ -96,14 +97,14 @@ export default function OnesTodoPage() {
             <div className={styles.calendarContainer}>
                 <div className={styles.fullCalendar}>
                     <FullCalendar
-                    key={JSON.stringify(dateData)} // 상태 변경 시 리렌더 유도하는 속성. 외부에서 컴포넌트 사용할때 key예약어로 값을 지정하면 값에 변경이 있을때마다 리렌더를 시킨다.
-                    plugins={[dayGridPlugin, interactionPlugin]} // dayGridPlugin : 한 달 달력 보기, interactionPlugin : 클릭, 선택 등 사용자 상호작용 활성화
-                    initialView="dayGridMonth" // initialView : 처음 렌더링으로 어떤 뷰가 보일것인가?, dayGridMonth : 한 달 단위로 날짜를 그리드 형태로 보기
-                    locale={koLocale}  // 한국어 설정
-                    dayCellContent={(arg) => {  // 각 날짜에 보여줄 것을 정의
-                        const date = new Date(arg.date);
-                        date.setDate(date.getDate() + 1);
-                        const currDate = date.toISOString().split("T")[0];
+                        key={JSON.stringify(dateData)} // 상태 변경 시 리렌더 유도하는 속성. 외부에서 컴포넌트 사용할때 key예약어로 값을 지정하면 값에 변경이 있을때마다 리렌더를 시킨다.
+                        plugins={[dayGridPlugin, interactionPlugin]} // dayGridPlugin : 한 달 달력 보기, interactionPlugin : 클릭, 선택 등 사용자 상호작용 활성화
+                        initialView="dayGridMonth" // initialView : 처음 렌더링으로 어떤 뷰가 보일것인가?, dayGridMonth : 한 달 단위로 날짜를 그리드 형태로 보기
+                        locale={koLocale}  // 한국어 설정
+                        dayCellContent={(arg) => {  // 각 날짜에 보여줄 것을 정의
+                            const date = new Date(arg.date);
+                            date.setDate(date.getDate() + 1);
+                            const currDate = date.toISOString().split('T')[0];
 
                         return (
                         <div style={{ position: 'relative', height: '100%', width: '100%' }}>
@@ -133,14 +134,14 @@ export default function OnesTodoPage() {
                         date.setDate(date.getDate() + 1);
                         const currDate = date.toISOString().split("T")[0];
 
-                        const todos = dateData[currDate];
-                        if (todos?.length === 1) {
-                            info.el.classList.add("oneTodo");
-                        } else if (todos?.length >= 2) {
-                            info.el.classList.add("multiTodo");
-                        }
+                            const todos = dateData[currDate];
+                            if (todos?.length === 1) {
+                                info.el.classList.add('oneTodo');
+                            } else if (todos?.length >= 2) {
+                                info.el.classList.add('multiTodo');
+                            }
 
-                    }}
+                        }}
                     />
 
                 </div>

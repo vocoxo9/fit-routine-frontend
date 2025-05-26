@@ -1,6 +1,6 @@
 import styles from 'components/layout/Header/Header.module.css';
-import {FaBell, FaUser} from 'react-icons/fa';
-import {Link} from 'react-router-dom';
+import { FaBell, FaUser } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
 export default function Logout() {

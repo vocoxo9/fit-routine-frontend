@@ -1,7 +1,9 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BoardPreview from "../BoardPreview/BoardPreview";
 import styles from './BoardsPaging.module.css';
+
 /**
  * 게시물 페이징 컴포넌트 - 전체 게시판 페이지, 블로그 페이지 사용
  * 
@@ -27,11 +29,11 @@ export default function BoardsPaging(
         if (nickname) {
             fetchBoardsByNickname(currentPage);
         } else {
-            fetchBoardsByOrderCategory(currentPage); // 전체 게시물
+            fetchBoardsByOrderCategory(currentPage);
         }
     }, [currentPage, nickname, order, category]);
 
-    // 특정 유저의 게시물만 불러오는 함수
+    // 특정 유저의 게시물 api요청 후 상태 저장
     const fetchBoardsByNickname = async (pageNum) => {
         if (!nickname) return;
         // const res = await axios.get('/api/boards/user');
@@ -39,7 +41,7 @@ export default function BoardsPaging(
         // setTotalPages(res.data.totalPages); // 전체 페이지 수
     };
 
-    // order,category값으로 전체 게시물 api요청
+    // order,category값으로 전체 게시물 api요청 후 상태 저장
     const fetchBoardsByOrderCategory = async (pageNum) => {
         // const res = await axios.get(); 추후 게시물6개 데이터 요청예정
         setBoardList(boardList); // 서버가 보내준 게시물 6개
@@ -83,7 +85,6 @@ export default function BoardsPaging(
                 </tbody>
             </table>
 
-            {/* 페이징처리 */}
             <nav className={styles.nav}>
                 <ul className={styles.ul} id="pagination-area">
                     <li><a href="#" onClick={() => changeCurrentPageNum(currentPage - 1)}>이전</a></li>
@@ -104,3 +105,4 @@ export default function BoardsPaging(
         </>
     );
 }
+

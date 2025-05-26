@@ -1,5 +1,4 @@
-/* select */
-.selectArea {
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,6 +7,8 @@
 
 .label {
     margin: 0.3rem 1rem;
+    color : #081F5C;
+    font-weight : 500;
 }
 
 .select {
@@ -18,10 +19,17 @@
     text-align: center;
     cursor: pointer;
     padding-left: 2%;
-    margin : 0.5rem 0.3rem 0 0.7rem;
+    margin: 0.5rem 0.3rem 0 0.7rem;
 }
 
 .select:focus {
     outline: none;
     border: solid 2px #334EAC;
+}
+
+.error {
+    color: #CC0000;
+    margin: 0.3rem 1rem 0.5rem;
+    font-size: small;
+    font-weight: 600;
 }

@@ -9,7 +9,7 @@ function ReSignInfo({ text, info }) {
                         {text}
                     </h4>
                 </div>
-                <div className={styles.info} >
+                <div className={styles.info}>
                     <div className={styles.infoText}>
                         {info}
                     </div>

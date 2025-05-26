@@ -1,4 +1,4 @@
-import styles from './CheckBox.module.css'
+import styles from './CheckBox.module.css';
 
 /**
  * 체크박스 컴포넌트.
@@ -20,8 +20,8 @@ const CheckBox = (
         label,
         checked,
         onChange,
-        style = 'common'
-    }
+        style = 'common',
+    },
 ) => {
     return (
         <div className={styles[`${style}Container`]}>
@@ -38,7 +38,7 @@ const CheckBox = (
                 {label}
             </label>
         </div>
-    )
-}
+    );
+};
 
-export default CheckBox
+export default CheckBox;

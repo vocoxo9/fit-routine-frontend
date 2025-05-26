@@ -1,6 +1,7 @@
 .nickName {
     display: flex;
 }
+
 .textBox.nickName {
     border: solid 1px #334EAC;
     width: 11.5rem;
@@ -8,23 +9,28 @@
     background-color: #D0E3FF;
     font-weight: 600;
 }
+
 .h4.nickName {
     margin: 1rem;
     color: #334EAC;
 }
+
 .inputBox.nickName {
     border: solid 1px #334EAC;
     width: 28.5rem;
     align-items: center;
 }
+
 .inputBox.nickName > div {
     margin-bottom: 1rem;
 }
+
 /* ------------ */
 
 .password {
     display: flex;
 }
+
 .textBox.password {
     border: solid 1px #334EAC;
     width: 11.5rem;
@@ -32,20 +38,24 @@
     background-color: #D0E3FF;
     font-weight: 600;
 }
+
 .h4.password {
     margin: 1rem;
     color: #334EAC;
 }
+
 .inputBox.password {
     border: solid 1px #334EAC;
     width: 28.5rem;
     justify-content: space-around;
     flex-direction: column;
 }
+
 /* --------- */
 .phone {
     display: flex;
 }
+
 .textBox.phone {
     border: solid 1px #334EAC;
     width: 11.5rem;
@@ -53,35 +63,42 @@
     background-color: #D0E3FF;
     font-weight: 600;
 }
+
 .h4.phone {
     margin: 1rem;
     color: #334EAC;
 }
+
 .inputBox.phone {
     border: solid 1px #334EAC;
     width: 28.5rem;
     display: flex;
     align-items: center;
 }
+
 .inputBox.phone > div {
     margin-bottom: 1rem;
 }
+
 /* ------------ */
 .body {
     display: flex;
 }
+
 .textBox.body {
     border: solid 1px #334EAC;
     width: 11.5rem;
-    height: 12rem;
+    height: 13rem;
     background-color: #D0E3FF;
     font-weight: 600;
 }
+
 .h4.body {
     margin: 1rem;
     color: #334EAC;
     /* font-weight: 600; */
 }
+
 .inputBox.body {
     border: solid 1px #334EAC;
     width: 28.5rem;
@@ -89,6 +106,7 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
 .inputBox.body > div {
     margin-bottom: 1rem;
 }

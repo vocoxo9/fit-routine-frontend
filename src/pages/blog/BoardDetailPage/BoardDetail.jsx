@@ -1,6 +1,8 @@
+
 import {useEffect, useState} from 'react';
 import styles from './BoardDetail.module.css';
 import {VscTriangleLeft, VscTriangleRight } from "react-icons/vsc";
+
 import Button from 'components/common/Button/Button';
 import Likes from 'components/common/Likes/Likes';
 import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
@@ -13,6 +15,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function BoardDetail() {
 
     const { boardId } = useParams();    // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
+
 
     const [imgCount, setImgCount] = useState(0);
     const [title, setTitle] = useState('');
@@ -31,6 +34,7 @@ export default function BoardDetail() {
         {
             src:'jae5.jpg'
         }
+
     ];
 
     useEffect(()=>{
@@ -50,27 +54,27 @@ export default function BoardDetail() {
     const prevImgHandler = () => {
         const count = (imgCount === 0) ? (imgList.length - 1) : (imgCount - 1);
         setImgCount(count);
-    }
+    };
 
     const nextImgHandler = () => {
         const count = ((imgList.length - 1) === imgCount) ? 0 : (imgCount + 1);
         setImgCount(count);
-    }
+    };
 
     // 수정 클릭시 해당 게시물에대한 수정 페이지로 이동 함수
     const boardEditHandler = () => {
         // navigate('/board/edit?boardId='+boardId);
-    }
+    };
 
     // 삭제 클릭시 삭제 여부 + 삭제 api 요청 함수
     const boardDeleteHandler = () => {
         const isDelete = window.confirm('해당 게시물을 삭제하시겠습니까?');
-        if(isDelete === true) {
+        if (isDelete === true) {
             alert('삭제!');
             // api요청
         }
-    }
-    
+    };
+
     return (
         <div className={styles.container}>
             <div>
@@ -78,32 +82,32 @@ export default function BoardDetail() {
                     <span>{title}</span>
                     <div className={styles.boardEditContainer}>
                         <div className={styles.editBtns}>
-                            <Button size='small' text='수정' onClick={boardEditHandler}/>
+                            <Button size="small" text="수정" onClick={boardEditHandler} />
                         </div>
                         <div className={styles.deleteBtns}>
-                            <Button size='small' text='삭제' onClick={boardDeleteHandler}/>
+                            <Button size="small" text="삭제" onClick={boardDeleteHandler} />
                         </div>
                     </div>
-                </div><br/>
+                </div>
+                <br />
                 <div className={styles.nameDate}>
                     {writer} / {date.toLocaleDateString()}
                 </div>
 
-                
+
             </div>
 
-            
 
             <div className={styles.flex}>
                 <div className={styles.imageContainer}>
                     <button className={styles.imgBtn} onClick={prevImgHandler}><VscTriangleLeft /></button>
                     <div className={styles.image}>
-                        <img className={styles.img} src={imgList[imgCount].src}/>
+                        <img className={styles.img} src={imgList[imgCount].src} />
                     </div>
                     <button className={styles.imgBtn} onClick={nextImgHandler}><VscTriangleRight /></button>
                 </div>
             </div>
-            <br/>
+            <br />
             <div className={styles.boardContent}>
                 {
                         content.split('\n')
@@ -112,22 +116,22 @@ export default function BoardDetail() {
                                 {line}
                                 <br />
                             </span>
-                            ))
+                        ))
                 }
             </div>
-            
+
             <div className={styles.heartContainer}>
-                <Likes count={213} isBig={true}/>
+                <Likes count={213} isBig={true} />
             </div>
-            
-            <ReplyInput/>
+
+            <ReplyInput />
 
             <div className={styles.replyListContainer}>
-                <Reply/>
-                <Reply/>
-                <Reply/>
+                <Reply />
+                <Reply />
+                <Reply />
             </div>
 
         </div>
-    )
+    );
 }
