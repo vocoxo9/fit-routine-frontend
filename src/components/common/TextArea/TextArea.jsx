@@ -8,21 +8,20 @@ import styles from './TextArea.module.css';
  * @param {string} kind resign-회원탈퇴, reply-댓글입력칸, boardAdd-게시물추가페이지 내용칸
  * @param {string} placeholder textArea의 placeholder내용
  */
-function TextArea(
-    {
-        name,
-        id,
-        kind = 'resign',
-        placeholder = '사유를 입력해주세요',
-    },
-) {
+function TextArea({
+    name,
+    id,
+    kind = 'resign',
+    placeholder = '사유를 입력해주세요',
+}) {
     return (
         <div className={styles.textArea}>
             <textarea
                 className={`${styles[kind]}`}
                 name={name}
                 id={id}
-                placeholder={placeholder} />
+                placeholder={placeholder}
+            />
         </div>
     );
 }

@@ -20,16 +20,10 @@ const TDEE_LIST = [
     { value: '4', label: '주 6~7회 운동' },
 ];
 
-const getMissingRequiredErrors = formData => {
+const getMissingRequiredErrors = (formData) => {
     const errors = {};
 
-    const {
-        purpose,
-        startDate,
-        endDate,
-        tdee,
-        goalWeight,
-    } = formData;
+    const { purpose, startDate, endDate, tdee, goalWeight } = formData;
 
     if (!purpose || purpose === 'none') {
         errors.purpose = '목적을 선택해주세요.';
@@ -56,21 +50,20 @@ const getMissingRequiredErrors = formData => {
     return errors;
 };
 
-const getValidationErrors = async formData => {
+const getValidationErrors = async (formData) => {
     const errors = {};
 
-    const {
-        purpose,
-        startDate,
-        endDate,
-        goalWeight,
-    } = formData;
+    const { purpose, startDate, endDate, goalWeight } = formData;
 
     if (startDate && endDate && startDate > endDate) {
         errors.endDate = '종료일이 시작일보다 이릅니다.';
     }
 
-    if (purpose === 'diet' && goalWeight && (goalWeight < 0 || goalWeight > 500)) {
+    if (
+        purpose === 'diet' &&
+        goalWeight &&
+        (goalWeight < 0 || goalWeight > 500)
+    ) {
         errors.goalWeight = '목표 체중이 바르지 않습니다.';
     }
 
@@ -97,17 +90,17 @@ const RecommendForm = () => {
     const debouncedFormData = useDebounce(formData, 500);
 
     useEffect(() => {
-        getValidationErrors(debouncedFormData).then(errors =>
+        getValidationErrors(debouncedFormData).then((errors) =>
             setErrors(errors),
         );
     }, [debouncedFormData]);
 
-    const handleChange = event => {
+    const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData(previous => ({ ...previous, [name]: value }));
+        setFormData((previous) => ({ ...previous, [name]: value }));
     };
 
-    const handleSubmit = async event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         const missingRequiredErrors = getMissingRequiredErrors(formData);
@@ -182,11 +175,7 @@ const RecommendForm = () => {
                     />
                 </>
             )}
-            <Button
-                size="long"
-                text="다음"
-                onClick={handleSubmit}
-            />
+            <Button size="long" text="다음" onClick={handleSubmit} />
         </>
     );
 };

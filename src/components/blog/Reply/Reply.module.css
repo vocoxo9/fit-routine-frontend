@@ -1,7 +1,6 @@
-
 .oneReply {
     width: 100%;
-    margin: auto
+    margin: auto;
 }
 
 .replyHeader {
@@ -32,7 +31,6 @@
     position: absolute;
     right: 0;
 }
-
 
 .replyMain {
     display: flex;

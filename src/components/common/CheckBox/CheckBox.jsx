@@ -12,17 +12,15 @@ import styles from './CheckBox.module.css';
  * @style checkbox 태그의 CSS 스타일 ['common : 기본값', 'square']
  * @returns {JSX.Element} 체크박스 컴포넌트
  */
-const CheckBox = (
-    {
-        id,
-        name,
-        value,
-        label,
-        checked,
-        onChange,
-        style = 'common',
-    },
-) => {
+const CheckBox = ({
+    id,
+    name,
+    value,
+    label,
+    checked,
+    onChange,
+    style = 'common',
+}) => {
     return (
         <div className={styles[`${style}Container`]}>
             <input

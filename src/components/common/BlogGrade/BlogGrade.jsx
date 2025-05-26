@@ -7,7 +7,6 @@ import styles from './BlogGrade.module.css';
  * @returns 점수에 따른 문자 형태 ex) S, A
  */
 function BlogGrade({ grade }) {
-
     const getGradeLetter = (grade) => {
         if (grade >= 500) return 'SS';
         if (grade >= 100) return 'S';
@@ -16,12 +15,7 @@ function BlogGrade({ grade }) {
         return 'C';
     };
 
-    return (
-        <div className={styles.letter}>
-            {getGradeLetter(grade)}
-        </div>
-    );
+    return <div className={styles.letter}>{getGradeLetter(grade)}</div>;
 }
-
 
 export default BlogGrade;

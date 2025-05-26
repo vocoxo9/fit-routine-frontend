@@ -1,6 +1,5 @@
-
 .container {
-    border: 3px solid #334EAC;
+    border: 3px solid #334eac;
     width: 20rem;
     height: 19.3rem;
     border-radius: 10px;
@@ -21,7 +20,7 @@
 }
 
 .horizon {
-    border: 1px solid #334EAC;
+    border: 1px solid #334eac;
 }
 
 .nameText {
@@ -43,13 +42,3 @@
     margin-top: 0.5rem;
     margin-right: 0.7rem;
 }
-
-
-
-
-
-
-
-
-
-

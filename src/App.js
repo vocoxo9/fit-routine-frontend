@@ -10,9 +10,8 @@ function App() {
         <>
             <BrowserRouter>
                 <Header />
-      
-                <div className={styles.layout}>
-                </div>
+
+                <div className={styles.layout}></div>
 
                 <Footer />
             </BrowserRouter>
