@@ -13,7 +13,7 @@ const MessageForm = (
     return (
         <>
             <div className={styles.container}>
-                <p className={styles.notice}>
+                <p>
                     선택하신 운동의 총 소모 칼로리는 <span>{data.kcal}</span>kcal입니다.
                 </p>
                 <p className={styles.burnKcal}>
