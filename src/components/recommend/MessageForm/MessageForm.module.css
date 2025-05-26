@@ -1,4 +1,4 @@
-.message {
+.container {
     width: 50rem;
     height: 8rem;
     border: solid 2px #d9d9d9;
@@ -8,17 +8,17 @@
     padding: 0.5rem;
 }
 
-.message p {
+.container p {
     text-align: center;
     font-weight: bold;
     font-size: 1.3rem;
     padding: 1rem;
 }
 
-.message p:last-child {
+.container .burnKcal {
     color: #081F5C;
 }
 
-.message span {
+.kcal span {
     color: red;
 }

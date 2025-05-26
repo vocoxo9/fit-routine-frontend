@@ -15,10 +15,6 @@ export default function ExerciseRepeatsDay() {
     const [repeat, setRepeat] = useState('');
     const repeatDay = [1, 2, 3, 4, 5, 6, 7];
 
-    const repeatHandler = (e) => {
-        setRepeat(e.target.value);
-        console.log(repeat);
-    }
     return (
         <FormBox>
             <FormTitle text="반복일" />
