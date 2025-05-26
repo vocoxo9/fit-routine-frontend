@@ -5,7 +5,7 @@
     margin: 0.5rem 0;
 }
 
-input {
+.inputArea input {
     border: solid 2px #d9d9d9;
     border-radius: 8px;
     padding-left: 2%;
@@ -13,7 +13,7 @@ input {
     margin : 0.5rem 0.3rem 0 0.7rem;
     text-align: left;
 }
-label {
+.inputArea label {
     color : #081F5C;
     margin: 0.3rem 1rem;
     font-weight: 500;

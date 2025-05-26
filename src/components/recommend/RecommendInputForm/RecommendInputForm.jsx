@@ -4,8 +4,39 @@ import SelectForm from '../SelectForm/SelectForm';
 import Input from 'components/common/Input/Input';
 
 const RecommendInputForm = () => {
-    const [selected, setSelected] = useState('');
-    const [tdee, setTdee] = useState('');
+
+    const getToday = () => {
+        return new Date().toISOString().substring(0, 10);
+    }
+
+    const [userData, setUserData] = useState({
+        purpose: '',
+        startedAt: getToday(),
+        endedAt: '',
+    });
+
+    const [dietUserData, setDietUserData] = useState({
+        tdee: '',
+        golaWeight: '',
+    });
+
+    const submitHandler = (e) => {
+        const { name, value } = e.target;
+        setUserData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        setDietUserData(prev => ({
+            ...prev,
+            [name] : value
+        }))
+    };
+
+    // const [purpose, setPurpose] = useState('');
+    // const [startedAt, setStartedAt] = useState(getToday);
+    // const [endedAt, setEndedAt] = useState('');
+    // const [tdee, setTdee] = useState('');
+    // const [purposeWeight, setPurposeWeight] = useState('');
 
     // 운동 목적
     const selectPurpose = [
@@ -30,29 +61,37 @@ const RecommendInputForm = () => {
             <SelectForm
                 id="purpose"
                 label="운동 목적"
-                value={selected}
-                onChange={(e) => setSelected(e.target.value)}
+                value={userData.purpose}
+                onChange={submitHandler}
                 options={selectPurpose}
             />
             <Input
                 size="long" type="date"
-                id="startedAt" label="시작일" />
+                id="startedAt" label="시작일"
+                value={userData.startedAt}
+                onChange={submitHandler}
+                min={userData.startedAt} />
             <Input
                 size="long" type="date"
-                id="endedAt" label="종료일" />
+                id="endedAt" label="종료일"
+                value={userData.endedAt}
+                onChange={submitHandler}
+                min={userData.startedAt} />
 
             {/* 목적 : 체중감량일 때 추가로 입력할 폼 */}
-            {selected === 'diet' &&
+            {userData.purpose === 'diet' &&
                 <div>
                     <SelectForm
                         id='tdee'
                         label='활동수준'
-                        value={tdee}
-                        onChange={(e) => setTdee(e.target.value)}
+                        value={dietUserData.tdee}
+                        onChange={submitHandler}
                         options={selectByPurposeDiet} />
                     <Input
                         size="long" type="number"
-                        id="purposeWeight" label="목표 몸무게" />
+                        id="purposeWeight" label="목표 몸무게"
+                        value={dietUserData.golaWeight}
+                        onChange={submitHandler} />
                 </div>
             }
         </>

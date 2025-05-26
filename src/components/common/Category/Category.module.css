@@ -13,3 +13,8 @@
 .text:hover {
     border: solid 0.1rem #334EAC;
 }
+
+.selected {
+    border: solid 0.1rem #334EAC;
+
+}

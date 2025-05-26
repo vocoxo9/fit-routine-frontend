@@ -8,7 +8,9 @@ import styles from './DayRoutine.module.css';
 const DayRoutine = (
     {
         data,
-        onClick
+        onClick,
+        onChange,
+        checked
     }
 ) => {
 
@@ -27,6 +29,8 @@ const DayRoutine = (
                         name={`${el.id}`}
                         id={el.name}
                         label={el.name}
+                        checked={checked}
+                        onChange={onChange}
                     />
                 ))}
             </div>

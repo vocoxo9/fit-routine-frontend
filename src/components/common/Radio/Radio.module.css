@@ -32,12 +32,11 @@
 
 .longLabel {
     font-size: 1rem;
-    line-height: 2.3;
     margin-left: 0.6rem;
 }
 
 .longInput {
-    margin-left: auto;
+    margin: auto;
     width: 1rem;
     height: 1rem;
     accent-color: #334EAC;

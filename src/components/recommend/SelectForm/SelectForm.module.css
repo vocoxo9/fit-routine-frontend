@@ -8,6 +8,8 @@
 
 .label {
     margin: 0.3rem 1rem;
+    color : #081F5C;
+    font-weight : 500;
 }
 
 .select {

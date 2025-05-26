@@ -10,10 +10,9 @@ import styles from './RecommendExercise.module.css';
 
 const RecommendExercise = () => {
 
-    // 샘플 데이터
-
     const categoryList = ['유산소', '근력', '생활운동'];
-
+    
+    // 샘플 데이터
     // 회원에게 필요한 n일차 루틴
     const data = {
         todoNo: 1, repeatsDay: 4,
@@ -49,12 +48,13 @@ const RecommendExercise = () => {
     ];
 
     const [category, setCategory] = useState(false);
-    const [checkList, setCheckList] = useState(null);
+    const [checkList, setCheckList] = useState(false);
     const [selectCategory, setSelectCategory] = useState(null);
+    const [items, setItems] = useState(true);
 
     const showCategory = () => {
         setCategory(!category);
-        setCheckList(!checkList);
+        if(checkList === true ) setCheckList(!checkList);
     };
 
     const showCheckList = (category) => {
@@ -74,7 +74,10 @@ const RecommendExercise = () => {
             <FormTitle text="FIT-ROUTINE" />
             <DayRoutine
                 data={data}
-                onClick={showCategory} />
+                onClick={showCategory}
+                onChange={e=>setItems(items)}
+                checked={true}
+                 />
 
             {category && (
                 <div className={styles.category}>
@@ -82,7 +85,8 @@ const RecommendExercise = () => {
                         <Category
                             key={index}
                             text={text}
-                            onClick={() => showCheckList(text)} />
+                            onClick={() => showCheckList(text)}
+                            isSelected={selectCategory === text} />
                     ))}
                 </div>
             )}
