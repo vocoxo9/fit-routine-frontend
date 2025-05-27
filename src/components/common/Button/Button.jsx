@@ -12,26 +12,24 @@ import styles from './Button.module.css';
  * @param {boolean} [props.disabled] - 버튼 비활성화 여부
  * @param {string} [props.type] - 버튼 타입여부 (submit:기본값, button:form 제출하지 않는 버튼)
  */
-function Button(
-    {
-        size,
-        text,
-        onClick,
-        onMouseEnter,
-        onMouseLeave,
-        disabled,
-        type,
-    },
-) {
+function Button({
+    size,
+    text,
+    onClick,
+    onMouseEnter,
+    onMouseLeave,
+    disabled,
+    type,
+}) {
     return (
         <>
-            <button className={styles[size]}
-                    onClick={onClick}
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
-                    disabled={disabled}
-                    type={type}
-            >
+            <button
+                className={styles[size]}
+                onClick={onClick}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+                disabled={disabled}
+                type={type}>
                 {text}
             </button>
         </>

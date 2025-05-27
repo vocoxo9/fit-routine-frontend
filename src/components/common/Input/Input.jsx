@@ -17,29 +17,23 @@ import styles from './Input.module.css';
  * @param {String} [props.placeHolder] - 입력 전 텍스트 (선택)
  * @param {String} [props.maxLength] - 입력 전 텍스트 (선택)
  */
-function Input(
-    {
-        size,
-        type,
-        id,
-        name,
-        value,
-        label,
-        onChange,
-        onBlur,
-        error,
-        readOnly,
-        placeHolder,
-        maxLength,
-    },
-) {
+function Input({
+    size,
+    type,
+    id,
+    name,
+    value,
+    label,
+    onChange,
+    onBlur,
+    error,
+    readOnly,
+    placeHolder,
+    maxLength,
+}) {
     return (
         <div className={styles.inputArea}>
-            {label && (
-                <label htmlFor={id}>
-                    {label}
-                </label>
-            )}
+            {label && <label htmlFor={id}>{label}</label>}
             <div>
                 <input
                     className={styles[size]}
@@ -53,11 +47,7 @@ function Input(
                     onBlur={onBlur}
                     maxLength={maxLength}
                 />
-                {error && (
-                    <p className={styles.error}>
-                        {error}
-                    </p>
-                )}
+                {error && <p className={styles.error}>{error}</p>}
             </div>
         </div>
     );

@@ -6,13 +6,12 @@
 }
 
 .commonInput {
-    accent-color: #334EAC;
+    accent-color: #334eac;
 }
 
 .commonLabel {
     margin-left: 0.4rem;
 }
-
 
 /* 추천 페이지 용 라디오 스타일 */
 .longContainer {
@@ -27,7 +26,7 @@
 }
 
 .longContainer:has(input:checked) {
-    border: solid 2px #334EAC;
+    border: solid 2px #334eac;
 }
 
 .longLabel {
@@ -40,11 +39,11 @@
     margin-left: auto;
     width: 1rem;
     height: 1rem;
-    accent-color: #334EAC;
+    accent-color: #334eac;
     margin-right: 0.6rem;
 }
 
 .input:focus {
     outline: none;
-    border: solid 2px #334EAC;
+    border: solid 2px #334eac;
 }

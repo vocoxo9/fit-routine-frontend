@@ -4,7 +4,6 @@ button:disabled {
     cursor: default;
 }
 
-
 /* 날짜 셀의 스타일을 position: relative로 설정 */
 .fc-daygrid-day {
     position: relative; /* 날짜 숫자가 이 컨테이너를 기준으로 배치될 수 있도록 */
@@ -16,7 +15,7 @@ button:disabled {
 }
 
 .fc-header-toolbar {
-    background-color: #E3F2FD; /* 원하는 색상 */
+    background-color: #e3f2fd; /* 원하는 색상 */
 }
 
 .fc-header-toolbar.fc-toolbar {
@@ -63,15 +62,14 @@ table.fc-scrollgrid.fc-scrollgrid-liquid > thead > tr > th {
     border-bottom: 0.0625rem solid black;
 }
 
-tr.fc-scrollgrid-section.fc-scrollgrid-section-header div.fc-scrollgrid-sync-inner {
+tr.fc-scrollgrid-section.fc-scrollgrid-section-header
+    div.fc-scrollgrid-sync-inner {
     border-left: 0.0625rem solid rgb(158, 158, 158);
 }
-
 
 .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
     min-height: 0;
 }
-
 
 div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
     overflow: hidden;
@@ -79,9 +77,9 @@ div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
 }
 
 .fc-day.fc-daygrid-day.oneTodo > div {
-    background-color: #E3F2FD !important;
+    background-color: #e3f2fd !important;
 }
 
 .fc-day.fc-daygrid-day.multiTodo > div {
-    background-color: #89B6E7 !important;
+    background-color: #89b6e7 !important;
 }

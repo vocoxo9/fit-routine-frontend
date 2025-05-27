@@ -15,9 +15,7 @@ function Like({ gender, nickName, grade }) {
                         <BlogGrade grade={grade} />
                     </div>
                 </div>
-                <div className={styles.nickName}>
-                    {nickName}
-                </div>
+                <div className={styles.nickName}>{nickName}</div>
             </div>
             <div className={styles.cutBtn}>
                 <Button size="delete" text="관심 끊기" />

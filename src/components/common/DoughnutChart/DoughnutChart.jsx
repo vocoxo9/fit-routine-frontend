@@ -2,7 +2,6 @@
 import { Doughnut } from 'react-chartjs-2';
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js';
 
-
 // Chart.js 요소 등록 (반드시 필요함)
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -13,13 +12,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
  * @param {number[]} props.data - 각 항목의 값
  * @param {string[]} [props.colors] - 각 항목의 색상
  */
-function DoughnutChart(
-    {
-        labels,
-        data,
-        colors,
-    },
-) {
+function DoughnutChart({ labels, data, colors }) {
     const chartData = {
         labels,
         datasets: [
@@ -41,9 +34,9 @@ function DoughnutChart(
                     font: {
                         size: 12, // 라벨 글씨 크기 (기본: 12)
                     },
-                    boxWidth: 10,   // 색상 네모 가로 크기 (기본: 40)
-                    boxHeight: 10,  // 색상 네모 세로 크기 (기본: 10)
-                    padding: 10,     // 라벨 간 간격
+                    boxWidth: 10, // 색상 네모 가로 크기 (기본: 40)
+                    boxHeight: 10, // 색상 네모 세로 크기 (기본: 10)
+                    padding: 10, // 라벨 간 간격
                 },
                 position: 'bottom',
             },

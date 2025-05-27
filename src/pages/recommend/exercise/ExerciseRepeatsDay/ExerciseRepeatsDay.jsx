@@ -9,7 +9,6 @@ import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsD
 import { useState } from 'react';
 
 export default function ExerciseRepeatsDay() {
-
     const [repeats, setRepeats] = useState('');
     const repeatOptions = [1, 2, 3, 4, 5, 6, 7];
 
@@ -25,12 +24,12 @@ export default function ExerciseRepeatsDay() {
                             name="selectRepeats"
                             value={day}
                             label={`${day}일 반복`}
-                            onChnage={(e) => setRepeats(e.target.value)} />
+                            onChnage={(e) => setRepeats(e.target.value)}
+                        />
                     ))}
                 </RadioGroup>
             </div>
             <Button size="long" text="다음"></Button>
         </FormBox>
     );
-
-};
+}

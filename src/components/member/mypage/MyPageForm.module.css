@@ -5,13 +5,13 @@
 
 .profile,
 .likeList {
-    border: solid 2px #334EAC;
+    border: solid 2px #334eac;
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     width: 25rem;
     height: 4rem;
-    background-color: #D0E3FF;
-    color: #334EAC;
+    background-color: #d0e3ff;
+    color: #334eac;
     font-size: 1.6rem;
     font-weight: 500;
     text-align: center;
@@ -20,15 +20,15 @@
 
 .profile:hover,
 .likeList:hover {
-    background-color: #334EAC;
-    color: #FFFFFF;
+    background-color: #334eac;
+    color: #ffffff;
     transition: 0.3s;
 }
 
 /* 활성 탭 */
 .active {
-    background-color: #334EAC;
-    color: #FFFFFF;
+    background-color: #334eac;
+    color: #ffffff;
 }
 
 .between {

@@ -8,20 +8,19 @@
 }
 
 .ownerCard {
-    border: 3px solid #334EAC;
+    border: 3px solid #334eac;
     width: 25rem;
     height: 15rem;
     border-radius: 10px;
     margin-left: 10rem;
     overflow: hidden;
-    background-color: #E3F2FD;
+    background-color: #e3f2fd;
 }
 
 .cardHeader {
     display: flex;
     margin-top: 0.7rem;
 }
-
 
 .ownerName {
     text-align: center;
@@ -45,11 +44,10 @@
     margin-right: 0.6rem;
     width: 2rem;
     height: 1.5rem;
-    background-color: #E3F2FD;
-    color: #334EAC;
+    background-color: #e3f2fd;
+    color: #334eac;
     font-size: 1.2rem;
-    border: 1px solid #334EAC;
-
+    border: 1px solid #334eac;
 }
 
 .introduceText {
@@ -66,7 +64,7 @@
     margin-left: auto;
     margin-right: 10rem;
     margin-top: 2rem;
-    border: 3px solid #334EAC;
+    border: 3px solid #334eac;
     border-radius: 10px;
     text-align: center;
     align-content: center;
