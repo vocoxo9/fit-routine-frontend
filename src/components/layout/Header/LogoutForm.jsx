@@ -3,8 +3,15 @@ import { FaBell, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import BellNotifications from './BellNotifications';
+import { useState } from 'react';
 
 export default function Logout() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleNOtificationOpen = () => {
+        setIsOpen(prev => !prev);
+    }
+
     return (
         <div className={styles.headerRight}>
             <Button size="logInOut" text="로그아웃" />
@@ -15,9 +22,10 @@ export default function Logout() {
                 </Link>
                 <Link to="#">
                     <div>
-                        <FaBell className={styles.icon} />
+                        <FaBell className={styles.icon}
+                            onClick={handleNOtificationOpen} />
                         <span className={styles.notification}>33</span>
-                        <div className={styles.bellNotifications}>
+                        <div className={`${styles.bellNotifications} ${isOpen ? styles.show : ''}`}>
                             <BellNotifications />
                         </div>
                     </div>

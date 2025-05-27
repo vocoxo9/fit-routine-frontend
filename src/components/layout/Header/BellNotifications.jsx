@@ -46,13 +46,14 @@ function BellNotifications () {
     // 알림 테이블의 데이터를 삭제하는 핸들러
     const handleDeleteAll = () => {
         setData([]);
-        // 표시할 알림이 없습니다. 표시 후 알림 테이블 삭제
+        // 알림 테이블 삭제
     }
 
     // 해당 인덱스의 데이터를 삭제하고, 
     // 해당 인덱스 번호의 알림번호를 삭제하는 핸들러
-    const handleNoticeDelete = () => {
-
+    const handleNoticeDelete = (noticeIndex) => {
+        setData(prev => prev.filter((notice, index) => index !== noticeIndex))
+        // 알림 테이블의 해당 데이터 삭제
     }
     
     return (
@@ -79,7 +80,7 @@ function BellNotifications () {
                                 key={noticeIndex} 
                                 type={notice.type} 
                                 data={notice} 
-                                handleDelete={handleNoticeDelete}
+                                handleDelete={() => handleNoticeDelete(noticeIndex)}
                             />
                         ))
                     )

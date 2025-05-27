@@ -1,3 +1,20 @@
+@keyframes formopen {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes formclose {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 .headerContainer {
     display: flex;
     margin: 1rem auto;
@@ -67,6 +84,17 @@
 }
 .bellNotifications {
     position: relative;
+    z-index: 100;
+    display: none;
+    opacity: 0;
+    /* animation: formclose; */
+    /* animation-duration: 0.5s; */
+}
+.bellNotifications.show {
+    display: block;
+    opacity: 1;
+    animation: formopen;
+    animation-duration: 0.5s;
 }
 
 /* 

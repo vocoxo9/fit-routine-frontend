@@ -27,7 +27,7 @@ function Notification ({ type, data, handleDelete }) {
                         <div>{data.nickname}</div>
                         <div>{data.date}</div>
                     </div>
-                    <div className={styles.deleteBtn} onClick={handleNoticeDelete}>
+                    <div className={styles.deleteBtn} onClick={handleDelete}>
                         <TiDeleteOutline />
                     </div>
                 </div>
