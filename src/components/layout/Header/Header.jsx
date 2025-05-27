@@ -1,9 +1,12 @@
 import styles from 'components/layout/Header/Header.module.css';
 
-import Login from 'components/layout/Header/LoginForm';
+import Login from 'components/layout/Header/userMenu/GuestUserMenu';
 
 import { Link } from 'react-router-dom';
 import Logo from 'components/layout/Logo/Logo';
+import Logout from './userMenu/AuthUserMenu';
+import GuestUserMenu from 'components/layout/Header/userMenu/GuestUserMenu';
+import AutoUserMenu from './userMenu/AuthUserMenu';
 
 export default function Header() {
     return (
@@ -37,8 +40,8 @@ export default function Header() {
                     </ul>
                 </nav>
 
-                <Login />
-                {/* <Logout /> */}
+                {/* <GuestUserMenu /> */}
+                <AutoUserMenu />
             </div>
         </>
     );

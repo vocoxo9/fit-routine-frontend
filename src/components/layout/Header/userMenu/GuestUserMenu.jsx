@@ -1,9 +1,9 @@
 import styles from 'components/layout/Header/Header.module.css';
 
 import { Link } from 'react-router-dom';
-import Button from '../../common/Button/Button';
+import Button from '../../../common/Button/Button';
 
-function LoginForm() {
+function GuestUserMenu() {
     return (
         <div className={styles.headerRight}>
             <Button size="logInOut" text="로그인" />
@@ -14,4 +14,4 @@ function LoginForm() {
     );
 }
 
-export default LoginForm;
+export default GuestUserMenu;
