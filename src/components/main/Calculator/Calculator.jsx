@@ -31,6 +31,7 @@ function Calculator() {
     // 입력한 사용자의 정보 (나이, 성별, 신장, 체중)
     const [userData, setUserData] = useState({
         age: '', // 나이
+        age: '', // 나이
         gender: '', // 성별
         height: '', // 신장
         weight: '', // 체중
@@ -46,7 +47,9 @@ function Calculator() {
     // 계산 결과 (탄수화물, 단백질, 지방)
     const [result, setResult] = useState({
         carb: 0, // 탄수화물
+        carb: 0, // 탄수화물
         protein: 0, // 단백질
+        fat: 0, // 지방
         fat: 0, // 지방
     });
 
@@ -85,7 +88,10 @@ function Calculator() {
         if (gender === '남') {
             bmr =
                 66.47 + 13.75 * weightNum + 5.003 * heightNum - 6.755 * ageNum;
+            bmr =
+                66.47 + 13.75 * weightNum + 5.003 * heightNum - 6.755 * ageNum;
         } else if (gender === '여') {
+            bmr = 655.1 + 9.563 * weightNum + 1.85 * heightNum - 4.676 * ageNum;
             bmr = 655.1 + 9.563 * weightNum + 1.85 * heightNum - 4.676 * ageNum;
         }
 
@@ -110,6 +116,7 @@ function Calculator() {
 
         // DoughnutChart 새로 랜더링
         setChartKey((prev) => prev + 1);
+        setChartKey((prev) => prev + 1);
     };
 
     // 식단 추천 페이지로 이동 핸들러
@@ -123,6 +130,7 @@ function Calculator() {
                 <div style={{ fontSize: '4rem' }}>
                     <FcCalculator />
                 </div>
+                <div>일일 권장 섭취량 계산기</div>
                 <div>일일 권장 섭취량 계산기</div>
             </div>
             <div className={styles.container}>
@@ -143,6 +151,9 @@ function Calculator() {
                             />
                         </div>
                         <div className={styles.inputArea}>
+                            <label className={styles.label} htmlFor="gender">
+                                성별
+                            </label>
                             <label className={styles.label} htmlFor="gender">
                                 성별
                             </label>
@@ -213,6 +224,15 @@ function Calculator() {
                             />
                         </div>
                         <div className={styles.kcalArea}>
+                            <p className={styles.p}>
+                                탄수화물 : <u>{result.carb}</u> kcal
+                            </p>
+                            <p className={styles.p}>
+                                단백질 : <u>{result.protein}</u> kcal
+                            </p>
+                            <p className={styles.p}>
+                                지방 : <u>{result.fat}</u> kcal
+                            </p>
                             <p className={styles.p}>
                                 탄수화물 : <u>{result.carb}</u> kcal
                             </p>
