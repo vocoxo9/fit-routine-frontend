@@ -21,7 +21,8 @@
 }
 
 .TODOText {
-    color: #3065ac;
+    color: #3065AC;
+    margin-left: 1rem;
 }
 
 .grade {
@@ -59,72 +60,43 @@
     display: flex;
 }
 
-.headerText {
-    display: inline-block;
-    color: #334eac;
-    margin-top: 1.8rem;
-    margin-left: 1.2rem;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.periodText {
-    margin-top: 1rem;
-    margin-left: 12rem;
-    font-size: 1rem;
-}
-
-.todayList {
-    margin-top: 2rem;
-    margin-left: 1.2rem;
-    font-weight: 700;
-}
-
-.listText {
-    width: 50%;
-    border: 1.5px solid #334eac;
-}
-
 .exerciseListText {
     border-right: 3px solid #334eac;
 }
 
-.ul {
-    list-style: inside;
-    margin-left: 0.5rem;
-}
-
 .addBoard {
-    position: absolute;
-    top: 0px;
-    right: 0.25rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 30%;
-    width: 1.875rem;
-    height: 1.875rem;
-    font-size: 0.875rem;
-    text-align: center;
-    cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 0.25rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 30%;
+  width: 1.875rem;
+  height: 1.875rem;
+  font-size: 0.875rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 .dateNum {
-    text-align: left;
-    padding-left: 0.3125rem;
-    margin-top: 0.3125rem;
-    font-weight: bold;
-    font-size: 1.25rem;
+  text-align: left;
+  padding-left: 0.3125rem; 
+  margin-top: 0.3125rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+
 }
 
 .registedBoard {
-    margin-top: 1rem;
-    text-align: center;
-    background-color: #fff100;
-    border-radius: 10px;
-    border-bottom: 0.0625rem solid gray;
-    font-size: 1rem;
-    font-weight: bold;
-    height: 1.5rem;
-    /* 만약 게시물이 10개가 넘어가면 어케되는거임? */
+  margin-top: 1rem;
+  text-align: center;
+  background-color: #FFF100;
+  border-radius: 10px;
+  border-bottom: 0.0625rem solid gray;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 1.5rem;
+  cursor: pointer;
+
 }

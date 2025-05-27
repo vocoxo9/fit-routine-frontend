@@ -8,7 +8,7 @@ export default function ExerciseInputInfo() {
         <FormContainer>
             <FormTitle text="운동 추천" />
             <FormContent>
-                <RecommendForm />
+                <RecommendInputForm />
             </FormContent>
         </FormContainer>
     );

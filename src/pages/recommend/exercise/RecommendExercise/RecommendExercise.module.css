@@ -13,6 +13,12 @@
 }
 
 .registButton {
+<<<<<<< HEAD
     display: block;
     margin-top: 3rem;
 }
+=======
+    display : block;
+    margin-top : 3rem;
+}
+>>>>>>> ce74b32d9913c8e276aa0df60ea26a33bdadef1b
