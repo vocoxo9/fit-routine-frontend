@@ -21,7 +21,7 @@
 }
 
 .TODOText {
-    color: #3065AC;
+    color: #3065ac;
     margin-left: 1rem;
 }
 
@@ -65,38 +65,36 @@
 }
 
 .addBoard {
-  position: absolute;
-  top: 0px;
-  right: 0.25rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 30%;
-  width: 1.875rem;
-  height: 1.875rem;
-  font-size: 0.875rem;
-  text-align: center;
-  cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0.25rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30%;
+    width: 1.875rem;
+    height: 1.875rem;
+    font-size: 0.875rem;
+    text-align: center;
+    cursor: pointer;
 }
 
 .dateNum {
-  text-align: left;
-  padding-left: 0.3125rem; 
-  margin-top: 0.3125rem;
-  font-weight: bold;
-  font-size: 1.25rem;
-
+    text-align: left;
+    padding-left: 0.3125rem;
+    margin-top: 0.3125rem;
+    font-weight: bold;
+    font-size: 1.25rem;
 }
 
 .registedBoard {
-  margin-top: 1rem;
-  text-align: center;
-  background-color: #FFF100;
-  border-radius: 10px;
-  border-bottom: 0.0625rem solid gray;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 1.5rem;
-  cursor: pointer;
-
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #fff100;
+    border-radius: 10px;
+    border-bottom: 0.0625rem solid gray;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 1.5rem;
+    cursor: pointer;
 }

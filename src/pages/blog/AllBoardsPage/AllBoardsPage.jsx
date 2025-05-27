@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
  * 전체 게시판 페이지
  */
 export default function AllBoardsPage() {
-
     const [category, setCategory] = useState('free');
     const [order, setOrder] = useState('like');
 
@@ -59,32 +58,41 @@ export default function AllBoardsPage() {
         { value: 'stamina', label: '체력 증진' },
     ];
 
-    
     const changeBoardsByCategory = (e) => {
         const selected = e.target.value;
         setCategory(selected);
     };
 
-    
-    const changeOrder = (param) =>{
+    const changeOrder = (param) => {
         setOrder(param);
-    }
+    };
 
-    useEffect(()=> {
-    },[category, order]);
+    useEffect(() => {}, [category, order]);
 
     return (
         <div className={styles.mainContainer}>
             <div className={styles.buttonContainer}>
-                <span onClick={()=>changeOrder('like')} className={`${styles.likeBtn}`}>
-                    <Button text={'좋아요순'} size='small'/>
+                <span
+                    onClick={() => changeOrder('like')}
+                    className={`${styles.likeBtn}`}>
+                    <Button text={'좋아요순'} size="small" />
                 </span>
-                <span onClick={()=>changeOrder('latest')} className={`${styles.latestBtn}`}>
-                    <Button text={'최신순'} size='small'/>
+                <span
+                    onClick={() => changeOrder('latest')}
+                    className={`${styles.latestBtn}`}>
+                    <Button text={'최신순'} size="small" />
                 </span>
-                <CategorySelect options={categoryOptions} value={category} onChange={(e)=>changeBoardsByCategory(e)}/>
+                <CategorySelect
+                    options={categoryOptions}
+                    value={category}
+                    onChange={(e) => changeBoardsByCategory(e)}
+                />
             </div>
-            <BoardsPaging order={order} category={category} tempboardList={boardList}/>
+            <BoardsPaging
+                order={order}
+                category={category}
+                tempboardList={boardList}
+            />
         </div>
-    )
+    );
 }

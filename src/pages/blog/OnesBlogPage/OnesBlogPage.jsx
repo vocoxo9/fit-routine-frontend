@@ -1,5 +1,5 @@
 import styles from './OnesBlogPage.module.css';
-import { VscEdit } from "react-icons/vsc";
+import { VscEdit } from 'react-icons/vsc';
 import BoardsPaging from 'components/blog/BoardsPaging/BoardsPaging';
 import Likes from 'components/common/Likes/Likes';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
@@ -11,17 +11,15 @@ import { useEffect, useParams } from 'react';
  */
 export default function OnesBlogPage() {
     // const { nickname } = useParams('일김현');    // <Route path="/blog/onesblog/:nickname" element={<OnesBlogPage />} />
-    
 
     // nickname으로 blog정보 api요청
     const blogDetail = async () => {
         // axios.get('blog/onesblog?nickname='+nickname);
+    };
 
-    }
-
-    useEffect(()=>{
+    useEffect(() => {
         blogDetail();
-    },[]);
+    }, []);
 
     return (
         <div className={styles.blogContainer}>

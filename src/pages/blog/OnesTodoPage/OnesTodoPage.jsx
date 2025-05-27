@@ -4,11 +4,10 @@ import interactionPlugin from '@fullcalendar/interaction';
 import koLocale from '@fullcalendar/core/locales/ko';
 import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import { useNavigate } from 'react-router-dom';
 import TodoList from 'components/blog/TodoList/TodoList';
-
 
 /**
  * TODO 페이지
@@ -34,7 +33,7 @@ export default function OnesTodoPage() {
         };
         return data;
     };
-    
+
     useEffect(() => {
         getUserInfo();
         loadInitialData();
@@ -46,24 +45,24 @@ export default function OnesTodoPage() {
         // const data = axios.get('info/userinfo',{토큰값 혹은 context의 아이디값});
         // setNickname(data.nickname);
         // setGrade(data.grade);
-    }
+    };
 
     // 로그인 정보로 TodoList api 요청
     const getUserTodoList = () => {
         // const data = axios.get('info/userTodoList',{토큰값 혹은 context의 아이디값});
         // setTodoList(data.todoList);
-    }
+    };
 
     // 캘린더의 제목 클릭시 해당 게시글 상세 페이지로 이동
     const boardDetailHandler = (boardId) => {
         // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
         // navigate('/blog/boardDetail/'+boardId);
-    }
+    };
 
     // 전체 날짜별 데이터 세팅
     const loadInitialData = async () => {
         const data = await getUserBoards();
-        setDateData(data); 
+        setDateData(data);
     };
 
     // 달력에 표시할 제목이 너무 길면 ...으로 축약
@@ -84,10 +83,13 @@ export default function OnesTodoPage() {
     return (
         <div className="todoPage todoPage-main container">
             <div className={styles.nameGrade}>
-                <span className={styles.name}>{nickname}
+                <span className={styles.name}>
+                    {nickname}
                     <span className={styles.TODOText}>TODO</span>
                 </span>
-                <span className={styles.grade}><BlogGrade grade={grade}/></span>
+                <span className={styles.grade}>
+                    <BlogGrade grade={grade} />
+                </span>
             </div>
 
             <div className={styles.calendarContainer}>
@@ -103,33 +105,45 @@ export default function OnesTodoPage() {
                             date.setDate(date.getDate() + 1);
                             const currDate = date.toISOString().split('T')[0];
 
-                        return (
-                        <div style={{ position: 'relative', height: '100%', width: '100%' }}>
-                            <div className={styles.dateNum}>
-                            {arg.dayNumberText}
-                            </div>
-                            <button
-                            className={styles.addBoard}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                alert(`${currDate} 클릭됨`);
-                            }}
-                            disabled={isOverBoard(dateData[currDate] || [])}
-                            >
-                            +
-                            </button>
-                            {dateData[currDate]?.map(todo => (
-                            <div className={styles.registedBoard} key={todo.id} onClick={()=>{boardDetailHandler(todo.id)}}>
-                                {overTitle(todo.title)}
-                            </div>
-                            ))}
-                        </div>
-                        );
-                    }}
-                    dayCellDidMount={(info) => {  // DOM이 렌더링된 후처리에 대한 함수 작성
-                        const date = new Date(info.date);
-                        date.setDate(date.getDate() + 1);
-                        const currDate = date.toISOString().split("T")[0];
+                            return (
+                                <div
+                                    style={{
+                                        position: 'relative',
+                                        height: '100%',
+                                        width: '100%',
+                                    }}>
+                                    <div className={styles.dateNum}>
+                                        {arg.dayNumberText}
+                                    </div>
+                                    <button
+                                        className={styles.addBoard}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            alert(`${currDate} 클릭됨`);
+                                        }}
+                                        disabled={isOverBoard(
+                                            dateData[currDate] || [],
+                                        )}>
+                                        +
+                                    </button>
+                                    {dateData[currDate]?.map((todo) => (
+                                        <div
+                                            className={styles.registedBoard}
+                                            key={todo.id}
+                                            onClick={() => {
+                                                boardDetailHandler(todo.id);
+                                            }}>
+                                            {overTitle(todo.title)}
+                                        </div>
+                                    ))}
+                                </div>
+                            );
+                        }}
+                        dayCellDidMount={(info) => {
+                            // DOM이 렌더링된 후처리에 대한 함수 작성
+                            const date = new Date(info.date);
+                            date.setDate(date.getDate() + 1);
+                            const currDate = date.toISOString().split('T')[0];
 
                             const todos = dateData[currDate];
                             if (todos?.length === 1) {
@@ -142,8 +156,8 @@ export default function OnesTodoPage() {
                 </div>
             </div>
             <div className={styles.todoContainer}>
-                <TodoList/>
-                <TodoList/>
+                <TodoList />
+                <TodoList />
             </div>
         </div>
     );
