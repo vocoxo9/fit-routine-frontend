@@ -1,9 +1,9 @@
 import styles from 'components/layout/Header/Header.module.css';
 
 import { Link } from 'react-router-dom';
-import Button from '../../common/Button/Button';
+import Button from '../../../common/Button/Button';
 
-export default function Login() {
+export default function GuestUserMenu() {
     return (
         <div className={styles.headerRight}>
             {/* <Button className={styles.Button}>로그인</Button> <br /> */}

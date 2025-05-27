@@ -2,18 +2,21 @@ import { RxCalendar } from "react-icons/rx";
 import { TiDeleteOutline } from "react-icons/ti";
 import { FaRegHeart } from "react-icons/fa";
 import { LuPencilLine } from "react-icons/lu";
+import { TbUsers } from "react-icons/tb";
 
 import styles from './Notification.module.css';
 
 
-function Notification ({ type, data, handleDelete }) {
+function Notification ({ category, data, handleDelete }) {
     let icon = '';
-    if (type === 'todo') {
+    if (category === 'todo') {
         icon = <RxCalendar />;
-    } else if (type === 'like') {
+    } else if (category === 'like') {
         icon = <FaRegHeart />;
-    } else if (type === 'reply') {
+    } else if (category === 'reply') {
         icon = <LuPencilLine />;
+    } else if (category === 'follow') {
+        icon = <TbUsers />;
     }
 
     return (

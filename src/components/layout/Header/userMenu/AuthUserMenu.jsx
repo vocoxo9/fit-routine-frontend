@@ -1,11 +1,11 @@
 import styles from 'components/layout/Header/Header.module.css';
 import { FaBell, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Button from '../../common/Button/Button';
-import BellNotifications from './BellNotifications';
+import Button from '../../../common/Button/Button';
+import BellNotifications from '../Notification/BellNotifications';
 import { useState } from 'react';
 
-export default function Logout() {
+export default function AuthUserMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleNOtificationOpen = () => {
