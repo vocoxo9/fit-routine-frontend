@@ -6,14 +6,21 @@ import styles from './CategoryForm.module.css';
  * @openDataList 식단|운동 공공데이터 리스트
  * @returns {JSX.Element} 카테고리 + 체크리스트 컴포넌트
  */
-const CategoryForm = ({ openDataList }) => {
+const CategoryForm = ({
+    checkedItems,
+    openDataList,
+    dayNo,
+    handleCheckBoxClick,
+}) => {
     return (
-        <div className={styles.checkListForm}>
-            {openDataList.map((list, idx) => (
+        <div className={styles.container}>
+            {openDataList.map((list, index) => (
                 <CheckBox
-                    key={`${list.id}_${idx}`}
+                    key={`${list.id}_${index}`}
                     name={`${list.name}`}
-                    id={list.id}
+                    id={`${dayNo}_template_${list.id}`}
+                    checked={checkedItems.includes(list.id)}
+                    onChange={() => handleCheckBoxClick(list.id)}
                     label={list.name}
                     style="square"
                 />
@@ -23,4 +30,3 @@ const CategoryForm = ({ openDataList }) => {
 };
 
 export default CategoryForm;
-

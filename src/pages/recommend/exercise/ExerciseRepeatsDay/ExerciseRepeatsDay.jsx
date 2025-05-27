@@ -33,7 +33,6 @@ function ExerciseRepeatsDay() {
         setError(validationResult);
 
         if (Object.keys(validationResult).length > 0) {
-            alert('반복일을 설정해 주세요');
             return;
         }
 

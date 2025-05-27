@@ -7,7 +7,7 @@ import styles from './DayRoutine.module.css';
  * @onChange onChange 이벤트
  * @returns {JSX.Element} n일차 루틴 추천 컴포넌트
  */
-const DayRoutine = ({ data, checked, onClick, onChange }) => {
+const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
     return (
         <div className={styles.container}>
             <div className={styles.title}>
@@ -24,8 +24,8 @@ const DayRoutine = ({ data, checked, onClick, onChange }) => {
                         value={exercise.id}
                         id={exercise.id}
                         label={exercise.name}
-                        checked={checked}
-                        onChange={onChange}
+                        checked={checkedItems.includes(exercise.id)}
+                        onChange={() => handleCheckBoxClick(exercise.id)}
                     />
                 ))}
             </div>

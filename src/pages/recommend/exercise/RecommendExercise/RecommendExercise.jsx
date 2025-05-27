@@ -13,6 +13,19 @@ function RecommendExercise() {
     const [openDataList, setOpenDataList] = useState([]);
     const [checkedItems, setCheckedItems] = useState({});
 
+    const exerciseTime = 0.5; // 임의로 30분
+    const handleKcalCalculate = (exerciseList, weight) => {
+        return exerciseList.reduce((total, exercise) => {
+            return total + exercise.met * weight * exerciseTime;
+        }, 0);
+    };
+
+    const [showCategory, setShowCategory] = useState({});
+    const [showCheckList, setShowCheckList] = useState({});
+    const [selectCategory, setSelectCategory] = useState({});
+
+    const categoryList = ['유산소', '근력', '생활운동'];
+
     // 렌더링과 동시에 가져 올 데이터 샘플
     useEffect(() => {
         const mockData = [
@@ -22,6 +35,7 @@ function RecommendExercise() {
                 templateNo: 1,
                 dayNo: 1,
                 kcal: 430,
+                weight: 60,
                 exerciseList: [
                     { id: 1, name: '런지', met: 3, category: '근력' },
                     { id: 2, name: '크런치', met: 4, category: '근력' },
@@ -38,6 +52,7 @@ function RecommendExercise() {
                 templateNo: 2,
                 dayNo: 2,
                 kcal: 346,
+                weight: 60,
                 exerciseList: [
                     { id: 1, name: '런지', met: 3, category: '근력' },
                     { id: 2, name: '크런치', met: 4, category: '근력' },
@@ -54,6 +69,7 @@ function RecommendExercise() {
                 templateNo: 3,
                 dayNo: 3,
                 kcal: 524,
+                weight: 60,
                 exerciseList: [
                     { id: 1, name: '런지', met: 3, category: '근력' },
                     { id: 2, name: '크런치', met: 4, category: '근력' },
@@ -92,16 +108,12 @@ function RecommendExercise() {
             );
         });
 
+        console.log(initialCheckedData);
+
         setData(mockData);
         setOpenDataList(mockOpenData);
         setCheckedItems(initialCheckedData);
     }, []);
-
-    const categoryList = ['유산소', '근력', '생활운동'];
-
-    const [showCategory, setShowCategory] = useState({});
-    const [showCheckList, setShowCheckList] = useState({});
-    const [selectCategory, setSelectCategory] = useState({});
 
     // 카테고리 표시
     const handleShowCategory = (dayNo) => {
@@ -125,12 +137,12 @@ function RecommendExercise() {
 
         setShowCheckList((prev) => ({
             ...prev,
-            [dayNo]: !prev[dayNo],
+            [dayNo]: true,
         }));
     };
 
     // 카테고리에 따른 리스트 분류
-    const filteredList = (dayNo) => {
+    const filteredByCategory = (dayNo) => {
         const category = selectCategory[dayNo];
         return category
             ? openDataList.filter((list) => list.category === category)
@@ -138,25 +150,63 @@ function RecommendExercise() {
     };
 
     // 체크박스 변경
-    const handleCheckboxClick = (dayNo, exerciseId, isChecked) => {
-        setCheckedItems((prev) => {
-            const currentCheckedItems = prev[dayNo] || [];
-            if (isChecked) {
-                // 체크되면 추가 (중복 방지)
-                return {
-                    ...prev,
-                    [dayNo]: [...new Set([...currentCheckedItems, exerciseId])],
-                };
-            } else {
-                // 체크 해제되면 제거
-                return {
-                    ...prev,
-                    [dayNo]: currentCheckedItems.filter(
-                        (id) => id !== exerciseId,
-                    ),
-                };
+    const handleCheckBoxClick = (
+        dayNo,
+        exerciseId,
+        oneDayData,
+        openDataList,
+        checkedItems,
+        setCheckedItems,
+        setData,
+    ) => {
+        let items = checkedItems[dayNo] || [];
+
+        let updateCheckedItems;
+        let updateExerciseList;
+
+        if (items.includes(exerciseId)) {
+            updateCheckedItems = items.filter((id) => id !== exerciseId);
+            updateExerciseList = oneDayData.exerciseList.filter(
+                (exercise) => exercise.id !== exerciseId,
+            );
+        } else {
+            const addExercise = openDataList.find((ex) => ex.id === exerciseId);
+
+            updateCheckedItems = [...items, exerciseId];
+            updateExerciseList = [...oneDayData.exerciseList, addExercise];
+        }
+
+        setCheckedItems((prev) => ({
+            ...prev,
+            [dayNo]: updateCheckedItems,
+        }));
+
+        setData((prev) =>
+            prev.map((dayData) =>
+                dayData.dayNo === dayNo
+                    ? {
+                          ...dayData,
+                          exerciseList: updateExerciseList,
+                          kcal: handleKcalCalculate(
+                              updateExerciseList,
+                              dayData.weight,
+                          ),
+                      }
+                    : dayData,
+            ),
+        );
+    };
+
+    const handleSubmit = () => {
+        for (const day of data) {
+            const dayNo = day.dayNo;
+            if (!checkedItems[dayNo] || checkedItems[dayNo].length === 0) {
+                alert(`${dayNo}일차에 선택된 운동이 존재하지 않습니다.`);
+                return;
             }
-        });
+        }
+        alert('폼 제출 완료');
+        console.log('저장 완료 ::: ', data);
     };
 
     return (
@@ -165,22 +215,31 @@ function RecommendExercise() {
 
             {data.map((oneDayData, index) => {
                 const dayNo = oneDayData.dayNo;
-                const currentCheckedItems = checkedItems[dayNo] || [];
 
                 return (
                     <div key={`${dayNo}_${index}`}>
                         <DayRoutine
                             data={oneDayData}
                             onClick={() => handleShowCategory(dayNo)}
-                            onChange={(e) => setCheckedItems(checkedItems)}
-                            checked={true}
+                            checkedItems={checkedItems[dayNo]}
+                            handleCheckBoxClick={(exerciseId) =>
+                                handleCheckBoxClick(
+                                    dayNo,
+                                    exerciseId,
+                                    oneDayData,
+                                    openDataList,
+                                    checkedItems,
+                                    setCheckedItems,
+                                    setData,
+                                )
+                            }
                         />
 
                         {showCategory[dayNo] && (
                             <div className={styles.category}>
-                                {categoryList.map((category, idx) => (
+                                {categoryList.map((category, index) => (
                                     <Category
-                                        key={idx}
+                                        key={`${category}_${index}`}
                                         text={category}
                                         onClick={() =>
                                             handleShowCheckList(dayNo, category)
@@ -195,8 +254,20 @@ function RecommendExercise() {
 
                         {showCheckList[dayNo] && (
                             <CategoryForm
-                                data={data}
-                                openDataList={filteredList(dayNo)}
+                                dayNo={dayNo}
+                                checkedItems={checkedItems[dayNo]}
+                                openDataList={filteredByCategory(dayNo)}
+                                handleCheckBoxClick={(exerciseId) =>
+                                    handleCheckBoxClick(
+                                        dayNo,
+                                        exerciseId,
+                                        oneDayData,
+                                        openDataList,
+                                        checkedItems,
+                                        setCheckedItems,
+                                        setData,
+                                    )
+                                }
                             />
                         )}
                     </div>
@@ -207,11 +278,7 @@ function RecommendExercise() {
                 className={styles.registButton}
                 size="bold"
                 text="루틴 등록"
-            />
-            <Button
-                className={styles.registButton}
-                size="bold"
-                text="루틴 등록"
+                onClick={handleSubmit}
             />
         </div>
     );
