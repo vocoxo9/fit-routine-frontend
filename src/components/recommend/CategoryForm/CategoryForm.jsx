@@ -8,7 +8,6 @@ import styles from './CategoryForm.module.css';
  */
 const CategoryForm = (
     {
-        data,
         openDataList
     }
 ) => {
@@ -20,8 +19,8 @@ const CategoryForm = (
             {openDataList.map((list, idx) => (
                     <CheckBox
                         key={`${list.id}_${idx}`}
-                        name={`${list.id}`}
-                        id={list.name}
+                        name={`${list.name}`}
+                        id={list.id}
                         label={list.name}
                         style='square'
                     />
