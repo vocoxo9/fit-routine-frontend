@@ -9,8 +9,8 @@ export default function AuthUserMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleNOtificationOpen = () => {
-        setIsOpen(prev => !prev);
-    }
+        setIsOpen((prev) => !prev);
+    };
 
     return (
         <div className={styles.headerRight}>
@@ -22,10 +22,13 @@ export default function AuthUserMenu() {
                 </Link>
                 <Link to="#">
                     <div>
-                        <FaBell className={styles.icon}
-                            onClick={handleNOtificationOpen} />
+                        <FaBell
+                            className={styles.icon}
+                            onClick={handleNOtificationOpen}
+                        />
                         <span className={styles.notification}>33</span>
-                        <div className={`${styles.bellNotifications} ${isOpen ? styles.show : ''}`}>
+                        <div
+                            className={`${styles.bellNotifications} ${isOpen ? styles.show : ''}`}>
                             <BellNotifications />
                         </div>
                     </div>

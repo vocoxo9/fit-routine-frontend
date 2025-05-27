@@ -1,13 +1,12 @@
-import { RxCalendar } from "react-icons/rx";
-import { TiDeleteOutline } from "react-icons/ti";
-import { FaRegHeart } from "react-icons/fa";
-import { LuPencilLine } from "react-icons/lu";
-import { TbUsers } from "react-icons/tb";
+import { RxCalendar } from 'react-icons/rx';
+import { TiDeleteOutline } from 'react-icons/ti';
+import { FaRegHeart } from 'react-icons/fa';
+import { LuPencilLine } from 'react-icons/lu';
+import { TbUsers } from 'react-icons/tb';
 
 import styles from './Notification.module.css';
 
-
-function Notification ({ category, data, handleDelete }) {
+function Notification({ category, data, handleDelete }) {
     let icon = '';
     if (category === 'todo') {
         icon = <RxCalendar />;
@@ -23,9 +22,7 @@ function Notification ({ category, data, handleDelete }) {
         <>
             <div className={styles.notification}>
                 <div className={styles.noticeHeader}>
-                    <div className={styles.icon}>
-                            {icon}
-                    </div>
+                    <div className={styles.icon}>{icon}</div>
                     <div className={styles.nickName}>
                         <div>{data.nickname}</div>
                         <div>{data.date}</div>
@@ -34,9 +31,7 @@ function Notification ({ category, data, handleDelete }) {
                         <TiDeleteOutline />
                     </div>
                 </div>
-                <div className={styles.noticeContent}>
-                        {data.message}
-                </div>
+                <div className={styles.noticeContent}>{data.message}</div>
             </div>
         </>
     );
