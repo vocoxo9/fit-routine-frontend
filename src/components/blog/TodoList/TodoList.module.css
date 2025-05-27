@@ -1,0 +1,30 @@
+.headerText {
+    display: inline-block;
+    color: #334eac;
+    margin-top: 1.8rem;
+    margin-left: 1.2rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.periodText {
+    margin-top: 1rem;
+    margin-left: 12rem;
+    font-size: 1rem;
+}
+
+.todayList {
+    margin-top: 2rem;
+    margin-left: 1.2rem;
+    font-weight: 700;
+}
+
+.listText {
+    width: 50%;
+    border: 1.5px solid #334eac;
+}
+
+.ul {
+    list-style: inside;
+    margin-left: 0.5rem;
+}

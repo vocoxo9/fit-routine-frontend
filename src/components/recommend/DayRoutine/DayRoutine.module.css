@@ -22,6 +22,7 @@
 .carolie {
     font-size: 0.9rem;
     color: #334eac;
+    color: #334eac;
 }
 
 .formLeft {
@@ -39,6 +40,8 @@
 .plusBtn {
     width: 2.5rem;
     height: 2.5rem;
+    color: #081f5c;
+    border: 2px solid #081f5c;
     color: #081f5c;
     border: 2px solid #081f5c;
     border-radius: 50%;

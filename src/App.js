@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from 'components/layout/Header/Header';
 import Footer from 'components/layout/Footer/Footer';
-import RecommendExercise from 'pages/recommend/exercise/RecommendExercise/RecommendExercise';
 
 function App() {
     return (
@@ -15,7 +14,7 @@ function App() {
                 <div className={styles.layout}>
                     {/* <ExerciseInputInfo /> */}
                     {/* <ExerciseRepeatsDay /> */}
-                    <RecommendExercise />
+                    {/* <RecommendExercise /> */}
                 </div>
 
                 <Footer />

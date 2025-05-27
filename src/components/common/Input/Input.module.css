@@ -13,7 +13,8 @@
     margin: 0.5rem 0.3rem 0 0.7rem;
     text-align: left;
 }
-.inputArea label {
+
+label {
     color: #081f5c;
     margin: 0.3rem 1rem;
     font-weight: 500;

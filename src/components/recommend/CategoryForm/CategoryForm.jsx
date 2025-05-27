@@ -23,3 +23,4 @@ const CategoryForm = ({ openDataList }) => {
 };
 
 export default CategoryForm;
+

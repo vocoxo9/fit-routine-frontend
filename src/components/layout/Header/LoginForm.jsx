@@ -10,6 +10,9 @@ function LoginForm() {
             <Link to="#">
                 <p>회원가입</p>
             </Link>
+            <Link to="#">
+                <p>회원가입</p>
+            </Link>
         </div>
     );
 }

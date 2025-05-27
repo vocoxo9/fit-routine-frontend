@@ -63,5 +63,4 @@ function ExerciseRepeatsDay() {
         </FormBox>
     );
 }
-
 export default ExerciseRepeatsDay;

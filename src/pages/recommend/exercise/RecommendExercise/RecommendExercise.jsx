@@ -208,6 +208,11 @@ function RecommendExercise() {
                 size="bold"
                 text="루틴 등록"
             />
+            <Button
+                className={styles.registButton}
+                size="bold"
+                text="루틴 등록"
+            />
         </div>
     );
 }
