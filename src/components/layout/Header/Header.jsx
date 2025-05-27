@@ -4,6 +4,7 @@ import Login from 'components/layout/Header/LoginForm';
 
 import { Link } from 'react-router-dom';
 import Logo from 'components/layout/Logo/Logo';
+import Logout from './LogoutForm';
 
 export default function Header() {
 
@@ -27,8 +28,8 @@ export default function Header() {
                     </ul>
                 </nav>
 
-                <Login />
-                {/* <Logout /> */}
+                {/* <Login /> */}
+                <Logout />
             </div>
         </>
 

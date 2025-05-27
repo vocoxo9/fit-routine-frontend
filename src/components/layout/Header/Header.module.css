@@ -65,6 +65,9 @@
     color: #FF0000;
     border-radius: 1rem;
 }
+.bellNotifications {
+    position: relative;
+}
 
 /* 
 .notification:hover{
