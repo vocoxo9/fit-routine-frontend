@@ -39,7 +39,7 @@ export default function BoardPreview({
     };
 
     // 미리보기에 표시할 제목이 너무 길면 ...으로 축약
-    const overTitle = (title) => {
+    const overTitle = (title = '') => {
         if (title.length > 18) {
             return title.slice(0, 17) + '...';
         }
