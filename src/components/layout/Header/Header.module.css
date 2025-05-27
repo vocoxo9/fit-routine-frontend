@@ -71,7 +71,7 @@
     z-index: 100;
     opacity: 1;
     visibility: visible;
-    transition: .9s ease-out;
+    transition: 0.9s ease-out;
 }
 .bellNotifications.hide {
     opacity: 0;
