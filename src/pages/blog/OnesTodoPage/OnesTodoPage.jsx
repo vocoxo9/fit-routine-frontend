@@ -90,7 +90,6 @@ function OnesTodoPage() {
     const handleTitleClick = (boardId) => {
         // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
         // navigate('/blog/boardDetail/'+boardId);
-        alert(boardId);
     };
 
     // 달력에 표시할 제목이 너무 길면 ...으로 축약
