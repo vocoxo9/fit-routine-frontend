@@ -7,8 +7,8 @@
 
 .label {
     margin: 0.3rem 1rem;
-    color : #081F5C;
-    font-weight : 500;
+    color: #081f5c;
+    font-weight: 500;
 }
 
 .select {
@@ -24,11 +24,11 @@
 
 .select:focus {
     outline: none;
-    border: solid 2px #334EAC;
+    border: solid 2px #334eac;
 }
 
 .error {
-    color: #CC0000;
+    color: #cc0000;
     margin: 0.3rem 1rem 0.5rem;
     font-size: small;
     font-weight: 600;

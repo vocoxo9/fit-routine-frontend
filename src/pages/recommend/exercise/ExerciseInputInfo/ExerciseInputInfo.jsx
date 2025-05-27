@@ -4,7 +4,6 @@ import FormContent from 'components/common/FormContent/FormContent';
 import RecommendForm from 'components/recommend/RecommendForm/RecommendForm';
 
 function ExerciseInputInfo() {
-
     return (
         <FormContainer>
             <FormTitle text="운동 추천" />
@@ -13,6 +12,6 @@ function ExerciseInputInfo() {
             </FormContent>
         </FormContainer>
     );
-};
+}
 
 export default ExerciseInputInfo;

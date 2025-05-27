@@ -101,7 +101,7 @@ public final class MemberService {
 @Service
 public final class MemberService {
     private final MemberMapper memberMapper;
-    
+
     public MemberService(MemberMapper memberMapper) {
         this.memberMapper = memberMapper;
     }

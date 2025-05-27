@@ -19,7 +19,6 @@ const checkRepeatRequired = (repeat) => {
 };
 
 function ExerciseRepeatsDay() {
-
     const [repeat, setRepeat] = useState('');
     const [error, setError] = useState({});
 
@@ -27,14 +26,14 @@ function ExerciseRepeatsDay() {
 
     const handleChange = (event) => {
         setRepeat(event.target.value);
-    }
+    };
 
     const handleSubmit = () => {
         const validationResult = checkRepeatRequired(repeat);
         setError(validationResult);
 
         if (Object.keys(validationResult).length > 0) {
-            alert("반복일을 설정해 주세요");
+            alert('반복일을 설정해 주세요');
             return;
         }
 
@@ -54,23 +53,15 @@ function ExerciseRepeatsDay() {
                             value={day}
                             label={`${day}일 반복`}
                             onChange={handleChange}
-                            style='long' />
+                            style="long"
+                        />
                     ))}
                 </RadioGroup>
-                {error.repeat && (
-                    <p className={styles.error}>
-                        {error.repeat}
-                    </p>
-                )}
+                {error.repeat && <p className={styles.error}>{error.repeat}</p>}
             </div>
-            <Button
-                size="long"
-                text="다음"
-                onClick={handleSubmit}
-            />
+            <Button size="long" text="다음" onClick={handleSubmit} />
         </FormBox>
     );
-
 }
 
 export default ExerciseRepeatsDay;

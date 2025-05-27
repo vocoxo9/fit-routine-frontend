@@ -8,12 +8,14 @@ import ProFileInfo from 'components/common/Info/ProfileInfo';
 function Profile() {
     return (
         <>
-            <div className={styles.subTitle}>
-                내 프로필
-            </div>
+            <div className={styles.subTitle}>내 프로필</div>
             <div className={styles.table}>
                 <ProFileInfo kind="email" text="이메일" info="example@kh.com" />
-                <ProFileInfo kind="nickName" text="닉네임" info="다이어트는 내일부터" />
+                <ProFileInfo
+                    kind="nickName"
+                    text="닉네임"
+                    info="다이어트는 내일부터"
+                />
                 <ProFileInfo kind="birth" text="생년월일" info="2006.06.18" />
                 <ProFileInfo kind="phone" text="휴대폰" info="010-1234-5678" />
                 <ProFileInfo kind="gender" text="성별" info="남" />

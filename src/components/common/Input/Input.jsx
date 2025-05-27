@@ -18,28 +18,25 @@ import styles from './Input.module.css';
  * @param {String} [props.maxLength] - 입력 전 텍스트 (선택)
  * @param {String} [props.min] - date 타입에서의 최솟값 (선택)
  */
-function Input(
-    {
-        size,
-        type,
-        id,
-        name,
-        value,
-        label,
-        onChange,
-        onBlur,
-        error,
-        readOnly,
-        placeHolder,
-        maxLength,
-        min
-    }
-) {
+function Input({
+    size,
+    type,
+    id,
+    name,
+    value,
+    label,
+    onChange,
+    onBlur,
+    error,
+    readOnly,
+    placeHolder,
+    maxLength,
+    min,
+}) {
     return (
         <div className={styles.inputArea}>
             {label && (
-                <label htmlFor={id}
-                className={styles.label}>
+                <label htmlFor={id} className={styles.label}>
                     {label}
                 </label>
             )}
@@ -57,11 +54,7 @@ function Input(
                     maxLength={maxLength}
                     min={min}
                 />
-                {error && (
-                    <p className={styles.error}>
-                        {error}
-                    </p>
-                )}
+                {error && <p className={styles.error}>{error}</p>}
             </div>
         </div>
     );

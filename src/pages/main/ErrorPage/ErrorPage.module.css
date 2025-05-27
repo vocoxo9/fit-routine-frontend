@@ -11,14 +11,13 @@
 .warningIcon {
     font-size: 15.625rem;
     margin-top: 5rem;
-    color: #334EAC;
+    color: #334eac;
 }
-
 
 .homeBtn {
     width: 15.625rem;
     height: 3.125rem;
-    background-color: #334EAC;
+    background-color: #334eac;
     border: 0;
     border-radius: 0.625rem;
     color: white;

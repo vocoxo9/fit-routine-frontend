@@ -13,15 +13,15 @@
     font-weight: bold;
 }
 
-.dayNo{
+.dayNo {
     font-size: 1.1rem;
-    color: #081F5C;
+    color: #081f5c;
     margin: 0.6rem;
 }
 
 .carolie {
     font-size: 0.9rem;
-    color: #334EAC;
+    color: #334eac;
 }
 
 .formLeft {
@@ -39,8 +39,8 @@
 .plusBtn {
     width: 2.5rem;
     height: 2.5rem;
-    color: #081F5C;
-    border: 2px solid #081F5C;
+    color: #081f5c;
+    border: 2px solid #081f5c;
     border-radius: 50%;
     font-size: 2rem;
     background-color: white;

@@ -31,16 +31,35 @@ export default function BoardAddEditPage() {
         <div className={styles.pageContainer}>
             <form action={'#'} enctype="multipart/form-data" method="">
                 <div className={styles.formHeader}>
-                    <Input size="title" placeHolder="*제목을 입력하세요." type="text" value={title} onChange={titleHandler} />
-                    <CategorySelect options={options} value={category} onChange={categoryHandler} />
+                    <Input
+                        size="title"
+                        placeHolder="*제목을 입력하세요."
+                        type="text"
+                        value={title}
+                        onChange={titleHandler}
+                    />
+                    <CategorySelect
+                        options={options}
+                        value={category}
+                        onChange={categoryHandler}
+                    />
                 </div>
                 <div className={styles.attachFile}>
-                    <input type="file" text="파일첨부" className={styles.fileInputBtn} id="fileInput" />
-                    <label htmlFor="fileInput"><Button size="medium" text="파일첨부" type="button" /></label>
+                    <input
+                        type="file"
+                        text="파일첨부"
+                        className={styles.fileInputBtn}
+                        id="fileInput"
+                    />
+                    <label htmlFor="fileInput">
+                        <Button size="medium" text="파일첨부" type="button" />
+                    </label>
                     <div className={styles.imgContainer}>
                         <table className={styles.table}>
                             <tr>
-                                <td><img src="/jae3.jpg" /></td>
+                                <td>
+                                    <img src="/jae3.jpg" />
+                                </td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -55,9 +74,10 @@ export default function BoardAddEditPage() {
                     </div>
                 </div>
 
-                <textarea className={styles.boardContent} value={content} onChange={contentHandler}>
-
-                </textarea>
+                <textarea
+                    className={styles.boardContent}
+                    value={content}
+                    onChange={contentHandler}></textarea>
 
                 <div className={styles.btnContainer}>
                     <Button size="medium" text="등록" />
@@ -66,5 +86,4 @@ export default function BoardAddEditPage() {
             </form>
         </div>
     );
-
 }

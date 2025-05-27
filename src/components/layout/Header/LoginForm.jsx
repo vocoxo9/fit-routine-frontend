@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 
 function LoginForm() {
-
     return (
         <div className={styles.headerRight}>
             <Button size="logInOut" text="로그인" />
@@ -13,7 +12,6 @@ function LoginForm() {
             </Link>
         </div>
     );
-
-};
+}
 
 export default LoginForm;

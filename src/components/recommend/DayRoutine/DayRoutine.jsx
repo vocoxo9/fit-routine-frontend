@@ -7,51 +7,36 @@ import styles from './DayRoutine.module.css';
  * @onChange onChange 이벤트
  * @returns {JSX.Element} n일차 루틴 추천 컴포넌트
  */
-const DayRoutine = (
-    {
-        data,
-        checked,
-        onClick,
-        onChange
-    }
-) => {
-
+const DayRoutine = ({ data, checked, onClick, onChange }) => {
     return (
         <div className={styles.container}>
             <div className={styles.title}>
-                <span className={styles.dayNo}>
-                    {data.dayNo}일차
-                </span>
-                <span className={styles.kcal}>
-                    {data.kcal}kcal
-                </span>
+                <span className={styles.dayNo}>{data.dayNo}일차</span>
+                <span className={styles.kcal}>{data.kcal}kcal</span>
             </div>
 
             {/* 식단|운동 추천 리스트  */}
             <div className={styles.formLeft}>
-                {data.exerciseList
-                    .map((exercise, index) => (
-                        <CheckBox
-                            key={`${exercise.id}_${index}`}
-                            name={`${exercise.name}`}
-                            value={exercise.id}
-                            id={exercise.id}
-                            label={exercise.name}
-                            checked={checked}
-                            onChange={onChange}
-                        />
-                    ))}
+                {data.exerciseList.map((exercise, index) => (
+                    <CheckBox
+                        key={`${exercise.id}_${index}`}
+                        name={`${exercise.name}`}
+                        value={exercise.id}
+                        id={exercise.id}
+                        label={exercise.name}
+                        checked={checked}
+                        onChange={onChange}
+                    />
+                ))}
             </div>
 
             <div className={styles.formRight}>
-                <button
-                    className={styles.plusBtn}
-                    onClick={onClick} >
+                <button className={styles.plusBtn} onClick={onClick}>
                     +
                 </button>
             </div>
         </div>
     );
-}
+};
 
 export default DayRoutine;
