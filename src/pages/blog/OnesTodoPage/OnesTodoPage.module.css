@@ -1,10 +1,9 @@
-
 .nameGrade {
     width: 100%;
     height: 11.3rem;
-    border: 0.2rem solid #334EAC;
+    border: 0.2rem solid #334eac;
     border-radius: 0.625rem;
-    background-color: #E3F2FD;
+    background-color: #e3f2fd;
     margin: auto;
     margin-top: 4.4rem;
     box-sizing: border-box;
@@ -22,7 +21,8 @@
 }
 
 .TODOText {
-    color: #3065AC;
+    color: #3065ac;
+    margin-left: 1rem;
 }
 
 .grade {
@@ -30,13 +30,13 @@
     font-size: 7.5rem;
     font-weight: bold;
     align-content: center;
-    color: #80CEE1;
+    color: #80cee1;
     margin-left: 50%;
 }
 
 .calendarContainer {
     justify-content: space-between;
-    border: 0.2rem solid #334EAC;
+    border: 0.2rem solid #334eac;
     border-radius: 0.625rem;
     width: 100%;
     box-sizing: border-box;
@@ -52,49 +52,17 @@
 .todoContainer {
     width: 100%;
     height: 28rem;
-    border: 3px solid #334EAC;
+    border: 3px solid #334eac;
     border-radius: 0.625rem;
-    background-color: #E3F2FD;
+    background-color: #e3f2fd;
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
 }
 
-.headerText {
-    display: inline-block;
-    color: #334EAC;
-    margin-top: 1.8rem;
-    margin-left: 1.2rem;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.periodText {
-    margin-top: 1rem;
-    margin-left: 12rem;
-    font-size: 1rem;
-}
-
-.todayList {
-    margin-top: 2rem;
-    margin-left: 1.2rem;
-    font-weight: 700;
-}
-
-.listText {
-    width: 50%;
-    border: 1.5px solid #334EAC;
-}
-
 .exerciseListText {
-    border-right: 3px solid #334EAC;
+    border-right: 3px solid #334eac;
 }
-
-.ul {
-    list-style: inside;
-    margin-left: 0.5rem;
-}
-
 
 .addBoard {
     position: absolute;
@@ -119,16 +87,14 @@
     font-size: 1.25rem;
 }
 
-
 .registedBoard {
     margin-top: 1rem;
     text-align: center;
-    background-color: #FFF100;
+    background-color: #fff100;
     border-radius: 10px;
     border-bottom: 0.0625rem solid gray;
     font-size: 1rem;
     font-weight: bold;
     height: 1.5rem;
-    /* 만약 게시물이 10개가 넘어가면 어케되는거임? */
+    cursor: pointer;
 }
-

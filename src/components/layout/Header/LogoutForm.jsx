@@ -5,13 +5,14 @@ import Button from '../../common/Button/Button';
 import BellNotifications from './BellNotifications';
 
 export default function Logout() {
-
     return (
         <div className={styles.headerRight}>
             <Button size="logInOut" text="로그아웃" />
 
             <div className={styles.icons}>
-                <Link to="#"><FaUser className={styles.icon} /></Link>
+                <Link to="#">
+                    <FaUser className={styles.icon} />
+                </Link>
                 <Link to="#">
                     <div>
                         <FaBell className={styles.icon} />
@@ -24,5 +25,4 @@ export default function Logout() {
             </div>
         </div>
     );
-
-};
+}

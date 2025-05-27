@@ -4,7 +4,6 @@ import { FaRunning } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export default function Logo() {
-
     return (
         <div className={styles.logo}>
             <Link to="/">
@@ -13,5 +12,4 @@ export default function Logo() {
             </Link>
         </div>
     );
-
-};
+}
