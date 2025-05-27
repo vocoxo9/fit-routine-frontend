@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import styles from './BoardDetail.module.css';
-import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
-
+import {
+    VscTriangleLeft,
+    VscTriangleRight,
+    VscEdit,
+    VscTrash,
+    VscIndent,
+} from 'react-icons/vsc';
 import Button from 'components/common/Button/Button';
 import Likes from 'components/common/Likes/Likes';
 import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
