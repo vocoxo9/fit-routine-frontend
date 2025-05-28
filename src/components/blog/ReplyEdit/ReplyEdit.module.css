@@ -1,0 +1,48 @@
+.oneReply {
+    width: 100%;
+    margin: auto;
+}
+
+.replyHeader {
+    display: flex;
+    position: relative;
+}
+.headerdiv {
+    width: 86%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.replyWriter {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-left: 4rem;
+    cursor: pointer;
+}
+
+
+.replyMain {
+    display: flex;
+}
+
+.genderImg {
+    align-content: center;
+}
+
+.replyContent {
+    align-content: center;
+    width: 85%;
+    margin-left: 1rem;
+}
+
+.textarea {
+    width: 93%;
+    margin-top: 0.2rem;
+    height: 6rem;
+    resize: none;
+}
+
+.horizon {
+    width: 98%;
+    margin-left: 1rem;
+}

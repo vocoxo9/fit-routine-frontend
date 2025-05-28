@@ -4,6 +4,8 @@ import { VscEdit, VscIndent, VscTrash } from 'react-icons/vsc';
 import ReplyInput from '../ReplyInput/ReplyInput';
 import styles from './Reply.module.css';
 import { useRef, useState } from 'react';
+import ReplyEdit from '../ReplyEdit/ReplyEdit';
+import Button from 'components/common/Button/Button';
 
 /**
  *
@@ -22,9 +24,6 @@ export default function Reply({
     gender,
     replyContent,
     replyId,
-    reCommentId,
-    like,
-    onClick,
     reCommentId,
     like,
     onClick,
@@ -50,52 +49,68 @@ export default function Reply({
         setEditIsClicked(true);
     }
 
+    const handleDeleteReply = () => {
+        // eslint-disable-next-line
+        const answer = confirm(replyId+'댓글을 삭제하시겠습니까?');
+        answer ? alert('삭제완료!') : alert('삭제 취소');
+    }
 
     return (
-        <div className={`${styles.oneReply} ${reCommentId && styles.reCommentContainer}`}>
-            <div className={styles.replyHeader}>
-                <div className={`${styles.headerdiv} ${reCommentId && styles.reCommentDiv}`}>
-                    <span className={styles.replyWriter}>{nickname}</span>
-                    <span className={styles.edit} onClick={handleEditReply}>
-                        <VscEdit />
-                    </span>
-                </div>
-                <span className={styles.trash}>
-                    <VscTrash />
-                </span>
-                <span className={styles.replyDate}>{calcDay(replyDate)}일전</span>
-            </div>
-            <div className={styles.replyMain}>
-                <div className={styles.genderImg}>
-                    <GenderImage gender={gender} />
-                </div>
-                <div className={styles.replyContent}>
-                    {replyContent
-                        .split('\n')
-                        .map((line, idx) => (
-                            <span key={idx}>
-                                {line}
-                                <br />
+        <>
+            {!editIsClicked &&
+                <div className={`${styles.oneReply} ${reCommentId && styles.reCommentContainer}`}>
+                    <div className={styles.replyHeader}>
+                        <div className={`${styles.headerdiv} ${reCommentId && styles.reCommentDiv}`}>
+                            <span className={styles.replyWriter}>{nickname}</span>
+                            <span className={styles.edit} onClick={handleEditReply}>
+                                <VscEdit />
                             </span>
-                        ))}
+                        </div>
+                        <span className={styles.trash} onClick={handleDeleteReply}>
+                            <VscTrash />
+                        </span>
+                        <span className={styles.replyDate}>{calcDay(replyDate)}일전</span>
+                    </div>
+                    <div className={styles.replyMain}>
+                        <div className={styles.genderImg}>
+                            <GenderImage gender={gender} />
+                        </div>
+                        <div className={styles.replyContent}>
+                            {replyContent
+                                .split('\n')
+                                .map((line, idx) => (
+                                    <span key={idx}>
+                                        {line}
+                                        <br />
+                                    </span>
+                                ))}
+                        </div>
+                    </div>
+                    <div className={styles.replyFooter}>
+                        {!reCommentId && <div className={styles.replyBtn} onClick={showReplyInput}>
+                            댓글 달기
+                        </div>}
+                        <div className={styles.likeBtn}>
+                            <Likes count={like.likeCount} isLiked={like.isLiked} onClick={onClick}/>
+                        </div>
+                    </div>
+                    <hr className={styles.horizon} />
+                    <div className={styles.reComment} id={replyId} ref={replyInputRef}>
+                        
+                        <div className={styles.arrow}>
+                            <VscIndent />
+                        </div>
+                        <ReplyInput replyId={replyId} size={'small'} />
+                    </div>
                 </div>
-            </div>
-            <div className={styles.replyFooter}>
-                {!reCommentId && <div className={styles.replyBtn} onClick={showReplyInput}>
-                    댓글 달기
-                </div>}
-                <div className={styles.likeBtn}>
-                    <Likes count={like.likeCount} isLiked={like.isLiked} onClick={onClick}/>
+            }
+            {editIsClicked && 
+                <div className={styles.editContainer}>
+                    <ReplyEdit content={replyContent} replyId={replyId} nickname={nickname} gender={gender}/>
+                        <button className={styles.editButton}><VscEdit/></button>
+                    
                 </div>
-            </div>
-            <hr className={styles.horizon} />
-            <div className={styles.reComment} id={replyId} ref={replyInputRef}>
-                
-                <div className={styles.arrow}>
-                    <VscIndent />
-                </div>
-                <ReplyInput replyId={replyId} size={'small'} />
-            </div>
-        </div>
+            }
+        </>
     );
 }
