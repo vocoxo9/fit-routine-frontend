@@ -166,18 +166,22 @@ function OnesTodoPage() {
                                 </div>
                             );
                         }}
-                        dayCellDidMount={(info) => {
-                            // DOM이 렌더링된 후처리에 대한 함수 작성
-                            const date = new Date(info.date);
-                            date.setDate(date.getDate() + 1);
-                            const currDate = date.toISOString().split('T')[0];
+                        datesSet={() => { // datesSet은 fullcalendar의 뷰가 변경될때마다 호출!!
+                            setTimeout(() => {
+                                const dayCells = document.querySelectorAll('.fc-daygrid-day');
 
-                            const todos = dateData[currDate];
-                            if (todos?.length === 1) {
-                                info.el.classList.add('oneTodo');
-                            } else if (todos?.length >= 2) {
-                                info.el.classList.add('multiTodo');
-                            }
+                                dayCells.forEach((cell) => {
+                                    const dateStr = cell.getAttribute('data-date'); 
+                                    const todos = dateData[dateStr];
+                                    if (todos?.length === 1) {
+                                        cell.classList.add('oneTodo');
+                                    } else if (todos?.length >= 2) {
+                                        cell.classList.add('multiTodo');
+                                    } else {
+                                        cell.classList.remove('oneTodo', 'multiTodo');
+                                    }
+                                });
+                            }, 0); // setTimeout은 async역할을 함
                         }}
                     />
                 </div>

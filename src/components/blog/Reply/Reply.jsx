@@ -25,6 +25,9 @@ export default function Reply({
     reCommentId,
     like,
     onClick,
+    reCommentId,
+    like,
+    onClick,
 }) {
     const replyInputRef = useRef(null);
     const [editIsClicked, setEditIsClicked] = useState(false);
@@ -46,6 +49,7 @@ export default function Reply({
     const handleEditReply = () => {
         setEditIsClicked(true);
     }
+
 
     return (
         <div className={`${styles.oneReply} ${reCommentId && styles.reCommentContainer}`}>
