@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from 'components/common/Button/Button';
 import FormTitle from 'components/common/FormTitle/FormTitle';
@@ -7,6 +7,7 @@ import DayRoutine from 'components/recommend/DayRoutine/DayRoutine';
 import CategoryForm from 'components/recommend/CategoryForm/CategoryForm';
 
 import styles from './RecommendExercise.module.css';
+import MessageForm from 'components/recommend/MessageForm/MessageForm';
 
 const getMockData = () => [
     {
@@ -80,7 +81,8 @@ const getMockOpenData = () => [
     { id: 15, name: '필라테스', met: 3, category: '유산소' },
 ];
 
-const EXERCISE_TIME = 0.5; // 임의로 30분
+const DAILY_BURN_KCAL = 400; // 하루 소모 칼로리(임의)
+const EXERCISE_TIME = 0.5; // 운동 시간(임의)
 const handleCalculateCarolie = (exerciseList, weight) => {
     return exerciseList.reduce((total, exercise) => {
         return total + exercise.met * weight * EXERCISE_TIME;
@@ -108,9 +110,10 @@ function RecommendExercise() {
                 accumulator[oneDayData.dayNo] = oneDayData.exerciseList.map(
                     (exercise) => exercise.id,
                 );
-        }, {});
-
-        console.log(initialCheckedData);
+                return accumulator;
+            },
+            {},
+        );
 
         setData(mockData);
         setOpenDataList(mockOpenData);
@@ -193,7 +196,7 @@ function RecommendExercise() {
             }
         }
         alert('폼 제출 완료');
-        console.log('저장 완료 ::: ', data);
+        console.log('제출 데이터 ::: ', data);
     };
 
     return (
@@ -221,6 +224,11 @@ function RecommendExercise() {
                                 )
                             }
                         />
+                        {oneDayData.kcal < DAILY_BURN_KCAL && (
+                            <MessageForm data={oneDayData} />
+
+                            
+                        )}
 
                         {showCategory[dayNo] && (
                             <div className={styles.category}>

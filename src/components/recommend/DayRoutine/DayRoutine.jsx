@@ -22,7 +22,7 @@ const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
                         key={`${exercise.id}_${index}`}
                         name={`${exercise.name}`}
                         value={exercise.id}
-                        id={exercise.id}
+                        id={`${data.dayNo}_${exercise.id}`}
                         label={exercise.name}
                         checked={checkedItems.includes(exercise.id)}
                         onChange={() => handleCheckBoxClick(exercise.id)}
