@@ -24,10 +24,7 @@ export default function Reply({
     replyId,
     reCommentId,
     like,
-    onClick,
-    reCommentId,
-    like,
-    onClick,
+    onClick
 }) {
     const replyInputRef = useRef(null);
     const [editIsClicked, setEditIsClicked] = useState(false);
