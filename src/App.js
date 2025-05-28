@@ -4,15 +4,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from 'components/layout/Header/Header';
 import Footer from 'components/layout/Footer/Footer';
+
 function App() {
     return (
         <>
             <BrowserRouter>
                 <Header />
 
-                <div className={styles.layout}>
-
-                </div>
+                <div className={styles.layout}></div>
 
                 <Footer />
             </BrowserRouter>

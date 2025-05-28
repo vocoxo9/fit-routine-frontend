@@ -8,81 +8,15 @@ import CategoryForm from 'components/recommend/CategoryForm/CategoryForm';
 
 import styles from './RecommendExercise.module.css';
 
-function RecommendExercise() {
-    const [data, setData] = useState([]);
-    const [openDataList, setOpenDataList] = useState([]);
-    const [checkedItems, setCheckedItems] = useState({});
-
-    const exerciseTime = 0.5; // 임의로 30분
-    const handleKcalCalculate = (exerciseList, weight) => {
-        return exerciseList.reduce((total, exercise) => {
-            return total + exercise.met * weight * exerciseTime;
-        }, 0);
-    };
-
-    const [showCategory, setShowCategory] = useState({});
-    const [showCheckList, setShowCheckList] = useState({});
-    const [selectCategory, setSelectCategory] = useState({});
-
-    const categoryList = ['유산소', '근력', '생활운동'];
-
-    // 렌더링과 동시에 가져 올 데이터 샘플
-    useEffect(() => {
-        const mockData = [
-            {
-                todoNo: 1,
-                repeatsDay: 3,
-                templateNo: 1,
-                dayNo: 1,
-                kcal: 430,
-                weight: 60,
-                exerciseList: [
-                    { id: 1, name: '런지', met: 3, category: '근력' },
-                    { id: 2, name: '크런치', met: 4, category: '근력' },
-                    { id: 3, name: '걷기', met: 3, category: '생활운동' },
-                    { id: 4, name: '달리기', met: 3, category: '유산소' },
-                    { id: 5, name: '수영', met: 3.5, category: '유산소' },
-                    { id: 6, name: '줄넘기', met: 3, category: '유산소' },
-                    { id: 7, name: '등산', met: 3, category: '생활운동' },
-                ],
-            },
-            {
-                todoNo: 1,
-                repeatsDay: 3,
-                templateNo: 2,
-                dayNo: 2,
-                kcal: 346,
-                weight: 60,
-                exerciseList: [
-                    { id: 1, name: '런지', met: 3, category: '근력' },
-                    { id: 2, name: '크런치', met: 4, category: '근력' },
-                    { id: 3, name: '걷기', met: 3, category: '생활운동' },
-                    { id: 4, name: '달리기', met: 3, category: '유산소' },
-                    { id: 5, name: '수영', met: 3.5, category: '유산소' },
-                    { id: 6, name: '줄넘기', met: 3, category: '유산소' },
-                    { id: 7, name: '등산', met: 3, category: '생활운동' },
-                ],
-            },
-            {
-                todoNo: 1,
-                repeatsDay: 3,
-                templateNo: 3,
-                dayNo: 3,
-                kcal: 524,
-                weight: 60,
-                exerciseList: [
-                    { id: 1, name: '런지', met: 3, category: '근력' },
-                    { id: 2, name: '크런치', met: 4, category: '근력' },
-                    { id: 3, name: '걷기', met: 3, category: '생활운동' },
-                    { id: 4, name: '달리기', met: 3, category: '유산소' },
-                    { id: 5, name: '수영', met: 3.5, category: '유산소' },
-                    { id: 6, name: '줄넘기', met: 3, category: '유산소' },
-                    { id: 7, name: '등산', met: 3, category: '생활운동' },
-                ],
-            },
-        ];
-
-        const mockOpenData = [
+const getMockData = () => [
+    {
+        todoNo: 1,
+        repeatsDay: 3,
+        templateNo: 1,
+        dayNo: 1,
+        kcal: 430,
+        weight: 60,
+        exerciseList: [
             { id: 1, name: '런지', met: 3, category: '근력' },
             { id: 2, name: '크런치', met: 4, category: '근력' },
             { id: 3, name: '걷기', met: 3, category: '생활운동' },
@@ -90,23 +24,91 @@ function RecommendExercise() {
             { id: 5, name: '수영', met: 3.5, category: '유산소' },
             { id: 6, name: '줄넘기', met: 3, category: '유산소' },
             { id: 7, name: '등산', met: 3, category: '생활운동' },
-            { id: 8, name: '바벨 운동', met: 3, category: '근력' },
-            { id: 9, name: '에어로빅', met: 3, category: '유산소' },
-            { id: 10, name: '스쿼트', met: 3, category: '근력' },
-            { id: 11, name: '계단 오르기', met: 3, category: '생활운동' },
-            { id: 12, name: '벤치프레스', met: 3, category: '근력' },
-            { id: 13, name: '플랭크', met: 3, category: '근력' },
-            { id: 14, name: '레그프레스', met: 3, category: '근력' },
-            { id: 15, name: '필라테스', met: 3, category: '유산소' },
-        ];
+        ],
+    },
+    {
+        todoNo: 1,
+        repeatsDay: 3,
+        templateNo: 2,
+        dayNo: 2,
+        kcal: 346,
+        weight: 60,
+        exerciseList: [
+            { id: 1, name: '런지', met: 3, category: '근력' },
+            { id: 2, name: '크런치', met: 4, category: '근력' },
+            { id: 3, name: '걷기', met: 3, category: '생활운동' },
+            { id: 4, name: '달리기', met: 3, category: '유산소' },
+            { id: 5, name: '수영', met: 3.5, category: '유산소' },
+            { id: 6, name: '줄넘기', met: 3, category: '유산소' },
+            { id: 7, name: '등산', met: 3, category: '생활운동' },
+        ],
+    },
+    {
+        todoNo: 1,
+        repeatsDay: 3,
+        templateNo: 3,
+        dayNo: 3,
+        kcal: 524,
+        weight: 60,
+        exerciseList: [
+            { id: 1, name: '런지', met: 3, category: '근력' },
+            { id: 2, name: '크런치', met: 4, category: '근력' },
+            { id: 3, name: '걷기', met: 3, category: '생활운동' },
+            { id: 4, name: '달리기', met: 3, category: '유산소' },
+            { id: 5, name: '수영', met: 3.5, category: '유산소' },
+            { id: 6, name: '줄넘기', met: 3, category: '유산소' },
+            { id: 7, name: '등산', met: 3, category: '생활운동' },
+        ],
+    },
+];
+
+const getMockOpenData = () => [
+    { id: 1, name: '런지', met: 3, category: '근력' },
+    { id: 2, name: '크런치', met: 4, category: '근력' },
+    { id: 3, name: '걷기', met: 3, category: '생활운동' },
+    { id: 4, name: '달리기', met: 3, category: '유산소' },
+    { id: 5, name: '수영', met: 3.5, category: '유산소' },
+    { id: 6, name: '줄넘기', met: 3, category: '유산소' },
+    { id: 7, name: '등산', met: 3, category: '생활운동' },
+    { id: 8, name: '바벨 운동', met: 3, category: '근력' },
+    { id: 9, name: '에어로빅', met: 3, category: '유산소' },
+    { id: 10, name: '스쿼트', met: 3, category: '근력' },
+    { id: 11, name: '계단 오르기', met: 3, category: '생활운동' },
+    { id: 12, name: '벤치프레스', met: 3, category: '근력' },
+    { id: 13, name: '플랭크', met: 3, category: '근력' },
+    { id: 14, name: '레그프레스', met: 3, category: '근력' },
+    { id: 15, name: '필라테스', met: 3, category: '유산소' },
+];
+
+const EXERCISE_TIME = 0.5; // 임의로 30분
+const handleCalculateCarolie = (exerciseList, weight) => {
+    return exerciseList.reduce((total, exercise) => {
+        return total + exercise.met * weight * EXERCISE_TIME;
+    }, 0);
+};
+
+function RecommendExercise() {
+    const [data, setData] = useState([]);
+    const [openDataList, setOpenDataList] = useState([]);
+    const [checkedItems, setCheckedItems] = useState({});
+    const [showCategory, setShowCategory] = useState({});
+    const [showCheckList, setShowCheckList] = useState({});
+    const [selectedCategory, setSelectCategory] = useState({});
+
+    const categoryList = ['유산소', '근력', '생활운동'];
+
+    // 렌더링과 동시에 가져 올 데이터 샘플
+    useEffect(() => {
+        const mockData = getMockData();
+        const mockOpenData = getMockOpenData();
 
         // 초기에 체크 상태일 데이터 리스트
-        const initialCheckedData = {};
-        mockData.forEach((oneDayData) => {
-            initialCheckedData[oneDayData.dayNo] = oneDayData.exerciseList.map(
-                (ex) => ex.id,
-            );
-        });
+        const initialCheckedData = mockData.reduce(
+            (accumulator, oneDayData) => {
+                accumulator[oneDayData.dayNo] = oneDayData.exerciseList.map(
+                    (exercise) => exercise.id,
+                );
+        }, {});
 
         console.log(initialCheckedData);
 
@@ -117,33 +119,19 @@ function RecommendExercise() {
 
     // 카테고리 표시
     const handleShowCategory = (dayNo) => {
-        setShowCategory((prev) => ({
-            ...prev,
-            [dayNo]: !prev[dayNo],
-        }));
-
-        setShowCheckList((prev) => ({
-            ...prev,
-            [dayNo]: false,
-        }));
+        setShowCategory((prev) => ({ ...prev, [dayNo]: !prev[dayNo] }));
+        setShowCheckList((prev) => ({ ...prev, [dayNo]: false }));
     };
 
     // 체크리스트 표시
     const handleShowCheckList = (dayNo, category) => {
-        setSelectCategory((prev) => ({
-            ...prev,
-            [dayNo]: category,
-        }));
-
-        setShowCheckList((prev) => ({
-            ...prev,
-            [dayNo]: true,
-        }));
+        setSelectCategory((prev) => ({ ...prev, [dayNo]: category }));
+        setShowCheckList((prev) => ({ ...prev, [dayNo]: true }));
     };
 
     // 카테고리에 따른 리스트 분류
     const filteredByCategory = (dayNo) => {
-        const category = selectCategory[dayNo];
+        const category = selectedCategory[dayNo];
         return category
             ? openDataList.filter((list) => list.category === category)
             : [];
@@ -164,22 +152,21 @@ function RecommendExercise() {
         let updateCheckedItems;
         let updateExerciseList;
 
+        // 이미 리스트에 있으면 제거
         if (items.includes(exerciseId)) {
             updateCheckedItems = items.filter((id) => id !== exerciseId);
             updateExerciseList = oneDayData.exerciseList.filter(
                 (exercise) => exercise.id !== exerciseId,
             );
         } else {
+            // 리스트에 없으면 추가
             const addExercise = openDataList.find((ex) => ex.id === exerciseId);
 
             updateCheckedItems = [...items, exerciseId];
             updateExerciseList = [...oneDayData.exerciseList, addExercise];
         }
 
-        setCheckedItems((prev) => ({
-            ...prev,
-            [dayNo]: updateCheckedItems,
-        }));
+        setCheckedItems((prev) => ({ ...prev, [dayNo]: updateCheckedItems }));
 
         setData((prev) =>
             prev.map((dayData) =>
@@ -187,7 +174,7 @@ function RecommendExercise() {
                     ? {
                           ...dayData,
                           exerciseList: updateExerciseList,
-                          kcal: handleKcalCalculate(
+                          kcal: handleCalculateCarolie(
                               updateExerciseList,
                               dayData.weight,
                           ),
@@ -245,7 +232,7 @@ function RecommendExercise() {
                                             handleShowCheckList(dayNo, category)
                                         }
                                         isSelected={
-                                            selectCategory[dayNo] === category
+                                            selectedCategory[dayNo] === category
                                         }
                                     />
                                 ))}
