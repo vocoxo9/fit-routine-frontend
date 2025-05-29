@@ -24,7 +24,7 @@ function Profile() {
             </div>
             <div className={styles.buttons}>
                 <div className={styles.editBtn}>
-                    <Button size="short" text="수정" />
+                    <button>수정</button>
                 </div>
                 <div className={styles.reSignBtn}>
                     회원 탈퇴

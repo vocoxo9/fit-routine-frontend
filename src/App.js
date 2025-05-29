@@ -4,11 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Header from 'components/layout/Header/Header';
 import Footer from 'components/layout/Footer/Footer';
-import OnesTodoPage from 'pages/blog/OnesTodoPage/OnesTodoPage';
-import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
-import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
-import OnesBlogPage from 'pages/blog/OnesBlogPage/OnesBlogPage';
-import AllBoardsPage from 'pages/blog/AllBoardsPage/AllBoardsPage';
 
 function App() {
     return (
@@ -16,9 +11,7 @@ function App() {
             <BrowserRouter>
                 <Header />
 
-                <div className={styles.layout}>
-                    <BoardDetail/>
-                </div>
+                <div className={styles.layout}></div>
 
                 <Footer />
             </BrowserRouter>
