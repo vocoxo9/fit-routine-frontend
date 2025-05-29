@@ -50,7 +50,7 @@ export default function BoardDetail() {
         boardId : 1,
     };
     const dummyReply = [
-        {nickname:'성쟁',date:new Date(2024, 1, 13),gender:'male',content:'배고파',replyId:1,reCommentId:null,likeCount:2,isLiked:false},
+        {nickname:'성쟁가말을한다아',date:new Date(2024, 1, 13),gender:'male',content:'배고파\n근데이렇게\n길다면\n어떻게되는거',replyId:1,reCommentId:null,likeCount:2,isLiked:false},
         {nickname:'잉형',date:new Date(2024, 1, 28),gender:'male',content:'밥먹어',replyId:2,reCommentId:3,likeCount:33,isLiked:true},
         {nickname:'밍영',date:new Date(2024, 3, 6),gender:'male',content:'공부해',replyId:3,reCommentId:null,likeCount:12,isLiked:true},
         {nickname:'혱영',date:new Date(2024, 5, 24),gender:'female',content:'놀아',replyId:4,reCommentId:1,likeCount:35,isLiked:false},
