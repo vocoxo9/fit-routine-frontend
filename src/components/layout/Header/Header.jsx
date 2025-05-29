@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Logo from 'components/layout/Logo/Logo';
 import Logout from './userMenu/AuthUserMenu';
 import GuestUserMenu from 'components/layout/Header/userMenu/GuestUserMenu';
-import AutoUserMenu from './userMenu/AuthUserMenu';
+import AuthUserMenu from './userMenu/AuthUserMenu';
 
 export default function Header() {
     return (
@@ -41,7 +41,7 @@ export default function Header() {
                 </nav>
 
                 {/* <GuestUserMenu /> */}
-                <AutoUserMenu />
+                <AuthUserMenu />
             </div>
         </>
     );

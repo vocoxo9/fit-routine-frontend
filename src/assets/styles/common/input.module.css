@@ -1,0 +1,50 @@
+.input {
+    display : block;
+    border: solid 2px #d9d9d9;
+    border-radius: 8px;
+    padding: 0 1%;
+    cursor: pointer;
+    text-align :left;
+    height: 2.3rem;  
+}
+
+.input:focus {
+    outline: none;
+    border: solid 2px #334eac;
+}
+
+.input:read-only {
+    background-color: #d9d9d9;
+}
+
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.long{
+    width: 25rem; 
+}
+
+.medium {
+    width: 8rem;
+}
+
+.short {
+    width: 5rem;
+}
+
+.input[type=checkbox] {
+    display : inline-flex;
+    margin : 0;
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: #334eac;
+}
+
+.input[type=radio]{
+    display : inline-flex;
+    margin : 0;
+    width : 1rem;
+    height : 1rem;
+    accent-color: #334eac;
+}
