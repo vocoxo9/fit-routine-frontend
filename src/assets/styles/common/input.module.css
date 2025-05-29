@@ -1,3 +1,12 @@
+.input {
+    display : block;
+    border: solid 2px #d9d9d9;
+    border-radius: 8px;
+    padding: 0 1%;
+    cursor: pointer;
+    text-align :left;
+    height: 2.3rem;  
+}
 
 .input:focus {
     outline: none;
@@ -13,39 +22,18 @@
 }
 
 .long{
-    display : block;
-    border: solid 2px #d9d9d9;
-    border-radius: 8px;
-    padding: 0 1%;
-    cursor: pointer;
-    text-align :left;
-    width: 25rem;
-    height: 2.3rem;  
+    width: 25rem; 
 }
 
 .medium {
-    display : block;
-    border: solid 2px #d9d9d9;
-    border-radius: 8px;
-    padding: 0 1%;
-    cursor: pointer;
-    text-align: left;
     width: 8rem;
-    height: 2.3rem;
 }
 
 .short {
-    display : block;
-    border: solid 2px #d9d9d9;
-    border-radius: 8px;
-    padding: 0 1%;
-    cursor: pointer;
-    text-align: left;
     width: 5rem;
-    height: 2.3rem;
 }
 
-.common[type=checkbox] {
+.input[type=checkbox] {
     display : inline-flex;
     margin : 0;
     width: 1.1rem;
@@ -53,7 +41,7 @@
     accent-color: #334eac;
 }
 
-.common[type=radio]{
+.input[type=radio]{
     display : inline-flex;
     margin : 0;
     width : 1rem;
