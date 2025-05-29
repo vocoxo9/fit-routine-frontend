@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styles from './MyPageForm.module.css';
 import Profile from './profile/Profile';
 import LikeList from './likeList/LikeList';
-import FormContainer from 'components/common/FormContainer/FormContainer';
 import InfoEdit from './InfoEdit';
 
 function MyPageForm() {

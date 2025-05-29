@@ -37,3 +37,15 @@
 .cutBtn {
     margin-right: 1rem;
 }
+
+.deleteBtn {
+    border: solid 2px #FF4D4D;
+    border-radius: 0.2rem;
+    background-color: #FFFFFF;
+    color: #FF4D4D;
+    font-size: 0.9rem;
+}
+.deleteBtn:hover {
+    background-color: #FF4D4D;
+    color: #FFFFFF;
+}
