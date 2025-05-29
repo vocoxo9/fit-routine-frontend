@@ -267,12 +267,7 @@ function RecommendExercise() {
                 );
             })}
 
-            <button
-                className={styles.registButton}
-                size="bold"
-                text="루틴 등록"
-                onClick={handleSubmit}
-            />
+            <button onClick={handleSubmit}>루틴 등록</button>
         </div>
     );
 }

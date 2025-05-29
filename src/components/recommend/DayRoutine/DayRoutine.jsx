@@ -1,4 +1,3 @@
-import CheckBox from 'components/common/CheckBox/CheckBox';
 import styles from './DayRoutine.module.css';
 
 /**
