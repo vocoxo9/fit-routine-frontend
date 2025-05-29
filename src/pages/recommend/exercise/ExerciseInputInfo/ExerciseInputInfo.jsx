@@ -1,17 +1,12 @@
-import FormContainer from 'components/common/FormContainer/FormContainer';
-import FormTitle from 'components/common/FormTitle/FormTitle';
-import FormContent from 'components/common/FormContent/FormContent';
+import styles from './ExerciseInputInfo.module.css'
 import RecommendForm from 'components/recommend/RecommendForm/RecommendForm';
 
-function ExerciseInputInfo() {
+const ExerciseInputInfo = () => {
     return (
-        <FormContainer>
-            <FormTitle text="운동 추천" />
-            <FormContent>
-                <RecommendForm />
-            </FormContent>
-        </FormContainer>
+        <div className={styles.container}>
+            <RecommendForm />
+        </div>
     );
-}
+};
 
 export default ExerciseInputInfo;

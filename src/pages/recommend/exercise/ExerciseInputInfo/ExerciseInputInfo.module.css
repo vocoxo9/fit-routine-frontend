@@ -1,16 +1,4 @@
-.formBox {
-    margin: 1rem;
-}
-
-/* label */
-label {
-    margin-bottom: 0.5rem;
-    color: #081f5c;
-    font-weight: 500;
-}
-
-button {
-    display: block;
-    margin: auto;
-    margin-top: 2rem;
+.container {
+    display: flex;
+    justify-content: center;
 }
