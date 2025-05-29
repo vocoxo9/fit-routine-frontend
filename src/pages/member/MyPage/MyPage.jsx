@@ -7,8 +7,8 @@ function MyPage() {
         <div className={styles.container}>
             <div className={styles.title}>마이페이지</div>
             <div className={styles.content}>
-                <MyPageForm />
-                {/* <ReSign /> */}
+                {/* <MyPageForm /> */}
+                <ReSign />
             </div>
         </div>
     );

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from './ReSign.module.css';
 import label from 'assets/styles/common/label.module.css';
 import input from 'assets/styles/common/input.module.css';
+import textarea from 'assets/styles/common/textarea.module.css';
 import button from 'assets/styles/common/button.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
 
@@ -29,51 +30,66 @@ function ReSign() {
                 </div>
                 <div className={styles.reasonInput}>
                     <div className={styles.checkBox}>
-                        <label className={label.label}>서비스 불만족</label>
-                        <input
-                            type="checkbox"
-                            id="badService"
-                            name="reSignReason"
-                            value="badService"
-                        />
-                        <label className={label.label}>개인정보 보호 우려</label>
-                        <input
-                            type="checkbox"
-                            id="personalInfo"
-                            name="reSignReason"
-                            value="personalInfo"
-                        />
-                        <label className={label.label}>사용 빈도 감소</label>
-                        <input
-                            type="checkbox"
-                            id="downUseFrequency"
-                            name="reSignReason"
-                            value="downUseFrequency"
-                        />
-                        <label className={label.label}>콘텐츠 내용 부족</label>
-                        <input
-                            type="checkbox"
-                            id="lack of contents"
-                            name="reSignReason"
-                            value="lack of contents"
-                        />
-                        <label className={label.label}>기타</label>
-                        <input
-                            type="checkbox"
-                            id="other"
-                            name="reSignReason"
-                            value="other"
-                        />
+                        <div className={styles.checkInput}>
+                            <input
+                                className={`${input.input}`}
+                                type="checkbox"
+                                id="badService"
+                                name="reSignReason"
+                                value="badService"
+                            />
+                            <label className={label.label} for='badService'>서비스 불만족</label>
+                        </div>
+                        <div className={styles.checkInput}>
+                            <input
+                                className={`${input.input}`}
+                                type="checkbox"
+                                id="personalInfo"
+                                name="reSignReason"
+                                value="personalInfo"
+                            />
+                            <label className={label.label} for='personalInfo'>개인정보 보호 우려</label>
+                        </div>
+                        <div className={styles.checkInput}>
+                            <input
+                                className={`${input.input}`}
+                                type="checkbox"
+                                id="downUseFrequency"
+                                name="reSignReason"
+                                value="downUseFrequency"
+                            />
+                            <label className={label.label} for='downUseFrequency'>사용 빈도 감소</label>
+                        </div>
+                        <div className={styles.checkInput}>
+                            <input
+                                className={`${input.input}`}
+                                type="checkbox"
+                                id="lack of contents"
+                                name="reSignReason"
+                                value="lack of contents"
+                            />
+                            <label className={label.label} for='lack of contents'>콘텐츠 내용 부족</label>
+                        </div>
+                        <div className={styles.checkInput}>
+                            <input
+                                className={`${input.input}`}
+                                type="checkbox"
+                                id="other"
+                                name="reSignReason"
+                                value="other"
+                            />
+                            <label className={label.label} for='other'>기타</label>
+                        </div>
                     </div>
-                    <div className={styles.textArea}>
-                        <TextArea name="reSignReason" id="reason" text="" />
+                    <div className={styles.content}>
+                        <textarea className={`${textarea.textarea} ${styles.textArea}`} name="reSignReason" id="reason" text="" />
                     </div>
                 </div>
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btns}>
-                    <button className={`${button.button} ${button.short}`}>수정</button>
-                    <button className={`${button.button} ${button.short}`}>취소</button>
+                    <button className={`${button.button} ${styles.smallBtn}`}>회원 탈퇴</button>
+                    <button className={`${button.button} ${styles.smallBtn}`}>탈퇴 취소</button>
                 </div>
             </div>
         </>
