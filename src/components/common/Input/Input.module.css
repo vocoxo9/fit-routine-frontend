@@ -14,11 +14,11 @@
     text-align: left;
 }
 
-label {
+/* label {
     color: #081f5c;
     margin: 0.3rem 1rem;
     font-weight: 500;
-}
+} */
 
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
