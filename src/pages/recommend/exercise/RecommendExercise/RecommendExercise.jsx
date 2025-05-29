@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import Button from 'components/common/Button/Button';
-import FormTitle from 'components/common/FormTitle/FormTitle';
 import Category from 'components/common/Category/Category';
 import DayRoutine from 'components/recommend/DayRoutine/DayRoutine';
 import CategoryForm from 'components/recommend/CategoryForm/CategoryForm';
@@ -201,7 +199,7 @@ function RecommendExercise() {
 
     return (
         <div className={styles.container}>
-            <FormTitle text="FIT-ROUTINE" />
+            <h1>FIT-ROUTINE</h1>
 
             {data.map((oneDayData, index) => {
                 const dayNo = oneDayData.dayNo;
@@ -269,7 +267,7 @@ function RecommendExercise() {
                 );
             })}
 
-            <Button
+            <button
                 className={styles.registButton}
                 size="bold"
                 text="루틴 등록"
@@ -278,5 +276,3 @@ function RecommendExercise() {
         </div>
     );
 }
-
-export default RecommendExercise;

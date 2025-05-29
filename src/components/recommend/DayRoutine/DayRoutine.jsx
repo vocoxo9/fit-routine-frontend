@@ -18,7 +18,8 @@ const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
             {/* 식단|운동 추천 리스트  */}
             <div className={styles.formLeft}>
                 {data.exerciseList.map((exercise, index) => (
-                    <CheckBox
+                    <input
+                        type="checkbox"
                         key={`${exercise.id}_${index}`}
                         name={`${exercise.name}`}
                         value={exercise.id}
