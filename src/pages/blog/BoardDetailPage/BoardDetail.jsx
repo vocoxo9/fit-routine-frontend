@@ -4,7 +4,7 @@ import {
     VscTriangleLeft,
     VscTriangleRight,
 } from 'react-icons/vsc';
-import Button from 'components/common/Button/Button';
+import buttons from 'assets/styles/common/button.module.css';
 import Likes from 'components/common/Likes/Likes';
 import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
 import Reply from 'components/blog/Reply/Reply';
@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 /**
  * 게시물 상세 정보 페이지
  */
-export default function BoardDetail() {
+function BoardDetail() {
     const { boardId } = useParams(); // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
     const [imgCount, setImgCount] = useState(0);
     const [boardData, setBoardData] = useState({});
@@ -147,18 +147,14 @@ export default function BoardDetail() {
                     <span>{boardData.title}</span>
                     <div className={styles.boardEditContainer}>
                         <div className={styles.editBtns}>
-                            <Button
-                                size="small"
-                                text="수정"
+                            <button className={`${buttons.button} ${buttons.short}`}
                                 onClick={boardEditHandler}
-                            />
+                            >수정</button>
                         </div>
                         <div className={styles.deleteBtns}>
-                            <Button
-                                size="small"
-                                text="삭제"
+                            <button className={`${buttons.button} ${buttons.short}`}
                                 onClick={boardDeleteHandler}
-                            />
+                            >삭제</button>
                         </div>
                     </div>
                 </div>
@@ -242,3 +238,5 @@ export default function BoardDetail() {
         </div>
     );
 }
+
+export default BoardDetail;

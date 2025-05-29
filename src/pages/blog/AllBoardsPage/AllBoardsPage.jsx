@@ -1,55 +1,16 @@
-import Button from 'components/common/Button/Button';
-import styles from './AllBoardsPage.module.css';
+import { useEffect, useState } from 'react';
 import BoardsPaging from 'components/blog/BoardsPaging/BoardsPaging';
 import CategorySelect from 'components/blog/CategorySelect/CategorySelect';
-import { useEffect, useState } from 'react';
+import buttons from 'assets/styles/common/button.module.css';
+import styles from './AllBoardsPage.module.css';
 
 /**
  * 전체 게시판 페이지
  */
-export default function AllBoardsPage() {
+function AllBoardsPage() {
     const [category, setCategory] = useState('free');
     const [order, setOrder] = useState('like');
 
-    // 임시데이터
-    const boardList = [
-        {
-            src: 'jae3.jpg',
-            boardWriter: '김일현',
-            boardTitle: '사진1',
-            boardId: 1,
-        },
-        {
-            src: 'jae4.jpg',
-            boardWriter: '유성재',
-            boardTitle: '사진2',
-            boardId: 2,
-        },
-        {
-            src: 'jae5.jpg',
-            boardWriter: '정혜영',
-            boardTitle: '사진3',
-            boardId: 3,
-        },
-        {
-            src: 'jae3.jpg',
-            boardWriter: '안민영',
-            boardTitle: '사진4',
-            boardId: 4,
-        },
-        {
-            src: 'jae4.jpg',
-            boardWriter: '임성준',
-            boardTitle: '사진5',
-            boardId: 5,
-        },
-        {
-            src: 'jae5.jpg',
-            boardWriter: '강사님',
-            boardTitle: '사진6',
-            boardId: 6,
-        },
-    ];
 
     const categoryOptions = [
         { value: 'free', label: '자유' },
@@ -75,12 +36,12 @@ export default function AllBoardsPage() {
                 <span
                     onClick={() => changeOrder('like')}
                     className={`${styles.likeBtn}`}>
-                    <Button text={'좋아요순'} size="small" />
+                    <button className={`${buttons.button} ${buttons.short}`}>좋아요순</button>
                 </span>
                 <span
                     onClick={() => changeOrder('latest')}
                     className={`${styles.latestBtn}`}>
-                    <Button text={'최신순'} size="small" />
+                    <button className={`${buttons.button} ${buttons.short}`}>최신순</button>
                 </span>
                 <CategorySelect
                     options={categoryOptions}
@@ -91,8 +52,9 @@ export default function AllBoardsPage() {
             <BoardsPaging
                 order={order}
                 category={category}
-                tempboardList={boardList}
             />
         </div>
     );
 }
+
+export default AllBoardsPage;

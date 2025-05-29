@@ -6,20 +6,59 @@ import styles from './BoardsPaging.module.css';
 /**
  * 게시물 페이징 컴포넌트 - 전체 게시판 페이지, 블로그 페이지 사용
  *
- * @param {Object} tempboardList 임시데이터 - 추후 삭제 예정
  * @param {string} nickname @nullable - 블로그 페이지일 경우 닉네임 데이터가 들어오면 그 유저의 게시물만 가져옴
  * @param {string} order 게시물 나열 순서 - latest:최신순(기본값) / like:좋아요순
  * @param {string} category 게시물 카테고리 - free:모두(기본값) / muscle:근육증진 / diet:체중감량 / stamina:체력증진
  */
-export default function BoardsPaging({
-    tempboardList,
+function BoardsPaging({
     nickname,
     order = 'latest',
     category = 'free',
 }) {
-    const [boardList, setBoardList] = useState(tempboardList || []); // 게시물 목록
+    const [boardList, setBoardList] = useState([]); // 게시물 목록
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
     const [totalPages, setTotalPages] = useState(1); // 전체 페이지 수
+
+    
+    // 임시데이터
+    const tempboardList = [
+        {
+            src: 'jae3.jpg',
+            boardWriter: '김일현',
+            boardTitle: '사진1',
+            boardId: 1,
+        },
+        {
+            src: 'jae4.jpg',
+            boardWriter: '유성재',
+            boardTitle: '사진2',
+            boardId: 2,
+        },
+        {
+            src: 'jae5.jpg',
+            boardWriter: '정혜영',
+            boardTitle: '사진3',
+            boardId: 3,
+        },
+        {
+            src: 'jae3.jpg',
+            boardWriter: '안민영',
+            boardTitle: '사진4',
+            boardId: 4,
+        },
+        {
+            src: 'jae4.jpg',
+            boardWriter: '임성준',
+            boardTitle: '사진5',
+            boardId: 5,
+        },
+        {
+            src: 'jae5.jpg',
+            boardWriter: '강사님',
+            boardTitle: '사진6',
+            boardId: 6,
+        },
+    ];
 
     // 페이지, 순서, 카테고리 변경 시 게시물 요청
     useEffect(() => {
@@ -41,7 +80,7 @@ export default function BoardsPaging({
     // order,category값으로 전체 게시물 api요청 후 상태 저장
     const fetchBoardsByOrderCategory = async (pageNum) => {
         // const res = await axios.get(); 추후 게시물6개 데이터 요청예정
-        setBoardList(boardList); // 서버가 보내준 게시물 6개
+        setBoardList(tempboardList); // 서버가 보내준 게시물 6개
         setTotalPages(5); // 서버가 보내준 전체 페이지 수
     };
 
@@ -125,3 +164,5 @@ export default function BoardsPaging({
         </>
     );
 }
+
+export default BoardsPaging;

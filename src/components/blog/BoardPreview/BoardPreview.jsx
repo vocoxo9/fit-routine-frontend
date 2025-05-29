@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
  * @param {string} boardTitle 게시물 제목
  * @param {number} boardId 게시물 번호
  */
-export default function BoardPreview({
+function BoardPreview({
     imgSrc,
     boardWriter,
     boardTitle,
@@ -67,3 +67,5 @@ export default function BoardPreview({
         </div>
     );
 }
+
+export default BoardPreview;
