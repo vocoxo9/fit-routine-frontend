@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import styles from './ReSign.module.css';
+import label from 'assets/styles/common/label.module.css';
+import input from 'assets/styles/common/input.module.css';
+import button from 'assets/styles/common/button.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
-import CheckBox from 'components/common/CheckBox/CheckBox';
-import TextArea from 'components/common/TextArea/TextArea';
-import Button from 'components/common/Button/Button';
 
 function ReSign() {
     const [info, setInfo] = useState({
@@ -29,35 +29,40 @@ function ReSign() {
                 </div>
                 <div className={styles.reasonInput}>
                     <div className={styles.checkBox}>
-                        <CheckBox
+                        <label className={label.label}>서비스 불만족</label>
+                        <input
+                            type="checkbox"
                             id="badService"
                             name="reSignReason"
                             value="badService"
-                            label="서비스 불만족"
                         />
-                        <CheckBox
+                        <label className={label.label}>개인정보 보호 우려</label>
+                        <input
+                            type="checkbox"
                             id="personalInfo"
                             name="reSignReason"
                             value="personalInfo"
-                            label="개인정보 보호 우려"
                         />
-                        <CheckBox
+                        <label className={label.label}>사용 빈도 감소</label>
+                        <input
+                            type="checkbox"
                             id="downUseFrequency"
                             name="reSignReason"
                             value="downUseFrequency"
-                            label="사용 빈도 감소"
                         />
-                        <CheckBox
+                        <label className={label.label}>콘텐츠 내용 부족</label>
+                        <input
+                            type="checkbox"
                             id="lack of contents"
                             name="reSignReason"
                             value="lack of contents"
-                            label="콘텐츠 내용 부족"
                         />
-                        <CheckBox
+                        <label className={label.label}>기타</label>
+                        <input
+                            type="checkbox"
                             id="other"
                             name="reSignReason"
                             value="other"
-                            label="기타"
                         />
                     </div>
                     <div className={styles.textArea}>
@@ -67,8 +72,8 @@ function ReSign() {
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btns}>
-                    <Button size="small" text="탈퇴 확인" />
-                    <Button size="small" text="탈퇴 취소" />
+                    <button className={`${button.button} ${button.short}`}>수정</button>
+                    <button className={`${button.button} ${button.short}`}>취소</button>
                 </div>
             </div>
         </>
