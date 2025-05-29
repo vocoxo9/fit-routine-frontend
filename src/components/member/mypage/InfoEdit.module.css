@@ -23,6 +23,15 @@
     font-weight: 700;
 }
 
+.inputArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.phoneArea {
+    display: flex;
+}
+
 .btnArea {
     display: flex;
     justify-content: end;

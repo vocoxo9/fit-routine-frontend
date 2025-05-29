@@ -21,10 +21,6 @@
     align-items: center;
 }
 
-.inputBox.nickName > div {
-    margin-bottom: 1rem;
-}
-
 /* ------------ */
 
 .password {
@@ -76,10 +72,6 @@
     align-items: center;
 }
 
-.inputBox.phone > div {
-    margin-bottom: 1rem;
-}
-
 /* ------------ */
 .body {
     display: flex;
@@ -105,8 +97,4 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
-
-.inputBox.body > div {
-    margin-bottom: 1rem;
 }

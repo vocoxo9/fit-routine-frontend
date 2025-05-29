@@ -26,15 +26,10 @@ function MyPageForm() {
                         관심 목록
                     </div>
                 </div>
-                <FormContainer style="mypage">
-                    {activeTab === 'profile' ? <Profile /> : <LikeList />}
-                    {/* <InfoEdit /> */}
-                </FormContainer>
-                {/* <div className={styles.content}>
-                    {activeTab === 'profile' ? <Profile /> : <LikeList />}
-                    {activeTab === 'profile' ? <Profile /> : <InfoEdit />} 
-
-                </div> */}
+                <div className={styles.content}>
+                    {/* {activeTab === 'profile' ? <Profile /> : <LikeList />} */}
+                    <InfoEdit />
+                </div>
             </div>
         </>
     );
