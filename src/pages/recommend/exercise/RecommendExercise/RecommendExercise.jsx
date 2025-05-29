@@ -5,7 +5,8 @@ import DayRoutine from 'components/recommend/DayRoutine/DayRoutine';
 import CategoryForm from 'components/recommend/CategoryForm/CategoryForm';
 
 import styles from './RecommendExercise.module.css';
-import MessageForm from 'components/recommend/MessageForm/MessageForm';
+import button from 'assets/styles/common/button.module.css';
+import error from 'assets/styles/common/error.module.css';
 
 const getMockData = () => [
     {
@@ -199,7 +200,7 @@ function RecommendExercise() {
 
     return (
         <div className={styles.container}>
-            <h1>FIT-ROUTINE</h1>
+            <p className={styles.title}>FIT-ROUTINE</p>
 
             {data.map((oneDayData, index) => {
                 const dayNo = oneDayData.dayNo;
@@ -223,9 +224,19 @@ function RecommendExercise() {
                             }
                         />
                         {oneDayData.kcal < DAILY_BURN_KCAL && (
-                            <MessageForm data={oneDayData} />
-
-                            
+                            <div className={styles.message}>
+                                <p>
+                                    선택하신 운동의 총 소모 칼로리는
+                                    <span
+                                        className={` ${styles.kcal}`}>
+                                        {oneDayData.kcal}kcal
+                                    </span>
+                                    입니다.
+                                    <p className={styles.burnKcal}>
+                                        {oneDayData.kcal}/{DAILY_BURN_KCAL}
+                                    </p>
+                                </p>
+                            </div>
                         )}
 
                         {showCategory[dayNo] && (
@@ -267,7 +278,13 @@ function RecommendExercise() {
                 );
             })}
 
-            <button onClick={handleSubmit}>루틴 등록</button>
+            <button
+                className={`${button.button} ${button.bold} ${styles.registButton}`}
+                onClick={handleSubmit}>
+                루틴 등록
+            </button>
         </div>
     );
 }
+
+export default RecommendExercise;

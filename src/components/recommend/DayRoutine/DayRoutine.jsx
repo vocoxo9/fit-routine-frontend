@@ -1,4 +1,6 @@
 import styles from './DayRoutine.module.css';
+import input from 'assets/styles/common/input.module.css';
+import button from 'assets/styles/common/button.module.css';
 
 /**
  * @data 사용자에게 제공할 추천 리스트 [dayNo, kcal, name(메뉴|운동명), id(메뉴|운동ID)]
@@ -17,21 +19,27 @@ const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
             {/* 식단|운동 추천 리스트  */}
             <div className={styles.formLeft}>
                 {data.exerciseList.map((exercise, index) => (
-                    <input
-                        type="checkbox"
+                    <div
                         key={`${exercise.id}_${index}`}
-                        name={`${exercise.name}`}
-                        value={exercise.id}
-                        id={`${data.dayNo}_${exercise.id}`}
-                        label={exercise.name}
-                        checked={checkedItems.includes(exercise.id)}
-                        onChange={() => handleCheckBoxClick(exercise.id)}
-                    />
+                        className={styles.boxContainer}>
+                        <input
+                            className={`${input.input} ${styles.box}`}
+                            type="checkbox"
+                            name={exercise.name}
+                            value={exercise.id}
+                            id={`${data.dayNo}_${exercise.id}`}
+                            checked={checkedItems.includes(exercise.id)}
+                            onChange={() => handleCheckBoxClick(exercise.id)}
+                        />
+                        <label htmlFor={`${data.dayNo}_${exercise.id}`}>
+                            {exercise.name}
+                        </label>
+                    </div>
                 ))}
             </div>
 
             <div className={styles.formRight}>
-                <button className={styles.plusBtn} onClick={onClick}>
+                <button className={`${button.button} ${styles.plusBtn}`} onClick={onClick}>
                     +
                 </button>
             </div>
