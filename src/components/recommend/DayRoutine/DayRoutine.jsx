@@ -3,26 +3,29 @@ import styles from './DayRoutine.module.css';
 
 /**
  * @data 사용자에게 제공할 추천 리스트 [dayNo, kcal, name(메뉴|운동명), id(메뉴|운동ID)]
- * @returns {JSX.Element} 반복일 폼 컴포넌트
+ * @onClick onClick 이벤트
+ * @onChange onChange 이벤트
+ * @returns {JSX.Element} n일차 루틴 추천 컴포넌트
  */
-const DayRoutine = ({ data, onClick, onChange, checked }) => {
+const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
     return (
-        <div className={styles.dayForm}>
-            <div className={styles.dayTitle}>
-                <span>{data.dayNo}일차</span>
-                <span>{data.kcal}kcal</span>
+        <div className={styles.container}>
+            <div className={styles.title}>
+                <span className={styles.dayNo}>{data.dayNo}일차</span>
+                <span className={styles.kcal}>{data.kcal}kcal</span>
             </div>
 
             {/* 식단|운동 추천 리스트  */}
             <div className={styles.formLeft}>
-                {data.exerciseList.map((el, idx) => (
+                {data.exerciseList.map((exercise, index) => (
                     <CheckBox
-                        key={`${el.id}_${idx}`}
-                        name={`${el.id}`}
-                        id={el.name}
-                        label={el.name}
-                        checked={checked}
-                        onChange={onChange}
+                        key={`${exercise.id}_${index}`}
+                        name={`${exercise.name}`}
+                        value={exercise.id}
+                        id={`${data.dayNo}_${exercise.id}`}
+                        label={exercise.name}
+                        checked={checkedItems.includes(exercise.id)}
+                        onChange={() => handleCheckBoxClick(exercise.id)}
                     />
                 ))}
             </div>

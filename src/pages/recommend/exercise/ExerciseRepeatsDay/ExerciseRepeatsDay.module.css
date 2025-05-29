@@ -5,3 +5,12 @@
 button {
     margin-top: 2rem;
 }
+
+.error {
+    text-align: center;
+    color: #cc0000;
+    margin: 0.3rem 1rem;
+    margin-bottom: 0.5rem;
+    font-size: small;
+    font-weight: 600;
+}

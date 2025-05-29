@@ -10,7 +10,7 @@ function Category({ text, onClick, onMouseEnter, onMouseLeave, isSelected }) {
     return (
         <>
             <div
-                className={styles.text}
+                className={`${styles.text} ${isSelected ? styles.selected : ''}`}
                 onClick={onClick}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}>
