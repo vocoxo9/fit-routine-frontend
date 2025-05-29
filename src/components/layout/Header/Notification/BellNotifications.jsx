@@ -1,4 +1,3 @@
-import Button from 'components/common/Button/Button';
 import styles from './BellNotifications.module.css';
 
 import Notification from 'components/layout/Header/Notification/Notification';
@@ -69,16 +68,12 @@ function BellNotifications() {
             <div className={styles.topArea}>
                 <div className={styles.title}>알림</div>
                 <div className={styles.allDeleteBtn}>
-                    <Button
-                        size="small"
-                        text="전체 삭제"
-                        onClick={handleDeleteAll}
-                    />
+                    <button onClick={handleDeleteAll}>전체 삭제</button>
                 </div>
             </div>
             <div className={styles.bottomArea}>
                 {data.length === 0 ? (
-                    <p>알림이 없습니다.</p>
+                    <p className={styles.p}>알림이 없습니다.</p>
                 ) : (
                     data.map((notice, noticeIndex) => (
                         <Notification
