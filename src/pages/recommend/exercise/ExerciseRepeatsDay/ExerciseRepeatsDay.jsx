@@ -45,12 +45,11 @@ function ExerciseRepeatsDay() {
                             value={day}
                             label={`${day}일 반복`}
                             onChange={handleChange}
-                            style="long"
                         />
                     ))}
                 {error.repeat && <p className={styles.error}>{error.repeat}</p>}
             </div>
-            <button size="long" text="다음" onClick={handleSubmit} />
+            <button onClick={handleSubmit}>다음</button>
         </>
     );
 }
