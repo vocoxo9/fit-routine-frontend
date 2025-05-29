@@ -28,7 +28,7 @@ export default function AuthUserMenu() {
                         />
                         <span className={styles.notification}>33</span>
                         <div
-                            className={`${styles.bellNotifications} ${isOpen ? styles.show : ''}`}>
+                            className={`${styles.bellNotifications} ${isOpen ? '' : styles.hide}`}>
                             <BellNotifications />
                         </div>
                     </div>
