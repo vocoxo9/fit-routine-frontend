@@ -1,4 +1,4 @@
-import GenderImage from 'components/common/genderImage/GenderImage';
+import GenderImage from 'components/common/GenderImage/GenderImage';
 import styles from './Like.module.css';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import Button from 'components/common/Button/Button';
