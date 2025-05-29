@@ -31,10 +31,35 @@
 
 .headerRight {
     display: inline-block;
+    margin-top : 1rem;
 }
 
 .headerRight a {
     color: black;
+}
+
+.button {
+    border: solid 2px #334EAC;
+    border-radius: 0.3rem;
+    width : 15rem;
+    height: 2.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #D0E3FF;
+    color: #334EAC;
+    transition: background-color 0.4s ease;
+}
+
+.button:hover {
+    background-color: #334EAC;
+    color: #D0E3FF;
+}
+
+.button:disabled {
+    border: solid 2px #787878;
+    background-color: #D9D9D9;
+    color: #787878;
 }
 
 .icons {
