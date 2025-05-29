@@ -1,27 +1,96 @@
+import { useEffect, useState } from 'react';
 import styles from './TodoList.module.css';
+import Button from 'components/common/Button/Button';
+
 /**
  * Blog의 Todo페이지에서 개인이 정한 식단 및 운동을 보여주는 컴포넌트
  *
  * @param todoList 개인이 설정한 TodoList
  */
 function TodoList({ todoList }) {
-    const UnpackTodoList = () => {};
+    const [header, setHeader] = useState('');
+    const [total, setTotal] = useState({
+        calorie: 0,
+        period: 0,
+    });
+    const startAt = todoList.startAt;
+    const endAt = todoList.endAt;
+
+    const changeHeader = (category) => {
+        category === 'menu' ? setHeader('식단') : setHeader('운동');
+    };
+
+    const liContent = (item) => {
+        return todoList.category === 'menu'
+            ? ` ${item.name}`
+            : `${item.name}(${item.met}kcal)`;
+    };
+
+    const calcTotalCalorie = (prop) => {
+        let sum = 0;
+        if (prop.category === 'menu') {
+            prop.list.forEach((element) => {
+                sum += element.calorie;
+            });
+        } else if (prop.category == 'exercise') {
+            prop.list.forEach((element) => {
+                sum += element.met;
+            });
+        }
+        return sum;
+    };
+
+    const calcTotalPeriod = (startAt, endAt) => {
+        const end = new Date(endAt);
+        const start = new Date(startAt);
+        const diff = end - start;
+        return Math.floor(diff / (1000 * 60 * 60 * 24));
+    };
+
+    const handleEditClick = (todoId) => {
+        alert(todoId + '수정페이지 이동');
+    };
+
+    const handleDeleteClick = (todoId) => {
+        // eslint-disable-next-line
+        const answer = confirm(header + ' 리스트를 삭제하시겠습니까?');
+        answer ? alert(todoId + '삭제') : alert('삭제 취소');
+    };
+
+    useEffect(() => {
+        changeHeader(todoList.category);
+        const totalObject = {
+            calorie: calcTotalCalorie(todoList),
+            period: calcTotalPeriod(startAt, endAt),
+        };
+        setTotal(totalObject);
+    }, []);
 
     return (
         <div className={styles.listText}>
-            <span className={styles.headerText}>TODO 운동</span>
+            <span className={styles.headerText}>TODO {header}</span>
             <span className={styles.periodText}>
-                *기간 : 2023.01.01 ~ 2023.01.07 (7일)
+                *기간 : {startAt} ~ {endAt} (총{total.period}일)
             </span>
             <div className={styles.todayList}>
-                오늘의 운동 (총 266kcal)
+                오늘의 {header} (총 {total.calorie}kcal)
                 <ul className={styles.ul}>
-                    <li>스쿼트</li>
-                    <li>벤치프레스</li>
-                    <li>달리기</li>
-                    <li>풀업</li>
-                    <li>레그프레스</li>
+                    {todoList.list.map((item, index) => {
+                        return <li key={index}>{liContent(item)}</li>;
+                    })}
                 </ul>
+            </div>
+            <div className={styles.btnArea}>
+                <Button
+                    size="medium"
+                    text="수정"
+                    onClick={(event) => handleEditClick(todoList.todoId)}
+                />
+                <Button
+                    size="medium"
+                    text="삭제"
+                    onClick={(event) => handleDeleteClick(todoList.todoId)}
+                />
             </div>
         </div>
     );

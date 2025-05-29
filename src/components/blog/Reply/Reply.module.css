@@ -7,8 +7,18 @@
     display: flex;
     position: relative;
 }
+.headerdiv {
+    width: 86%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reCommentDiv {
+    width: 84.8%;
+}
 
 .replyWriter {
+    /* width: 3rem; */
     font-weight: 700;
     font-size: 1.1rem;
     margin-left: 4rem;
@@ -17,7 +27,7 @@
 
 .edit {
     font-size: 1.3rem;
-    margin-left: 33rem;
+    /* margin-left: 39rem; */
     cursor: pointer;
 }
 
@@ -50,17 +60,17 @@
     display: flex;
     position: relative;
     margin-top: 0.4rem;
+    justify-content: end;
 }
 
 .replyBtn {
-    margin-left: 5rem;
+    margin-right: auto;
+    margin-left: 4rem;
     font-weight: 800;
     cursor: pointer;
 }
 
 .likeBtn {
-    position: absolute;
-    right: 0;
 }
 
 .horizon {
@@ -75,3 +85,22 @@
 .arrow {
     font-size: 6.8rem;
 }
+
+.reCommentContainer {
+    width: 93%;
+    margin: 0 0 0 7%;
+}
+
+.editContainer {
+    position: relative;
+}
+
+.editButton {
+    position: absolute;
+    font-size: 4rem;
+    right: 0.5rem;
+    top: 2rem;
+    height: 4.5rem;
+}
+
+

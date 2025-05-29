@@ -3,15 +3,20 @@ import Likes from 'components/common/Likes/Likes';
 import { VscEdit, VscIndent, VscTrash } from 'react-icons/vsc';
 import ReplyInput from '../ReplyInput/ReplyInput';
 import styles from './Reply.module.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import ReplyEdit from '../ReplyEdit/ReplyEdit';
+import Button from 'components/common/Button/Button';
 
 /**
  *
  * @param {string} nickname 댓글 작성자 닉네임
  * @param {string} replyDate 댓글 작성 날짜
- * @param {string} gender 댓글 작성자 성별
+ * @param {string} gender 댓글 작성자 성별 (male, female)
  * @param {string} replyContent 댓글 내용
  * @param {number} replyId 댓글 번호
+ * @param {number} [reCommentId] 참조한 댓글 번호
+ * @param {object} like 좋아요 수, 클릭여부 (likeCount:0, isLiked:false)
+ * @param {onClick} onClick Like컴포넌트에 전달될 onClick이벤트
  */
 export default function Reply({
     nickname,
@@ -19,10 +24,19 @@ export default function Reply({
     gender,
     replyContent,
     replyId,
+    reCommentId,
+    like,
+    onClick,
 }) {
     const replyInputRef = useRef(null);
+    const [editIsClicked, setEditIsClicked] = useState(false);
 
-    //날짜 계산 함수 필요
+
+    const calcDay = (date) => {
+        const now = new Date();
+        const day = now - date;
+        return Math.floor(day / (1000 * 60 * 60 * 24));
+    }
 
     // 댓글 달기 눌렀을때 댓글 입력칸 나오도록
     const showReplyInput = () => {
@@ -31,49 +45,72 @@ export default function Reply({
         el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
     };
 
+    const handleEditReply = () => {
+        setEditIsClicked(true);
+    }
+
+    const handleDeleteReply = () => {
+        // eslint-disable-next-line
+        const answer = confirm(replyId+'댓글을 삭제하시겠습니까?');
+        answer ? alert('삭제완료!') : alert('삭제 취소');
+    }
+
     return (
-        <div className={styles.oneReply}>
-            <div className={styles.replyHeader}>
-                <span className={styles.replyWriter}>다이어트는 내일부터</span>
-                <span className={styles.edit}>
-                    <VscEdit />
-                </span>
-                <span className={styles.trash}>
-                    <VscTrash />
-                </span>
-                <span className={styles.replyDate}>1일전</span>
-            </div>
-            <div className={styles.replyMain}>
-                <div className={styles.genderImg}>
-                    <GenderImage gender={'male'} />
-                </div>
-                <div className={styles.replyContent}>
-                    {'안녕하세요.\n\n제 이름은 김일현입니다.\n잘 부탁드립니다.\n진짜 운동 사실 너무 하기 싫어요.\n살려줘요 팀장님 너무 힘드러어어어'
-                        .split('\n')
-                        .map((line, idx) => (
-                            <span key={idx}>
-                                {line}
-                                <br />
+        <>
+            {!editIsClicked &&
+                <div className={`${styles.oneReply} ${reCommentId && styles.reCommentContainer}`}>
+                    <div className={styles.replyHeader}>
+                        <div className={`${styles.headerdiv} ${reCommentId && styles.reCommentDiv}`}>
+                            <span className={styles.replyWriter}>{nickname}</span>
+                            <span className={styles.edit} onClick={handleEditReply}>
+                                <VscEdit />
                             </span>
-                        ))}
+                        </div>
+                        <span className={styles.trash} onClick={handleDeleteReply}>
+                            <VscTrash />
+                        </span>
+                        <span className={styles.replyDate}>{calcDay(replyDate)}일전</span>
+                    </div>
+                    <div className={styles.replyMain}>
+                        <div className={styles.genderImg}>
+                            <GenderImage gender={gender} />
+                        </div>
+                        <div className={styles.replyContent}>
+                            {replyContent
+                                .split('\n')
+                                .map((line, idx) => (
+                                    <span key={idx}>
+                                        {line}
+                                        <br />
+                                    </span>
+                                ))}
+                        </div>
+                    </div>
+                    <div className={styles.replyFooter}>
+                        {!reCommentId && <div className={styles.replyBtn} onClick={showReplyInput}>
+                            댓글 달기
+                        </div>}
+                        <div className={styles.likeBtn}>
+                            <Likes count={like.likeCount} isLiked={like.isLiked} onClick={onClick}/>
+                        </div>
+                    </div>
+                    <hr className={styles.horizon} />
+                    <div className={styles.reComment} id={replyId} ref={replyInputRef}>
+                        
+                        <div className={styles.arrow}>
+                            <VscIndent />
+                        </div>
+                        <ReplyInput replyId={replyId} size={'small'} />
+                    </div>
                 </div>
-            </div>
-            <div className={styles.replyFooter}>
-                <div className={styles.replyBtn} onClick={showReplyInput}>
-                    댓글 달기
+            }
+            {editIsClicked && 
+                <div className={styles.editContainer}>
+                    <ReplyEdit content={replyContent} replyId={replyId} nickname={nickname} gender={gender}/>
+                        <button className={styles.editButton}><VscEdit/></button>
+                    
                 </div>
-                <div className={styles.likeBtn}>
-                    <Likes count={21} />
-                </div>
-            </div>
-            <hr className={styles.horizon} />
-            <div className={styles.reComment} id="replyId" ref={replyInputRef}>
-                {/* 전달받은 replyId로 id값을 판별예정 */}
-                <div className={styles.arrow}>
-                    <VscIndent />
-                </div>
-                <ReplyInput replyId={1} size={'small'} />
-            </div>
-        </div>
+            }
+        </>
     );
 }

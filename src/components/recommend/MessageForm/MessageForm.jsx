@@ -9,8 +9,12 @@ const MessageForm = ({ data }) => {
         <>
             <div className={styles.container}>
                 <p>
-                    선택하신 운동의 총 소모 칼로리는 <span>{data.kcal}</span>
-                    kcal입니다.
+                    선택하신 운동의 총 소모 칼로리는
+                    <span className={styles.kcal}>
+                        {data.kcal}
+                        kcal
+                    </span>
+                    입니다.
                 </p>
                 <p className={styles.burnKcal}>
                     {data.kcal}/{data.burnKcal}

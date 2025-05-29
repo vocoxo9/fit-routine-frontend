@@ -1,4 +1,4 @@
-.dayForm {
+.container {
     width: 50rem;
     height: 8rem;
     border: solid 2px #d9d9d9;
@@ -8,18 +8,20 @@
     padding: 0.5rem;
 }
 
-.dayTitle span:first-child {
+.title span {
     display: inline-block;
-    font-size: 1.1rem;
     font-weight: bold;
+}
+
+.dayNo {
+    font-size: 1.1rem;
     color: #081f5c;
     margin: 0.6rem;
 }
 
-.dayTitle span:last-child {
-    display: inline-block;
-    font-weight: bold;
+.carolie {
     font-size: 0.9rem;
+    color: #334eac;
     color: #334eac;
 }
 
@@ -40,8 +42,18 @@
     height: 2.5rem;
     color: #081f5c;
     border: 2px solid #081f5c;
+    color: #081f5c;
+    border: 2px solid #081f5c;
     border-radius: 50%;
     font-size: 2rem;
     background-color: white;
     margin: 0.5rem 1rem;
+}
+
+.error {
+    color: #cc0000;
+    margin: 0.3rem 1rem;
+    margin-bottom: 0.5rem;
+    font-size: small;
+    font-weight: 600;
 }

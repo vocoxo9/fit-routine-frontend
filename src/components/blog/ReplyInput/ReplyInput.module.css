@@ -25,7 +25,6 @@
 }
 
 .small {
-    transform: scaleY(0.85);
-    transform-origin: right;
     margin-top: 0;
+    margin-bottom: 1rem;
 }
