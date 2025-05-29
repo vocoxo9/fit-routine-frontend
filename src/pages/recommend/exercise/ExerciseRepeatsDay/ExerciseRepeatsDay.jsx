@@ -1,20 +1,24 @@
 import { useState } from 'react';
 
 import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay.module.css';
+import input from 'assets/styles/common/input.module.css';
+import error from 'assets/styles/common/error.module.css';
+import form from 'assets/styles//common/form.module.css';
+import button from 'assets/styles/common/button.module.css';
 
 const checkRepeatRequired = (repeat) => {
-    const error = {};
+    const errors = {};
 
     if (!repeat) {
-        error.repeat = '반복일을 입력해주세요.';
+        errors.repeat = '반복일을 입력해주세요.';
     }
 
-    return error;
+    return errors;
 };
 
 function ExerciseRepeatsDay() {
     const [repeat, setRepeat] = useState('');
-    const [error, setError] = useState({});
+    const [errors, setErrors] = useState({});
 
     const repeatDay = [1, 2, 3, 4, 5, 6, 7];
 
@@ -24,7 +28,7 @@ function ExerciseRepeatsDay() {
 
     const handleSubmit = () => {
         const validationResult = checkRepeatRequired(repeat);
-        setError(validationResult);
+        setErrors(validationResult);
 
         if (Object.keys(validationResult).length > 0) {
             return;
@@ -34,23 +38,29 @@ function ExerciseRepeatsDay() {
     };
 
     return (
-        <>
-            <h1>반복일</h1>
-            <div className={styles.inputForm}>
-                    {repeatDay.map((day, index) => (
-                        <radio
-                            key={`${day}_${index}`}
-                            id={`day${day}`}
-                            name="repeat"
-                            value={day}
-                            label={`${day}일 반복`}
-                            onChange={handleChange}
-                        />
-                    ))}
-                {error.repeat && <p className={styles.error}>{error.repeat}</p>}
-            </div>
-            <button onClick={handleSubmit}>다음</button>
-        </>
+        <div className={`${form.form} ${styles.form}`}>
+            <h1 className={styles.title}>반복일</h1>
+            {repeatDay.map((day, index) => (
+                <label key={`${day}_${index}`} className={styles.container}>
+                    <span className={styles.dayNo}>{day}일 반복</span>
+                    <input
+                        type="radio"
+                        className={`${input.common} ${styles.radio}`}
+                        id={day}
+                        name="selectRepeats"
+                        value={day}
+                        onChange={handleChange}
+                    />
+                </label>
+            ))}
+            {errors.repeat && <p className={error.error}>{errors.repeat}</p>}
+
+            <button
+                className={`${button.button} ${button.long} ${styles.button}`}
+                onClick={handleSubmit}>
+                다음
+            </button>
+        </div>
     );
 }
 export default ExerciseRepeatsDay;
