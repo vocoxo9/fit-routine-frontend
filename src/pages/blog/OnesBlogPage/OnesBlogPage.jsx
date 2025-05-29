@@ -3,7 +3,7 @@ import { VscEdit } from 'react-icons/vsc';
 import BoardsPaging from 'components/blog/BoardsPaging/BoardsPaging';
 import Likes from 'components/common/Likes/Likes';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
-import GenderImage from 'components/common/genderImage/GenderImage';
+import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useParams } from 'react';
 
 /**

@@ -1,4 +1,4 @@
-import GenderImage from 'components/common/genderImage/GenderImage';
+import GenderImage from 'components/common/GenderImage/GenderImage';
 import styles from './ReplyEdit.module.css';
 import { useState } from 'react';
 import { VscEdit } from 'react-icons/vsc';

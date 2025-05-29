@@ -1,4 +1,4 @@
-import GenderImage from 'components/common/genderImage/GenderImage';
+import GenderImage from 'components/common/GenderImage/GenderImage';
 import Likes from 'components/common/Likes/Likes';
 import { VscEdit, VscIndent, VscTrash } from 'react-icons/vsc';
 import ReplyInput from '../ReplyInput/ReplyInput';
