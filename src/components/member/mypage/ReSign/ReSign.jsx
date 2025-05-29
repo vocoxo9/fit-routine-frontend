@@ -82,14 +82,25 @@ function ReSign() {
                         </div>
                     </div>
                     <div className={styles.content}>
-                        <textarea className={`${textarea.textarea} ${styles.textArea}`} name="reSignReason" id="reason" text="" />
+                        <textarea 
+                            className={`${textarea.textarea} ${styles.textArea}`} 
+                            name="reSignReason" 
+                            id="reason" 
+                            text="" 
+                        />
                     </div>
                 </div>
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btns}>
-                    <button className={`${button.button} ${styles.smallBtn}`}>회원 탈퇴</button>
-                    <button className={`${button.button} ${styles.smallBtn}`}>탈퇴 취소</button>
+                    <button 
+                        className={`${button.button} ${styles.smallBtn}`}>
+                        회원 탈퇴
+                    </button>
+                    <button 
+                        className={`${button.button} ${styles.smallBtn}`}>
+                        탈퇴 취소
+                    </button>
                 </div>
             </div>
         </>
