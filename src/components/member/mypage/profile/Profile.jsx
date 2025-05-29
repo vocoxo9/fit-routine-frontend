@@ -24,7 +24,7 @@ function Profile() {
             </div>
             <div className={styles.buttons}>
                 <div className={styles.editBtn}>
-                    <button 
+                    <button
                         className={`${button.button} ${button.short}`}>
                         수정
                     </button>
