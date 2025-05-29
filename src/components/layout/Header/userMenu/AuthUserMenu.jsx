@@ -1,4 +1,5 @@
 import styles from 'components/layout/Header/Header.module.css';
+
 import { FaBell, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BellNotifications from '../Notification/BellNotifications';
@@ -13,7 +14,7 @@ export default function AuthUserMenu() {
 
     return (
         <div className={styles.headerRight}>
-            <button size="logInOut" text="로그아웃" />
+            <button className={styles.button}>로그아웃</button>
 
             <div className={styles.icons}>
                 <Link to="#">
