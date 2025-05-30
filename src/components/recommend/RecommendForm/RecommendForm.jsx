@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
-import Input from 'components/common/Input/Input';
-import Button from 'components/common/Button/Button';
-import Select from 'components/common/Select/Select';
+import React, { useEffect, useState } from 'react';
 import useDebounce from 'utils/hooks/debounce';
+import styles from './RecommendForm.module.css';
+import buttonStyles from 'assets/styles/common/button.module.css';
+import errorStyles from 'assets/styles/common/error.module.css';
+import formStyles from 'assets/styles/common/form.module.css';
+import inputStyles from 'assets/styles/common/input.module.css';
+import labelStyles from 'assets/styles/common/label.module.css';
+import selectStyles from 'assets/styles/common/select.module.css';
 
 const PURPOSE_OPTIONS = [
     { value: 'none', label: '선택' },
@@ -90,6 +94,7 @@ const RecommendForm = () => {
     const debouncedFormData = useDebounce(formData, 500);
 
     useEffect(() => {
+        // noinspection JSCheckFunctionSignatures
         getValidationErrors(debouncedFormData).then((errors) =>
             setErrors(errors),
         );
@@ -122,61 +127,132 @@ const RecommendForm = () => {
     };
 
     return (
-        <>
-            <Select
-                id="purpose"
-                name="purpose"
-                label="운동 목적"
-                value={formData.purpose}
-                error={errors.purpose}
-                onChange={handleChange}
-                options={PURPOSE_OPTIONS}
-            />
-            <Input
-                size="long"
-                type="date"
-                id="startDate"
-                name="startDate"
-                label="시작일"
-                value={formData.startDate}
-                error={errors.startDate}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="date"
-                id="endDate"
-                name="endDate"
-                label="종료일"
-                value={formData.endDate}
-                error={errors.endDate}
-                onChange={handleChange}
-            />
+        <form className={`${formStyles.form} ${formStyles.common}`}>
+            <h1 className={styles.title}>
+                식단 추천 정보
+            </h1>
+
+            {/* 목적 선택 필드 */}
+            <div>
+                <label className={labelStyles.label} htmlFor="purpose">
+                    운동 목적
+                </label>
+                <select
+                    className={`${selectStyles.select} ${styles.fixSelect}`}
+                    id="purpose"
+                    name="purpose"
+                    value={formData.purpose}
+                    onChange={handleChange}
+                >
+                    {PURPOSE_OPTIONS.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+                {errors.purpose && (
+                    <p className={errorStyles.error}>
+                        {errors.purpose}
+                    </p>
+                )}
+            </div>
+
+            {/* 시작일 입력 필드 */}
+            <div>
+                <label className={labelStyles.label} htmlFor="startDate">
+                    시작일
+                </label>
+                <input
+                    className={`${styles.fixInput} ${inputStyles.input} ${inputStyles.long}`}
+                    type="date"
+                    id="startDate"
+                    name="startDate"
+                    value={formData.startDate}
+                    onChange={handleChange}
+                />
+                {errors.startDate && (
+                    <p className={errorStyles.error}>
+                        {errors.startDate}
+                    </p>
+                )}
+            </div>
+
+            {/* 종료일 입력 필드 */}
+            <div>
+                <label className={labelStyles.label} htmlFor="endDate">
+                    종료일
+                </label>
+                <input
+                    className={`${styles.fixInput} ${inputStyles.input} ${inputStyles.long}`}
+                    type="date"
+                    id="endDate"
+                    name="endDate"
+                    value={formData.endDate}
+                    onChange={handleChange}
+                />
+                {errors.endDate && (
+                    <p className={errorStyles.error}>
+                        {errors.endDate}
+                    </p>
+                )}
+            </div>
+
             {formData.purpose === 'diet' && (
                 <>
-                    <Select
-                        id="tdee"
-                        name="tdee"
-                        label="활둥 수준"
-                        value={formData.tdee}
-                        error={errors.tdee}
-                        onChange={handleChange}
-                        options={TDEE_LIST}
-                    />
-                    <Input
-                        size="long"
-                        type="number"
-                        id="goalWeight"
-                        name="goalWeight"
-                        label="목표 몸무게"
-                        value={formData.goalWeight}
-                        error={errors.goalWeight}
-                        onChange={handleChange}
-                    />
+                    {/* 활동 수준 선택 필드 */}
+                    <div>
+                        <label className={labelStyles.label} htmlFor="tdee">
+                            활동 수준
+                        </label>
+                        <select
+                            className={`${selectStyles.select} ${styles.fixSelect}`}
+                            id="tdee"
+                            name="tdee"
+                            value={formData.tdee}
+                            onChange={handleChange}
+                        >
+                            {TDEE_LIST.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.tdee && (
+                            <p className={errorStyles.error}>
+                                {errors.tdee}
+                            </p>
+                        )}
+                    </div>
+
+                    {/* 목표 몸무게 입력 필드 */}
+                    <div>
+                        <label className={labelStyles.label} htmlFor="goalWeight">
+                            목표 몸무게
+                        </label>
+                        <input
+                            className={`${styles.fixInput} ${inputStyles.input} ${inputStyles.long}`}
+                            type="text"
+                            id="goalWeight"
+                            name="goalWeight"
+                            value={formData.goalWeight}
+                            onChange={handleChange}
+                        />
+                        {errors.goalWeight && (
+                            <p className={errorStyles.error}>
+                                {errors.goalWeight}
+                            </p>
+                        )}
+                    </div>
                 </>
             )}
-            <Button size="long" text="다음" onClick={handleSubmit} />
-        </>
+
+            <button
+                className={`${styles.button} ${buttonStyles.button} ${buttonStyles.long}`}
+                onClick={handleSubmit}
+            >
+                다음
+            </button>
+        </form>
     );
 };
 
