@@ -228,7 +228,7 @@ function RecommendExercise() {
                                 <p>
                                     선택하신 운동의 총 소모 칼로리는
                                     <span
-                                        className={` ${styles.kcal}`}>
+                                        className={error.error}>
                                         {oneDayData.kcal}kcal
                                     </span>
                                     입니다.
