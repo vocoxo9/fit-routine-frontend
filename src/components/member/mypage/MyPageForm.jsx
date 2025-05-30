@@ -26,8 +26,8 @@ function MyPageForm() {
                     </div>
                 </div>
                 <div className={styles.content}>
-                    {activeTab === 'profile' ? <Profile /> : <LikeList />}
-                    {/* <InfoEdit /> */}
+                    {/* {activeTab === 'profile' ? <Profile /> : <LikeList />} */}
+                    <InfoEdit />
                 </div>
             </div>
         </>

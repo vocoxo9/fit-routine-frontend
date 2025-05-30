@@ -5,7 +5,7 @@
 .textBox.nickName {
     border: solid 1px #334eac;
     width: 11.5rem;
-    height: 5rem;
+    height: 5.5rem;
     background-color: #d0e3ff;
     font-weight: 600;
 }
@@ -18,11 +18,7 @@
 .inputBox.nickName {
     border: solid 1px #334eac;
     width: 28.5rem;
-    align-items: center;
-}
-
-.inputBox.nickName > div {
-    margin-bottom: 1rem;
+    padding: 1rem 0.5rem;
 }
 
 /* ------------ */
@@ -34,7 +30,7 @@
 .textBox.password {
     border: solid 1px #334eac;
     width: 11.5rem;
-    height: 17rem;
+    height: 18rem;
     background-color: #d0e3ff;
     font-weight: 600;
 }
@@ -49,6 +45,7 @@
     width: 28.5rem;
     justify-content: space-around;
     flex-direction: column;
+    padding: 1rem 0.5rem;
 }
 
 /* --------- */
@@ -59,7 +56,7 @@
 .textBox.phone {
     border: solid 1px #334eac;
     width: 11.5rem;
-    height: 5rem;
+    height: 6rem;
     background-color: #d0e3ff;
     font-weight: 600;
 }
@@ -73,11 +70,8 @@
     border: solid 1px #334eac;
     width: 28.5rem;
     display: flex;
-    align-items: center;
-}
-
-.inputBox.phone > div {
-    margin-bottom: 1rem;
+    /* align-items: center; */
+    padding: 1.2rem 0.5rem;
 }
 
 /* ------------ */
@@ -88,7 +82,7 @@
 .textBox.body {
     border: solid 1px #334eac;
     width: 11.5rem;
-    height: 13rem;
+    height: 14rem;
     background-color: #d0e3ff;
     font-weight: 600;
 }
@@ -104,9 +98,7 @@
     width: 28.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-}
-
-.inputBox.body > div {
-    margin-bottom: 1rem;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem;
 }

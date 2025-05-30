@@ -9,7 +9,7 @@
 
 .table {
     width: 40rem;
-    height: 39rem;
+    min-height: 45rem;
     margin: 0 auto;
     margin-bottom: 3rem;
 }
@@ -19,8 +19,20 @@
 }
 
 .p {
-    margin-top: 2rem;
+    align-content: end;
+    margin: 0 0 0.6rem 0.3rem;
     font-weight: 700;
+}
+
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.phoneArea {
+    display: flex;
+    gap: 1rem;
 }
 
 .btnArea {
