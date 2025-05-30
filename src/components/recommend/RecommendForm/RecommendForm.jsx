@@ -133,7 +133,7 @@ const RecommendForm = () => {
             </h1>
 
             {/* 목적 선택 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label className={labelStyles.label} htmlFor="purpose">
                     운동 목적
                 </label>
@@ -158,7 +158,7 @@ const RecommendForm = () => {
             </div>
 
             {/* 시작일 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label className={labelStyles.label} htmlFor="startDate">
                     시작일
                 </label>
@@ -178,7 +178,7 @@ const RecommendForm = () => {
             </div>
 
             {/* 종료일 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label className={labelStyles.label} htmlFor="endDate">
                     종료일
                 </label>
@@ -200,7 +200,7 @@ const RecommendForm = () => {
             {formData.purpose === 'diet' && (
                 <>
                     {/* 활동 수준 선택 필드 */}
-                    <div>
+                    <div className={styles.container}>
                         <label className={labelStyles.label} htmlFor="tdee">
                             활동 수준
                         </label>
@@ -225,7 +225,7 @@ const RecommendForm = () => {
                     </div>
 
                     {/* 목표 몸무게 입력 필드 */}
-                    <div>
+                    <div className={styles.container}>
                         <label className={labelStyles.label} htmlFor="goalWeight">
                             목표 몸무게
                         </label>
