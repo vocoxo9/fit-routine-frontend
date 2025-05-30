@@ -138,7 +138,7 @@ const RecommendForm = () => {
                     운동 목적
                 </label>
                 <select
-                    className={`${selectStyles.select} ${styles.fixSelect}`}
+                    className={`${selectStyles.select} ${selectStyles.common}`}
                     id="purpose"
                     name="purpose"
                     value={formData.purpose}
@@ -163,7 +163,7 @@ const RecommendForm = () => {
                     시작일
                 </label>
                 <input
-                    className={`${styles.fixInput} ${inputStyles.input} ${inputStyles.long}`}
+                    className={`${inputStyles.input} ${inputStyles.long}`}
                     type="date"
                     id="startDate"
                     name="startDate"
@@ -205,7 +205,7 @@ const RecommendForm = () => {
                             활동 수준
                         </label>
                         <select
-                            className={`${selectStyles.select} ${styles.fixSelect}`}
+                            className={`${selectStyles.select} ${selectStyles.common}`}
                             id="tdee"
                             name="tdee"
                             value={formData.tdee}
