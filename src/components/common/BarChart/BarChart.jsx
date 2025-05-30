@@ -26,9 +26,6 @@ function BarChart() {
             {
                 label: 'Data',
                 data: [2, 3, 1],
-                // backgroundColor: '#D0E3FF', // 그래프 Bar의 색상
-                // backgroundColor: '#334EAC', // 그래프 Bar의 색상
-                // backgroundColor: ['#BAD6EB', '#334EAC', '#D0E3FF'], // 그래프 Bar의 색상
                 backgroundColor: [
                     'rgb(192,192,192)', 
                     'rgb(255, 215, 0)', 
