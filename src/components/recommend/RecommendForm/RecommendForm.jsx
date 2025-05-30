@@ -127,7 +127,7 @@ const RecommendForm = () => {
     };
 
     return (
-        <div className={`${formStyles.form} ${formStyles.common}`}>
+        <form className={`${formStyles.form} ${formStyles.common}`}>
             <h1 className={styles.title}>
                 식단 추천 정보
             </h1>
@@ -252,7 +252,7 @@ const RecommendForm = () => {
             >
                 다음
             </button>
-        </div>
+        </form>
     );
 };
 
