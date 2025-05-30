@@ -5,7 +5,8 @@
     padding: 0 1%;
     cursor: pointer;
     text-align :left;
-    height: 2.3rem;  
+    height: 2.3rem;
+    line-height: 1.9rem;
 }
 
 .input:focus {
