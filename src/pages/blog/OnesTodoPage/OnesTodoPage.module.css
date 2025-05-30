@@ -1,3 +1,8 @@
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
 .nameGrade {
     width: 100%;
     height: 11.3rem;
@@ -31,7 +36,7 @@
     font-weight: bold;
     align-content: center;
     color: #80cee1;
-    margin-left: 50%;
+    margin-left: 45%;
 }
 
 .calendarContainer {
@@ -66,7 +71,7 @@
 
 .addBoard {
     position: absolute;
-    top: 0px;
+    top: 0;
     right: 0.25rem;
     background-color: #007bff;
     color: white;
@@ -75,8 +80,10 @@
     width: 1.875rem;
     height: 1.875rem;
     font-size: 0.875rem;
-    text-align: center;
-    cursor: pointer;
+}
+
+.titleContainer {
+    margin-top: 1rem;
 }
 
 .dateNum {
@@ -88,7 +95,7 @@
 }
 
 .registedBoard {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     text-align: center;
     background-color: #fff100;
     border-radius: 10px;

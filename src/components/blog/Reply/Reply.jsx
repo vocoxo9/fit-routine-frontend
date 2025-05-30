@@ -5,7 +5,6 @@ import ReplyInput from '../ReplyInput/ReplyInput';
 import styles from './Reply.module.css';
 import { useRef, useState } from 'react';
 import ReplyEdit from '../ReplyEdit/ReplyEdit';
-import Button from 'components/common/Button/Button';
 
 /**
  *
@@ -18,7 +17,7 @@ import Button from 'components/common/Button/Button';
  * @param {object} like 좋아요 수, 클릭여부 (likeCount:0, isLiked:false)
  * @param {onClick} onClick Like컴포넌트에 전달될 onClick이벤트
  */
-export default function Reply({
+function Reply({
     nickname,
     replyDate,
     gender,
@@ -114,3 +113,5 @@ export default function Reply({
         </>
     );
 }
+
+export default  Reply;

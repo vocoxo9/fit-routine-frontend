@@ -4,12 +4,13 @@ import BoardsPaging from 'components/blog/BoardsPaging/BoardsPaging';
 import Likes from 'components/common/Likes/Likes';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
+import buttons from 'assets/styles/common/button.module.css';
 import { useEffect, useParams } from 'react';
 
 /**
  * 블로그 페이지
  */
-export default function OnesBlogPage() {
+function OnesBlogPage() {
     // const { nickname } = useParams('일김현');    // <Route path="/blog/onesblog/:nickname" element={<OnesBlogPage />} />
 
     // nickname으로 blog정보 api요청
@@ -35,7 +36,7 @@ export default function OnesBlogPage() {
                     <hr></hr>
                     <div className={styles.introduceContainer}>
                         <div className={styles.introduceHeader}>
-                            <button className={styles.editBtn}>
+                            <button className={`${buttons.button} ${styles.editBtn}`}>
                                 <VscEdit />
                             </button>
                         </div>
@@ -62,3 +63,5 @@ export default function OnesBlogPage() {
         </div>
     );
 }
+
+export default OnesBlogPage;

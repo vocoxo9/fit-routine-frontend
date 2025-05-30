@@ -1,10 +1,16 @@
 .pageContainer {
     padding-left: 3rem;
-    width: 90%;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .formHeader {
     display: flex;
+}
+
+.title {
+    width: 40rem !important;
+    height: 3rem !important;
 }
 
 .formHeader select {
@@ -25,6 +31,8 @@
     margin-top: 0.01rem;
     width: 100%;
     height: 100%;
+    border: solid 2px #d9d9d9;
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -32,7 +40,6 @@
     width: 100%;
     height: 100%;
     table-layout: fixed;
-    border: 1px solid #334eac;
 }
 
 .table td {
@@ -57,6 +64,16 @@
     margin-left: 0.5rem;
     width: 99.3%;
     height: 20rem;
-    resize: none;
-    border: 1px solid #334eac;
+    border: solid 2px #d9d9d9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.boardContent:focus {
+    outline: none;
+    border: solid 2px #334eac;
+}
+
+.boardContent:read-only {
+    background-color: #d9d9d9;
 }
