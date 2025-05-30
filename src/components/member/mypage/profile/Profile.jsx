@@ -1,6 +1,6 @@
 import { BsChevronDoubleRight } from 'react-icons/bs';
 
-import Button from 'components/common/Button/Button';
+import button from 'assets/styles/common/button.module.css';
 
 import styles from './Profile.module.css';
 import ProFileInfo from 'components/common/Info/ProfileInfo';
@@ -24,7 +24,10 @@ function Profile() {
             </div>
             <div className={styles.buttons}>
                 <div className={styles.editBtn}>
-                    <Button size="short" text="수정" />
+                    <button
+                        className={`${button.button} ${button.short}`}>
+                        수정
+                    </button>
                 </div>
                 <div className={styles.reSignBtn}>
                     회원 탈퇴

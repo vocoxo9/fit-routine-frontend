@@ -2,9 +2,6 @@ import { useState } from 'react';
 
 import styles from './ReSign.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
-import CheckBox from 'components/common/CheckBox/CheckBox';
-import TextArea from 'components/common/TextArea/TextArea';
-import Button from 'components/common/Button/Button';
 
 function ReSign() {
     const [info, setInfo] = useState({
@@ -29,31 +26,36 @@ function ReSign() {
                 </div>
                 <div className={styles.reasonInput}>
                     <div className={styles.checkBox}>
-                        <CheckBox
+                        <input 
+                            type="checkbox"
                             id="badService"
                             name="reSignReason"
                             value="badService"
                             label="서비스 불만족"
                         />
-                        <CheckBox
+                        <input 
+                            type="checkbox"
                             id="personalInfo"
                             name="reSignReason"
                             value="personalInfo"
                             label="개인정보 보호 우려"
                         />
-                        <CheckBox
+                        <input 
+                            type="checkbox"
                             id="downUseFrequency"
                             name="reSignReason"
                             value="downUseFrequency"
                             label="사용 빈도 감소"
                         />
-                        <CheckBox
+                        <input 
+                            type="checkbox"
                             id="lack of contents"
                             name="reSignReason"
                             value="lack of contents"
                             label="콘텐츠 내용 부족"
                         />
-                        <CheckBox
+                        <input 
+                            type="checkbox"
                             id="other"
                             name="reSignReason"
                             value="other"
@@ -61,14 +63,14 @@ function ReSign() {
                         />
                     </div>
                     <div className={styles.textArea}>
-                        <TextArea name="reSignReason" id="reason" text="" />
+                        <textarea name="reSignReason" id="reason" text="" />
                     </div>
                 </div>
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btns}>
-                    <Button size="small" text="탈퇴 확인" />
-                    <Button size="small" text="탈퇴 취소" />
+                    <button size="small" text="탈퇴 확인" />
+                    <button size="small" text="탈퇴 취소" />
                 </div>
             </div>
         </>
