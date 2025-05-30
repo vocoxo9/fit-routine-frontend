@@ -1,14 +1,18 @@
 .select {
+    display: block;
     border: solid 2px #d9d9d9;
     border-radius: 8px;
-    text-align: center;
+    padding: 0 1%;
     cursor: pointer;
+    text-align: left;
+    height: 2.3rem;
+}
+
+.common {
+    width: 25rem;
 }
 
 .select:focus {
     outline: none;
     border: solid 2px #334eac;
 }
-
-
-

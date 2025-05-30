@@ -11,18 +11,6 @@
     margin: 2.5rem 0;
 }
 
-/* 임시 select 스타일 */
-.fixSelect {
-    display : block;
-    border: solid 2px #d9d9d9;
-    border-radius: 8px;
-    padding: 0 1%;
-    cursor: pointer;
-    text-align :left;
-    height: 2.3rem;
-    width: 25rem;
-}
-
 /* 임시 input:date 스타일 */
 .fixInput[type=date] {
     align-content: center;
