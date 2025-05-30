@@ -3,6 +3,7 @@ import styles from './InfoEdit.module.css';
 import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
+import label from 'assets/styles/common/label.module.css';
 import { useState } from 'react';
 
 function InfoEdit() {
@@ -46,7 +47,7 @@ function InfoEdit() {
                 </Info>
                 <Info kind="password" text="비밀번호">
                     <div className={styles.inputArea}>
-                        <label htmlFor="pwd">기존 비밀번호</label>
+                        <label className={`${label.label} ${label.input}`} htmlFor="pwd">기존 비밀번호</label>
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
@@ -58,7 +59,7 @@ function InfoEdit() {
                         }
                     </div>
                     <div className={styles.inputArea}>
-                        <label htmlFor="newPwd">새 비밀번호</label>
+                        <label className={`${label.label} ${label.input}`} htmlFor="newPwd">새 비밀번호</label>
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
@@ -71,7 +72,7 @@ function InfoEdit() {
                         }
                     </div>
                     <div className={styles.inputArea}>
-                        <label htmlFor="checkPwd">비밀번호 확인</label>
+                        <label className={`${label.label} ${label.input}`} htmlFor="checkPwd">비밀번호 확인</label>
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
@@ -98,7 +99,7 @@ function InfoEdit() {
                 </Info>
                 <Info kind="body" text="신장/체중">
                     <div className={styles.inputArea}>
-                        <label htmlFor="height">신장</label>
+                        <label className={`${label.label} ${label.input}`} htmlFor="height">신장</label>
                         <div className={styles.body}>
                             <input
                                 className={`${input.input} ${input.short}`}
@@ -113,7 +114,7 @@ function InfoEdit() {
                         }
                     </div>
                     <div className={styles.inputArea}>
-                        <label htmlFor="weight">체중</label>
+                        <label className={`${label.label} ${label.input}`} htmlFor="weight">체중</label>
                         <div className={styles.body}>
                             <input
                                 className={`${input.input} ${input.short}`}
