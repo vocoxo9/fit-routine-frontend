@@ -163,7 +163,7 @@ const RecommendForm = () => {
                     시작일
                 </label>
                 <input
-                    className={`${styles.fixInput} ${inputStyles.input} ${inputStyles.long}`}
+                    className={`${inputStyles.input} ${inputStyles.long}`}
                     type="date"
                     id="startDate"
                     name="startDate"

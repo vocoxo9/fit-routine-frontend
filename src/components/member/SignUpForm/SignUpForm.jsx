@@ -282,7 +282,7 @@ const SignUpForm = () => {
                     생년월일
                 </label>
                 <input
-                    className={`${styles.fix} ${inputStyles.input} ${inputStyles.long}`}
+                    className={`${inputStyles.input} ${inputStyles.long}`}
                     type="date"
                     id="birthdate"
                     name="birthdate"
