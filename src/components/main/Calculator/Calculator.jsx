@@ -1,6 +1,8 @@
-import Input from 'components/common/Input/Input';
 import styles from './Calculator.module.css';
-import Button from 'components/common/Button/Button';
+import button from 'assets/styles/common/button.module.css';
+import input from 'assets/styles/common/input.module.css';
+import error from 'assets/styles/common/error.module.css';
+import label from 'assets/styles/common/label.module.css';
 import DoughnutChart from 'components/common/DoughnutChart/DoughnutChart';
 import { FcCalculator } from 'react-icons/fc';
 import { useState } from 'react';
@@ -135,84 +137,96 @@ function Calculator() {
             </div>
             <div className={styles.container}>
                 <div className={styles.leftArea}>
-                    <div>
+                    <form className={styles.inputAreas}>
                         <div className={styles.inputArea}>
-                            <label className={styles.label} htmlFor="age">
-                                나이
-                            </label>
-                            <Input
-                                size="short"
-                                type="number"
-                                id="age"
-                                name="age"
-                                value={userData.age}
-                                error={errors.age}
-                                onChange={inputHandler}
-                            />
+                            <div className={styles.input}>
+                                <label className={`${label.label} ${label.input} ${styles.label}`} htmlFor="age">
+                                    나이
+                                </label>
+                                <input
+                                    className={`${input.input} ${input.short}`}
+                                    type="number"
+                                    id="age"
+                                    name="age"
+                                    value={userData.age}
+                                    onChange={inputHandler}
+                                    />
+                            </div>
+                            {errors.age &&
+                                <p className={error.error}>{errors.age}</p>
+                            }
                         </div>
                         <div className={styles.inputArea}>
-                            <label className={styles.label} htmlFor="gender">
-                                성별
-                            </label>
-                            <label className={styles.label} htmlFor="gender">
-                                성별
-                            </label>
-                            <Input
-                                size="short"
-                                type="text"
-                                id="gender"
-                                name="gender"
-                                value={userData.gender}
-                                error={errors.gender}
-                                onChange={inputHandler}
-                            />
-                        </div>
-                        <div
-                            className={`${styles.inputArea} ${styles.bodyInputs}`}>
-                            <div className={styles.bodyInput}>
-                                <label
-                                    className={styles.label}
-                                    htmlFor="gender">
-                                    신장
+                            <div className={styles.input}>
+                                <label className={`${label.label} ${label.input} ${styles.label}`} htmlFor="gender">
+                                    성별
                                 </label>
-                                <Input
-                                    size="short"
-                                    type="number"
-                                    id="height"
-                                    name="height"
-                                    value={userData.height}
-                                    error={errors.height}
+                                <input
+                                    className={`${input.input} ${input.short}`}
+                                    type="text"
+                                    id="gender"
+                                    name="gender"
+                                    value={userData.gender}
                                     onChange={inputHandler}
-                                />
+                                    />
                             </div>
-                            {/* <div className={styles.between}></div> */}
-                            <div className={styles.bodyInput}>
-                                <label
-                                    className={styles.label}
-                                    htmlFor="gender">
-                                    체중
-                                </label>
-                                <Input
-                                    size="short"
-                                    type="number"
-                                    id="weight"
-                                    name="weight"
-                                    value={userData.weight}
-                                    error={errors.weight}
-                                    onChange={inputHandler}
-                                />
+                            {errors.gender &&
+                                <p className={error.error}>{errors.gender}</p>
+                            }
+                        </div>
+                        <div className={styles.bodyInputs}>
+                            <div className={styles.inputArea}>
+                                <div className={styles.bodyInput}>
+                                    <label
+                                        className={`${label.label} ${label.input} ${styles.label}`}
+                                        htmlFor="gender">
+                                        신장
+                                    </label>
+                                    <input
+                                        className={`${input.input} ${input.short}`}
+                                        type="number"
+                                        id="height"
+                                        name="height"
+                                        value={userData.height}
+                                        onChange={inputHandler}
+                                    />
+                                </div>
+                                {errors.height &&
+                                    <p className={error.error}>{errors.height}</p>
+                                }
+                            </div>
+                            <div className={styles.inputArea}>
+                                <div className={styles.bodyInput}>
+                                    <label
+                                        className={`${label.label} ${label.input} ${styles.label}`}
+                                        htmlFor="gender">
+                                        체중
+                                    </label>
+                                    <input
+                                        className={`${input.input} ${input.short}`}
+                                        type="number"
+                                        id="weight"
+                                        name="weight"
+                                        value={userData.weight}
+                                        onChange={inputHandler}
+                                        />
+                                </div>
+                                {errors.weight &&
+                                    <p className={error.error}>{errors.weight}</p>
+                                }
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.buttonArea}>
-                        <div className={styles.btn}>
-                            <Button
-                                size="short"
-                                text="확인"
-                                onClick={calculatorHandler}
-                            />
+                        <div className={styles.buttonArea}>
+                            <div className={styles.btn}>
+                                <button
+                                    type='button'
+                                    className={`${button.button} ${button.short}`}
+                                    onClick={calculatorHandler}>
+                                    확인
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div className={styles.rightArea}>
                     <div className={styles.resultArea}>
@@ -233,24 +247,15 @@ function Calculator() {
                             <p className={styles.p}>
                                 지방 : <u>{result.fat}</u> kcal
                             </p>
-                            <p className={styles.p}>
-                                탄수화물 : <u>{result.carb}</u> kcal
-                            </p>
-                            <p className={styles.p}>
-                                단백질 : <u>{result.protein}</u> kcal
-                            </p>
-                            <p className={styles.p}>
-                                지방 : <u>{result.fat}</u> kcal
-                            </p>
                         </div>
                     </div>
                     <div className={styles.buttonArea}>
                         <div className={styles.btn}>
-                            <Button
-                                size="bold"
-                                text="루틴 추천 받으러 가기"
-                                onClick={handleNavigateFoodRecommend}
-                            />
+                            <button
+                                className={`${button.button} ${button.bold}`}
+                                onClick={handleNavigateFoodRecommend}>
+                                루틴 추천 받으러 가기
+                            </button>
                         </div>
                     </div>
                 </div>

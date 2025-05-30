@@ -24,30 +24,39 @@
     text-align: center;
 }
 
-.inputArea {
-    width: 23rem;
+.input {
+    /* width: 23rem; */
     display: flex;
-    align-items: center;
-    margin: 2rem 0;
+}
+
+.inputAreas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 18rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
 }
 
 .bodyInput {
-    width: 12.5rem;
+    width: 11.5rem;
     display: flex;
-    align-items: center;
 }
 
 .bodyInputs {
-    justify-content: space-between;
+    display: flex;
 }
 
 .label {
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-label {
-    margin: 0.3rem 0;
+    margin-right: 0.5rem;
+    align-content: center;
 }
 
 .btn {
@@ -57,13 +66,11 @@ label {
 .leftArea {
     border-radius: 0.3rem;
     box-shadow: 0 0 0.3rem 0 #d9d9d9;
-    padding: 2rem 1rem;
-    width: 46%;
+    padding: 1rem 1rem;
+    width: 40%;
+    min-height: 20rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 480px;
+    justify-content: center;
 }
 
 .rightArea {
