@@ -199,7 +199,7 @@ function RecommendExercise() {
     };
 
     return (
-        <div className={styles.container}>
+        <form className={styles.container}>
             <p className={styles.title}>FIT-ROUTINE</p>
 
             {data.map((oneDayData, index) => {
@@ -278,7 +278,7 @@ function RecommendExercise() {
                 onClick={handleSubmit}>
                 루틴 등록
             </button>
-        </div>
+        </form>
     );
 }
 

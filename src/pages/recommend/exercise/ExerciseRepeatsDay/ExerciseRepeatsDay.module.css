@@ -7,7 +7,7 @@
 .title {
     font-size : 2rem;
     font-weight : 600;
-    color : #081f5c;
+    color : #334eac;
     margin : 3rem 0;
 }
 
@@ -18,7 +18,7 @@
     height: 2.5rem;
     border: solid 2px #d9d9d9;
     border-radius: 8px;
-    margin: 1rem;
+    margin: 0.5rem;
     cursor: pointer;
     padding: 0 0.5rem;
 }
@@ -28,9 +28,10 @@
 }
 
 .dayNo {
-    float : left;
     width : 100%;
     font-weight : 500;
+    padding : 0 0.5rem;
+    vertical-align: middle;
 }
 
 .radio {
