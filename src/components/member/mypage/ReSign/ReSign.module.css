@@ -32,17 +32,32 @@
     background-color: #d0e3ff;
     width: 56rem;
     height: 18rem;
+    padding: 1rem;
     margin: 0 auto;
     margin-top: 1rem;
     box-shadow: 0 0 1rem 0 #d9d9d9;
 }
 
+.content {
+    /* padding: 0.5rem 1rem; */
+}
+
+.textArea {
+    width: 54rem;
+    height: 12rem;
+}
+
 .checkBox {
     width: 75%;
-    margin: 1rem 0;
-    margin-left: 1rem;
+    margin: 0.5rem 0 1rem 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.checkInput {
+    display: flex;
+    justify-content: center;
+    gap: 0.1rem;
 }
 
 .btnArea {
@@ -55,4 +70,10 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 4rem;
+}
+.smallBtn {
+    width: 5rem;
+    border-radius: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
