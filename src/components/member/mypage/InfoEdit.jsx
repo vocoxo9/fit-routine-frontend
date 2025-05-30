@@ -39,8 +39,8 @@ function InfoEdit() {
                         id="nickname"
                         name="nickname"
                     />
-                    {
-                        <p className={`${error.error}`}>{errors.nickname ? errors.nickname : ''}</p> 
+                    {errors.nickname && 
+                        <p className={`${error.error}`}>{errors.nickname}</p> 
                     }
                     </div>
                 </Info>
@@ -53,8 +53,8 @@ function InfoEdit() {
                             id="pwd"
                             name="pwd"
                         />
-                        {
-                            <p className={`${error.error}`}>{errors.password ? errors.password : ''}</p> 
+                        {errors.password && 
+                            <p className={`${error.error}`}>{errors.password}</p> 
                         }
                     </div>
                     <div className={styles.inputArea}>
@@ -66,8 +66,8 @@ function InfoEdit() {
                             name="newPwd"
                             readOnly={true}
                         />
-                        {
-                            <p className={`${error.error}`}>{errors.newPassword ? errors.newPassword : ''}</p> 
+                        {errors.newPassword && 
+                            <p className={`${error.error}`}>{errors.newPassword}</p> 
                         }
                     </div>
                     <div className={styles.inputArea}>
@@ -79,8 +79,8 @@ function InfoEdit() {
                             name="checkPwd"
                             readOnly={true}
                         />
-                        {
-                            <p className={`${error.error}`}>{errors.checkPassword ? errors.checkPassword : ''}</p> 
+                        {errors.checkPassword && 
+                            <p className={`${error.error}`}>{errors.checkPassword}</p> 
                         }
                     </div>
                 </Info>
@@ -91,8 +91,8 @@ function InfoEdit() {
                             <input className={`${input.input} ${input.short}`} type="tel" id="phone" name="phone" />
                             <input className={`${input.input} ${input.short}`} type="tel" id="phone" name="phone" />
                         </div>
-                        {
-                            <p className={`${error.error}`}>{errors.phone ? errors.phone : ''}</p> 
+                        {errors.phone && 
+                            <p className={`${error.error}`}>{errors.phone}</p> 
                         }
                     </div>
                 </Info>
@@ -108,8 +108,8 @@ function InfoEdit() {
                                 />
                             <p className={styles.p}>cm</p>
                         </div>
-                        {
-                            <p className={`${error.error}`}>{errors.height ? errors.height : ''}</p> 
+                        {errors.height && 
+                            <p className={`${error.error}`}>{errors.height}</p> 
                         }
                     </div>
                     <div className={styles.inputArea}>
@@ -123,8 +123,8 @@ function InfoEdit() {
                             />
                             <p className={styles.p}>kg</p>
                         </div>
-                        {
-                            <p className={`${error.error}`}>{errors.weight ? errors.weight : ''}</p> 
+                        {errors.weight && 
+                            <p className={`${error.error}`}>{errors.weight}</p> 
                         }
                     </div>
                 </Info>
