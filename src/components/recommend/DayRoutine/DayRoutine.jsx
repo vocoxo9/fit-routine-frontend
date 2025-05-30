@@ -1,6 +1,7 @@
 import styles from './DayRoutine.module.css';
 import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
+import label from 'assets/styles/common/label.module.css';
 
 /**
  * @data 사용자에게 제공할 추천 리스트 [dayNo, kcal, name(메뉴|운동명), id(메뉴|운동ID)]
@@ -31,7 +32,8 @@ const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
                             checked={checkedItems.includes(exercise.id)}
                             onChange={() => handleCheckBoxClick(exercise.id)}
                         />
-                        <label htmlFor={`${data.dayNo}_${exercise.id}`}>
+                        <label className={label.label}
+                            htmlFor={`${data.dayNo}_${exercise.id}`}>
                             {exercise.name}
                         </label>
                     </div>
