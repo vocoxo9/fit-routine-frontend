@@ -225,16 +225,11 @@ function RecommendExercise() {
                         />
                         {oneDayData.kcal < DAILY_BURN_KCAL && (
                             <div className={styles.message}>
-                                <p>
-                                    선택하신 운동의 총 소모 칼로리는
-                                    <span
-                                        className={error.error}>
-                                        {oneDayData.kcal}kcal
-                                    </span>
-                                    입니다.
-                                    <p className={styles.burnKcal}>
-                                        {oneDayData.kcal}/{DAILY_BURN_KCAL}
-                                    </p>
+                                <p className={error.error}>
+                                    칼로리가 부족합니다.
+                                </p>
+                                <p className={styles.burnKcal}>
+                                    {oneDayData.kcal}/{DAILY_BURN_KCAL}
                                 </p>
                             </div>
                         )}
