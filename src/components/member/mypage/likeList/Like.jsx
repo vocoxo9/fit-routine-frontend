@@ -1,5 +1,6 @@
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import styles from './Like.module.css';
+import button from 'assets/styles/common/button.module.css';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 
 function Like({ gender, nickName, grade }) {
@@ -17,7 +18,10 @@ function Like({ gender, nickName, grade }) {
                 <div className={styles.nickName}>{nickName}</div>
             </div>
             <div className={styles.cutBtn}>
-                <button size="delete" text="관심 끊기" />
+                <button
+                    className={`${button.button} ${styles.deleteBtn}`}>
+                    관심 끊기
+                </button>
             </div>
         </div>
     );
