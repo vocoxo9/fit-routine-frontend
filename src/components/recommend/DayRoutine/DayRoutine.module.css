@@ -6,6 +6,14 @@
     box-shadow: 0px 0px 5px #d9d9d9;
     margin: 1rem auto;
     padding: 0.5rem;
+    align-items: center;
+}
+
+.boxContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
 }
 
 .title span {
@@ -22,17 +30,23 @@
 .carolie {
     font-size: 0.9rem;
     color: #334eac;
-    color: #334eac;
 }
 
 .formLeft {
-    float: left;
+    display: flex;
+    float : left;
+    flex-wrap: wrap;
     width: 90%;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.box {
+    margin : 0.5rem;
 }
 
 .formRight {
     float: right;
-    display: block;
     width: 10%;
     text-align: center;
 }
@@ -42,18 +56,8 @@
     height: 2.5rem;
     color: #081f5c;
     border: 2px solid #081f5c;
-    color: #081f5c;
-    border: 2px solid #081f5c;
     border-radius: 50%;
     font-size: 2rem;
     background-color: white;
     margin: 0.5rem 1rem;
-}
-
-.error {
-    color: #cc0000;
-    margin: 0.3rem 1rem;
-    margin-bottom: 0.5rem;
-    font-size: small;
-    font-weight: 600;
 }

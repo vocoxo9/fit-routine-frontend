@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import Button from 'components/common/Button/Button';
-import FormTitle from 'components/common/FormTitle/FormTitle';
 import Category from 'components/common/Category/Category';
 import DayRoutine from 'components/recommend/DayRoutine/DayRoutine';
 import CategoryForm from 'components/recommend/CategoryForm/CategoryForm';
 
 import styles from './RecommendExercise.module.css';
-import MessageForm from 'components/recommend/MessageForm/MessageForm';
+import button from 'assets/styles/common/button.module.css';
+import error from 'assets/styles/common/error.module.css';
 
 const getMockData = () => [
     {
@@ -201,7 +200,7 @@ function RecommendExercise() {
 
     return (
         <div className={styles.container}>
-            <FormTitle text="FIT-ROUTINE" />
+            <p className={styles.title}>FIT-ROUTINE</p>
 
             {data.map((oneDayData, index) => {
                 const dayNo = oneDayData.dayNo;
@@ -225,9 +224,14 @@ function RecommendExercise() {
                             }
                         />
                         {oneDayData.kcal < DAILY_BURN_KCAL && (
-                            <MessageForm data={oneDayData} />
-
-                            
+                            <div className={styles.message}>
+                                <p className={error.error}>
+                                    칼로리가 부족합니다.
+                                </p>
+                                <p className={styles.burnKcal}>
+                                    {oneDayData.kcal}/{DAILY_BURN_KCAL}
+                                </p>
+                            </div>
                         )}
 
                         {showCategory[dayNo] && (
@@ -269,12 +273,11 @@ function RecommendExercise() {
                 );
             })}
 
-            <Button
-                className={styles.registButton}
-                size="bold"
-                text="루틴 등록"
-                onClick={handleSubmit}
-            />
+            <button
+                className={`${button.button} ${button.bold} ${styles.registButton}`}
+                onClick={handleSubmit}>
+                루틴 등록
+            </button>
         </div>
     );
 }
