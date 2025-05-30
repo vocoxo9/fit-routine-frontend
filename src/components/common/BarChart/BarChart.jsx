@@ -29,11 +29,10 @@ function BarChart() {
                 // backgroundColor: '#D0E3FF', // 그래프 Bar의 색상
                 // backgroundColor: '#334EAC', // 그래프 Bar의 색상
                 // backgroundColor: ['#BAD6EB', '#334EAC', '#D0E3FF'], // 그래프 Bar의 색상
-                // backgroundColor: ['rgb(192,192,192)', 'rgb(255, 215, 0)', 'rgb(205,127,50)'], // 그래프 Bar의 색상
                 backgroundColor: [
-                    'linear-gradient(90deg, #FFd700, #FFa500)',
-                    'linear-gradient(90deg, #C0C0C0, #E0E0E0)',
-                    '#B87333',
+                    'rgb(192,192,192)', 
+                    'rgb(255, 215, 0)', 
+                    'rgb(205,127,50)'
                 ], // 그래프 Bar의 색상
                 borderWidth: 0,
             },
@@ -59,8 +58,7 @@ function BarChart() {
                     font: {
                         size: 15, // 기본: 12
                     },
-                    color: '#334EAC',
-                    // color: '#D0E3FF',
+                    color: '#000000',
                 },
                 border: {
                     display: false, // x축 선 제거
