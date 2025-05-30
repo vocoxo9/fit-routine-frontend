@@ -1,6 +1,5 @@
 import styles from './BellNotifications.module.css';
 import button from 'assets/styles/common/button.module.css';
-
 import Notification from 'components/layout/Header/Notification/Notification';
 import { useEffect, useState } from 'react';
 
@@ -69,9 +68,12 @@ function BellNotifications() {
             <div className={styles.topArea}>
                 <div className={styles.title}>알림</div>
                 <div className={styles.allDeleteBtn}>
-                    <button 
-                        className={`${button.button} ${button.short}`} 
-                        onClick={handleDeleteAll}>전체 삭제</button>
+                    <button
+                        className={button.button}
+                        onClick={handleDeleteAll}
+                    >
+                        전체삭제
+                    </button>
                 </div>
             </div>
             <div className={styles.bottomArea}>
