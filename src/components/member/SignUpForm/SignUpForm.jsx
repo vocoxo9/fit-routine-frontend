@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import styles from './SignUpForm.module.css';
+import buttonStyles from 'assets/styles/common/button.module.css';
+import errorStyles from 'assets/styles/common/error.module.css';
+import formStyles from 'assets/styles/common/form.module.css';
+import inputStyles from 'assets/styles/common/input.module.css';
+import labelStyles from 'assets/styles/common/label.module.css';
 import {
     checkEmailDuplicate,
     checkPhoneNumberDuplicate,
@@ -12,10 +18,6 @@ import {
     validateHeight,
     validateWeight,
 } from 'utils/helpers/validation';
-import Button from 'components/common/Button/Button';
-import Input from 'components/common/Input/Input';
-import Radio from 'components/common/Radio/Radio';
-import RadioGroup from 'components/common/RadioGroup/RadioGroup';
 import useDebounce from 'utils/hooks/debounce';
 
 const checkForm = (formData) => {
@@ -143,6 +145,7 @@ const SignUpForm = () => {
     const debouncedFormData = useDebounce(formData, 500);
 
     useEffect(() => {
+        // noinspection JSCheckFunctionSignatures
         validateForm(debouncedFormData).then((errors) => setErrors(errors));
     }, [debouncedFormData]);
 
@@ -173,117 +176,233 @@ const SignUpForm = () => {
     };
 
     return (
-        <>
-            <Input
-                size="long"
-                type="email"
-                id="email"
-                name="email"
-                label="이메일"
-                value={formData.email}
-                error={errors.email}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="password"
-                id="password"
-                name="password"
-                label="비밀번호"
-                value={formData.password}
-                error={errors.password}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                label="전화번호"
-                value={formData.phoneNumber}
-                error={errors.phoneNumber}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="text"
-                id="nickname"
-                name="nickname"
-                label="닉네임"
-                value={formData.nickname}
-                error={errors.nickname}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="date"
-                id="birthdate"
-                name="birthdate"
-                label="생년월일"
-                value={formData.birthdate}
-                error={errors.birthdate}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="text"
-                id="height"
-                name="height"
-                label="신장"
-                value={formData.height}
-                error={errors.height}
-                onChange={handleChange}
-            />
-            <Input
-                size="long"
-                type="text"
-                id="weight"
-                name="weight"
-                label="체중"
-                value={formData.weight}
-                error={errors.weight}
-                onChange={handleChange}
-            />
-            <RadioGroup>
-                <Radio
-                    id="male"
-                    name="gender"
-                    value="male"
-                    label="남성"
-                    checked={formData.gender === 'male'}
+        <form className={`${formStyles.form} ${formStyles.common}`}>
+            <h1 className={styles.title}>
+                가입 페이지
+            </h1>
+
+            {/* 이메일 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="email"
+                >
+                    이메일
+                </label>
+                <input
+                    className={`${inputStyles.input} ${inputStyles.long}`}
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleChange}
                 />
-                <Radio
-                    id="female"
-                    name="gender"
-                    value="female"
-                    label="여성"
-                    checked={formData.gender === 'female'}
+                {errors.email && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.email}
+                    </p>
+                )}
+            </div>
+
+            {/* 비밀번호 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="password"
+                >
+                    비밀번호
+                </label>
+                <input
+                    className={`${inputStyles.input} ${inputStyles.long}`}
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={formData.password}
                     onChange={handleChange}
                 />
+                {errors.password && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.password}
+                    </p>
+                )}
+            </div>
+
+            {/* 전화번호 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="phoneNumber"
+                >
+                    전화번호
+                </label>
+                <input
+                    className={`${inputStyles.input} ${inputStyles.long}`}
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                />
+                {errors.phoneNumber && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.phoneNumber}
+                    </p>
+                )}
+            </div>
+
+            {/* 닉네임 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="nickname"
+                >
+                    닉네임
+                </label>
+                <input
+                    className={`${inputStyles.input} ${inputStyles.long}`}
+                    type="text"
+                    id="nickname"
+                    name="nickname"
+                    value={formData.nickname}
+                    onChange={handleChange}
+                />
+                {errors.nickname && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.nickname}
+                    </p>
+                )}
+            </div>
+
+            {/* 생년월일 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="birthdate"
+                >
+                    생년월일
+                </label>
+                <input
+                    className={`${styles.fix} ${inputStyles.input} ${inputStyles.long}`}
+                    type="date"
+                    id="birthdate"
+                    name="birthdate"
+                    value={formData.birthdate}
+                    onChange={handleChange}
+                />
+                {errors.birthdate && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.birthdate}
+                    </p>
+                )}
+            </div>
+
+            {/* 성별 선택 라디오 박스 */}
+            <div>
+                <div className={styles.radios}>
+
+                    {/* 남성 라디오 버튼 */}
+                    <div className={styles.radio}>
+                        <input
+                            className={`${inputStyles.input}`}
+                            type="radio"
+                            id="male"
+                            name="gender"
+                            value="male"
+                            checked={formData.gender === 'male'}
+                            onChange={handleChange}
+                        />
+                        <label
+                            className={`${labelStyles.label}`}
+                            htmlFor="male"
+                        >
+                            남성
+                        </label>
+                    </div>
+
+                    {/* 여성 라디오 버튼 */}
+                    <div className={styles.radio}>
+                        <input
+                            className={`${inputStyles.input}`}
+                            type="radio"
+                            id="female"
+                            name="gender"
+                            value="female"
+                            checked={formData.gender === 'female'}
+                            onChange={handleChange}
+                        />
+                        <label
+                            className={`${labelStyles.label}`}
+                            htmlFor="female"
+                        >
+                            여성
+                        </label>
+                    </div>
+
+                </div>
                 {errors.gender && (
-                    // 임시 태그, RadioGroup 혹은 Radio 내부로 이동해야 합니다.
-                    <p
-                        style={{
-                            color: '#CC0000',
-                            margin: '0.3rem 1rem 0.5rem',
-                            fontSize: 'small',
-                            fontWeight: 600,
-                        }}>
+                    <p className={`${errorStyles.error}`}>
                         {errors.gender}
                     </p>
                 )}
-            </RadioGroup>
-            <Button
-                size="small"
-                text="다음"
+            </div>
+
+            {/* 신장 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="height"
+                >
+                    신장
+                </label>
+                <input
+                    className={`${inputStyles.input} ${inputStyles.long}`}
+                    type="text"
+                    id="height"
+                    name="height"
+                    value={formData.height}
+                    onChange={handleChange}
+                />
+                {errors.height && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.height}
+                    </p>
+                )}
+            </div>
+
+            {/* 체중 입력 필드 */}
+            <div>
+                <label
+                    className={`${labelStyles.label}`}
+                    htmlFor="weight"
+                >
+                    체중
+                </label>
+                <input
+                    className={`${inputStyles.input} ${inputStyles.long}`}
+                    type="text"
+                    id="weight"
+                    name="weight"
+                    value={formData.weight}
+                    onChange={handleChange}
+                />
+                {errors.weight && (
+                    <p className={`${errorStyles.error}`}>
+                        {errors.weight}
+                    </p>
+                )}
+            </div>
+
+            <button
+                className={`${styles.button} ${buttonStyles.button} ${buttonStyles.long}`}
                 onClick={handleSubmit}
                 disabled={
                     Object.values(formData).some((value) => !value) ||
                     Object.values(errors).some((value) => value)
                 }
-            />
-        </>
+            >
+                다음
+            </button>
+        </form>
     );
 };
 

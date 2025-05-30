@@ -1,26 +1,4 @@
 .container {
-    width: 45rem;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10rem auto;
-    border: 1px solid #081f5c;
-    border-radius: 0.5rem;
-    box-shadow: 0 16px 48px rgb(0, 0, 0, 0.1);
-}
-
-.title {
-    color: #334eac;
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-top: 3.5rem;
-    margin-bottom: 2rem;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin: 0 auto 3.5rem;
+    justify-content: center;
 }

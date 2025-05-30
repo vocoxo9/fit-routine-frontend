@@ -1,0 +1,32 @@
+.title {
+    color: #334eac;
+
+    font-size: 2.0rem;
+    font-weight: 600;
+
+    padding: 2.5rem 0;
+}
+
+.radio {
+    display: flex;
+    flex-direction: row;
+
+    gap: 0.5rem;
+}
+
+.radios {
+    display: flex;
+    flex-direction: row;
+
+    gap: 2rem;
+    padding: 1.0rem 0;
+}
+
+.button {
+    margin: 2.5rem 0;
+}
+
+/* 임시 스타일 */
+.fix[type=date] {
+   align-content: center;
+}
