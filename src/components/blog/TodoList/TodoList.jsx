@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './TodoList.module.css';
-import Button from 'components/common/Button/Button';
+import buttons from 'assets/styles/common/button.module.css';
 
 /**
  * Blog의 Todo페이지에서 개인이 정한 식단 및 운동을 보여주는 컴포넌트
@@ -68,10 +68,12 @@ function TodoList({ todoList }) {
 
     return (
         <div className={styles.listText}>
-            <span className={styles.headerText}>TODO {header}</span>
-            <span className={styles.periodText}>
-                *기간 : {startAt} ~ {endAt} (총{total.period}일)
-            </span>
+            <div className={styles.headerContainer}>
+                <div className={styles.headerText}>TODO {header}</div>
+                <div className={styles.periodText}>
+                    *기간 : {startAt} ~ {endAt} (총{total.period}일)
+                </div>
+            </div>
             <div className={styles.todayList}>
                 오늘의 {header} (총 {total.calorie}kcal)
                 <ul className={styles.ul}>
@@ -81,16 +83,12 @@ function TodoList({ todoList }) {
                 </ul>
             </div>
             <div className={styles.btnArea}>
-                <Button
-                    size="medium"
-                    text="수정"
+                <button className={`${buttons.button} ${buttons.short}`}
                     onClick={(event) => handleEditClick(todoList.todoId)}
-                />
-                <Button
-                    size="medium"
-                    text="삭제"
+                >수정</button>
+                <button className={`${buttons.button} ${buttons.short}`}
                     onClick={(event) => handleDeleteClick(todoList.todoId)}
-                />
+                >삭제</button>
             </div>
         </div>
     );

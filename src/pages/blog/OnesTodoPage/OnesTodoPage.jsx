@@ -8,6 +8,7 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import TodoList from 'components/blog/TodoList/TodoList';
 import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
+import buttons from 'assets/styles/common/button.module.css';
 
 /**
  * TODO 페이지
@@ -108,7 +109,7 @@ function OnesTodoPage() {
     };
 
     return (
-        <div className="todoPage todoPage-main container">
+        <div className={styles.container}>
             <div className={styles.nameGrade}>
                 <span className={styles.name}>
                     {data.nickname}
@@ -143,7 +144,7 @@ function OnesTodoPage() {
                                         {arg.dayNumberText}
                                     </div>
                                     <button
-                                        className={styles.addBoard}
+                                        className={`${styles.addBoard} ${buttons.button}`}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             alert(`${currDate} 클릭됨`);
@@ -153,16 +154,18 @@ function OnesTodoPage() {
                                         )}>
                                         +
                                     </button>
-                                    {dateData[currDate]?.map((todo) => (
-                                        <div
-                                            className={styles.registedBoard}
-                                            key={todo.id}
-                                            onClick={() => {
-                                                handleTitleClick(todo.id);
-                                            }}>
-                                            {overTitle(todo.title)}
-                                        </div>
-                                    ))}
+                                    <div className={styles.titleContainer}>
+                                        {dateData[currDate]?.map((todo) => (
+                                            <div
+                                                className={styles.registedBoard}
+                                                key={todo.id}
+                                                onClick={() => {
+                                                    handleTitleClick(todo.id);
+                                                }}>
+                                                {overTitle(todo.title)}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             );
                         }}
@@ -187,9 +190,7 @@ function OnesTodoPage() {
                 </div>
             </div>
             <div className={styles.todoContainer}>
-                {data.exerciseTodoList && (
-                    <TodoList todoList={data.exerciseTodoList} />
-                )}
+                {data.exerciseTodoList && <TodoList todoList={data.exerciseTodoList}/>}
                 {data.menuTodoList && <TodoList todoList={data.menuTodoList} />}
             </div>
         </div>

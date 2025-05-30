@@ -7,7 +7,7 @@ import styles from './CategorySelect.module.css';
  * @param {function} onChange 상태가 바뀔시 호출할 함수 ex) api요청으로 게시물 변경, 단순 select의 value값 변경
  *
  */
-export default function CategorySelect({ options = [], value, onChange }) {
+function CategorySelect({ options = [], value, onChange }) {
     return (
         <select className={styles.select} value={value} onChange={onChange}>
             {options.map((option) => {
@@ -20,3 +20,5 @@ export default function CategorySelect({ options = [], value, onChange }) {
         </select>
     );
 }
+
+export default CategorySelect;

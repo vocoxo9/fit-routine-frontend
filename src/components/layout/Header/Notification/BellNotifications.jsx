@@ -1,5 +1,5 @@
 import styles from './BellNotifications.module.css';
-import button from 'assets/styles/common/button.module.css'
+import button from 'assets/styles/common/button.module.css';
 import Notification from 'components/layout/Header/Notification/Notification';
 import { useEffect, useState } from 'react';
 
@@ -78,7 +78,7 @@ function BellNotifications() {
             </div>
             <div className={styles.bottomArea}>
                 {data.length === 0 ? (
-                    <p>알림이 없습니다.</p>
+                    <p className={styles.p}>알림이 없습니다.</p>
                 ) : (
                     data.map((notice, noticeIndex) => (
                         <Notification

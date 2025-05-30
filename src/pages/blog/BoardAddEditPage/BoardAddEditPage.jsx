@@ -1,13 +1,14 @@
-import Input from 'components/common/Input/Input';
 import { useState } from 'react';
 import styles from './BoardAddEditPage.module.css';
 import CategorySelect from 'components/blog/CategorySelect/CategorySelect';
-import Button from 'components/common/Button/Button';
+import buttons from 'assets/styles/common/button.module.css';
+import inputs from 'assets/styles/common/input.module.css';
+import textareas from 'assets/styles/common/textarea.module.css';
 
 /**
  * 게시물 추가 및 수정 페이지
  */
-export default function BoardAddEditPage() {
+function BoardAddEditPage() {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [content, setContent] = useState('');
@@ -34,8 +35,7 @@ export default function BoardAddEditPage() {
         <div className={styles.pageContainer}>
             <form action={'#'} enctype="multipart/form-data" method="">
                 <div className={styles.formHeader}>
-                    <Input
-                        size="title"
+                    <input className={`${inputs.input} ${inputs.long} ${styles.title}`}
                         placeHolder="*제목을 입력하세요."
                         type="text"
                         value={title}
@@ -50,12 +50,11 @@ export default function BoardAddEditPage() {
                 <div className={styles.attachFile}>
                     <input
                         type="file"
-                        text="파일첨부"
                         className={styles.fileInputBtn}
                         id="fileInput"
                     />
                     <label htmlFor="fileInput">
-                        <Button size="medium" text="파일첨부" type="button" />
+                        <button className={`${buttons.button} ${buttons.short}`} type="button">파일첨부</button>
                     </label>
                     <div className={styles.imgContainer}>
                         <table className={styles.table}>
@@ -78,15 +77,17 @@ export default function BoardAddEditPage() {
                 </div>
 
                 <textarea
-                    className={styles.boardContent}
+                    className={`${styles.boardContent} ${textareas.textarea}`}
                     value={content}
                     onChange={contentHandler}></textarea>
 
                 <div className={styles.btnContainer}>
-                    <Button size="medium" text="등록" />
-                    <Button size="medium" text="취소" />
+                    <button className={`${buttons.button} ${buttons.short}`}>등록</button>
+                    <button className={`${buttons.button} ${buttons.short}`}>취소</button>
                 </div>
             </form>
         </div>
     );
 }
+
+export default BoardAddEditPage;
