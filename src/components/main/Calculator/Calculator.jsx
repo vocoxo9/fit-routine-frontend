@@ -33,6 +33,7 @@ function Calculator() {
     // 입력한 사용자의 정보 (나이, 성별, 신장, 체중)
     const [userData, setUserData] = useState({
         age: '', // 나이
+        age: '', // 나이
         gender: '', // 성별
         height: '', // 신장
         weight: '', // 체중
