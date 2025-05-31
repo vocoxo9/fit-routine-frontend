@@ -42,9 +42,14 @@ function OnesBlogPage() {
 
     useEffect(() => {
         blogDetail();
-    }, []);
+    }, []); // useParams 사용시 nickname 추가
 
-    
+    const handleLikeClick = () => {
+        setBlogLike(prev=>({
+            likeCount: prev.isLiked ? prev.likeCount-1 : prev.likeCount + 1,
+            isLiked:!prev.isLiked,
+        }));
+    }
 
     return (
         <div className={styles.blogContainer}>
@@ -54,7 +59,7 @@ function OnesBlogPage() {
                         <GenderImage gender={blog.gender} />
                         <div className={styles.ownerName}>{blog.nickname}'s Blog</div>
                         <div className={styles.follow}>
-                            <Likes count={blogLike.likeCount} isBig={true} isLiked={blogLike.isLiked} />
+                            <Likes count={blogLike.likeCount} isBig={true} isLiked={blogLike.isLiked} onClick={handleLikeClick}/>
                         </div>
                     </div>
                     <hr></hr>
