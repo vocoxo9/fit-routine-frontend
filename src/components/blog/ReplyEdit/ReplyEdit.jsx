@@ -10,13 +10,18 @@ import { VscEdit } from 'react-icons/vsc';
  * @param {number} replyId 기존 댓글 번호
  * @param {string} nickname 기존 댓글 작성자 닉네임
  * @param {string} gender 기존 댓글 작성자 성별
+ * @param {onClick} onClick 댓글 저장되는 클릭 이벤트
  */
-function ReplyEdit ( {content='', replyId, nickname, gender} ) {
+function ReplyEdit ( {content='', replyId, nickname, gender, onClick} ) {
 
     const [text, setText] = useState(content);
 
     const handleTextarea = (event) => {
         setText(event.target.value);
+    }
+
+    const handleClick = () => {
+        onClick(text);
     }
 
     return (
@@ -33,6 +38,7 @@ function ReplyEdit ( {content='', replyId, nickname, gender} ) {
                 <div className={styles.replyContent}>
                     <textarea className={styles.textarea} value={text} onChange={(event)=>handleTextarea(event)}>
                     </textarea>
+                    <button className={styles.editButton} onClick={handleClick}><VscEdit/></button>
                 </div>
             </div>
             <hr className={styles.horizon} />
