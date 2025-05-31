@@ -13,10 +13,11 @@ import { useEffect, useState } from "react";
  */
 function ReplyInput({ boardId, size, reCommentId=null, addReply }) {
     const [content, setContent] = useState('');
+    const inputRef = useRef(null);
 
     // 버튼 누르면 댓글 입력 요청 및 입력창 초기화 함수
     const replyHandler = async () => {
-        const text = document.getElementById('reply' + reCommentId);
+        const textarea = inputRef.current.value;
 
         // const login = axios-token;
         // if (login) { axios-boardId, reCommentId, content }
@@ -34,7 +35,7 @@ function ReplyInput({ boardId, size, reCommentId=null, addReply }) {
 
     return (
         <div className={`${styles.replyInputContainer} ${styles[size]}`}>
-            <textarea className={styles.replyInput} id={`reply${reCommentId}`} value={content} onChange={e=>setContent(e.target.value)}/>
+            <textarea className={styles.replyInput} ref={inputRef} value={content} onChange={e=>setContent(e.target.value)}/>
             <button className={`${buttons.button} ${styles.inputBtn} ${size && styles.reComment}`} onClick={replyHandler}>
                 <GrSend />
             </button>
