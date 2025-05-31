@@ -18,14 +18,14 @@ function InfoEdit() {
         //     weight : '체중을 올바르게 입력하세요',
         // }
         {
-            nickname : '',
-            password : '',
-            newPassword : '',
-            checkPassword : '',
-            phone : '',
-            height : '',
-            weight : '',
-        }
+            nickname: '',
+            password: '',
+            newPassword: '',
+            checkPassword: '',
+            phone: '',
+            height: '',
+            weight: '',
+        },
     );
 
     return (
@@ -34,32 +34,44 @@ function InfoEdit() {
             <div className={styles.table}>
                 <Info kind="nickName" text="닉네임">
                     <div className={styles.inputArea}>
-                    <input
-                        className={`${input.input} ${input.long}`}
-                        type="text"
-                        id="nickname"
-                        name="nickname"
-                    />
-                    {errors.nickname && 
-                        <p className={`${error.error}`}>{errors.nickname}</p> 
-                    }
+                        <input
+                            className={`${input.input} ${input.long}`}
+                            type="text"
+                            id="nickname"
+                            name="nickname"
+                        />
+                        {errors.nickname && (
+                            <p className={`${error.error}`}>
+                                {errors.nickname}
+                            </p>
+                        )}
                     </div>
                 </Info>
                 <Info kind="password" text="비밀번호">
-                    <div className={styles.inputArea}>
-                        <label className={`${label.label} ${label.input}`} htmlFor="pwd">기존 비밀번호</label>
+                    <div className={`${styles.inputArea} ${styles.container}`}>
+                        <label
+                            className={`${label.label} ${label.input}`}
+                            htmlFor="pwd">
+                            기존 비밀번호
+                        </label>
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
                             id="pwd"
                             name="pwd"
                         />
-                        {errors.password && 
-                            <p className={`${error.error}`}>{errors.password}</p> 
-                        }
+                        {errors.password && (
+                            <p className={`${error.error}`}>
+                                {errors.password}
+                            </p>
+                        )}
                     </div>
-                    <div className={styles.inputArea}>
-                        <label className={`${label.label} ${label.input}`} htmlFor="newPwd">새 비밀번호</label>
+                    <div className={`${styles.inputArea} ${styles.container}`}>
+                        <label
+                            className={`${label.label} ${label.input}`}
+                            htmlFor="newPwd">
+                            새 비밀번호
+                        </label>
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
@@ -67,12 +79,18 @@ function InfoEdit() {
                             name="newPwd"
                             readOnly={true}
                         />
-                        {errors.newPassword && 
-                            <p className={`${error.error}`}>{errors.newPassword}</p> 
-                        }
+                        {errors.newPassword && (
+                            <p className={`${error.error}`}>
+                                {errors.newPassword}
+                            </p>
+                        )}
                     </div>
-                    <div className={styles.inputArea}>
-                        <label className={`${label.label} ${label.input}`} htmlFor="checkPwd">비밀번호 확인</label>
+                    <div className={`${styles.inputArea} ${styles.container}`}>
+                        <label
+                            className={`${label.label} ${label.input}`}
+                            htmlFor="checkPwd">
+                            비밀번호 확인
+                        </label>
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
@@ -80,41 +98,66 @@ function InfoEdit() {
                             name="checkPwd"
                             readOnly={true}
                         />
-                        {errors.checkPassword && 
-                            <p className={`${error.error}`}>{errors.checkPassword}</p> 
-                        }
+                        {errors.checkPassword && (
+                            <p className={`${error.error}`}>
+                                {errors.checkPassword}
+                            </p>
+                        )}
                     </div>
                 </Info>
                 <Info kind="phone" text="휴대폰">
                     <div className={styles.inputArea}>
                         <div className={styles.phoneArea}>
-                            <input className={`${input.input} ${input.short}`} type="tel" id="phone" name="phone" />
-                            <input className={`${input.input} ${input.short}`} type="tel" id="phone" name="phone" />
-                            <input className={`${input.input} ${input.short}`} type="tel" id="phone" name="phone" />
+                            <input
+                                className={`${input.input} ${input.short}`}
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                            />
+                            <input
+                                className={`${input.input} ${input.short}`}
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                            />
+                            <input
+                                className={`${input.input} ${input.short}`}
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                            />
                         </div>
-                        {errors.phone && 
-                            <p className={`${error.error}`}>{errors.phone}</p> 
-                        }
+                        {errors.phone && (
+                            <p className={`${error.error}`}>{errors.phone}</p>
+                        )}
                     </div>
                 </Info>
                 <Info kind="body" text="신장/체중">
-                    <div className={styles.inputArea}>
-                        <label className={`${label.label} ${label.input}`} htmlFor="height">신장</label>
+                    <div className={`${styles.inputArea} ${styles.container}`}>
+                        <label
+                            className={`${label.label} ${label.input}`}
+                            htmlFor="height">
+                            신장
+                        </label>
                         <div className={styles.body}>
                             <input
                                 className={`${input.input} ${input.short}`}
                                 type="number"
                                 id="height"
                                 name="height"
-                                />
+                            />
                             <p className={styles.p}>cm</p>
                         </div>
-                        {errors.height && 
-                            <p className={`${error.error}`}>{errors.height}</p> 
-                        }
+                        {errors.height && (
+                            <p className={`${error.error}`}>{errors.height}</p>
+                        )}
                     </div>
-                    <div className={styles.inputArea}>
-                        <label className={`${label.label} ${label.input}`} htmlFor="weight">체중</label>
+                    <div className={`${styles.inputArea} ${styles.container}`}>
+                        <label
+                            className={`${label.label} ${label.input}`}
+                            htmlFor="weight">
+                            체중
+                        </label>
                         <div className={styles.body}>
                             <input
                                 className={`${input.input} ${input.short}`}
@@ -124,16 +167,20 @@ function InfoEdit() {
                             />
                             <p className={styles.p}>kg</p>
                         </div>
-                        {errors.weight && 
-                            <p className={`${error.error}`}>{errors.weight}</p> 
-                        }
+                        {errors.weight && (
+                            <p className={`${error.error}`}>{errors.weight}</p>
+                        )}
                     </div>
                 </Info>
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btn}>
-                    <button className={`${button.button} ${button.short}`}>수정</button>
-                    <button className={`${button.button} ${button.short}`}>취소</button>
+                    <button className={`${button.button} ${button.short}`}>
+                        수정
+                    </button>
+                    <button className={`${button.button} ${button.short}`}>
+                        취소
+                    </button>
                 </div>
             </div>
         </>

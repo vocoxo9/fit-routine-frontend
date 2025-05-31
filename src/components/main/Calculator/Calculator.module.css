@@ -54,8 +54,11 @@
     display: flex;
 }
 
+.calcContainer {
+    gap : 0.5rem;
+}
+
 .label {
-    margin-right: 0.5rem;
     align-content: center;
 }
 

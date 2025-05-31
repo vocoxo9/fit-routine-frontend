@@ -182,7 +182,7 @@ const SignUpForm = () => {
             </h1>
 
             {/* 이메일 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="email"
@@ -205,7 +205,7 @@ const SignUpForm = () => {
             </div>
 
             {/* 비밀번호 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="password"
@@ -228,7 +228,7 @@ const SignUpForm = () => {
             </div>
 
             {/* 전화번호 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="phoneNumber"
@@ -251,7 +251,7 @@ const SignUpForm = () => {
             </div>
 
             {/* 닉네임 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="nickname"
@@ -274,7 +274,7 @@ const SignUpForm = () => {
             </div>
 
             {/* 생년월일 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="birthdate"
@@ -347,7 +347,7 @@ const SignUpForm = () => {
             </div>
 
             {/* 신장 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="height"
@@ -370,7 +370,7 @@ const SignUpForm = () => {
             </div>
 
             {/* 체중 입력 필드 */}
-            <div>
+            <div className={styles.container}>
                 <label
                     className={`${labelStyles.label}`}
                     htmlFor="weight"

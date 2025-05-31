@@ -139,8 +139,11 @@ function Calculator() {
                 <div className={styles.leftArea}>
                     <form className={styles.inputAreas}>
                         <div className={styles.inputArea}>
-                            <div className={styles.input}>
-                                <label className={`${label.label} ${label.input} ${styles.label}`} htmlFor="age">
+                            <div
+                                className={`${styles.input} ${styles.calcContainer}`}>
+                                <label
+                                    className={`${label.label} ${label.input} ${styles.label}`}
+                                    htmlFor="age">
                                     나이
                                 </label>
                                 <input
@@ -150,15 +153,18 @@ function Calculator() {
                                     name="age"
                                     value={userData.age}
                                     onChange={inputHandler}
-                                    />
+                                />
                             </div>
-                            {errors.age &&
+                            {errors.age && (
                                 <p className={error.error}>{errors.age}</p>
-                            }
+                            )}
                         </div>
                         <div className={styles.inputArea}>
-                            <div className={styles.input}>
-                                <label className={`${label.label} ${label.input} ${styles.label}`} htmlFor="gender">
+                            <div
+                                className={`${styles.input} ${styles.calcContainer}`}>
+                                <label
+                                    className={`${label.label} ${label.input} ${styles.label}`}
+                                    htmlFor="gender">
                                     성별
                                 </label>
                                 <input
@@ -168,15 +174,16 @@ function Calculator() {
                                     name="gender"
                                     value={userData.gender}
                                     onChange={inputHandler}
-                                    />
+                                />
                             </div>
-                            {errors.gender &&
+                            {errors.gender && (
                                 <p className={error.error}>{errors.gender}</p>
-                            }
+                            )}
                         </div>
                         <div className={styles.bodyInputs}>
                             <div className={styles.inputArea}>
-                                <div className={styles.bodyInput}>
+                                <div
+                                    className={`${styles.bodyInput} ${styles.calcContainer}`}>
                                     <label
                                         className={`${label.label} ${label.input} ${styles.label}`}
                                         htmlFor="gender">
@@ -191,12 +198,15 @@ function Calculator() {
                                         onChange={inputHandler}
                                     />
                                 </div>
-                                {errors.height &&
-                                    <p className={error.error}>{errors.height}</p>
-                                }
+                                {errors.height && (
+                                    <p className={error.error}>
+                                        {errors.height}
+                                    </p>
+                                )}
                             </div>
                             <div className={styles.inputArea}>
-                                <div className={styles.bodyInput}>
+                                <div
+                                    className={`${styles.bodyInput} ${styles.calcContainer}`}>
                                     <label
                                         className={`${label.label} ${label.input} ${styles.label}`}
                                         htmlFor="gender">
@@ -209,17 +219,19 @@ function Calculator() {
                                         name="weight"
                                         value={userData.weight}
                                         onChange={inputHandler}
-                                        />
+                                    />
                                 </div>
-                                {errors.weight &&
-                                    <p className={error.error}>{errors.weight}</p>
-                                }
+                                {errors.weight && (
+                                    <p className={error.error}>
+                                        {errors.weight}
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <div className={styles.buttonArea}>
                             <div className={styles.btn}>
                                 <button
-                                    type='button'
+                                    type="button"
                                     className={`${button.button} ${button.short}`}
                                     onClick={calculatorHandler}>
                                     확인
