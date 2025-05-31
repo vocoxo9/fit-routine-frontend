@@ -99,3 +99,7 @@
 .kcalArea {
     align-content: center;
 }
+
+.bold {
+    font-weight: 600;
+}
