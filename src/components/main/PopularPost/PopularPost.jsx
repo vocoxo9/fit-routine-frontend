@@ -8,7 +8,7 @@ function PopularPost() {
     useEffect(() => {
         // const result = 인기글 3개불러오는 api함수
         // setPostData(result);
-    });
+    }, []);
 
     return (
         <>
