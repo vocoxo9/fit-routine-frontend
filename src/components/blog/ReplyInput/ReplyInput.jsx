@@ -36,7 +36,7 @@ function ReplyInput({ boardId, size, reCommentId=null, addReply }) {
 
     return (
         <div className={`${styles.replyInputContainer} ${styles[size]}`}>
-            <textarea className={`${styles.replyInput} ${textarea.textarea}`} ref={inputRef} value={content} onChange={e=>setContent(e.target.value)}/>
+            <textarea className={`${styles.replyInput} ${textarea.textarea}`} ref={inputRef} value={content} onChange={event=>setContent(event.target.value)}/>
             <button className={`${buttons.button} ${styles.inputBtn} ${size && styles.reComment}`} onClick={replyHandler}>
                 <GrSend />
             </button>
