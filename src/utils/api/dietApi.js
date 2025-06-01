@@ -25,7 +25,7 @@ const generateDiets = async () => {
 
 const fetchMenu = async (menuId) => {
     // 임시 API
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 100));
     return {
         name: '샌드위치',
         calorie: 30,
@@ -36,11 +36,13 @@ const fetchMenu = async (menuId) => {
     };
 };
 
-const fetchCategory = async (category, page, pageSize) => {
+// 페이징 추가 필요
+const fetchFoodsByCategory = async (category) => {
     // 임시 API
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    return new Array(pageSize).fill(0).map(() => ({
-        name: '샌드위치',
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    return Array.from({ length: 10 }, (_, index) => ({
+        menuId: index,
+        name: '밥',
         calorie: 30,
         carbohydrate: 10,
         protein: 10,
@@ -49,4 +51,4 @@ const fetchCategory = async (category, page, pageSize) => {
     }));
 };
 
-export { generateDiets, fetchMenu };
+export { generateDiets, fetchMenu, fetchFoodsByCategory };
