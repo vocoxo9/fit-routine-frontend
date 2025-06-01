@@ -46,3 +46,11 @@
     width: 98%;
     margin-left: 1rem;
 }
+
+.editButton {
+    position: absolute;
+    font-size: 4rem;
+    right: 0.5rem;
+    top: 2rem;
+    height: 4.5rem;
+}

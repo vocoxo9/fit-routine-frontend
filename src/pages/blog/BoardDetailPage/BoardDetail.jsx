@@ -87,12 +87,22 @@ function BoardDetail() {
         setBoardLike(makeLikeObject(dummyData.likeCount, dummyData.isLiked));
 
         // axios - boardId와 토큰으로 댓글 목록 요청 해야함
-        setReplyList(dummyReply);
         const list = dummyReply.map((item) => 
             makeLikeObject(item.likeCount, item.isLiked, item.replyId)
         );
+        
         setReplyLikeList(list);
+        setReplyList(dummyReply);
+        
     }, [boardId]);
+
+    useEffect(()=>{
+        const list = replyList.map((item) => 
+            makeLikeObject(item.likeCount, item.isLiked, item.replyId)
+        );
+        
+        setReplyLikeList(list);
+    }, [replyList])
 
     const prevImgHandler = () => {
         const count = imgCount === 0 ? boardData.imgList.length - 1 : imgCount - 1;
@@ -139,6 +149,22 @@ function BoardDetail() {
         );
     };
 
+    // 댓글 수정 완료 후 버튼 클릭시 api 수정요청 및 댓글 리렌더링
+    const changeReply = (id, content) => {
+        
+        const changeList = replyList.map((data)=>{
+            if (data.replyId === id) data.content = content; 
+            return data;
+        });        
+
+        // 추후 댓글 수정 api 작성
+        
+        setReplyList(changeList);
+    }
+
+    const addReply = (content) => {
+        setReplyList(prev=>[...prev,content]);
+    }
 
     return (
         <div className={styles.container}>
@@ -201,7 +227,7 @@ function BoardDetail() {
                 }
             </div>
 
-            <ReplyInput boardId={boardData.boardId}/>
+            <ReplyInput boardId={boardData.boardId} addReply={addReply}/>
 
             <div className={styles.replyListContainer}>
                 {replyList && 
@@ -216,7 +242,9 @@ function BoardDetail() {
                             replyContent={parent.content}
                             reCommentId={parent.reCommentId}
                             like={replyLikeList.find(item=>item.replyId === parent.replyId)}
-                            onClick={() => handleReplyLikeClick(parent.replyId)}
+                            likeOnClick={() => handleReplyLikeClick(parent.replyId)}
+                            changeReply={changeReply}
+                            addReply={addReply}
                         />
                         {parent.child.map(child => (
                         <Reply
@@ -228,7 +256,9 @@ function BoardDetail() {
                             replyContent={child.content}
                             reCommentId={child.reCommentId}
                             like={replyLikeList.find(item=>item.replyId === child.replyId)}
-                            onClick={() => handleReplyLikeClick(child.replyId)}
+                            likeOnClick={() => handleReplyLikeClick(child.replyId)}
+                            changeReply={changeReply}
+                            addReply={addReply}
                         />
                         ))}
                     </div>
