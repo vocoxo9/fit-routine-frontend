@@ -12,15 +12,11 @@ import IntroduceEdit from 'components/blog/IntroduceEdit/IntroduceEdit';
  */
 function Introduce({intro}) {
     const [isEditClick, setIsEditClick] = useState(false);
-    const [introduce, setIntroduce] = useState('');
+    const [introduce, setIntroduce] = useState(intro);
 
     const handleEditClick = () => {
         setIsEditClick(true);
     }
-
-    useEffect(()=>{
-        setIntroduce(intro);
-    }, [intro]);
 
     // 소개글 수정 후 수정버튼까지 클릭했을때
     const handleEditCompleteClick = (content) => {
