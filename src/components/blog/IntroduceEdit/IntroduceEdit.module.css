@@ -1,0 +1,21 @@
+.container {
+    display: inline-block;
+    width: 100%;
+}
+
+.introduceText {
+    display: inline-block;
+    width: 100%;
+    height: 7rem;
+    text-align: center;
+}
+
+.buttonArea {
+    padding-left: 15rem;
+    margin-top: 0.1rem;
+}
+
+.buttonArea button {
+    width: 4rem;
+    margin-left: 0.5rem;
+}
