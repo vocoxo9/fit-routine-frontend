@@ -1,8 +1,12 @@
 import styles from './PasswordConfirmModal.module.css';
 import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
+import error from 'assets/styles/common/error.module.css';
+import { useState } from 'react';
 
-function PasswordConfirmModal () {
+function PasswordConfirmModal ({ email, password }) {
+    const [data, setData] = useState('');
+
     return (
         <div className={styles.modal}>
             <div className={styles.titleArea}>
@@ -14,9 +18,23 @@ function PasswordConfirmModal () {
                 </div>
             </div>
             <form className={styles.content}>
-                <input className={`${input.input} ${styles.long} ${styles.readonly}`} type="text" value='회원의 아이디' readOnly/>
-                <input className={`${input.input} ${styles.long}`} type="password" />
-                <button className={`${button.button} ${button.long}`}>확인</button>
+                <input 
+                    className={`${input.input} ${styles.long} ${styles.readonly}`} 
+                    type="text" 
+                    value={email} 
+                    readOnly
+                />
+                <input 
+                    className={`${input.input} ${styles.long}`} 
+                    type="password" 
+                    onChange={(event) => event.target.value}
+                />
+                <button 
+                    type="button"
+                    className={`${button.button} ${button.long}`}
+                >
+                    확인
+                </button>
             </form>
         </div>
     );
