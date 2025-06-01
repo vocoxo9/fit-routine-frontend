@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getRoutineMvpUser } from 'utils/api/mainApi.js';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -20,8 +21,29 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
  * @param {string[]} [props.colors] - 각 항목의 색상
  */
 function BarChart() {
+    const [mvpData, setMvpData] = useState(
+        {won: '', second: '', third: ''}
+    );
+
+    useEffect( () => {
+        const fetchMvpData = async () => {
+            // 루틴 테이블에서 아이디 별로 그룹화한 것 중에 수가 가장 많은
+            // 3개의 아이디를 구해서 해당 회원의 닉네임 가져오는 함수
+            const result = await getRoutineMvpUser();
+            alert(result);
+            setMvpData (result);
+            
+            // 임시 처리
+            setMvpData(
+                {won: '다이어트는 내일부터', second: '홍길동', third: '내가 임마'}
+            );
+        };
+
+        fetchMvpData();
+    }, []);
+
     const data = {
-        labels: ['다이어트는 내일부터', '홍길동', '내가 임마'],
+        labels: [mvpData.won, mvpData.second, mvpData.third],
         datasets: [
             {
                 label: 'Data',
