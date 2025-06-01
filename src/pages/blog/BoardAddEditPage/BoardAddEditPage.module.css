@@ -40,6 +40,8 @@
     width: 100%;
     height: 100%;
     table-layout: fixed;
+    border-spacing: 0 0.5rem;
+    border-collapse: separate;
 }
 
 .table td {
@@ -77,3 +79,11 @@
 .boardContent:read-only {
     background-color: #d9d9d9;
 }
+
+.btnContainer {
+    display: flex;
+    margin-top: 1rem;
+    justify-content: end;
+    gap: 1rem;
+}
+
