@@ -7,8 +7,37 @@ import textareas from 'assets/styles/common/textarea.module.css';
 
 /**
  * 게시물 추가 및 수정 페이지
+ * 
+ * @param {number} [boardId] 수정 페이지로써 사용될 경우 게시물 번호
  */
-function BoardAddEditPage() {
+function BoardAddEditPage(
+    boardId, //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
+) {
+    /*
+    const dummyData = {
+        imgList : [
+            {
+                src: 'jae3.jpg',
+            },
+            {
+                src: 'jae4.jpg',
+            },
+            {
+                src: 'jae5.jpg',
+            },
+        ],
+        title : '운동 인증을 하는 이유',
+        content : '안녕하세요, 김일현입니다.' +
+            '저는 소통과 협업을 중시하는 개발자로,' +
+            '팀워크 속에서 성장하는 것을 즐깁니다.\n현재는 React, ' +
+            'Node.js 기반의 웹 개발에 주력하고 있으며, 사용자 중심의 UI/UX ' +
+            '설계에도 많은 관심을 가지고 있습니다. \n새로운 기술에 대한 호기심이' +
+            ' 많아 꾸준히 학습하고, 문제 해결을 위해 논리적으로 사고하려 노력합니다.' +
+            ' \n틈틈이 운동을 하며 건강도 챙기고, 다양한 사람들과의 교류를 통해 시야를 넓히고 있습니다.',
+        boardId : 1,
+    }; 
+    */
+
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [content, setContent] = useState('');
@@ -59,9 +88,7 @@ function BoardAddEditPage() {
                     <div className={styles.imgContainer}>
                         <table className={styles.table}>
                             <tr>
-                                <td>
-                                    <img src="/jae3.jpg" />
-                                </td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
