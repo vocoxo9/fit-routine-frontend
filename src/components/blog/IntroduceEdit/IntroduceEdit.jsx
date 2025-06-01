@@ -1,6 +1,6 @@
 import styles from './IntroduceEdit.module.css';
 import buttons from 'assets/styles/common/button.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import textarea from 'assets/styles/common/textarea.module.css';
 
 /**
