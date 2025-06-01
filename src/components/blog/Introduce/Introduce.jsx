@@ -1,7 +1,7 @@
 import { VscEdit } from 'react-icons/vsc';
 import styles from './Introduce.module.css';
 import buttons from 'assets/styles/common/button.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import IntroduceEdit from 'components/blog/IntroduceEdit/IntroduceEdit';
 
 /**
