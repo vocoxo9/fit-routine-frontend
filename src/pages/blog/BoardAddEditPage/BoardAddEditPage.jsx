@@ -10,9 +10,9 @@ import textareas from 'assets/styles/common/textarea.module.css';
  * 
  * @param {number} [boardId] 수정 페이지로써 사용될 경우 게시물 번호
  */
-function BoardAddEditPage(
+function BoardAddEditPage({
     boardId, //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
-) {
+}) {
     /*
     const dummyData = {
         imgList : [
