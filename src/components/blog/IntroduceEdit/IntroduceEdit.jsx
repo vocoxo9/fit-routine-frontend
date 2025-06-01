@@ -12,11 +12,7 @@ import textarea from 'assets/styles/common/textarea.module.css';
  */
 function IntroduceEdit({introduce, onClick, cancelClick}) {
 
-    const [intro, setIntro] = useState();
-
-    useEffect(()=>{
-        setIntro(introduce);
-    },[introduce]);
+    const [intro, setIntro] = useState(introduce);
 
     const handleEditClick = () => {
         onClick(intro);
