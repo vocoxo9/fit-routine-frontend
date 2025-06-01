@@ -82,6 +82,11 @@
     font-size: 0.875rem;
 }
 
+.addBoard button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
 .titleContainer {
     margin-top: 1rem;
 }

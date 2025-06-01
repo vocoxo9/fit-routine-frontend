@@ -1,9 +1,3 @@
-button:disabled {
-    background-color: #ccc;
-    opacity: 0.6;
-    cursor: default;
-}
-
 /* 날짜 셀의 스타일을 position: relative로 설정 */
 .fc-daygrid-day {
     position: relative; /* 날짜 숫자가 이 컨테이너를 기준으로 배치될 수 있도록 */

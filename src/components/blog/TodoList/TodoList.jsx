@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { calcTotalCalorie, calcTotalPeriod } from 'utils/helpers/calculator';
 import styles from './TodoList.module.css';
 import buttons from 'assets/styles/common/button.module.css';
 
@@ -13,8 +14,7 @@ function TodoList({ todoList }) {
         calorie: 0,
         period: 0,
     });
-    const startAt = todoList.startAt;
-    const endAt = todoList.endAt;
+    const { startAt, endAt } = todoList;
 
     const changeHeader = (category) => {
         category === 'menu' ? setHeader('식단') : setHeader('운동');
@@ -24,27 +24,6 @@ function TodoList({ todoList }) {
         return todoList.category === 'menu'
             ? ` ${item.name}`
             : `${item.name}(${item.met}kcal)`;
-    };
-
-    const calcTotalCalorie = (prop) => {
-        let sum = 0;
-        if (prop.category === 'menu') {
-            prop.list.forEach((element) => {
-                sum += element.calorie;
-            });
-        } else if (prop.category == 'exercise') {
-            prop.list.forEach((element) => {
-                sum += element.met;
-            });
-        }
-        return sum;
-    };
-
-    const calcTotalPeriod = (startAt, endAt) => {
-        const end = new Date(endAt);
-        const start = new Date(startAt);
-        const diff = end - start;
-        return Math.floor(diff / (1000 * 60 * 60 * 24));
     };
 
     const handleEditClick = (todoId) => {
