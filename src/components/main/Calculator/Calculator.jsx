@@ -134,10 +134,10 @@ function Calculator() {
     return (
         <div className={styles.border}>
             <div className={styles.title}>
-                <div style={{ fontSize: '4rem' }}>
+                <div className={styles.calIcon}>
                     <FcCalculator />
-                </div> className={styles.bold}
-                <div>일일 권장 섭취량 계산기</div>
+                </div>
+                <div className={styles.bold}>일일 권장 섭취량 계산기</div>
             </div>
             <div className={styles.container}>
                 <div className={styles.leftArea}>
