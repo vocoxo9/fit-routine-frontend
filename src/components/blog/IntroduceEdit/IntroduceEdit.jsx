@@ -1,4 +1,3 @@
-import { VscEdit } from 'react-icons/vsc';
 import styles from './IntroduceEdit.module.css';
 import buttons from 'assets/styles/common/button.module.css';
 import { useEffect, useState } from 'react';
