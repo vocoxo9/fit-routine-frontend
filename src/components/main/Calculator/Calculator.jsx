@@ -6,6 +6,7 @@ import label from 'assets/styles/common/label.module.css';
 import DoughnutChart from 'components/common/DoughnutChart/DoughnutChart';
 import { FcCalculator } from 'react-icons/fc';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // 유효성 검사
 const checkForm = (FormData) => {
@@ -267,11 +268,13 @@ function Calculator() {
                     </div>
                     <div className={styles.buttonArea}>
                         <div className={styles.btn}>
-                            <button
-                                className={`${button.button} ${button.bold}`}
-                                onClick={handleNavigateFoodRecommend}>
-                                루틴 추천 받으러 가기
-                            </button>
+                            <Link to='food'>
+                                <button
+                                    className={`${button.button} ${button.bold}`}
+                                    onClick={handleNavigateFoodRecommend}>
+                                    루틴 추천 받으러 가기
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,20 @@ import InfoEdit from './InfoEdit';
 function MyPageForm() {
     const [activeTab, setActiveTab] = useState('profile'); // 기본값: profile
 
+    const [isEdit, setIsEdit] = useState(false);
+
+    const handleClickProfileTab = () => {
+        if (!isEdit) {
+            setActiveTab('profile');
+        }
+    };
+
+    const handleClickLikeListTab = () => {
+        if (!isEdit) {
+            setActiveTab('likeList');
+        }
+    };
+
     return (
         <>
             <div>
@@ -14,20 +28,23 @@ function MyPageForm() {
                     <div
                         className={`${styles.profile} 
                     ${activeTab === 'profile' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('profile')}>
+                        onClick={handleClickProfileTab}>
                         회원 정보
                     </div>
                     <div className={styles.between}></div>
                     <div
                         className={`${styles.likeList} 
                         ${activeTab === 'likeList' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('likeList')}>
+                        onClick={handleClickLikeListTab}>
                         관심 목록
                     </div>
                 </div>
                 <div className={styles.content}>
-                    {activeTab === 'profile' ? <Profile /> : <LikeList />}
-                    {/* <InfoEdit /> */}
+                    {/* {activeTab === 'profile' ? <Profile /> : <LikeList />}
+                    <InfoEdit /> */}
+                    {
+                        isEdit === false ? (activeTab ==='profile' ? <Profile setIsEdit={setIsEdit} /> : <LikeList />) : <InfoEdit />
+                    }
                 </div>
             </div>
         </>

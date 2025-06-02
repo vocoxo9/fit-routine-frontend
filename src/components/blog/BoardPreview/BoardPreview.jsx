@@ -2,6 +2,7 @@ import Likes from 'components/common/Likes/Likes';
 import styles from './BoardPreview.module.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 /**
  * 게시물 카드 형식 미리보기 컴포넌트
@@ -35,7 +36,7 @@ function BoardPreview({
 
     // 게시물 클릭시 해당 게시물 상세 정보 페이지 이동
     const handleBoardClick = (boardId) => {
-        // navigate('/board/detail?boardId='+boardId);
+        navigate('/board/detail/' + boardId);
     };
 
     // 미리보기에 표시할 제목이 너무 길면 ...으로 축약

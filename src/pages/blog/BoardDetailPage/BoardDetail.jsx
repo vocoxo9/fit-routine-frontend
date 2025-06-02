@@ -8,7 +8,7 @@ import buttons from 'assets/styles/common/button.module.css';
 import Likes from 'components/common/Likes/Likes';
 import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
 import Reply from 'components/blog/Reply/Reply';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 /**
  * 게시물 상세 정보 페이지
@@ -116,7 +116,7 @@ function BoardDetail() {
 
     // 수정 클릭시 해당 게시물에대한 수정 페이지로 이동 함수
     const boardEditHandler = () => {
-        // navigate('/board/edit?boardId='+boardId);
+        navigate('/board/edit/' + boardId);
     };
 
     // 삭제 클릭시 삭제 여부 + 삭제 api 요청 함수
@@ -175,12 +175,18 @@ function BoardDetail() {
                         <div className={styles.editBtns}>
                             <button className={`${buttons.button} ${buttons.short}`}
                                 onClick={boardEditHandler}
-                            >수정</button>
+                            >
+                                수정
+                            </button>
                         </div>
                         <div className={styles.deleteBtns}>
-                            <button className={`${buttons.button} ${buttons.short}`}
-                                onClick={boardDeleteHandler}
-                            >삭제</button>
+                            <Link to='/board'>
+                                <button className={`${buttons.button} ${buttons.short}`}
+                                    onClick={boardDeleteHandler}
+                                >
+                                    삭제
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

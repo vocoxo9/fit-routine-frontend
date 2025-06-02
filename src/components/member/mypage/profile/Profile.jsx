@@ -7,8 +7,9 @@ import ProFileInfo from 'components/common/Info/ProfileInfo';
 import { getUserProfile } from 'utils/api/profileApi.js';
 import { useEffect, useState } from 'react';
 import PasswordConfirmModal from 'components/member/mypage/ReSign/PasswordCofirmModal';
+import { Link } from 'react-router-dom';
 
-function Profile() {
+function Profile({setIsEdit}) {
     // 모달창을 띄우는 상태
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -78,7 +79,9 @@ function Profile() {
             <div className={styles.buttons}>
                 <div className={styles.editBtn}>
                     <button
-                        className={`${button.button} ${button.short}`}>
+                        className={`${button.button} ${button.short}`}
+                        onClick={() => setIsEdit(true)}
+                        >
                         수정
                     </button>
                 </div>

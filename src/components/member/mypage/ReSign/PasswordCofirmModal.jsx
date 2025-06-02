@@ -3,6 +3,7 @@ import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function PasswordConfirmModal ({ email, password }) {
     const [data, setData] = useState('');
@@ -29,12 +30,14 @@ function PasswordConfirmModal ({ email, password }) {
                     type="password" 
                     onChange={(event) => event.target.value}
                 />
-                <button 
-                    type="button"
-                    className={`${button.button} ${button.long}`}
-                >
-                    확인
-                </button>
+                <Link to='/resign'>
+                    <button 
+                        type="button"
+                        className={`${button.button} ${button.long}`}
+                        >
+                        확인
+                    </button>
+                </Link>
             </form>
         </div>
     );
