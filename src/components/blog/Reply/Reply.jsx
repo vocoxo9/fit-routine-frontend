@@ -2,6 +2,7 @@ import GenderImage from 'components/common/GenderImage/GenderImage';
 import Likes from 'components/common/Likes/Likes';
 import { VscEdit, VscIndent, VscTrash } from 'react-icons/vsc';
 import ReplyInput from '../ReplyInput/ReplyInput';
+import { calcDay } from 'utils/helpers/calculator';
 import styles from './Reply.module.css';
 import { useRef, useState } from 'react';
 import ReplyEdit from '../ReplyEdit/ReplyEdit';
@@ -33,13 +34,6 @@ function Reply({
 }) {
     const replyInputRef = useRef(null);
     const [editIsClicked, setEditIsClicked] = useState(false);
-
-
-    const calcDay = (date) => {
-        const now = new Date();
-        const day = now - date;
-        return Math.floor(day / (1000 * 60 * 60 * 24));
-    }
 
     // 댓글 달기 눌렀을때 댓글 입력칸 나오도록
     const showReplyInput = () => {

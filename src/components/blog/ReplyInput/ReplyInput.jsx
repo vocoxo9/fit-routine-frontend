@@ -1,7 +1,7 @@
 import { GrSend } from "react-icons/gr";
 import styles from './ReplyInput.module.css';
 import buttons from 'assets/styles/common/button.module.css';
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import textarea from 'assets/styles/common/textarea.module.css';
 
 /**
