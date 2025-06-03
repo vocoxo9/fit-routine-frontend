@@ -27,6 +27,12 @@
     display: none;
 }
 
+.attachButton {
+    display: inline-block;
+    text-align: center;
+    align-content: center;
+}
+
 .imgContainer {
     margin-top: 0.01rem;
     width: 100%;
