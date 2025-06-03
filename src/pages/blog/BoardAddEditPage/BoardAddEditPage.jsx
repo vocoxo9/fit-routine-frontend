@@ -4,6 +4,7 @@ import CategorySelect from 'components/blog/CategorySelect/CategorySelect';
 import buttons from 'assets/styles/common/button.module.css';
 import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -11,8 +12,10 @@ import textareas from 'assets/styles/common/textarea.module.css';
  * @param {number} [boardId] 수정 페이지로써 사용될 경우 게시물 번호
  */
 function BoardAddEditPage({
-    boardId, //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
+    buttonText, 
+    //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
 }) {
+    const {boardId} = useParams(); 
     /*
     const dummyData = {
         imgList : [
@@ -37,6 +40,7 @@ function BoardAddEditPage({
         boardId : 1,
     }; 
     */
+    const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
@@ -109,8 +113,21 @@ function BoardAddEditPage({
                     onChange={contentHandler}></textarea>
 
                 <div className={styles.btnContainer}>
-                    <button className={`${buttons.button} ${buttons.short}`}>등록</button>
-                    <button className={`${buttons.button} ${buttons.short}`}>취소</button>
+                    <button 
+                        type='button'
+                        className={`${buttons.button} ${buttons.short}`}
+                        onClick={() => navigate('/board/detail/' + boardId)}
+                    >
+                        {buttonText}
+                    </button>
+                    <button 
+                        type='button'   // form으로 둘러쌓여 있어서
+                                        // submit으로 적용되어 임시로 type='button'추가
+                        className={`${buttons.button} ${buttons.short}`}
+                        onClick={() => navigate(-1)}
+                    >
+                        취소
+                    </button>
                 </div>
             </form>
         </div>

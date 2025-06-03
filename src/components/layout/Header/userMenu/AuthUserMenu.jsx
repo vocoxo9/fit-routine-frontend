@@ -17,22 +17,20 @@ export default function AuthUserMenu() {
             <button className={styles.button}>로그아웃</button>
 
             <div className={styles.icons}>
-                <Link to="#">
+                <Link to="mypage">
                     <FaUser className={styles.icon} />
                 </Link>
-                <Link to="#">
-                    <div>
-                        <FaBell
-                            className={styles.icon}
-                            onClick={handleNOtificationOpen}
-                        />
-                        <span className={styles.notification}>33</span>
-                        <div
-                            className={`${styles.bellNotifications} ${isOpen ? '' : styles.hide}`}>
-                            <BellNotifications />
-                        </div>
+                <div>
+                    <FaBell
+                        className={styles.icon}
+                        onClick={handleNOtificationOpen}
+                    />
+                    <span className={styles.notification}>33</span>
+                    <div
+                        className={`${styles.bellNotifications} ${isOpen ? '' : styles.hide}`}>
+                        <BellNotifications />
                     </div>
-                </Link>
+                </div>
             </div>
         </div>
     );

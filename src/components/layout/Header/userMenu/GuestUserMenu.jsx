@@ -6,7 +6,7 @@ function GuestUserMenu() {
     return (
         <div className={styles.headerRight}>
             <button className={styles.button} >로그인</button>
-            <Link to="#">
+            <Link to="/signUp">
                 <p>회원가입</p>
             </Link>
         </div>
