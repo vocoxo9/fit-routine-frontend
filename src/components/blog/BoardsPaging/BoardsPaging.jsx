@@ -73,8 +73,8 @@ function BoardsPaging({
     const fetchBoardsByNickname = async (pageNum) => {
         if (!nickname) return;
         // const res = await axios.get('/api/boards/user');
-        // setBoardList(res.data.boardList);   // 게시물 목록
-        // setTotalPages(res.data.totalPages); // 전체 페이지 수
+        setBoardList(tempboardList); // 서버가 보내준 게시물 6개
+        setTotalPages(2); // 서버가 보내준 전체 페이지 수
     };
 
     // order,category값으로 전체 게시물 api요청 후 상태 저장
