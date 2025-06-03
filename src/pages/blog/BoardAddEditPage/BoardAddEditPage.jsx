@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
  */
 function BoardAddEditPage() {
 
-    const { boardId } = useParams(); //<Route path="/blog/board/addEdit/:boardId" element={<AddEditPage />} />
+    const { boardId } = 1; //<Route path="/blog/board/addEdit/:boardId" element={<AddEditPage />} />
     const [boardData, setBoardData] = useState({
         title:'',
         category:'muscle',
@@ -105,15 +105,16 @@ function BoardAddEditPage() {
     }
 
     useEffect(()=>{
-        if(!boardId) return;
-        
+
         async function fetchData() {
             const data = fetchBoardDataByBoardId(boardId);
             setBoardData(data.boardData);
             setImages(data.imgList);
         }
-        fetchData();
-    }, []);
+        if (boardId) {
+            fetchData();
+        }
+        }, []);
 
 
     const titleHandler = (e) => {
@@ -150,7 +151,9 @@ function BoardAddEditPage() {
         formData.append('content', boardData.content);
 
         images.forEach((image) => {
-            formData.append('images', image);
+            if(image instanceof File) {
+                formData.append('images', image);
+            }
         });
 
         // 수정 목적일경우 boardId 추가
@@ -172,6 +175,9 @@ function BoardAddEditPage() {
         }
         saveBoard();
         */
+        formData.forEach((value, key) => {
+        console.log(key + ':', value);
+        });
 
     }
 
@@ -224,7 +230,7 @@ function BoardAddEditPage() {
                                         <td key={col}>
                                             {file && (
                                             <img
-                                                src={URL.createObjectURL(file)}
+                                                src={typeof file === 'string' ? file : URL.createObjectURL(file)}
                                                 alt={`image-${index}`}
                                                 className={styles.previewImg}
                                             />
