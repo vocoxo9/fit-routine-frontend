@@ -185,10 +185,6 @@ function BoardAddEditPage({
         */
     }
 
-    const handleCancelClick = (event) => {
-        // navigate(-1);
-    }
-
     return (
         <div className={styles.pageContainer}>
             <div>
