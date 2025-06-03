@@ -5,14 +5,17 @@ import buttons from 'assets/styles/common/button.module.css';
 import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 /**
  * 게시물 추가 및 수정 페이지
  */
-function BoardAddEditPage() {
 
-    const { boardId } = 1; //<Route path="/blog/board/addEdit/:boardId" element={<AddEditPage />} />
+function BoardAddEditPage({
+    buttonText, 
+    //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
+}) {
+    const {boardId} = useParams();
     const [boardData, setBoardData] = useState({
         title:'',
         category:'muscle',
@@ -24,6 +27,11 @@ function BoardAddEditPage() {
         imageError: '',
         contentError: '',
     });
+  
+    const navigate = useNavigate();
+    const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
+    const [content, setContent] = useState('');
 
     const options = [
         { label: '근육 증진', value: 'muscle' },
@@ -175,15 +183,10 @@ function BoardAddEditPage() {
         }
         saveBoard();
         */
-        formData.forEach((value, key) => {
-        console.log(key + ':', value);
-        });
-
     }
 
     const handleCancelClick = (event) => {
-        // navigate(-1)
-        alert('뒤로가기!');
+        // navigate(-1);
     }
 
     return (
@@ -257,12 +260,22 @@ function BoardAddEditPage() {
                 }
 
                 <div className={styles.btnContainer}>
-                    <button className={`${buttons.button} ${buttons.short}`}
-                        onClick={handleSubmitClick}
-                    >등록</button>
-                    <button className={`${buttons.button} ${buttons.short}`}
-                        onClick={event => handleCancelClick(event)}
-                    >취소</button>
+
+                    <button 
+                        type='button'
+                        className={`${buttons.button} ${buttons.short}`}
+                        onClick={() => navigate('/board/detail/' + boardId)}
+                    >
+                        {buttonText}
+                    </button>
+                    <button 
+                        type='button'   // form으로 둘러쌓여 있어서
+                                        // submit으로 적용되어 임시로 type='button'추가
+                        className={`${buttons.button} ${buttons.short}`}
+                        onClick={() => navigate(-1)}
+                    >
+                        취소
+                    </button>
                 </div>
             </div>
         </div>

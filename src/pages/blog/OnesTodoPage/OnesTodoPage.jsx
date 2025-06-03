@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -143,17 +143,19 @@ function OnesTodoPage() {
                                     <div className={styles.dateNum}>
                                         {arg.dayNumberText}
                                     </div>
-                                    <button
-                                        className={`${styles.addBoard} ${buttons.button}`}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            alert(`${currDate} 클릭됨`);
-                                        }}
-                                        disabled={isOverBoard(
-                                            dateData[currDate] || [],
-                                        )}>
-                                        +
-                                    </button>
+                                    <Link to='/board/add'>
+                                        <button
+                                            className={`${styles.addBoard} ${buttons.button}`}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                alert(`${currDate} 클릭됨`);
+                                            }}
+                                            disabled={isOverBoard(
+                                                dateData[currDate] || [],
+                                            )}>
+                                            +
+                                        </button>
+                                    </Link>
                                     <div className={styles.titleContainer}>
                                         {dateData[currDate]?.map((todo) => (
                                             <div

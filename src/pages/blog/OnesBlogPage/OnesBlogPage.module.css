@@ -54,3 +54,9 @@
     margin-top: 6rem;
     margin-bottom: 10rem;
 }
+
+.loadingMsg {
+    font-size: 2rem;
+    text-align: center;
+    margin: 10rem 0;
+}

@@ -21,19 +21,19 @@ export default function Header() {
                             <Link to="/">HOME</Link>
                         </li>
                         <li className={styles.menuItem}>
-                            <Link to="#">식단 추천</Link>
+                            <Link to="/food">식단 추천</Link>
                         </li>
                         <li className={styles.menuItem}>
-                            <Link to="#">운동 추천</Link>
+                            <Link to="/exercise">운동 추천</Link>
                         </li>
                         <li className={styles.menuItem}>
-                            <Link to="#">Blog</Link>
+                            <Link to="/board">Blog</Link>
                             <ul className={styles.subMenu}>
                                 <li>
-                                    <Link to="#">내 블로그</Link>
+                                    <Link to="/blog">내 블로그</Link>
                                 </li>
                                 <li>
-                                    <Link to="#">내 TodoList</Link>
+                                    <Link to="/todo">내 TodoList</Link>
                                 </li>
                             </ul>
                         </li>

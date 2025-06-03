@@ -32,7 +32,8 @@ const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
                             checked={checkedItems.includes(exercise.id)}
                             onChange={() => handleCheckBoxClick(exercise.id)}
                         />
-                        <label className={label.label}
+                        <label
+                            className={`${label.label} ${styles.label}`}
                             htmlFor={`${data.dayNo}_${exercise.id}`}>
                             {exercise.name}
                         </label>
@@ -41,7 +42,10 @@ const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick }) => {
             </div>
 
             <div className={styles.formRight}>
-                <button className={`${button.button} ${styles.plusBtn}`} onClick={onClick}>
+                <button
+                    type="button"
+                    className={`${button.button} ${styles.plusBtn}`}
+                    onClick={onClick}>
                     +
                 </button>
             </div>

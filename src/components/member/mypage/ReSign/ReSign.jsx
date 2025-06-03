@@ -6,6 +6,7 @@ import input from 'assets/styles/common/input.module.css';
 import textarea from 'assets/styles/common/textarea.module.css';
 import button from 'assets/styles/common/button.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
+import { Link } from 'react-router-dom';
 
 function ReSign() {
     const [info, setInfo] = useState({
@@ -93,14 +94,18 @@ function ReSign() {
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btns}>
-                    <button 
-                        className={`${button.button} ${styles.smallBtn}`}>
-                        회원 탈퇴
-                    </button>
-                    <button 
-                        className={`${button.button} ${styles.smallBtn}`}>
-                        탈퇴 취소
-                    </button>
+                    <Link to='/'>
+                        <button 
+                            className={`${button.button} ${styles.smallBtn}`}>
+                            회원 탈퇴
+                        </button>
+                    </Link>
+                    <Link to='/mypage'>
+                        <button 
+                            className={`${button.button} ${styles.smallBtn}`}>
+                            탈퇴 취소
+                        </button>
+                    </Link>
                 </div>
             </div>
         </>

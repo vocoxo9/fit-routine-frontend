@@ -5,6 +5,7 @@
 
 .headerContainer a {
     text-decoration: none;
+    margin-bottom: 3rem;
 }
 
 .headerContainer p {
@@ -163,7 +164,6 @@
     top: 35px;
     width: 100%;
     padding: 0;
-    background-color: #fff;
     opacity: 0;
     visibility: hidden;
     transform: translateY(50px);
