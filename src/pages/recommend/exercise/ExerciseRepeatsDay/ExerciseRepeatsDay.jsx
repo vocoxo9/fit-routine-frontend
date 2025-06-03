@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay.module.css';
 import input from 'assets/styles/common/input.module.css';
+import label from 'assets/styles/common/label.module.css';
 import error from 'assets/styles/common/error.module.css';
 import form from 'assets/styles//common/form.module.css';
 import button from 'assets/styles/common/button.module.css';
@@ -38,10 +39,10 @@ function ExerciseRepeatsDay() {
     };
 
     return (
-        <div className={`${form.form} ${styles.form}`}>
+        <form className={`${form.form} ${styles.form}`}>
             <h1 className={styles.title}>반복일</h1>
             {repeatDay.map((day, index) => (
-                <label key={`${day}_${index}`} className={styles.container}>
+                <label className={`${label.label} ${styles.container}`} key={`${day}_${index}`} >
                     <span className={styles.dayNo}>{day}일 반복</span>
                     <input
                         type="radio"
@@ -60,7 +61,7 @@ function ExerciseRepeatsDay() {
                 onClick={handleSubmit}>
                 다음
             </button>
-        </div>
+        </form>
     );
 }
 export default ExerciseRepeatsDay;
