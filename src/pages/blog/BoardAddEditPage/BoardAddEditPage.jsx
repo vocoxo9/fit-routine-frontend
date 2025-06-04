@@ -153,16 +153,12 @@ function BoardAddEditPage({
 
         if(!isImageValid || !isTitleValid || !isContentValid) return;
 
-        const formData = new FormData();
-        formData.append('title', boardData.title);
-        formData.append('category', boardData.category);
-        formData.append('content', boardData.content);
-
-        images.forEach((image) => {
-            if(image instanceof File) {
-                formData.append('images', image);
-            }
-        });
+        const formData = {
+            title: boardData.title,
+            category: boardData.category,
+            content: boardData.content,
+            images: images.filter(image => image instanceof File)
+        }
 
         // 수정 목적일경우 boardId 추가
         if (boardId) {
