@@ -74,7 +74,7 @@ const getValidationErrors = async (formData) => {
     return errors;
 };
 
-const RecommendForm = () => {
+const RecommendForm = ({ title }) => {
     const [formData, setFormData] = useState({
         purpose: '',
         startDate: '',
@@ -129,7 +129,7 @@ const RecommendForm = () => {
     return (
         <form className={`${formStyles.form} ${formStyles.common}`}>
             <h1 className={styles.title}>
-                식단 추천 정보
+                {title}
             </h1>
 
             {/* 목적 선택 필드 */}
