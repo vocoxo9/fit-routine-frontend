@@ -198,7 +198,7 @@ function BoardAddEditPage({
                         onChange={categoryHandler}
                     />
                 </div>
-                {error.titleError.length > 0 && 
+                {error.titleError && 
                         <p className={`${errors.error}`}>{error.titleError}</p>
                 }
 
@@ -240,7 +240,7 @@ function BoardAddEditPage({
                         </table>
                     </div>
                 </div>
-                {error.imageError.length > 0 && 
+                {error.imageError && 
                         <p className={`${errors.error}`}>{error.imageError}</p>
                 }
 
@@ -248,7 +248,7 @@ function BoardAddEditPage({
                     className={`${styles.boardContent} ${textareas.textarea}`}
                     value={boardData.content}
                     onChange={contentHandler}></textarea>
-                {error.contentError.length > 0 && 
+                {error.contentError && 
                     <p className={`${errors.error}`}>{error.contentError}</p>
                 }
 
