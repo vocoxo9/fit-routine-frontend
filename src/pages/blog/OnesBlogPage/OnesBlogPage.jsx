@@ -5,7 +5,7 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
-import { getBlogDetailByMemberId } from 'utils/api/blogApi';
+import { getBlogDetailByMemberId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
 import { useParams } from 'react-router-dom';
 
 /**
@@ -28,22 +28,30 @@ function OnesBlogPage() {
         });
         setBlogLike({
             likeCount:data.likeCount,
-            isLiked:data.liked,
+            isLiked:data.liked===1?true:false,
         });
     };
 
     useEffect(() => {
         blogDetail();
-    }, []); // useParams 사용시 nickname 추가
+    }, [memberId]); 
 
-    const handleLikeClick = () => {
-        setBlogLike(prev => ({
-            likeCount: prev.isLiked ?
-                prev.likeCount - 1 :
-                prev.likeCount + 1,
+    const handleLikeClick = async () => {
+        const prev = blogLike;
+        
+        setBlogLike({
+            likeCount: prev.isLiked ? prev.likeCount - 1 : prev.likeCount + 1,
             isLiked: !prev.isLiked,
-        }));
+        });
+
+        try {
+            await likeOrUnlikeBlogAPI(blogLike.isLiked, memberId, 4); // 추후 로그인 토큰으로 변경예정
+        } catch (error) {
+            setBlogLike(prev);
+            alert('좋아요 처리에 실패했습니다.');
+        }
     };
+
 
     return (
         <div className={styles.blogContainer}>
