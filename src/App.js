@@ -15,6 +15,7 @@ import ReSign from 'components/member/mypage/ReSign/ReSign';
 import InfoEdit from 'components/member/mypage/InfoEdit';
 import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
+import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
 
 function App() {
     return (
@@ -34,7 +35,7 @@ function App() {
                         <Route path={"/board/add"} element={<BoardAddEditPage buttonText='등록'/>} />
                         <Route path={"/board/edit/:boardId"} element={<BoardAddEditPage buttonText='수정'/>} />
                         <Route path={"/board/detail/:boardId"} element={<BoardDetail/>} />
-                        <Route path={"/exercise"} element={<ExerciseInputInfo/>} />
+                        <Route path={"/exercise"} element={<AllExercisePages/>} />
                         <Route path={"/food"} element={<ExerciseInputInfo/>} />
                     </Routes>
                 </div>

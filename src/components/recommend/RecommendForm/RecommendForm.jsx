@@ -74,14 +74,14 @@ const getValidationErrors = async (formData) => {
     return errors;
 };
 
-const RecommendForm = ({ title }) => {
-    const [formData, setFormData] = useState({
-        purpose: '',
-        startDate: '',
-        endDate: '',
-        tdee: '',
-        goalWeight: '',
-    });
+const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
+    // const [formData, setFormData] = useState({
+    //     purpose: '',
+    //     startDate: '',
+    //     endDate: '',
+    //     tdee: '',
+    //     goalWeight: '',
+    // });
 
     const [errors, setErrors] = useState({
         purpose: '',
@@ -124,13 +124,12 @@ const RecommendForm = ({ title }) => {
 
         // 임시 로직
         alert('제출 성공!');
+        goToNext();
     };
 
     return (
         <form className={`${formStyles.form} ${formStyles.common}`}>
-            <h1 className={styles.title}>
-                {title}
-            </h1>
+            <h1 className={styles.title}>{title}</h1>
 
             {/* 목적 선택 필드 */}
             <div className={styles.container}>
@@ -142,8 +141,7 @@ const RecommendForm = ({ title }) => {
                     id="purpose"
                     name="purpose"
                     value={formData.purpose}
-                    onChange={handleChange}
-                >
+                    onChange={handleChange}>
                     {PURPOSE_OPTIONS.map((option) => (
                         <option key={option.value} value={option.value}>
                             {option.label}
@@ -151,9 +149,7 @@ const RecommendForm = ({ title }) => {
                     ))}
                 </select>
                 {errors.purpose && (
-                    <p className={errorStyles.error}>
-                        {errors.purpose}
-                    </p>
+                    <p className={errorStyles.error}>{errors.purpose}</p>
                 )}
             </div>
 
@@ -171,9 +167,7 @@ const RecommendForm = ({ title }) => {
                     onChange={handleChange}
                 />
                 {errors.startDate && (
-                    <p className={errorStyles.error}>
-                        {errors.startDate}
-                    </p>
+                    <p className={errorStyles.error}>{errors.startDate}</p>
                 )}
             </div>
 
@@ -191,9 +185,7 @@ const RecommendForm = ({ title }) => {
                     onChange={handleChange}
                 />
                 {errors.endDate && (
-                    <p className={errorStyles.error}>
-                        {errors.endDate}
-                    </p>
+                    <p className={errorStyles.error}>{errors.endDate}</p>
                 )}
             </div>
 
@@ -209,8 +201,7 @@ const RecommendForm = ({ title }) => {
                             id="tdee"
                             name="tdee"
                             value={formData.tdee}
-                            onChange={handleChange}
-                        >
+                            onChange={handleChange}>
                             {TDEE_LIST.map((option) => (
                                 <option key={option.value} value={option.value}>
                                     {option.label}
@@ -218,15 +209,15 @@ const RecommendForm = ({ title }) => {
                             ))}
                         </select>
                         {errors.tdee && (
-                            <p className={errorStyles.error}>
-                                {errors.tdee}
-                            </p>
+                            <p className={errorStyles.error}>{errors.tdee}</p>
                         )}
                     </div>
 
                     {/* 목표 몸무게 입력 필드 */}
                     <div className={styles.container}>
-                        <label className={labelStyles.label} htmlFor="goalWeight">
+                        <label
+                            className={labelStyles.label}
+                            htmlFor="goalWeight">
                             목표 몸무게
                         </label>
                         <input
@@ -248,8 +239,7 @@ const RecommendForm = ({ title }) => {
 
             <button
                 className={`${styles.button} ${buttonStyles.button} ${buttonStyles.long}`}
-                onClick={handleSubmit}
-            >
+                onClick={handleSubmit}>
                 다음
             </button>
         </form>
