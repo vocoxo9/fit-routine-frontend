@@ -16,11 +16,11 @@ const CategoryForm = ({
         <div className={styles.container}>
             {openDataList.map((list, index) => (
                 <CheckBox
-                    key={`${list.id}_${index}`}
+                    key={`${list.exerciseId}_${index}`}
                     name={`${list.name}`}
-                    id={`${dayNo}_template_${list.id}`}
-                    checked={checkedItems.includes(list.id)}
-                    onChange={() => handleCheckBoxClick(list.id)}
+                    id={`${dayNo}_template_${list.exerciseId}`}
+                    checked={checkedItems.includes(list.exerciseId)}
+                    onChange={() => handleCheckBoxClick(list.exerciseId)}
                     label={list.name}
                     style="square"
                 />
