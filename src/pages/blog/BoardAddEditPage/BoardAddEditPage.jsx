@@ -147,12 +147,13 @@ function BoardAddEditPage({
     };
 
     const handleSubmitClick = () => {
-        const isImageValid = validateImagesCount(images);
-        const isTitleValid = validateTitle(boardData.title);
-        const isContentValid = validateContent(boardData.content);
-
-        if(!isImageValid || !isTitleValid || !isContentValid) return;
-
+        if (!validateImagesCount(images) ||
+            !validateTitle(boardData.title) ||
+            !validateContent(boardData.content)
+        ) {
+            return;
+        }
+        
         const formData = {
             title: boardData.title,
             category: boardData.category,
