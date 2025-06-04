@@ -5,37 +5,31 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
+import { getBlogDetailByMemberId } from 'utils/api/blogApi';
+import { useParams } from 'react-router-dom';
 
 /**
  * 블로그 페이지
  */
 function OnesBlogPage() {
-    // const { nickname } = useParams('');    // <Route path="/blog/onesblog/:nickname" element={<OnesBlogPage />} />
+    const { memberId } = useParams();    // <Route path="/blog/onesblog/:nickname" element={<OnesBlogPage />} />
     const [blog, setBlog] = useState(null);
     const [blogLike, setBlogLike] = useState(null);
 
     // nickname과 로그인유저의 토큰(좋아요 확인용)으로 blog정보 api요청
     const blogDetail = async () => {
-        // axios.get('blog/onesblog?nickname='+nickname, {token});
-
-        // 더미데이터
-        const data = {
-            nickname: '기밀현',
-            gender: 'male',
-            introduce: '안녕하세요. 제 소개글을 봐주셔서 감사합니다.근데만약이렇게까지길어진다면어쩔건데\n저는 김일현이구요.\n너무 피곤하네요.\n\n\n어우우',
-            like: {
-                likeCount: 16,
-                isLiked: false,
-            },
-            blogGrade: 87,
-        };
+        const data = await getBlogDetailByMemberId(memberId);
+        
         setBlog({
             nickname: data.nickname,
             gender: data.gender,
             introduce: data.introduce,
-            blogGrade: data.blogGrade,
+            blogGrade: data.grade,
         });
-        setBlogLike(data.like);
+        setBlogLike({
+            likeCount:data.likeCount,
+            isLiked:data.liked,
+        });
     };
 
     useEffect(() => {
