@@ -16,7 +16,6 @@ import InfoEdit from 'components/member/mypage/InfoEdit';
 import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 
-
 function App() {
     return (
         <>
