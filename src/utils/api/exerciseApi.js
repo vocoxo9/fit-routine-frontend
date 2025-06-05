@@ -18,9 +18,9 @@ apiAxios.interceptors.response.use(
     },
 );
 
-// 공공데이터 정보
+// 운동 공공데이터 정보
 const fetchExerciseOpenDataList = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
         const response = await apiAxios.get('/exercise/openData');
         return response.data;

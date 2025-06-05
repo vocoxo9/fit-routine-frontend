@@ -25,17 +25,6 @@ function App() {
                         <Route path={"/"} element={<MainPage/>} />
                         <Route path={"/signUp"} element={<SignUpPage/>} />
                         <Route path={"/mypage"} element={<MyPage/>} />
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -37,7 +38,7 @@ function App() {
-  
                         <Route path={"/resign"} element={<ReSign/>} />
                         <Route path={"/board"} element={<AllBoardsPage/>} />
                         <Route path={"/blogs/:memberId"} element={<OnesBlogPage/>} />
