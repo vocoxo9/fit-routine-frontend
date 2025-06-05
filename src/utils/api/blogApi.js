@@ -5,12 +5,13 @@ const apiAxios = axios.create({
 });
 
 apiAxios.interceptors.response.use(
-    function (response) {
+    (response) => {
         return response;
     },
-    function (error) {
+    (error) => {
         if (error.status === 401) {
         }
+        
         return Promise.reject(error);
     },
 );
