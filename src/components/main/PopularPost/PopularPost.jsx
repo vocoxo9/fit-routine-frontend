@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import styles from './PopularPosts.module.css';
 import BoardPreview from 'components/blog/BoardPreview/BoardPreview';
-import { getPopularBoardtop3 } from 'utils/api/mainApi';
+import { getPopularBoardTop3 } from 'utils/api/mainApi';
 
 function PopularPost() {
     const [postData, setPostData] = useState([]);
 
     useEffect(() => {
         const getboard = async () => {
-            const result = await getPopularBoardtop3();
+            const result = await getPopularBoardTop3();
             setPostData(result);
             // alert("api 요청 후 결과 :: " + JSON.stringify(result));
         }
