@@ -52,3 +52,7 @@
     flex-direction: column;
     gap : 0.5rem;
 }
+
+.tel {
+    width: 12rem;
+}
