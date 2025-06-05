@@ -11,7 +11,7 @@ apiAxios.interceptors.response.use(
     (error) => {
         if (error.status === 401) {
         }
-        
+
         return Promise.reject(error);
     },
 );
@@ -19,10 +19,24 @@ apiAxios.interceptors.response.use(
 const getBlogDetailByMemberId = async (memberId) => {
     const response = await apiAxios.get(`/blogs/${memberId}`);
 
-    return response.data
+    return response.data;
 };
 
-export {
-    getBlogDetailByMemberId,
+const likeOrUnlikeBlogAPI = async (isLiked, memberId, token) => {
+    const config = {
+        headers: {
+            //`Bearer ${token}`
+            Authorization: `${token}`,
+        },
+    };
+
+    if (isLiked) {
+        // 관심 해제
+        const response = apiAxios.delete(`/blogs/unlike/${memberId}`, config);
+    } else {
+        // 관심 등록
+        const response = apiAxios.post(`/blogs/like/${memberId}`, null, config);
+    }
 };
-        
+
+export { getBlogDetailByMemberId, likeOrUnlikeBlogAPI };
