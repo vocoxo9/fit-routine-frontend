@@ -11,7 +11,7 @@ const getUserProfile = async () => {
 
     // 임시
     const memberId = 1; // 임시 memberId
-    const response = await apiAxios.get('/member/profile?memberId=' + memberId);
+    const response = await apiAxios.get('/members/profile?memberId=' + memberId);
     return response.data;
 }
 
