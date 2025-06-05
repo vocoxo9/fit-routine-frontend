@@ -6,6 +6,7 @@ import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { saveBoard } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -146,7 +147,7 @@ function BoardAddEditPage({
         }));
     };
 
-    const handleSubmitClick = () => {
+    const handleSubmitClick = async () => {
         if (!validateImagesCount(images) ||
             !validateTitle(boardData.title) ||
             !validateContent(boardData.content)
@@ -154,17 +155,23 @@ function BoardAddEditPage({
             return;
         }
         
-        const formData = {
-            title: boardData.title,
-            category: boardData.category,
-            content: boardData.content,
-            images: images.filter(image => image instanceof File)
-        }
+        const formData = new FormData();
+
+        formData.append('title', boardData.title);
+        formData.append('category', boardData.category);
+        formData.append('content', boardData.content);
+
+        images.forEach((image) => {
+            formData.append('images', image);
+        });
 
         // 수정 목적일경우 boardId 추가
         if (boardId) {
             formData.append('boardId', boardId);
         }
+
+        const result = await saveBoard(boardId, formData, 1);
+
 
         /* 추후 사용 예정
         const url = boardId ? `/api/board/update/${boardId}` : '/api/board/create';          
