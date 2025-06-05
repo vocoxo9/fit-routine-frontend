@@ -16,13 +16,13 @@ apiAxios.interceptors.response.use(
     },
 );
 
-const getBlogDetailByMemberId = async (memberId) => {
-    const response = await apiAxios.get(`/blogs/${memberId}`);
+const getBlogDetailByBlogId = async (blogId) => {
+    const response = await apiAxios.get(`/blogs/${blogId}`);
 
     return response.data;
 };
 
-const likeOrUnlikeBlogAPI = async (isLiked, memberId, token) => {
+const likeOrUnlikeBlogAPI = async (isLiked, blogId, token) => {
     const config = {
         headers: {
             //`Bearer ${token}`
@@ -32,11 +32,11 @@ const likeOrUnlikeBlogAPI = async (isLiked, memberId, token) => {
 
     if (isLiked) {
         // 관심 해제
-        const response = apiAxios.delete(`/blogs/unlike/${memberId}`, config);
+        const response = apiAxios.delete(`/blogs/${blogId}/likes`, config);
     } else {
         // 관심 등록
-        const response = apiAxios.post(`/blogs/like/${memberId}`, null, config);
+        const response = apiAxios.post(`/blogs/${blogId}/likes`, null, config);
     }
 };
 
-export { getBlogDetailByMemberId, likeOrUnlikeBlogAPI };
+export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI };

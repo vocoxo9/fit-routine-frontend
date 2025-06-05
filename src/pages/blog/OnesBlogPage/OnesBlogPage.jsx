@@ -5,20 +5,20 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
-import { getBlogDetailByMemberId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
+import { getBlogDetailByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
 import { useParams } from 'react-router-dom';
 
 /**
  * 블로그 페이지
  */
 function OnesBlogPage() {
-    const { memberId } = useParams();    // <Route path="/blog/onesblog/:nickname" element={<OnesBlogPage />} />
+    const { blogId } = useParams(); 
     const [blog, setBlog] = useState(null);
     const [blogLike, setBlogLike] = useState(null);
 
-    // nickname과 로그인유저의 토큰(좋아요 확인용)으로 blog정보 api요청
+    // blogId과 로그인유저의 토큰(좋아요 확인용)으로 blog정보 api요청
     const blogDetail = async () => {
-        const data = await getBlogDetailByMemberId(memberId);
+        const data = await getBlogDetailByBlogId(blogId);
         
         setBlog({
             nickname: data.nickname,
@@ -28,13 +28,13 @@ function OnesBlogPage() {
         });
         setBlogLike({
             likeCount:data.likeCount,
-            isLiked:data.liked===1?true:false,
+            isLiked:data.liked,
         });
     };
 
     useEffect(() => {
         blogDetail();
-    }, [memberId]); 
+    }, [blogId]); 
 
     const handleLikeClick = async () => {
         const prev = blogLike;
@@ -45,7 +45,7 @@ function OnesBlogPage() {
         });
 
         try {
-            await likeOrUnlikeBlogAPI(blogLike.isLiked, memberId, 4); // 추후 로그인 토큰으로 변경예정
+            await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId, 4); // 추후 로그인 토큰으로 변경예정
         } catch (error) {
             setBlogLike(prev);
             alert('좋아요 처리에 실패했습니다.');
