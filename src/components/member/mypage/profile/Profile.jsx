@@ -29,7 +29,7 @@ function Profile({infoData, setIsEdit}) {
                 <ProFileInfo 
                     kind="birth" 
                     text="생년월일" 
-                    info={infoData.birth}
+                    info={infoData.birthAt}
                 />
                 <ProFileInfo 
                     kind="phone" 

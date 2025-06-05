@@ -7,11 +7,14 @@ const apiAxios = axios.create({
 
 // 로그인한 회원의 프로필 정보를 가져오는 api 함수
 const getUserProfile = async () => {
-    // api 함수 : TODO
+    const response = await apiAxios.get('/members/me');
+    return response.data;
+}
 
-    // 임시
-    const memberId = 1; // 임시 memberId
-    const response = await apiAxios.get('/members/profile?memberId=' + memberId);
+// 정보수정에서 수정 가능한 회원의 정보만 조회하는 api 함수
+const getInfoData = async () => {
+    const memberId = 1;
+    const response = await apiAxios.get();
     return response.data;
 }
 
