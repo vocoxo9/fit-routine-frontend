@@ -22,7 +22,7 @@ function OnesBlogPage() {
         
         setBlog({
             nickname: data.nickname,
-            gender: data.gender,
+            gender: data.gender === 'M'? 'male':'female',
             introduce: data.introduce,
             blogGrade: data.grade,
         });
