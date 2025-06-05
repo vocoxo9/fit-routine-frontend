@@ -22,6 +22,12 @@ function ProfileInfo({ kind, text, info }) {
                         <InfoIcon kind={kind} />
                         <div className={styles.text}>|</div>
                         {info}
+                        {kind === 'height' &&
+                            <p className={styles.unit}>cm</p>
+                        }
+                        {kind === 'weight' &&
+                            <p className={styles.unit}>kg</p>
+                        }
                     </div>
                 </div>
             </div>
