@@ -13,7 +13,7 @@ const getUserProfile = async () => {
 
 // 회원 정보를 수정하는 api 함수
 const editUserInfo = async (editInfoData) => {
-    const response = await apiAxios.post('/members/me/edit', {editInfoData: editInfoData});
+    const response = await apiAxios.post('/members/me/edit', editInfoData);
     return response.data;
 }
 

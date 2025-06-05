@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { editUserInfo } from 'utils/api/profileApi.js';
 
 function InfoEdit({ infoData }) {
+    const [isInfoChanged, setIsInfoChanged] = useState(false);
+
     const [editInfoData, setEditInfoData] = useState(
         {
             nickname: '',
@@ -50,6 +52,11 @@ function InfoEdit({ infoData }) {
         }
     }, [infoData]);
 
+    useEffect(() => {
+        const isSame = JSON.stringify(editInfoData) === JSON.stringify(infoData);
+        setIsInfoChanged(!isSame);
+    }, [editInfoData, infoData]);
+
     const handleOnChange = (event) => {
         const { name, value } = event.target;
         
@@ -65,8 +72,33 @@ function InfoEdit({ infoData }) {
 
     const handleEditInfo = async () => {
         console.log(editInfoData);
-        const result = await editUserInfo(editInfoData);
-        // console.log(result);
+        console.log(infoData);
+        console.log(editInfoData.nickname === infoData.nickname);
+        
+        const updateInfoData = isChanged();
+        console.log(updateInfoData);
+        
+        const result = await editUserInfo(updateInfoData);
+        console.log("api 결과", result);
+    }
+
+    const isChanged = () => {
+        const updated = { ...editInfoData };
+            
+        if (updated.nickname == infoData.nickname) {
+            updated.nickname = '';
+        }
+        if (updated.phone == infoData.phone) {
+            updated.phone = '';
+        }
+        if (updated.height == infoData.height) {
+            updated.height = null;
+        }
+        if (updated.weight == infoData.weight) {
+            updated.weight = null;
+        }
+
+        return updated;
     }
 
     if (!editInfoData) return <div>로딩 중...</div>;
@@ -220,6 +252,7 @@ function InfoEdit({ infoData }) {
                     <button 
                         className={`${button.button} ${button.short}`}
                         onClick={handleEditInfo}
+                        disabled={!isInfoChanged}
                     >
                         수정
                     </button>
