@@ -30,6 +30,13 @@ function Profile({setIsEdit}) {
         const fetchProfile = async () => {
             // 회원의 프로필 정보를 가져오는 api 함수
             const result = await getUserProfile();
+            if (result.gender === 'F') {
+                result.gender = '여자';
+            } else if (result.gender === 'M') {
+                result.gender = '남자자';
+            } else {
+                // 정보가 잘못 저장되어 있으므로 따로 처리해줘야 함: TODO
+            }
             setInfoData(result);
         };
 
