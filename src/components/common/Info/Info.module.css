@@ -30,7 +30,7 @@
 .textBox.password {
     border: solid 1px #334eac;
     width: 11.5rem;
-    height: 18rem;
+    height: 19rem;
     background-color: #d0e3ff;
     font-weight: 600;
 }
@@ -82,7 +82,7 @@
 .textBox.body {
     border: solid 1px #334eac;
     width: 11.5rem;
-    height: 14rem;
+    height: 15rem;
     background-color: #d0e3ff;
     font-weight: 600;
 }

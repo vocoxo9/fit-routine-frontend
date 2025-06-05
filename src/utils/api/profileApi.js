@@ -11,13 +11,13 @@ const getUserProfile = async () => {
     return response.data;
 }
 
-// 정보수정에서 수정 가능한 회원의 정보만 조회하는 api 함수
-const getInfoData = async () => {
-    const memberId = 1;
-    const response = await apiAxios.get();
+// 회원 정보를 수정하는 api 함수
+const editUserInfo = async (editInfoData) => {
+    const response = await apiAxios.post('/members/me/edit', {editInfoData: editInfoData});
     return response.data;
 }
 
 export {
     getUserProfile,
+    editUserInfo,
 };
