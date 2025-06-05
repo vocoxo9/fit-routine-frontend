@@ -16,9 +16,9 @@ apiAxios.interceptors.response.use(
 );
 
 const getBlogDetailByMemberId = async (memberId) => {
-    const res = await apiAxios.get(`/blogs/${memberId}`);
+    const response = await apiAxios.get(`/blogs/${memberId}`);
 
-    return res.data
+    return response.data
 };
 
 export {
