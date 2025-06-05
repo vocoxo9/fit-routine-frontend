@@ -1,5 +1,7 @@
 import styles from './assets/styles/common/Reset.module.css';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import Header from 'components/layout/Header/Header';
 import Footer from 'components/layout/Footer/Footer';
 import MainPage from 'pages/main/MainPage/MainPage';
@@ -14,6 +16,7 @@ import InfoEdit from 'components/member/mypage/InfoEdit';
 import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
+
 function App() {
     return (
         <>
@@ -38,19 +41,9 @@ function App() {
                 </div>
 
                 <Footer />
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
             </BrowserRouter>
         </>
     );
 }
+
 export default App;
