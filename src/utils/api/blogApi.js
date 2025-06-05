@@ -32,11 +32,27 @@ const likeOrUnlikeBlogAPI = async (isLiked, blogId, token) => {
 
     if (isLiked) {
         // 관심 해제
-        const response = apiAxios.delete(`/blogs/${blogId}/likes`, config);
+        const response = await apiAxios.delete(`/blogs/${blogId}/likes`, config);
     } else {
         // 관심 등록
-        const response = apiAxios.post(`/blogs/${blogId}/likes`, null, config);
+        const response = await apiAxios.post(`/blogs/${blogId}/likes`, null, config);
     }
 };
 
-export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI };
+const editIntroduce = async (introduce, blogId, token) => {
+    const config = {
+        headers: {
+            //`Bearer ${token}`
+            Authorization: `${token}`,
+        },
+    };
+
+    const body = {
+        introduce,
+    }
+    const response = await apiAxios.put(`/blogs/${blogId}`, body, config);
+    return response.data;
+    
+}
+
+export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce };
