@@ -9,7 +9,7 @@ import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
 import {
     getMockData,
-    fetchAllExerciseOpenData,
+    fetchExerciseOpenDataList,
 } from 'utils/api/exerciseApi';
 
 const DAILY_BURN_KCAL = 400; // 하루 소모 칼로리(임의)
@@ -41,7 +41,7 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
     // 렌더링 동시에 운동 공공데이터 가져오기
     useEffect(() => {
         const fetchOpenData = async () => {
-            const exerciseOpenData = await fetchAllExerciseOpenData();
+            const exerciseOpenData = await fetchExerciseOpenDataList();
             setOpenDataList(exerciseOpenData);
         };
 
