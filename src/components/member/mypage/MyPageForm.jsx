@@ -14,7 +14,7 @@ function MyPageForm() {
         {
             email:'', 
             nickname:'', 
-            birth:'', 
+            birthAt:'', 
             phone:'', 
             gender:'', 
             height:'', 
