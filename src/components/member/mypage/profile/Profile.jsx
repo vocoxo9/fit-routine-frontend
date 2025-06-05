@@ -4,44 +4,13 @@ import button from 'assets/styles/common/button.module.css';
 
 import styles from './Profile.module.css';
 import ProFileInfo from 'components/common/Info/ProfileInfo';
-import { getUserProfile } from 'utils/api/profileApi.js';
 import { useEffect, useState } from 'react';
 import PasswordConfirmModal from 'components/member/mypage/ReSign/PasswordCofirmModal';
 import { Link } from 'react-router-dom';
 
-function Profile({setIsEdit}) {
+function Profile({infoData, setIsEdit}) {
     // 모달창을 띄우는 상태
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const [infoData, setInfoData] = useState(
-        {
-            email:'', 
-            password:'', 
-            nickname:'', 
-            birth:'', 
-            phone:'', 
-            gender:'', 
-            height:'', 
-            weight:'', 
-        }
-    );
-
-    useEffect( () => {
-        const fetchProfile = async () => {
-            // 회원의 프로필 정보를 가져오는 api 함수
-            const result = await getUserProfile();
-            if (result.gender === 'F') {
-                result.gender = '여자';
-            } else if (result.gender === 'M') {
-                result.gender = '남자자';
-            } else {
-                // 정보가 잘못 저장되어 있으므로 따로 처리해줘야 함: TODO
-            }
-            setInfoData(result);
-        };
-
-        fetchProfile();
-    }, []);
 
     return (
         <>
