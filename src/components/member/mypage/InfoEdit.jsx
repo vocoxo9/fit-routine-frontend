@@ -7,7 +7,7 @@ import label from 'assets/styles/common/label.module.css';
 import { useEffect, useState } from 'react';
 import { editUserInfo } from 'utils/api/profileApi.js';
 
-function InfoEdit({ infoData }) {
+function InfoEdit({ infoData, setIsEdit }) {
     const [isInfoChanged, setIsInfoChanged] = useState(false);
 
     const [editInfoData, setEditInfoData] = useState(
@@ -53,8 +53,25 @@ function InfoEdit({ infoData }) {
     }, [infoData]);
 
     useEffect(() => {
-        const isSame = JSON.stringify(editInfoData) === JSON.stringify(infoData);
-        setIsInfoChanged(!isSame);
+        if (!infoData) {
+            return;
+        }
+
+        let isPasswordChanged = false;
+        (
+        editInfoData.newPassword !== '' ||
+        editInfoData.checkPassword !== '')
+            ? isPasswordChanged = true : isPasswordChanged = false; 
+
+
+        let isOtherChanged = false;
+        (editInfoData.nickname === infoData.nickname &&
+        editInfoData.phone === infoData.phone &&
+        Number(editInfoData.height) === Number(infoData.height) &&
+        Number(editInfoData.weight) === Number(infoData.weight))
+            ? isOtherChanged = false : isOtherChanged = true;
+    
+        (isPasswordChanged || isOtherChanged) ? setIsInfoChanged(true) : setIsInfoChanged(false) ;
     }, [editInfoData, infoData]);
 
     const handleOnChange = (event) => {
@@ -80,6 +97,10 @@ function InfoEdit({ infoData }) {
         
         const result = await editUserInfo(updateInfoData);
         console.log("api 결과", result);
+
+        if (result === 'success') {
+            setIsEdit(false);
+        }
     }
 
     const isChanged = () => {
@@ -136,7 +157,7 @@ function InfoEdit({ infoData }) {
                             type="password"
                             id="password"
                             name="password"
-                            onChange={handleOnChange}
+                            onChange={(handleOnChange)}
                         />
                         {errors.password && (
                             <p className={`${error.error}`}>

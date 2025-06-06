@@ -77,7 +77,7 @@ function MyPageForm() {
                             ? (activeTab ==='profile' 
                                 ? <Profile infoData={infoData} setIsEdit={setIsEdit} /> 
                                 : <LikeList />) 
-                            : <InfoEdit infoData={infoData} />
+                            : <InfoEdit infoData={infoData} setIsEdit={setIsEdit} />
                     }
                 </div>
             </div>
