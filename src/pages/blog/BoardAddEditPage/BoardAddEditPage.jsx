@@ -19,7 +19,7 @@ function BoardAddEditPage({
     const {boardId} = useParams();
     const [boardData, setBoardData] = useState({
         title:'',
-        category:'muscle',
+        category:'STRENGTH',
         content:'',
     });
     const [images, setImages] = useState([]);
@@ -35,9 +35,9 @@ function BoardAddEditPage({
     const [content, setContent] = useState('');
 
     const options = [
-        { label: '근육 증진', value: 'muscle' },
-        { label: '체중 감량', value: 'diet' },
-        { label: '체력 증진', value: 'stamina' },
+        { label: '근육 증진', value: 'STRENGTH' },
+        { label: '체중 감량', value: 'DIET' },
+        { label: '체력 증진', value: 'ENDURANCE' },
     ];
 
     // 이미지 파일 개수 검증
@@ -172,21 +172,9 @@ function BoardAddEditPage({
 
         const result = await saveBoard(boardId, formData, 1);
 
+        result === 'success' ? alert('추가 성공!') : alert('실패');
+        navigate('/board');
 
-        /* 추후 사용 예정
-        const url = boardId ? `/api/board/update/${boardId}` : '/api/board/create';          
-        const method = boardId ? 'put' : 'post';
-
-        async function saveBoard() {
-            const response = await axios({
-                method,
-                url,
-                data: formData,
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-        }
-        saveBoard();
-        */
     }
 
     return (
@@ -264,7 +252,7 @@ function BoardAddEditPage({
                     <button 
                         type='button'
                         className={`${buttons.button} ${buttons.short}`}
-                        onClick={() => navigate('/board/detail/' + boardId)}
+                        onClick={handleSubmitClick}
                     >
                         {buttonText}
                     </button>
