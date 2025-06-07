@@ -22,7 +22,7 @@ apiAxios.interceptors.response.use(
 const fetchExerciseOpenDataList = async () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
-        const response = await apiAxios.get('/exercise/openData');
+        const response = await apiAxios.get('/exercises/open-data');
         return response.data;
     } catch (error) {
         console.error('운동 데이터 로딩 실패', error);
