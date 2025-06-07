@@ -74,7 +74,7 @@ function OnesBlogPage() {
                                 </div>
                             </div>
                             <hr />
-                            <Introduce intro={blog.introduce} />
+                            <Introduce intro={blog.introduce} blogId={blogId}/>
                         </div>
                         <div className={styles.gradeContainer}>
                             <BlogGrade grade={blog.blogGrade} />
