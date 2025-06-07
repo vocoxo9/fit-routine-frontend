@@ -29,7 +29,7 @@ function MyPageForm() {
             if (result.gender === 'F') {
                 result.gender = '여자';
             } else if (result.gender === 'M') {
-                result.gender = '남자자';
+                result.gender = '남자';
             } else {
                 // 정보가 잘못 저장되어 있으므로 따로 처리해줘야 함: TODO
             }
