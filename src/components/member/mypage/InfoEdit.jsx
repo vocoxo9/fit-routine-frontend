@@ -99,8 +99,13 @@ function InfoEdit({ infoData, setIsEdit }) {
         console.log("api 결과", result);
 
         if (result === 'success') {
+            alert("정보수정에 성공하였습니다.");
             setIsEdit(false);
         }
+    }
+
+    const handleCancel = () => {
+        setIsEdit(false);
     }
 
     const isChanged = () => {
@@ -277,7 +282,10 @@ function InfoEdit({ infoData, setIsEdit }) {
                     >
                         수정
                     </button>
-                    <button className={`${button.button} ${button.short}`}>
+                    <button 
+                        className={`${button.button} ${button.short}`}
+                        onClick={handleCancel}
+                    >
                         취소
                     </button>
                 </div>
