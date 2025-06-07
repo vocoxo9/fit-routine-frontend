@@ -22,7 +22,6 @@
     width: 28.5rem;
     height: 4.3rem;
     font-size: 1rem;
-    font-weight: 600;
     align-content: center;
     align-items: center;
 }
@@ -34,4 +33,11 @@
 
 .text {
     margin: 0 0.5rem;
+}
+
+.unit {
+    margin-left: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    align-content: center;
 }

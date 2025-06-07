@@ -4,37 +4,13 @@ import button from 'assets/styles/common/button.module.css';
 
 import styles from './Profile.module.css';
 import ProFileInfo from 'components/common/Info/ProfileInfo';
-import { getUserProfile } from 'utils/api/profileApi.js';
 import { useEffect, useState } from 'react';
 import PasswordConfirmModal from 'components/member/mypage/ReSign/PasswordCofirmModal';
 import { Link } from 'react-router-dom';
 
-function Profile({setIsEdit}) {
+function Profile({infoData, setIsEdit}) {
     // 모달창을 띄우는 상태
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const [infoData, setInfoData] = useState(
-        {
-            email:'', 
-            password:'', 
-            nickname:'', 
-            birth:'', 
-            phone:'', 
-            gender:'', 
-            height:'', 
-            weight:'', 
-        }
-    );
-
-    useEffect( () => {
-        const fetchProfile = async () => {
-            // 회원의 프로필 정보를 가져오는 api 함수
-            const result = await getUserProfile();
-            setInfoData(result);
-        };
-
-        fetchProfile();
-    }, []);
 
     return (
         <>
@@ -53,7 +29,7 @@ function Profile({setIsEdit}) {
                 <ProFileInfo 
                     kind="birth" 
                     text="생년월일" 
-                    info={infoData.birth}
+                    info={infoData.birthAt}
                 />
                 <ProFileInfo 
                     kind="phone" 
