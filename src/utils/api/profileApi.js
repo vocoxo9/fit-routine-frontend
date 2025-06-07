@@ -11,6 +11,13 @@ const getUserProfile = async () => {
     return response.data;
 }
 
+// 회원 정보를 수정하는 api 함수
+const editUserInfo = async (editInfoData) => {
+    const response = await apiAxios.post('/members/me', editInfoData);
+    return response.data;
+}
+
 export {
     getUserProfile,
+    editUserInfo,
 };

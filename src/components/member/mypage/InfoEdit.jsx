@@ -4,9 +4,24 @@ import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
 import label from 'assets/styles/common/label.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { editUserInfo } from 'utils/api/profileApi.js';
 
-function InfoEdit() {
+function InfoEdit({ infoData, setIsEdit }) {
+    const [isInfoChanged, setIsInfoChanged] = useState(false);
+
+    const [editInfoData, setEditInfoData] = useState(
+        {
+            nickname: '',
+            password: '',
+            newPassword: '',
+            checkPassword: '',
+            phone: '',
+            height: '',
+            weight: '',
+        },
+    );
+
     const [errors, setErrors] = useState(
         // {
         //     nickname : '닉네임을 입력하세요',
@@ -28,6 +43,88 @@ function InfoEdit() {
         },
     );
 
+    useEffect(() => {
+        if (infoData) {
+            setEditInfoData((prev) => ({
+                ...prev, 
+                ...infoData
+            }));
+        }
+    }, [infoData]);
+
+    useEffect(() => {
+        if (!infoData) {
+            return;
+        }
+
+        const isPasswordChanged = !!(editInfoData.newPassword || editInfoData.checkPassword);
+
+
+        const isOtherChanged = !!(
+            editInfoData.nickname !== infoData.nickname ||
+            editInfoData.phone !== infoData.phone ||
+            Number(editInfoData.height) !== Number(infoData.height) ||
+            Number(editInfoData.weight) !== Number(infoData.weight)
+        );
+        
+        setIsInfoChanged(isPasswordChanged || isOtherChanged);
+    }, [editInfoData, infoData]);
+
+    const handleOnChange = (event) => {
+        const { name, value } = event.target;
+        
+        const parsedValue = (name === 'height' || name === 'weight') ? 
+            Number(value) : 
+            value;
+        
+        setEditInfoData((prev) => ({
+            ...prev,
+            [name]: parsedValue,
+        }));
+    }
+
+    const handleEditInfo = async () => {
+        console.log(editInfoData);
+        console.log(infoData);
+        console.log(editInfoData.nickname === infoData.nickname);
+        
+        const updateInfoData = isChanged();
+        console.log(updateInfoData);
+        
+        const result = await editUserInfo(updateInfoData);
+        console.log("api 결과", result);
+
+        if (result === 'success') {
+            alert("정보수정에 성공하였습니다.");
+            setIsEdit(false);
+        }
+    }
+
+    const handleCancel = () => {
+        setIsEdit(false);
+    }
+
+    const isChanged = () => {
+        const updated = { ...editInfoData };
+            
+        if (updated.nickname === infoData.nickname) {
+            updated.nickname = '';
+        }
+        if (updated.phone === infoData.phone) {
+            updated.phone = '';
+        }
+        if (updated.height === infoData.height) {
+            updated.height = null;
+        }
+        if (updated.weight === infoData.weight) {
+            updated.weight = null;
+        }
+
+        return updated;
+    }
+
+    if (!editInfoData) return <div>로딩 중...</div>;
+
     return (
         <>
             <div className={styles.subTitle}>정보 수정</div>
@@ -39,6 +136,8 @@ function InfoEdit() {
                             type="text"
                             id="nickname"
                             name="nickname"
+                            value={editInfoData.nickname}
+                            onChange={handleOnChange}
                         />
                         {errors.nickname && (
                             <p className={`${error.error}`}>
@@ -57,8 +156,9 @@ function InfoEdit() {
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
-                            id="pwd"
-                            name="pwd"
+                            id="password"
+                            name="password"
+                            onChange={(handleOnChange)}
                         />
                         {errors.password && (
                             <p className={`${error.error}`}>
@@ -75,8 +175,9 @@ function InfoEdit() {
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
-                            id="newPwd"
-                            name="newPwd"
+                            id="newPassword"
+                            name="newPassword"
+                            onChange={handleOnChange}
                             readOnly={true}
                         />
                         {errors.newPassword && (
@@ -94,8 +195,9 @@ function InfoEdit() {
                         <input
                             className={`${input.input} ${input.long}`}
                             type="password"
-                            id="checkPwd"
-                            name="checkPwd"
+                            id="checkPassword"
+                            name="checkPassword"
+                            onChange={handleOnChange}
                             readOnly={true}
                         />
                         {errors.checkPassword && (
@@ -109,22 +211,12 @@ function InfoEdit() {
                     <div className={styles.inputArea}>
                         <div className={styles.phoneArea}>
                             <input
-                                className={`${input.input} ${input.short}`}
+                                className={`${input.input} ${styles.tel}`}
                                 type="tel"
                                 id="phone"
                                 name="phone"
-                            />
-                            <input
-                                className={`${input.input} ${input.short}`}
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                            />
-                            <input
-                                className={`${input.input} ${input.short}`}
-                                type="tel"
-                                id="phone"
-                                name="phone"
+                                value={editInfoData.phone}
+                                onChange={handleOnChange}
                             />
                         </div>
                         {errors.phone && (
@@ -145,6 +237,8 @@ function InfoEdit() {
                                 type="number"
                                 id="height"
                                 name="height"
+                                value={editInfoData.height}
+                                onChange={handleOnChange}
                             />
                             <p className={styles.p}>cm</p>
                         </div>
@@ -164,6 +258,8 @@ function InfoEdit() {
                                 type="number"
                                 id="weight"
                                 name="weight"
+                                value={editInfoData.weight}
+                                onChange={handleOnChange}
                             />
                             <p className={styles.p}>kg</p>
                         </div>
@@ -175,10 +271,17 @@ function InfoEdit() {
             </div>
             <div className={styles.btnArea}>
                 <div className={styles.btn}>
-                    <button className={`${button.button} ${button.short}`}>
+                    <button 
+                        className={`${button.button} ${button.short}`}
+                        onClick={handleEditInfo}
+                        disabled={!isInfoChanged}
+                    >
                         수정
                     </button>
-                    <button className={`${button.button} ${button.short}`}>
+                    <button 
+                        className={`${button.button} ${button.short}`}
+                        onClick={handleCancel}
+                    >
                         취소
                     </button>
                 </div>
