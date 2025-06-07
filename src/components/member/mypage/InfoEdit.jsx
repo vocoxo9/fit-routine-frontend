@@ -57,21 +57,17 @@ function InfoEdit({ infoData, setIsEdit }) {
             return;
         }
 
-        let isPasswordChanged = false;
-        (
-        editInfoData.newPassword !== '' ||
-        editInfoData.checkPassword !== '')
-            ? isPasswordChanged = true : isPasswordChanged = false; 
+        const isPasswordChanged = !!(editInfoData.newPassword || editInfoData.checkPassword);
 
 
-        let isOtherChanged = false;
-        (editInfoData.nickname === infoData.nickname &&
-        editInfoData.phone === infoData.phone &&
-        Number(editInfoData.height) === Number(infoData.height) &&
-        Number(editInfoData.weight) === Number(infoData.weight))
-            ? isOtherChanged = false : isOtherChanged = true;
-    
-        (isPasswordChanged || isOtherChanged) ? setIsInfoChanged(true) : setIsInfoChanged(false) ;
+        const isOtherChanged = !!(
+            editInfoData.nickname !== infoData.nickname ||
+            editInfoData.phone !== infoData.phone ||
+            Number(editInfoData.height) !== Number(infoData.height) ||
+            Number(editInfoData.weight) !== Number(infoData.weight)
+        );
+        
+        setIsInfoChanged(isPasswordChanged || isOtherChanged);
     }, [editInfoData, infoData]);
 
     const handleOnChange = (event) => {
