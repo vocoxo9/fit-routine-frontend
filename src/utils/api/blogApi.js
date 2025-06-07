@@ -16,6 +16,13 @@ apiAxios.interceptors.response.use(
     },
 );
 
+const getConfig = (token) => ({
+    headers: {
+        //`Bearer ${token}`
+        Authorization: `${token}`,
+    },
+});
+
 const getBlogDetailByBlogId = async (blogId) => {
     const response = await apiAxios.get(`/blogs/${blogId}`);
 
@@ -23,36 +30,34 @@ const getBlogDetailByBlogId = async (blogId) => {
 };
 
 const likeOrUnlikeBlogAPI = async (isLiked, blogId, token) => {
-    const config = {
-        headers: {
-            //`Bearer ${token}`
-            Authorization: `${token}`,
-        },
-    };
 
     if (isLiked) {
         // 관심 해제
-        const response = await apiAxios.delete(`/blogs/${blogId}/likes`, config);
+        const response = await apiAxios.delete(`/blogs/${blogId}/likes`, getConfig(token));
     } else {
         // 관심 등록
-        const response = await apiAxios.post(`/blogs/${blogId}/likes`, null, config);
+        const response = await apiAxios.post(`/blogs/${blogId}/likes`, null, getConfig(token));
     }
 };
 
 const editIntroduce = async (introduce, blogId, token) => {
-    const config = {
-        headers: {
-            //`Bearer ${token}`
-            Authorization: `${token}`,
-        },
-    };
-
+    
     const body = {
         introduce,
     }
-    const response = await apiAxios.put(`/blogs/${blogId}`, body, config);
+    const response = await apiAxios.put(`/blogs/${blogId}`, body, getConfig(token));
     return response.data;
     
 }
 
-export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce };
+const saveBoard = async (boardId, formData, token) => {
+    const result = boardId ?
+        await apiAxios.put(`/boards/${boardId}`, formData, getConfig(token)) :
+        await apiAxios.post(`/boards`, formData, getConfig(token));
+
+    return result.data;
+}
+
+
+
+export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce, saveBoard };
