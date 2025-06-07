@@ -30,7 +30,7 @@ function App() {
                         <Route path={"/mypage"} element={<MyPage/>} />
                         <Route path={"/resign"} element={<ReSign/>} />
                         <Route path={"/board"} element={<AllBoardsPage/>} />
-                        <Route path={"/blogs/:memberId"} element={<OnesBlogPage/>} />
+                        <Route path={"/blog/:blogId"} element={<OnesBlogPage/>} />
                         <Route path={"/todo"} element={<OnesTodoPage/>} />
                         <Route path={"/board/add"} element={<BoardAddEditPage buttonText='등록'/>} />
                         <Route path={"/board/edit/:boardId"} element={<BoardAddEditPage buttonText='수정'/>} />
