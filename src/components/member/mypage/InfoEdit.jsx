@@ -73,7 +73,7 @@ function InfoEdit({ infoData, setIsEdit }) {
     const handleOnChange = (event) => {
         const { name, value } = event.target;
         
-        const parsedValue = (name == 'height' || name == 'weight') ? 
+        const parsedValue = (name === 'height' || name === 'weight') ? 
             Number(value) : 
             value;
         
@@ -107,16 +107,16 @@ function InfoEdit({ infoData, setIsEdit }) {
     const isChanged = () => {
         const updated = { ...editInfoData };
             
-        if (updated.nickname == infoData.nickname) {
+        if (updated.nickname === infoData.nickname) {
             updated.nickname = '';
         }
-        if (updated.phone == infoData.phone) {
+        if (updated.phone === infoData.phone) {
             updated.phone = '';
         }
-        if (updated.height == infoData.height) {
+        if (updated.height === infoData.height) {
             updated.height = null;
         }
-        if (updated.weight == infoData.weight) {
+        if (updated.weight === infoData.weight) {
             updated.weight = null;
         }
 
