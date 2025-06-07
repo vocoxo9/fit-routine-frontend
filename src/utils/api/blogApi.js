@@ -52,8 +52,8 @@ const editIntroduce = async (introduce, blogId, token) => {
 
 const saveBoard = async (boardId, formData, token) => {
     const result = boardId ?
-    await apiAxios.put(`/boards/${boardId}`, formData, getConfig(token))
-    : await apiAxios.post(`/boards`, formData, getConfig(token));
+        await apiAxios.put(`/boards/${boardId}`, formData, getConfig(token)) :
+        await apiAxios.post(`/boards`, formData, getConfig(token));
 
     return result.data;
 }
