@@ -17,7 +17,7 @@ function AllExercisePages() {
         goalWeight: '',
         dayRepeat: '',
         dayKcal: '',
-        exerciseData: [],
+        exerciseList: [],
         // exerciseData: [{}, {}, {}],
         // exerciseData: ['1,2', '55,6'],
         // exerciseData: { 1:[1,2], 2:[55, 6]},

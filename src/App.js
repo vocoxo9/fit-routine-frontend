@@ -24,7 +24,8 @@ function App() {
                 <Header />
 
                 <div className={styles.layout}>
-                    <Routes>
+                    <AllExercisePages/>
+                    {/* <Routes>
                         <Route path={"/"} element={<MainPage/>} />
                         <Route path={"/signUp"} element={<SignUpPage/>} />
                         <Route path={"/mypage"} element={<MyPage/>} />
@@ -37,7 +38,7 @@ function App() {
                         <Route path={"/board/detail/:boardId"} element={<BoardDetail/>} />
                         <Route path={"/exercise"} element={<AllExercisePages/>} />
                         <Route path={"/food"} element={<ExerciseInputInfo/>} />
-                    </Routes>
+                    </Routes> */}
                 </div>
 
                 <Footer />

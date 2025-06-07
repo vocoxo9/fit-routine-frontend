@@ -18,8 +18,14 @@ const CategoryForm = ({
                 <CheckBox
                     key={`${list.exerciseId}_${index}`}
                     name={`${list.name}`}
+                    value={list.exerciseId}
                     id={`${dayNo}_template_${list.exerciseId}`}
                     checked={checkedItems.includes(list.exerciseId)}
+                    /*
+                    checkedItems.map((item, index){
+                    item.includes(list.exerciseId)
+                    })
+                    */
                     onChange={() => handleCheckBoxClick(list.exerciseId)}
                     label={list.name}
                     style="square"

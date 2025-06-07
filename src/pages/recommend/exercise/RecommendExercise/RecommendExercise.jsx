@@ -8,8 +8,9 @@ import styles from './RecommendExercise.module.css';
 import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
 import {
-    getMockData,
+    fetchExerciseRandomRoutine,
     fetchExerciseOpenDataList,
+    fetchGetExerciseById,
 } from 'utils/api/exerciseApi';
 
 const DAILY_BURN_KCAL = 400; // 하루 소모 칼로리(임의)
@@ -44,35 +45,70 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
             const exerciseOpenData = await fetchExerciseOpenDataList();
             setOpenDataList(exerciseOpenData);
         };
-
         fetchOpenData();
     }, []);
 
     // 렌더링과 동시에 가져 올 데이터 샘플 및 초기 kcal 계산
     useEffect(() => {
         const fetchData = async () => {
-            const mockData = getMockData(formData);
+            const routineData = await fetchExerciseRandomRoutine(formData);
 
             // 초기에 체크 상태일 데이터 리스트
-            const initialCheckedData = mockData.reduce((acc, oneDayData) => {
-                acc[oneDayData.dayNo] = oneDayData.exerciseList.map(
-                    (exercise) => exercise.id,
-                );
-                return acc;
-            }, {});
+            // ----> [1] 수정 후
+            const initialCheckedData = {};
+            routineData.exerciseList.forEach((exercise, index) => {
+                initialCheckedData[index + 1] = exercise;
+            });
 
-            setData(mockData);
+            // setData(routineData);
             setCheckedItems(initialCheckedData);
 
+            // [2] dayRepeat을 기준으로 배열 생성
+            // 불러온 랜덤 데이터들을 하루에 10개씩 넣음
+            const initialData = Array.from(
+                { length: formData.dayRepeat },
+                (_, i) => ({
+                    dayRepeat: i + 1,
+                    exerciseList: initialCheckedData[i + 1] || [],
+                }),
+            );
+            setData(initialData);
+            setFormData((prev) => ({
+                ...prev,
+                dayRepeat: initialData.dayRepeat,
+                exerciseList: initialData.exerciseList,
+            }));
+
+            console.log(initialData);
+            console.log(formData);
             // 초기 kcal 계산 및 dailyKcal 설정
-            const initialDailyKcal = mockData.reduce((acc, oneDayData) => {
-                acc[oneDayData.dayNo] = handleCalculateCarolie(
-                    oneDayData.exerciseList,
-                    oneDayData.weight,
+            // [3] dailyKcal : [100, 200, 150, ... , 300]
+            // ----> 수정 후
+            const makeDailyKcal = async (exerciseList) => {
+                const initialDailyKcal = await Promise.all(
+                    exerciseList.map(async (exercise, index) => {
+                        const dailyExercise = await Promise.all(
+                            exercise.map(async (id) => {
+                                const exerciseOpenData =
+                                    await fetchGetExerciseById(id);
+                                return exerciseOpenData;
+                            }),
+                        );
+                        const weight = 60; // 추후 회원 기능 완료 후 적용 예정
+                        console.log(
+                            `%c${JSON.stringify(dailyExercise)}`,
+                            'color:blue;',
+                        );
+                        return handleCalculateCarolie(dailyExercise, weight);
+                    }),
                 );
-                return acc;
-            }, {});
-            setDailyKcal(initialDailyKcal);
+                console.log(
+                    `%c${(initialDailyKcal, JSON.stringify(initialDailyKcal))}`,
+                    'color:skyblue',
+                );
+                setDailyKcal(initialDailyKcal);
+            };
+            makeDailyKcal(routineData.exerciseList);
         };
 
         fetchData();
