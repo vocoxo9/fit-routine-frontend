@@ -57,29 +57,25 @@ function InfoEdit({ infoData, setIsEdit }) {
             return;
         }
 
-        let isPasswordChanged = false;
-        (
-        editInfoData.newPassword !== '' ||
-        editInfoData.checkPassword !== '')
-            ? isPasswordChanged = true : isPasswordChanged = false; 
+        const isPasswordChanged = !!(editInfoData.newPassword || editInfoData.checkPassword);
 
 
-        let isOtherChanged = false;
-        (editInfoData.nickname === infoData.nickname &&
-        editInfoData.phone === infoData.phone &&
-        Number(editInfoData.height) === Number(infoData.height) &&
-        Number(editInfoData.weight) === Number(infoData.weight))
-            ? isOtherChanged = false : isOtherChanged = true;
-    
-        (isPasswordChanged || isOtherChanged) ? setIsInfoChanged(true) : setIsInfoChanged(false) ;
+        const isOtherChanged = !!(
+            editInfoData.nickname !== infoData.nickname ||
+            editInfoData.phone !== infoData.phone ||
+            Number(editInfoData.height) !== Number(infoData.height) ||
+            Number(editInfoData.weight) !== Number(infoData.weight)
+        );
+        
+        setIsInfoChanged(isPasswordChanged || isOtherChanged);
     }, [editInfoData, infoData]);
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
-        
-        const parsedValue = (name == 'height' || name == 'weight')
-        ? Number(value)
-        : value;
+
+        const parsedValue = (name === 'height' || name === 'weight') ? 
+            Number(value) : 
+            value;
         
         setEditInfoData((prev) => ({
             ...prev,
@@ -111,16 +107,16 @@ function InfoEdit({ infoData, setIsEdit }) {
     const isChanged = () => {
         const updated = { ...editInfoData };
             
-        if (updated.nickname == infoData.nickname) {
+        if (updated.nickname === infoData.nickname) {
             updated.nickname = '';
         }
-        if (updated.phone == infoData.phone) {
+        if (updated.phone === infoData.phone) {
             updated.phone = '';
         }
-        if (updated.height == infoData.height) {
+        if (updated.height === infoData.height) {
             updated.height = null;
         }
-        if (updated.weight == infoData.weight) {
+        if (updated.weight === infoData.weight) {
             updated.weight = null;
         }
 

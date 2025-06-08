@@ -3,6 +3,7 @@ import styles from './Introduce.module.css';
 import buttons from 'assets/styles/common/button.module.css';
 import { useState } from 'react';
 import IntroduceEdit from 'components/blog/IntroduceEdit/IntroduceEdit';
+import { editIntroduce } from 'utils/api/blogApi';
 
 /**
  * 소개글 컴포넌트
@@ -10,7 +11,7 @@ import IntroduceEdit from 'components/blog/IntroduceEdit/IntroduceEdit';
  * @param {string} intro 블로그 소개글 내용
  *  
  */
-function Introduce({intro}) {
+function Introduce({intro, blogId}) {
     const [isEditClick, setIsEditClick] = useState(false);
     const [introduce, setIntroduce] = useState(intro);
 
@@ -19,10 +20,16 @@ function Introduce({intro}) {
     }
 
     // 소개글 수정 후 수정버튼까지 클릭했을때
-    const handleEditCompleteClick = (content) => {
-        //소개글 수정 post api요청(토큰, introduce전달)
-        setIntroduce(content);
-        setIsEditClick(false);
+    const handleEditCompleteClick = async (content) => {
+        const result = await editIntroduce(content, blogId, 4);
+
+        if(result === 'success'){
+            setIntroduce(content);
+            setIsEditClick(false);
+        } else {
+            alert('오류');
+            setIsEditClick(false);
+        }
     }
     
     const cancelClick = () => {

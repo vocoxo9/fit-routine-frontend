@@ -17,7 +17,8 @@ function AllExercisePages() {
         goalWeight: '',
         dayRepeat: '',
         dayKcal: '',
-        exerciseData: {},
+        exerciseData: [],
+        // exerciseData: [{}, {}, {}],
         // exerciseData: ['1,2', '55,6'],
         // exerciseData: { 1:[1,2], 2:[55, 6]},
         // exerciseData: [[1,2], [55, 6]],
@@ -28,6 +29,7 @@ function AllExercisePages() {
     const performData = () => {
         alert('운동 루틴이 저장되었습니다!');
         navigate('/todo');
+        console.log('제출 데이터 :: ' + formData);
     };
 
     const goToNext = () => {
