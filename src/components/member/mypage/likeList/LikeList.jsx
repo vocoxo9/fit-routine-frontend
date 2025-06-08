@@ -26,8 +26,19 @@ function LikeList() {
     useEffect(() => {
         const fetchLikeList = async () => {
             const result = await getLikeList();
-            console.log(result);
-            setLikeList(result);
+            const parsedResult = result.map((item) => {
+                let gender;
+                if (item.gender === 'M') gender = 'male';
+                else if (item.gender === 'F') gender = 'female';
+                else gender = null;
+
+                return {
+                    ...item, 
+                    gender, 
+                };
+            });
+            console.log(parsedResult);
+            setLikeList(parsedResult);
         };
         fetchLikeList();
     }, []);
@@ -36,16 +47,21 @@ function LikeList() {
         <>
             <div className={styles.subTitle}>관심 목록</div>
             <div className={styles.list}>
-                {likeList.map((like, index) => {
-                    return (
-                        <Like
-                            key={index}
-                            nickName={like.nickname}
-                            gender={like.gender}
-                            grade={like.grade}
-                        />
-                    );
-                })}
+                {likeList &&
+                    likeList.map((like, index) => {
+                        return (
+                            <Like
+                                key={index}
+                                nickName={like.nickname}
+                                gender={like.gender}
+                                grade={like.grade}
+                            />
+                        );
+                    })
+                }
+                {likeList == '' &&
+                    <p className={styles.noLikeList}>관심 등록이 없습니다.</p>
+                }
             </div>
         </>
     );
