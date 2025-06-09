@@ -52,6 +52,7 @@ function LikeList() {
                         return (
                             <Like
                                 key={index}
+                                memberId={like.memberId}
                                 nickName={like.nickname}
                                 gender={like.gender}
                                 grade={like.grade}
