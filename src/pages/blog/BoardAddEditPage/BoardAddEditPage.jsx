@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MdCancelPresentation } from "react-icons/md";
 import styles from './BoardAddEditPage.module.css';
 import CategorySelect from 'components/blog/CategorySelect/CategorySelect';
 import buttons from 'assets/styles/common/button.module.css';
@@ -23,6 +24,7 @@ function BoardAddEditPage({
         content:'',
     });
     const [images, setImages] = useState([]);
+    const [deletedImageIds, setDeletedImageIds] = useState([]);
     const [error, setError] = useState({
         titleError: '',
         imageError: '',
@@ -158,13 +160,14 @@ function BoardAddEditPage({
         formData.append('content', boardData.content);
 
         images.forEach((image) => {
-            formData.append('images', image);
+            if (image instanceof File){
+                formData.append('images', image);
+            }
         });
 
-        // 수정 목적일경우 boardId 추가
-        if (boardId) {
-            formData.append('boardId', boardId);
-        }
+        deletedImageIds.forEach(id => {
+            formData.append('deleteImageIds', id);
+        });
 
         const result = await saveBoard(boardId, formData, 1);   // 1은 토큰값
 
@@ -172,6 +175,17 @@ function BoardAddEditPage({
         navigate('/board');
 
     }
+
+    const handleRemoveImage = (index) => {
+        const target = images[index];
+
+        // 이미지가 기존 이미지일 경우 (서버에 있던 것)
+        if (!(target instanceof File)) {
+            setDeletedImageIds(previous => [...previous, target.imageId]);
+        }
+
+        setImages(previous => previous.filter((_, i) => i !== index));
+    };
 
     return (
         <div className={styles.pageContainer}>
@@ -200,7 +214,14 @@ function BoardAddEditPage({
                         multiple
                         accept='image/*'
                         className={styles.fileInputBtn}
-                        onChange={e=>{setImages((Array.from(e.target.files)))}}
+                        onChange={(event) => {
+                            const newFiles = Array.from(event.target.files);
+
+                            setImages(previous => {
+                                const updateImages = [...previous, ...newFiles];
+                                return updateImages.slice(0, 8);
+                            });
+                        }}
                     />
                     <label htmlFor="fileInput" className={`${buttons.button} ${buttons.short} ${styles.attachButton}`}>
                         파일첨부
@@ -213,15 +234,19 @@ function BoardAddEditPage({
                                     {[0, 1, 2, 3].map(col => {
                                         const index = row * 4 + col;
                                         const file = images?.[index];
+    
                                         return (
                                         <td key={col}>
                                             {file !== undefined && (
-                                            <img
-                                                src={file instanceof File ? URL.createObjectURL(file) : file.changeName}
-                                                alt={`image-${index}`}
-                                                
-                                                className={styles.previewImg}
-                                            />
+                                            <>
+                                                <div className={styles.cancel} onClick={() => handleRemoveImage(index)}><MdCancelPresentation/></div>
+                                                <img
+                                                    src={file instanceof File ? URL.createObjectURL(file) : file.changeName}
+                                                    alt={`image-${index}`}
+                                                    
+                                                    className={styles.previewImg}
+                                                />
+                                            </>
                                             )}
                                         </td>
                                         );
