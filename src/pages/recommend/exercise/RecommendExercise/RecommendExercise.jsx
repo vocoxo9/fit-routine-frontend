@@ -32,10 +32,10 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
     const [dailyKcal, setDailyKcal] = useState({});
 
     const categoryList = [
-        { text: '상체', name: 'upper', value: 'upper' },
-        { text: '하체', name: 'lower', value: 'lower' },
-        { text: '유산소', name: 'cardio', value: 'cardio' },
-        { text: '생활운동', name: 'life', value: 'life' },
+        { text: '상체', name: 'UPPER', value: 'UPPER' },
+        { text: '하체', name: 'LOWER', value: 'LOWER' },
+        { text: '유산소', name: 'CARDIO', value: 'CARDIO' },
+        { text: '생활운동', name: 'LIFE', value: 'LIFE' },
     ];
 
     // 렌더링 동시에 운동 공공데이터 가져오기
@@ -114,7 +114,7 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
             ? openDataList.filter(
                   (opendata) =>
                       opendata.category &&
-                      opendata.category.toLowerCase() === category.value,
+                      opendata.category === category.value,
               )
             : [];
     };
