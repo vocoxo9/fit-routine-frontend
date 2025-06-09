@@ -186,14 +186,14 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
             }
         }
 
-        const finalExerciseData = [];
+        const selectedExerciseIds = [];
         for (let i = 1; i <= Number(formData.dayRepeat); i++) {
-            finalExerciseData.push(checkedItems[i] || []);
+            selectedExerciseIds.push(checkedItems[i] || []);
         }
 
         setFormData((prev) => ({
             ...prev,
-            exerciseData: finalExerciseData,
+            exerciseData: selectedExerciseIds,
         }));
 
         alert('폼 제출 완료');
