@@ -76,8 +76,7 @@ function Profile({infoData, setIsEdit}) {
                 <>
                     <div className={styles.overlay} onClick={() => setIsModalOpen(false)}></div>
                     <PasswordConfirmModal 
-                        email={infoData.email} 
-                        password={infoData.password} 
+                        email={infoData.email}
                     />
                 </>
             )}

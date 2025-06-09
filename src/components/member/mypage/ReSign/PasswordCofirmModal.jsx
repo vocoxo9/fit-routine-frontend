@@ -1,12 +1,47 @@
 import styles from './PasswordConfirmModal.module.css';
 import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
-import error from 'assets/styles/common/error.module.css';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import errorStyles from 'assets/styles/common/error.module.css';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { checkPassword } from 'utils/api/profileApi.js'; 
 
-function PasswordConfirmModal ({ email, password }) {
-    const [data, setData] = useState('');
+function PasswordConfirmModal ({ email }) {
+    const navigate = useNavigate();
+
+    const [data, setData] = useState(
+        {
+            email: email || '',
+            password: '',
+        }
+    );
+
+    const [error, setError] = useState();
+
+    const [existingPwd, setExistingPwd] = useState('');
+
+    useEffect(() => {
+        const verifyPassword = async () => {
+            const result = await checkPassword();
+            console.log("기존 회원 비밀번호", result);
+            setExistingPwd(result);
+        }
+        verifyPassword();
+    }, []);
+
+    const onChange = (event) => {
+        setData(prev => ({
+            ...prev,
+            password: event.target.value
+        }));
+    };
+
+    const handleConfirm = () => {
+        (data.password === existingPwd) ? 
+        navigate('/resign') : 
+        setError('비밀번호가 일치하지 않습니다');
+        console.log("비밀번호 일치 하지 않음");
+    };
 
     return (
         <div className={styles.modal}>
@@ -28,16 +63,19 @@ function PasswordConfirmModal ({ email, password }) {
                 <input 
                     className={`${input.input} ${styles.long}`} 
                     type="password" 
-                    onChange={(event) => event.target.value}
+                    value={data.password}
+                    onChange={onChange}
                 />
-                <Link to='/resign'>
-                    <button 
-                        type="button"
-                        className={`${button.button} ${button.long}`}
-                        >
-                        확인
-                    </button>
-                </Link>
+                {error &&
+                    <p className={errorStyles.error}>{error}</p>
+                }
+                <button 
+                    type="button"
+                    className={`${button.button} ${button.long}`}
+                    onClick={handleConfirm}
+                    >
+                    확인
+                </button>
             </form>
         </div>
     );

@@ -17,7 +17,14 @@ const editUserInfo = async (editInfoData) => {
     return response.data;
 }
 
+// 로그인 한 회원의 비밀번호를 조회하는 api함수
+const checkPassword = async () => {
+    const response = await apiAxios.get('/members/check/password');
+    return response.data;
+}
+
 export {
     getUserProfile,
     editUserInfo,
+    checkPassword,
 };
