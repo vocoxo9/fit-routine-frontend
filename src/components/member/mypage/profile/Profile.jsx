@@ -4,9 +4,8 @@ import button from 'assets/styles/common/button.module.css';
 
 import styles from './Profile.module.css';
 import ProFileInfo from 'components/common/Info/ProfileInfo';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PasswordConfirmModal from 'components/member/mypage/ReSign/PasswordCofirmModal';
-import { Link } from 'react-router-dom';
 
 function Profile({infoData, setIsEdit}) {
     // 모달창을 띄우는 상태
