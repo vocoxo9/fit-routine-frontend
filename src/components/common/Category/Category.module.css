@@ -1,5 +1,8 @@
-.text {
+.button {
     border-radius: 0.2rem;
+    background-color: #ffffff;
+    border: 1px solid #d9d9d9;
+    color: black;
     width: 12rem;
     height: 6rem;
     display: flex;
@@ -11,10 +14,6 @@
     margin: 1rem 2.5rem;
 }
 
-.text:hover {
-    border: solid 0.1rem #334eac;
-}
-
-.selected {
+.button:focus {
     border: solid 0.1rem #334eac;
 }

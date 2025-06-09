@@ -237,10 +237,6 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
                                                     category,
                                                 )
                                             }
-                                            isSelected={
-                                                selectedCategory[dayNo] ===
-                                                category
-                                            }
                                         />
                                     ))}
                                 </div>
