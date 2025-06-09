@@ -8,7 +8,6 @@ function AllExercisePages() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        todoId: '',
         startDate: '',
         endDate: '',
         purpose: '',
@@ -16,12 +15,7 @@ function AllExercisePages() {
         tdee: '',
         goalWeight: '',
         dayRepeat: '',
-        dayKcal: '',
-        exerciseList: [],
-        // exerciseData: [{}, {}, {}],
-        // exerciseData: ['1,2', '55,6'],
-        // exerciseData: { 1:[1,2], 2:[55, 6]},
-        // exerciseData: [[1,2], [55, 6]],
+        // exerciseList: [],
     });
 
     const [step, setStep] = useState(0);
@@ -29,7 +23,7 @@ function AllExercisePages() {
     const performData = () => {
         alert('운동 루틴이 저장되었습니다!');
         navigate('/todo');
-        console.log('제출 데이터 :: ' + formData);
+        console.log('제출 데이터 :: ', formData);
     };
 
     const goToNext = () => {
