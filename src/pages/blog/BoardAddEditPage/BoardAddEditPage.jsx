@@ -5,8 +5,8 @@ import buttons from 'assets/styles/common/button.module.css';
 import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { saveBoard } from 'utils/api/blogApi';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchBoardDataByBoardId, saveBoard } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -14,12 +14,12 @@ import { saveBoard } from 'utils/api/blogApi';
 
 function BoardAddEditPage({
     buttonText, 
-    //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
+    //<Route path="/board/edit/:boardId" element={<AddEditPage />} />
 }) {
     const {boardId} = useParams();
     const [boardData, setBoardData] = useState({
         title:'',
-        category:'STRENGTH',
+        category:'ALL',
         content:'',
     });
     const [images, setImages] = useState([]);
@@ -30,11 +30,9 @@ function BoardAddEditPage({
     });
   
     const navigate = useNavigate();
-    const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
-    const [content, setContent] = useState('');
 
     const options = [
+        { label: '자유', value: 'ALL' },
         { label: '근육 증진', value: 'STRENGTH' },
         { label: '체중 감량', value: 'DIET' },
         { label: '체력 증진', value: 'ENDURANCE' },
@@ -107,23 +105,21 @@ function BoardAddEditPage({
         }
     }
 
-    const fetchBoardDataByBoardId = async (boardId) => {
-        // 게시물 정보 api 호출
-        // const data = axios.get(...);
-        // return data;
+    const fetchBoardDetail = async (boardId) => {
+        const data = await fetchBoardDataByBoardId(boardId, 1);   // 1은 토큰값
+        setBoardData({
+            title: data.title,
+            category: data.category,
+            content: data.content,
+        });
+        setImages(data.images);
     }
 
     useEffect(()=>{
-
-        async function fetchData() {
-            const data = fetchBoardDataByBoardId(boardId);
-            setBoardData(data.boardData);
-            setImages(data.imgList);
-        }
         if (boardId) {
-            fetchData();
+            fetchBoardDetail(boardId);
         }
-        }, []);
+    }, []);
 
 
     const titleHandler = (e) => {
@@ -170,7 +166,7 @@ function BoardAddEditPage({
             formData.append('boardId', boardId);
         }
 
-        const result = await saveBoard(boardId, formData, 1);
+        const result = await saveBoard(boardId, formData, 1);   // 1은 토큰값
 
         result === 'success' ? alert('추가 성공!') : alert('실패');
         navigate('/board');
@@ -219,10 +215,11 @@ function BoardAddEditPage({
                                         const file = images?.[index];
                                         return (
                                         <td key={col}>
-                                            {file && (
+                                            {file !== undefined && (
                                             <img
-                                                src={typeof file === 'string' ? file : URL.createObjectURL(file)}
+                                                src={file instanceof File ? URL.createObjectURL(file) : file.changeName}
                                                 alt={`image-${index}`}
+                                                
                                                 className={styles.previewImg}
                                             />
                                             )}
