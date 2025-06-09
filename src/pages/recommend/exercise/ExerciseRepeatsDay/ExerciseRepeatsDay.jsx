@@ -6,7 +6,7 @@ import label from 'assets/styles/common/label.module.css';
 import error from 'assets/styles/common/error.module.css';
 import form from 'assets/styles//common/form.module.css';
 import button from 'assets/styles/common/button.module.css';
-import { getDayDiff } from 'utils/helpers/exercise';
+import { calcTotalPeriod } from 'utils/helpers/calculator';
 
 const checkRepeatRequired = (repeat) => {
     const errors = {};
@@ -21,7 +21,7 @@ const checkRepeatRequired = (repeat) => {
 function ExerciseRepeatsDay({ goToNext, formData, setFormData }) {
     const [errors, setErrors] = useState({});
 
-    const dayDiff = getDayDiff(formData.startDate, formData.endDate);
+    const dayDiff = calcTotalPeriod(formData.startDate, formData.endDate);
     const dayRepeat = Array.from({ length: dayDiff }, (_, i) => i + 1);
 
     const handleChange = (event) => {
