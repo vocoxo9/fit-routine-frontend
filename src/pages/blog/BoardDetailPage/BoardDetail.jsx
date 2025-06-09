@@ -9,6 +9,7 @@ import Likes from 'components/common/Likes/Likes';
 import ReplyInput from 'components/blog/ReplyInput/ReplyInput';
 import Reply from 'components/blog/Reply/Reply';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { getBoardDetailWithLike } from 'utils/api/blogApi';
 
 /**
  * 게시물 상세 정보 페이지
@@ -16,39 +17,21 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 function BoardDetail() {
     const { boardId } = useParams(); // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
     const [imgCount, setImgCount] = useState(0);
-    const [boardData, setBoardData] = useState({});
+    const [boardData, setBoardData] = useState({
+        title: '',
+        content: '',
+        nickname: '',
+        createdAt: '',
+        likeCount: 0,
+        liked: false,
+        images: [],
+    });
     const [boardLike, setBoardLike] = useState({});
     const [replyList, setReplyList] = useState([]);
     const [replyLikeList, setReplyLikeList] = useState([]);
 
     const navigate = useNavigate();
 
-    const dummyData = {
-        imgList : [
-            {
-                src: 'jae3.jpg',
-            },
-            {
-                src: 'jae4.jpg',
-            },
-            {
-                src: 'jae5.jpg',
-            },
-        ],
-        title : '운동 인증을 하는 이유',
-        content : '안녕하세요, 김일현입니다.' +
-            '저는 소통과 협업을 중시하는 개발자로,' +
-            '팀워크 속에서 성장하는 것을 즐깁니다.\n현재는 React, ' +
-            'Node.js 기반의 웹 개발에 주력하고 있으며, 사용자 중심의 UI/UX ' +
-            '설계에도 많은 관심을 가지고 있습니다. \n새로운 기술에 대한 호기심이' +
-            ' 많아 꾸준히 학습하고, 문제 해결을 위해 논리적으로 사고하려 노력합니다.' +
-            ' \n틈틈이 운동을 하며 건강도 챙기고, 다양한 사람들과의 교류를 통해 시야를 넓히고 있습니다.',
-        writer : '김일현',
-        createDate : new Date(2023, 1, 1),
-        likeCount : 123,
-        isLiked : false,
-        boardId : 1,
-    };
     const dummyReply = [
         {nickname:'성쟁가말을한다아',date:new Date(2024, 1, 13),gender:'male',content:'배고파\n근데이렇게\n길다면\n어떻게되는거',replyId:1,reCommentId:null,likeCount:2,isLiked:false},
         {nickname:'잉형',date:new Date(2024, 1, 28),gender:'male',content:'밥먹어',replyId:2,reCommentId:3,likeCount:33,isLiked:true},
@@ -82,9 +65,11 @@ function BoardDetail() {
     }
 
     useEffect(() => {
-        // axios - boardId와 토큰으로 게시물 정보 요청 해야함
-        setBoardData(dummyData);
-        setBoardLike(makeLikeObject(dummyData.likeCount, dummyData.isLiked));
+        const data = getBoardDetailWithLike(boardId, 1).then(data => {
+            console.log(data);
+            setBoardData(data);
+            setBoardLike(makeLikeObject(data.likeCount, data.liked));
+        });
 
         // axios - boardId와 토큰으로 댓글 목록 요청 해야함
         const list = dummyReply.map((item) => 
@@ -105,12 +90,12 @@ function BoardDetail() {
     }, [replyList])
 
     const prevImgHandler = () => {
-        const count = imgCount === 0 ? boardData.imgList.length - 1 : imgCount - 1;
+        const count = imgCount === 0 ? boardData.images.length - 1 : imgCount - 1;
         setImgCount(count);
     };
 
     const nextImgHandler = () => {
-        const count = boardData.imgList.length - 1 === imgCount ? 0 : imgCount + 1;
+        const count = boardData.images.length - 1 === imgCount ? 0 : imgCount + 1;
         setImgCount(count);
     };
 
@@ -192,22 +177,23 @@ function BoardDetail() {
                 </div>
                 <br />
                 <div className={styles.nameDate}>
-                    {boardData.writer} / {boardData.createDate && new Date(boardData.createDate).toLocaleDateString()}
+                    {boardData.nickname} / {boardData.createdAt && new Date(boardData.createdAt).toLocaleDateString()}
                 </div>
             </div>
 
             <div className={styles.flex}>
                 <div className={styles.imageContainer}>
-                    <button className={styles.imgBtn} onClick={prevImgHandler}>
+                    <button className={styles.imgBtn} onClick={boardData.images.length !== 0 && prevImgHandler}>
                         <VscTriangleLeft />
                     </button>
                     <div className={styles.image}>
-                        {boardData.imgList && boardData.imgList.length > 0 &&
+                        {boardData.images && boardData.images.length > 0 &&
                             <img className={styles.img}
-                                src={boardData.imgList[imgCount].src}
+                                src={boardData.images[imgCount].changeName}
+                                alt={boardData.images[imgCount].originName}
                         />}
                     </div>
-                    <button className={styles.imgBtn} onClick={nextImgHandler}>
+                    <button className={styles.imgBtn} onClick={boardData.images.length !== 0 && nextImgHandler}>
                         <VscTriangleRight />
                     </button>
                 </div>
@@ -226,14 +212,14 @@ function BoardDetail() {
                 {boardLike.likeCount && 
                     <Likes 
                         count={boardLike.likeCount} 
-                        isLiked={boardLike.isLiked} 
+                        isLiked={boardLike.liked} 
                         isBig={true} 
                         onClick={handleBoardLikeClick}    
                     />
                 }
             </div>
 
-            <ReplyInput boardId={boardData.boardId} addReply={addReply}/>
+            <ReplyInput boardId={boardId} addReply={addReply}/>
 
             <div className={styles.replyListContainer}>
                 {replyList && 
