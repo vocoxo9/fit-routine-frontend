@@ -37,8 +37,8 @@ function PasswordConfirmModal ({ email }) {
 
     const handleConfirm = () => {
         (data.password === existingPwd) ? 
-        navigate('/resign') : 
-        setError('비밀번호가 일치하지 않습니다');
+            navigate('/resign') : 
+            setError('비밀번호가 일치하지 않습니다');
     };
 
     return (
