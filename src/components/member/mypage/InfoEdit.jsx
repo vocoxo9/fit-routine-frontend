@@ -72,7 +72,7 @@ function InfoEdit({ infoData, setIsEdit }) {
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
-        
+
         const parsedValue = (name === 'height' || name === 'weight') ? 
             Number(value) : 
             value;

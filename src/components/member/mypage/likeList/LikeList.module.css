@@ -5,3 +5,10 @@
     margin: 3rem auto;
     margin-left: 5rem;
 }
+
+.noLikeList {
+    font-size: 2rem;
+    color: #787878;
+    text-align: center;
+    margin: 10rem 0;
+}
