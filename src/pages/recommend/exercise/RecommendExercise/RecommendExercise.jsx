@@ -8,13 +8,14 @@ import styles from './RecommendExercise.module.css';
 import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
 import {
-    getMockData,
+    fetchExerciseRandomRoutine,
     fetchExerciseOpenDataList,
+    fetchGetExerciseById,
 } from 'utils/api/exerciseApi';
 
 const DAILY_BURN_KCAL = 400; // 하루 소모 칼로리(임의)
 const EXERCISE_TIME = 0.25; // 운동 시간
-const handleCalculateCarolie = (exerciseList, weight) => {
+const calculateCarolie = (exerciseList, weight) => {
     return exerciseList.reduce((total, exercise) => {
         return total + exercise.met * weight * EXERCISE_TIME;
     }, 0);
@@ -40,142 +41,159 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
 
     // 렌더링 동시에 운동 공공데이터 가져오기
     useEffect(() => {
-        const fetchOpenData = async () => {
+        const loadOpenData = async () => {
             const exerciseOpenData = await fetchExerciseOpenDataList();
             setOpenDataList(exerciseOpenData);
         };
-
-        fetchOpenData();
+        loadOpenData();
     }, []);
 
     // 렌더링과 동시에 가져 올 데이터 샘플 및 초기 kcal 계산
     useEffect(() => {
-        const fetchData = async () => {
-            const mockData = getMockData(formData);
+        const loadInitialRoutine = async () => {
+            const routineData = await fetchExerciseRandomRoutine(formData);
 
             // 초기에 체크 상태일 데이터 리스트
-            const initialCheckedData = mockData.reduce((acc, oneDayData) => {
-                acc[oneDayData.dayNo] = oneDayData.exerciseList.map(
-                    (exercise) => exercise.id,
-                );
-                return acc;
-            }, {});
-
-            setData(mockData);
+            const initialCheckedData = {};
+            routineData.exerciseList.forEach((exercise, index) => {
+                initialCheckedData[index + 1] = exercise;
+            });
             setCheckedItems(initialCheckedData);
 
+            // 운동 id를 운동 객체로
+            const routinePerDay = await Promise.all(
+                Array.from({ length: formData.dayRepeat }, async (_, i) => {
+                    const dayRepeat = i + 1;
+                    const exerciseIds = initialCheckedData[dayRepeat] || [];
+
+                    const exercises = await Promise.all(
+                        exerciseIds.map(async (id) => {
+                            const exerciseDetail =
+                                await fetchGetExerciseById(id);
+                            return exerciseDetail;
+                        }),
+                    );
+
+                    return {
+                        weight: routineData.weight || 60,
+                        dayRepeat: dayRepeat,
+                        exerciseList: exercises.filter(Boolean),
+                    };
+                }),
+            );
+            setData(routinePerDay);
+
             // 초기 kcal 계산 및 dailyKcal 설정
-            const initialDailyKcal = mockData.reduce((acc, oneDayData) => {
-                acc[oneDayData.dayNo] = handleCalculateCarolie(
-                    oneDayData.exerciseList,
-                    oneDayData.weight,
+            const initialDailyKcal = {};
+            routinePerDay.forEach((dayRoutine) => {
+                const dayRepeat = dayRoutine.dayRepeat;
+                const weight = routineData.weight || 60;
+                initialDailyKcal[dayRepeat] = calculateCarolie(
+                    dayRoutine.exerciseList,
+                    weight,
                 );
-                return acc;
-            }, {});
+            });
             setDailyKcal(initialDailyKcal);
         };
-
-        fetchData();
-    }, []);
-
-    // checkedItems 또는 data가 변경될 때마다 dailyKcal을 업데이트함
-    useEffect(() => {
-        const updatedDailyKcal = data.reduce((acc, oneDayData) => {
-            const currentExerciseList = oneDayData.exerciseList.filter(
-                (exercise) =>
-                    checkedItems[oneDayData.dayNo]?.includes(exercise.id),
-            );
-            acc[oneDayData.dayNo] = handleCalculateCarolie(
-                currentExerciseList,
-                oneDayData.weight,
-            );
-            return acc;
-        }, {});
-        setDailyKcal(updatedDailyKcal);
-    }, [data, checkedItems, openDataList]);
+        loadInitialRoutine();
+    }, [formData.dayRepeat]);
 
     // 카테고리 표시
-    const handleShowCategory = (dayNo) => {
-        setShowCategory((prev) => ({ ...prev, [dayNo]: !prev[dayNo] }));
-        setShowCheckList((prev) => ({ ...prev, [dayNo]: false }));
+    const handleShowCategory = (dayRepeat) => {
+        setShowCategory((prev) => ({ ...prev, [dayRepeat]: !prev[dayRepeat] }));
+        setShowCheckList((prev) => ({ ...prev, [dayRepeat]: false }));
     };
 
     // 체크리스트 표시
-    const handleShowCheckList = (dayNo, category) => {
-        setSelectCategory((prev) => ({ ...prev, [dayNo]: category }));
-        setShowCheckList((prev) => ({ ...prev, [dayNo]: true }));
+    const handleShowCheckList = (dayRepeat, category) => {
+        setSelectCategory((prev) => ({ ...prev, [dayRepeat]: category }));
+        setShowCheckList((prev) => ({ ...prev, [dayRepeat]: true }));
     };
 
     // 카테고리에 따른 리스트 분류
-    const filteredByCategory = (dayNo) => {
-        const category = selectedCategory[dayNo];
+    const filteredByCategory = (dayRepeat) => {
+        const category = selectedCategory[dayRepeat];
 
         return category && Array.isArray(openDataList)
             ? openDataList.filter(
                   (opendata) =>
-                      opendata.category &&
-                      opendata.category === category.value,
+                      opendata.category && opendata.category === category.value,
               )
             : [];
     };
 
-    // 체크박스 변경
-    const handleCheckBoxClick = (
-        dayNo,
-        exerciseId,
-        oneDayData,
-        openDataList,
-        checkedItems,
-        setCheckedItems,
-    ) => {
-        let items = checkedItems[dayNo] || [];
+    // 체크박스 상태를 변경하고 칼로리를 계산
+    const handleCheckBoxClick = async (dayRepeat, exerciseId) => {
+        let items = checkedItems[dayRepeat] || [];
 
         let updateCheckedItems;
-
-        // 이미 리스트에 있으면 제거
         if (items.includes(exerciseId)) {
             updateCheckedItems = items.filter((id) => id !== exerciseId);
         } else {
-            // 리스트에 없으면 추가
             updateCheckedItems = [...items, exerciseId];
         }
+        setCheckedItems((prev) => ({
+            ...prev,
+            [dayRepeat]: updateCheckedItems,
+        }));
 
-        setCheckedItems((prev) => ({ ...prev, [dayNo]: updateCheckedItems }));
+        const updatedExerciseList = await Promise.all(
+            updateCheckedItems.map(async (id) => {
+                const exerciseDetail = openDataList.find((ex) => ex.id === id);
+                return exerciseDetail || (await fetchGetExerciseById(id));
+            }),
+        );
+
+        setData((prevData) => {
+            const newData = prevData.map((dayData) => {
+                if (dayData.dayRepeat === dayRepeat) {
+                    return {
+                        ...dayData,
+                        exerciseList: updatedExerciseList.filter(Boolean),
+                    };
+                }
+                return dayData;
+            });
+
+            const newDailyKcal = {};
+            newData.forEach((dayData) => {
+                const weight = 60;
+                newDailyKcal[dayData.dayRepeat] = calculateCarolie(
+                    dayData.exerciseList,
+                    weight,
+                );
+            });
+            setDailyKcal(newDailyKcal);
+            return newData;
+        });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         for (const day of data) {
-            const dayNo = day.dayNo;
-            const oneDayKcal = dailyKcal[dayNo] || 0;
+            const dayRepeat = day.dayRepeat;
+            const oneDayKcal = dailyKcal[dayRepeat] || 0;
 
-            if (!checkedItems[dayNo] || checkedItems[dayNo].length === 0) {
-                alert(`${dayNo}일차에 선택된 운동이 존재하지 않습니다.`);
+            if (!checkedItems[dayRepeat]?.length) {
+                alert(`${dayRepeat}일차에 선택된 운동이 존재하지 않습니다.`);
                 return;
-            } else if (
-                formData.purpose === 'diet' &&
-                oneDayKcal < DAILY_BURN_KCAL
-            ) {
-                alert(`${dayNo}일차 칼로리가 부족합니다.`);
+            }
+
+            if (formData.purpose === 'diet' && oneDayKcal < DAILY_BURN_KCAL) {
+                alert(`${dayRepeat}일차 칼로리가 부족합니다.`);
                 return;
             }
         }
 
-        const updateExerciseData = data.map((dayData) => {
-            const currentExerciseList = (checkedItems[dayData.dayNo] || [])
-                .map((id) => openDataList.find((ex) => ex.id === id))
-                .filter(Boolean);
-            return {
-                ...dayData, // 기존 dayData 정보
-                exerciseList: currentExerciseList, // 체크된 운동 리스트
-                kcal: dailyKcal[dayData.dayNo], // 계산된 kcal
-            };
-        });
+        const selectedExerciseIds = [];
+        for (let i = 1; i <= Number(formData.dayRepeat); i++) {
+            selectedExerciseIds.push(checkedItems[i] || []);
+        }
 
         setFormData((prev) => ({
             ...prev,
-            exerciseData: updateExerciseData, // 최종 exerciseData를 저장
+            exerciseData: selectedExerciseIds,
         }));
 
         alert('폼 제출 완료');
@@ -185,84 +203,69 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
     return (
         <form className={styles.container}>
             <p className={styles.title}>FIT-ROUTINE</p>
-            {data
-                .filter((_, index) => index <= formData.dayRepeat)
-                .map((oneDayData, index) => {
-                    const dayNo = oneDayData.dayNo;
-                    const oneDayKcal = dailyKcal[dayNo] || 0; // dailyKcal에서 해당 일차의 kcal 값을 가져옴
+            {data.map((dayData, index) => {
+                const dayRepeat = dayData.dayRepeat;
+                const oneDayKcal = dailyKcal[dayRepeat] || 0;
+                return (
+                    <div key={`${dayRepeat}_${index}`}>
+                        <DayRoutine
+                            data={dayData}
+                            onClick={() => handleShowCategory(dayRepeat)}
+                            checkedItems={checkedItems[dayRepeat]}
+                            kcal={oneDayKcal}
+                            handleCheckBoxClick={(exerciseId) =>
+                                handleCheckBoxClick(dayRepeat, exerciseId)
+                            }
+                        />
 
-                    return (
-                        <div key={`${dayNo}_${index}`}>
-                            <DayRoutine
-                                data={oneDayData}
-                                onClick={() => handleShowCategory(dayNo)}
-                                checkedItems={checkedItems[dayNo]}
-                                kcal={oneDayKcal}
-                                handleCheckBoxClick={(exerciseId) =>
-                                    handleCheckBoxClick(
-                                        dayNo,
-                                        exerciseId,
-                                        oneDayData,
-                                        openDataList,
-                                        checkedItems,
-                                        setCheckedItems,
-                                        setData,
-                                    )
-                                }
-                            />
-
-                            {formData.purpose === 'diet' &&
-                                oneDayKcal < DAILY_BURN_KCAL && ( // dailyKcal 값을 사용
-                                    <div className={styles.message}>
-                                        <p className={error.error}>
-                                            칼로리가 부족합니다.
-                                        </p>
-                                        <p className={styles.burnKcal}>
-                                            {oneDayKcal} /{DAILY_BURN_KCAL}
-                                        </p>
-                                    </div>
-                                )}
-
-                            {showCategory[dayNo] && (
-                                <div className={styles.category}>
-                                    {categoryList.map((category, index) => (
-                                        <Category
-                                            key={`${category}_${index}`}
-                                            text={category.text}
-                                            name={category.name}
-                                            value={category.value}
-                                            onClick={() =>
-                                                handleShowCheckList(
-                                                    dayNo,
-                                                    category,
-                                                )
-                                            }
-                                        />
-                                    ))}
+                        {formData.purpose === 'diet' &&
+                            oneDayKcal < DAILY_BURN_KCAL && (
+                                <div className={styles.message}>
+                                    <p className={error.error}>
+                                        칼로리가 부족합니다.
+                                    </p>
+                                    <p className={styles.burnKcal}>
+                                        {oneDayKcal} /{DAILY_BURN_KCAL}
+                                    </p>
                                 </div>
                             )}
 
-                            {showCheckList[dayNo] && (
-                                <CategoryForm
-                                    dayNo={dayNo}
-                                    checkedItems={checkedItems[dayNo]}
-                                    openDataList={filteredByCategory(dayNo)}
-                                    handleCheckBoxClick={(exerciseId) =>
-                                        handleCheckBoxClick(
-                                            dayNo,
-                                            exerciseId,
-                                            oneDayData,
-                                            openDataList,
-                                            checkedItems,
-                                            setCheckedItems,
-                                            setData,
-                                        )
-                                    }
-                                />
-                            )}
-                        </div>
-                    );
-                })}
+                        {showCategory[dayRepeat] && (
+                            <div className={styles.category}>
+                                {categoryList.map((category, index) => (
+                                    <Category
+                                        key={`${category.name}_${index}`}
+                                        text={category.text}
+                                        name={category.name}
+                                        value={category.value}
+                                        onClick={() =>
+                                            handleShowCheckList(
+                                                dayRepeat,
+                                                category,
+                                            )
+                                        }
+                                        isSelected={
+                                            selectedCategory[dayRepeat] ===
+                                            category
+                                        }
+                                    />
+                                ))}
+                            </div>
+                        )}
+
+                        {showCheckList[dayRepeat] && (
+                            <CategoryForm
+                                dayRepeat={dayRepeat}
+                                checkedItems={checkedItems[dayRepeat]}
+                                openDataList={filteredByCategory(dayRepeat)}
+                                handleCheckBoxClick={(exerciseId) =>
+                                    handleCheckBoxClick(dayRepeat, exerciseId)
+                                }
+                            />
+                        )}
+                    </div>
+                );
+            })}
             <button
                 className={`${button.button} ${button.bold} ${styles.registButton}`}
                 onClick={handleSubmit}>

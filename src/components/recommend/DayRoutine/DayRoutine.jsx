@@ -4,40 +4,52 @@ import button from 'assets/styles/common/button.module.css';
 import label from 'assets/styles/common/label.module.css';
 
 /**
- * @data 사용자에게 제공할 추천 리스트 [dayNo, kcal, name(메뉴|운동명), id(메뉴|운동ID)]
- * @onClick onClick 이벤트
- * @onChange onChange 이벤트
- * @kcal 현재 일차에 해당하는 계산된 칼로리 값
+ * @data {object} 현재 날짜의 루틴 정보
+ * @checkedItems {Array} 현재 날짜에서 선택된 운동들의 배열
+ * @onClick {function}
+ * @handleCheckBoxClick {function} 체크박스 클릭 시 호출될 함수
+ * @kcal {number} 현재 날짜에 계산된 총 칼로리 값
  * @returns {JSX.Element} n일차 루틴 추천 컴포넌트
  */
-const DayRoutine = ({ data, checkedItems, onClick, handleCheckBoxClick, kcal }) => {
+const DayRoutine = ({
+    data,
+    checkedItems,
+    onClick,
+    handleCheckBoxClick,
+    kcal,
+}) => {
     return (
         <div className={styles.container}>
             <div className={styles.title}>
-                <span className={styles.dayNo}>{data.dayNo}일차</span>
+                <span className={styles.dayNo}>{data.dayRepeat}일차</span>
                 <span className={styles.kcal}>{kcal}kcal</span>
             </div>
 
-            {/* 식단|운동 추천 리스트  */}
             <div className={styles.formLeft}>
                 {data.exerciseList
-                    .filter(exercise => checkedItems.includes(exercise.id))
+                    .filter((exercise) =>
+                        checkedItems.includes(exercise.exerciseId),
+                    )
                     .map((exercise, index) => (
                         <div
-                            key={`${exercise.id}_${index}`}
+                            key={`${data.dayRepeat}_${index}`}
                             className={styles.boxContainer}>
                             <input
                                 className={`${input.input} ${styles.box}`}
                                 type="checkbox"
                                 name={exercise.name}
-                                value={exercise.id}
-                                id={`${data.dayNo}_${exercise.id}`}
-                                checked={checkedItems.includes(exercise.id)}
-                                onChange={() => handleCheckBoxClick(exercise.id)}
+                                value={exercise.exerciseId}
+                                id={`${data.dayRepeat}_${exercise.exerciseId}`}
+                                checked={checkedItems.includes(
+                                    exercise.exerciseId,
+                                )}
+                                onChange={() =>
+                                    handleCheckBoxClick(exercise.exerciseId)
+                                }
                             />
                             <label
                                 className={`${label.label} ${styles.label}`}
-                                htmlFor={`${data.dayNo}_${exercise.id}`}>
+                                htmlFor={`${data.dayRepeat}_${exercise.exerciseId}`}>
                                 {exercise.name}
                             </label>
                         </div>
