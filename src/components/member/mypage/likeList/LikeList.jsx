@@ -37,7 +37,6 @@ function LikeList() {
                     gender, 
                 };
             });
-            console.log(parsedResult);
             setLikeList(parsedResult);
         };
         fetchLikeList();
@@ -59,7 +58,7 @@ function LikeList() {
                         );
                     })
                 }
-                {likeList == '' &&
+                {!likeList &&
                     <p className={styles.noLikeList}>관심 등록이 없습니다.</p>
                 }
             </div>
