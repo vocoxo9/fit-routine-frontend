@@ -66,7 +66,6 @@ function BoardDetail() {
 
     useEffect(() => {
         const data = getBoardDetailWithLike(boardId, 1).then(data => {
-            console.log(data);
             setBoardData(data);
             setBoardLike(makeLikeObject(data.likeCount, data.liked));
         });
