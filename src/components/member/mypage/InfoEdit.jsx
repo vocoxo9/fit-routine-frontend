@@ -5,9 +5,99 @@ import button from 'assets/styles/common/button.module.css';
 import error from 'assets/styles/common/error.module.css';
 import label from 'assets/styles/common/label.module.css';
 import { useEffect, useState } from 'react';
+import {
+    checkPhoneNumberDuplicate,
+    checkNicknameDuplicate,
+} from 'utils/api/memberApi';
 import { editUserInfo } from 'utils/api/profileApi.js';
+import {
+    validateNickname,
+    validatePassword,
+    validatePhoneNumber,
+    validateHeight,
+    validateWeight,
+} from 'utils/helpers/validation';
+
+const checkForm = (infoData) => {
+    const errors = {};
+
+    const {
+        email,
+        phone,
+        nickname,
+        birthAt,
+        height,
+        weight,
+        gender,
+    } = infoData;
+
+    if (!phone) {
+        errors.phone = '전화번호를 입력해주세요.';
+    }
+
+    if (!nickname) {
+        errors.nickname = '닉네임을 입력해주세요.';
+    }
+
+    if (!height) {
+        errors.height = '신장을 입력해주세요.';
+    }
+
+    if (!weight) {
+        errors.weight = '체중을 입력해주세요.';
+    }
+
+    return errors;
+};
+
+const validateForm = async (infoData) => {
+    const errors = {};
+
+    const { email, password, phoneNumber, nickname, height, weight } = infoData;
+
+    if (password) {
+        if (!validatePassword(password)) {
+            errors.password = '비밀번호가 유효하지 않습니다.';
+        }
+    }
+
+    if (phoneNumber) {
+        if (!validatePhoneNumber(phoneNumber)) {
+            errors.phoneNumber = '전화번호가 유효하지 않습니다.';
+        } else if (await checkPhoneNumberDuplicate(phoneNumber)) {
+            errors.phoneNumber = '이미 사용 중인 전화번호입니다.';
+        }
+    }
+
+    if (nickname) {
+        if (!validateNickname(nickname)) {
+            errors.nickname = '닉네임이 유효하지 않습니다.';
+        } else if (await checkNicknameDuplicate(nickname)) {
+            errors.nickname = '이미 사용 중인 닉네임입니다.';
+        }
+    }
+
+    if (height) {
+        if (!validateHeight(height)) {
+            errors.height = '올바른 신장을 입력해주세요.';
+        }
+    }
+
+    if (weight) {
+        if (!validateWeight(weight)) {
+            errors.weight = '올바른 체중을 입력해주세요.';
+        }
+    }
+
+    return errors;
+};
+
+const hasErrors = (errors) => {
+  return Object.values(errors).some(msg => msg);
+};
 
 function InfoEdit({ infoData, setIsEdit }) {
+    const [isInitialized, setIsInitialized] = useState(false);
     const [isInfoChanged, setIsInfoChanged] = useState(false);
 
     const [editInfoData, setEditInfoData] = useState(
@@ -23,15 +113,6 @@ function InfoEdit({ infoData, setIsEdit }) {
     );
 
     const [errors, setErrors] = useState(
-        // {
-        //     nickname : '닉네임을 입력하세요',
-        //     password : '비밀번호를 입력하세요',
-        //     newPassword : '비밀번호를 입력하세요',
-        //     checkPassword : '일치하지 않습니다.',
-        //     phone : '연락처가 올바르지 않습니다.',
-        //     height : '신장을 올바르게 입력하세요',
-        //     weight : '체중을 올바르게 입력하세요',
-        // }
         {
             nickname: '',
             password: '',
@@ -43,22 +124,32 @@ function InfoEdit({ infoData, setIsEdit }) {
         },
     );
 
+    const validateAll = async () => {
+        const formErrors = checkForm(editInfoData);
+        const validateErrors = await validateForm(editInfoData);
+        const errors = { ...formErrors, ...validateErrors };
+
+        setErrors(errors);
+    };
+
     useEffect(() => {
         if (infoData) {
             setEditInfoData((prev) => ({
                 ...prev, 
                 ...infoData
             }));
+            setIsInitialized(true);
         }
     }, [infoData]);
 
     useEffect(() => {
-        if (!infoData) {
+        if (!infoData || !isInitialized) {
             return;
         }
 
-        const isPasswordChanged = !!(editInfoData.newPassword || editInfoData.checkPassword);
+        validateAll();
 
+        const isPasswordChanged = !!(editInfoData.newPassword || editInfoData.checkPassword);
 
         const isOtherChanged = !!(
             editInfoData.nickname !== infoData.nickname ||
@@ -68,6 +159,9 @@ function InfoEdit({ infoData, setIsEdit }) {
         );
         
         setIsInfoChanged(isPasswordChanged || isOtherChanged);
+
+        checkForm(editInfoData);
+        validateForm(editInfoData);
     }, [editInfoData, infoData]);
 
     const handleOnChange = (event) => {
@@ -84,15 +178,9 @@ function InfoEdit({ infoData, setIsEdit }) {
     }
 
     const handleEditInfo = async () => {
-        console.log(editInfoData);
-        console.log(infoData);
-        console.log(editInfoData.nickname === infoData.nickname);
-        
         const updateInfoData = isChanged();
-        console.log(updateInfoData);
         
         const result = await editUserInfo(updateInfoData);
-        console.log("api 결과", result);
 
         if (result === 'success') {
             alert("정보수정에 성공하였습니다.");
@@ -108,10 +196,13 @@ function InfoEdit({ infoData, setIsEdit }) {
         const updated = { ...editInfoData };
             
         if (updated.nickname === infoData.nickname) {
-            updated.nickname = '';
+            updated.nickname = null;
+        }
+        if (updated.newPassword === updated.password) {
+            updated.newPassword = null;
         }
         if (updated.phone === infoData.phone) {
-            updated.phone = '';
+            updated.phone = null;
         }
         if (updated.height === infoData.height) {
             updated.height = null;
@@ -119,6 +210,8 @@ function InfoEdit({ infoData, setIsEdit }) {
         if (updated.weight === infoData.weight) {
             updated.weight = null;
         }
+        updated.password = null;
+        updated.checkPassword = null;
 
         return updated;
     }
@@ -274,7 +367,7 @@ function InfoEdit({ infoData, setIsEdit }) {
                     <button 
                         className={`${button.button} ${button.short}`}
                         onClick={handleEditInfo}
-                        disabled={!isInfoChanged}
+                        disabled={!isInfoChanged || hasErrors(errors)}
                     >
                         수정
                     </button>
