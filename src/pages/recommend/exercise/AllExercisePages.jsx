@@ -23,7 +23,6 @@ function AllExercisePages() {
     const performData = () => {
         alert('운동 루틴이 저장되었습니다!');
         navigate('/todo');
-        console.log('제출 데이터 :: ', formData);
     };
 
     const goToNext = () => {
