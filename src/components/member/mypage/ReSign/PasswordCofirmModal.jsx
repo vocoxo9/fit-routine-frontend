@@ -23,7 +23,6 @@ function PasswordConfirmModal ({ email }) {
     useEffect(() => {
         const verifyPassword = async () => {
             const result = await checkPassword();
-            console.log("기존 회원 비밀번호", result);
             setExistingPwd(result);
         }
         verifyPassword();
@@ -40,7 +39,6 @@ function PasswordConfirmModal ({ email }) {
         (data.password === existingPwd) ? 
         navigate('/resign') : 
         setError('비밀번호가 일치하지 않습니다');
-        console.log("비밀번호 일치 하지 않음");
     };
 
     return (
