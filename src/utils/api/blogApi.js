@@ -58,6 +58,17 @@ const saveBoard = async (boardId, formData, token) => {
     return result.data;
 }
 
+const fetchBoardDataByBoardId = async (boardId, token) => {
+    const result = await apiAxios.get(`/boards/${boardId}`, getConfig(token));
+
+    return result.data;
+}
+
+const getBoardDetailWithLike = async (boardId, token) => {
+    const result = await apiAxios.get(`/boards/${boardId}?includeLike=true`, getConfig(token));
+
+    return result.data;
+}
 
 
-export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce, saveBoard };
+export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce, saveBoard, fetchBoardDataByBoardId, getBoardDetailWithLike };
