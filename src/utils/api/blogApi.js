@@ -64,6 +64,11 @@ const fetchBoardDataByBoardId = async (boardId, token) => {
     return result.data;
 }
 
+const getBoardDetailWithLike = async (boardId, token) => {
+    const result = await apiAxios.get(`/boards/${boardId}?includeLike=true`, getConfig(token));
+
+    return result.data;
+}
 
 
-export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce, saveBoard, fetchBoardDataByBoardId };
+export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce, saveBoard, fetchBoardDataByBoardId, getBoardDetailWithLike };
