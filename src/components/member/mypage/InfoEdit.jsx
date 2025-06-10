@@ -178,15 +178,9 @@ function InfoEdit({ infoData, setIsEdit }) {
     }
 
     const handleEditInfo = async () => {
-        console.log(editInfoData);
-        console.log(infoData);
-        console.log(editInfoData.nickname === infoData.nickname);
-        
         const updateInfoData = isChanged();
-        console.log("updateInfoData", updateInfoData);
         
         const result = await editUserInfo(updateInfoData);
-        console.log("api 결과", result);
 
         if (result === 'success') {
             alert("정보수정에 성공하였습니다.");
