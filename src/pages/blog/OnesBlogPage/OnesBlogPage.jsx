@@ -45,7 +45,7 @@ function OnesBlogPage() {
         });
 
         try {
-            await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId, 4); // 추후 로그인 토큰으로 변경예정
+            await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
         } catch (error) {
             setBlogLike(prev);
             alert('좋아요 처리에 실패했습니다.');
