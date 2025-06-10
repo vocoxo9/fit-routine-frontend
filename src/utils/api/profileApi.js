@@ -25,7 +25,7 @@ const checkPassword = async () => {
   
 // 로그인한 회원의 관심 블로그 목록 조회하는 api 함수
 const getLikeList = async () => {
-    const response = await apiAxios.get('/members/likeList');
+    const response = await apiAxios.get('/members/me/likes');
     return response.data;
 }
 

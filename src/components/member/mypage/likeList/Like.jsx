@@ -3,7 +3,7 @@ import styles from './Like.module.css';
 import button from 'assets/styles/common/button.module.css';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 
-function Like({ gender, nickName, grade }) {
+function Like({ blogId, gender, nickName, grade }) {
     return (
         <div className={styles.likeContainer}>
             <div className={styles.iconArea}>
