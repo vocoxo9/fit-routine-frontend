@@ -93,7 +93,7 @@ const validateForm = async (infoData) => {
 };
 
 const hasErrors = (errors) => {
-  return Object.values(errors).some(msg => msg && msg.length > 0);
+  return Object.values(errors).some(msg => msg);
 };
 
 function InfoEdit({ infoData, setIsEdit }) {
