@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { MdCancelPresentation } from "react-icons/md";
 import styles from './BoardAddEditPage.module.css';
 import CategorySelect from 'components/blog/CategorySelect/CategorySelect';
 import buttons from 'assets/styles/common/button.module.css';
 import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { saveBoard } from 'utils/api/blogApi';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchBoardDataByBoardId, saveBoard } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -14,15 +15,16 @@ import { saveBoard } from 'utils/api/blogApi';
 
 function BoardAddEditPage({
     buttonText, 
-    //<Route path="/blog/board/addEdit/:boardId?" element={<AddEditPage />} />
+    //<Route path="/board/edit/:boardId" element={<AddEditPage />} />
 }) {
     const {boardId} = useParams();
     const [boardData, setBoardData] = useState({
         title:'',
-        category:'STRENGTH',
+        category:'ALL',
         content:'',
     });
     const [images, setImages] = useState([]);
+    const [deletedImageIds, setDeletedImageIds] = useState([]);
     const [error, setError] = useState({
         titleError: '',
         imageError: '',
@@ -30,11 +32,9 @@ function BoardAddEditPage({
     });
   
     const navigate = useNavigate();
-    const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
-    const [content, setContent] = useState('');
 
     const options = [
+        { label: '자유', value: 'ALL' },
         { label: '근육 증진', value: 'STRENGTH' },
         { label: '체중 감량', value: 'DIET' },
         { label: '체력 증진', value: 'ENDURANCE' },
@@ -107,23 +107,21 @@ function BoardAddEditPage({
         }
     }
 
-    const fetchBoardDataByBoardId = async (boardId) => {
-        // 게시물 정보 api 호출
-        // const data = axios.get(...);
-        // return data;
+    const fetchBoardDetail = async (boardId) => {
+        const data = await fetchBoardDataByBoardId(boardId, 1);   // 1은 토큰값
+        setBoardData({
+            title: data.title,
+            category: data.category,
+            content: data.content,
+        });
+        setImages(data.images);
     }
 
     useEffect(()=>{
-
-        async function fetchData() {
-            const data = fetchBoardDataByBoardId(boardId);
-            setBoardData(data.boardData);
-            setImages(data.imgList);
-        }
         if (boardId) {
-            fetchData();
+            fetchBoardDetail(boardId);
         }
-        }, []);
+    }, []);
 
 
     const titleHandler = (e) => {
@@ -162,20 +160,32 @@ function BoardAddEditPage({
         formData.append('content', boardData.content);
 
         images.forEach((image) => {
-            formData.append('images', image);
+            if (image instanceof File){
+                formData.append('images', image);
+            }
         });
 
-        // 수정 목적일경우 boardId 추가
-        if (boardId) {
-            formData.append('boardId', boardId);
-        }
+        deletedImageIds.forEach(id => {
+            formData.append('deleteImageIds', id);
+        });
 
-        const result = await saveBoard(boardId, formData, 1);
+        const result = await saveBoard(boardId, formData, 1);   // 1은 토큰값
 
         result === 'success' ? alert('추가 성공!') : alert('실패');
         navigate('/board');
 
     }
+
+    const handleRemoveImage = (index) => {
+        const target = images[index];
+
+        // 이미지가 기존 이미지일 경우 (서버에 있던 것)
+        if (!(target instanceof File)) {
+            setDeletedImageIds(previous => [...previous, target.imageId]);
+        }
+
+        setImages(previous => previous.filter((_, i) => i !== index));
+    };
 
     return (
         <div className={styles.pageContainer}>
@@ -204,7 +214,14 @@ function BoardAddEditPage({
                         multiple
                         accept='image/*'
                         className={styles.fileInputBtn}
-                        onChange={e=>{setImages((Array.from(e.target.files)))}}
+                        onChange={(event) => {
+                            const newFiles = Array.from(event.target.files);
+
+                            setImages(previous => {
+                                const updateImages = [...previous, ...newFiles];
+                                return updateImages.slice(0, 8);
+                            });
+                        }}
                     />
                     <label htmlFor="fileInput" className={`${buttons.button} ${buttons.short} ${styles.attachButton}`}>
                         파일첨부
@@ -217,14 +234,19 @@ function BoardAddEditPage({
                                     {[0, 1, 2, 3].map(col => {
                                         const index = row * 4 + col;
                                         const file = images?.[index];
+    
                                         return (
                                         <td key={col}>
-                                            {file && (
-                                            <img
-                                                src={typeof file === 'string' ? file : URL.createObjectURL(file)}
-                                                alt={`image-${index}`}
-                                                className={styles.previewImg}
-                                            />
+                                            {file !== undefined && (
+                                            <>
+                                                <div className={styles.cancel} onClick={() => handleRemoveImage(index)}><MdCancelPresentation/></div>
+                                                <img
+                                                    src={file instanceof File ? URL.createObjectURL(file) : file.changeName}
+                                                    alt={`image-${index}`}
+                                                    
+                                                    className={styles.previewImg}
+                                                />
+                                            </>
                                             )}
                                         </td>
                                         );
