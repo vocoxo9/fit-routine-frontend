@@ -4,24 +4,21 @@ const apiAxios = axios.create({
     baseURL: 'http://localhost:8080',
 });
 
-apiAxios.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        if (error.status === 401) {
-        }
+apiAxios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('accessToken'); 
 
-        return Promise.reject(error);
-    },
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
-const getConfig = (token) => ({
-    headers: {
-        //`Bearer ${token}`
-        Authorization: `${token}`,
-    },
-});
 
 const getBlogDetailByBlogId = async (blogId) => {
     const response = await apiAxios.get(`/blogs/${blogId}`);
@@ -29,43 +26,43 @@ const getBlogDetailByBlogId = async (blogId) => {
     return response.data;
 };
 
-const likeOrUnlikeBlogAPI = async (isLiked, blogId, token) => {
+const likeOrUnlikeBlogAPI = async (isLiked, blogId) => {
 
     if (isLiked) {
         // 관심 해제
-        const response = await apiAxios.delete(`/blogs/${blogId}/likes`, getConfig(token));
+        const response = await apiAxios.delete(`/blogs/${blogId}/likes`);
     } else {
         // 관심 등록
-        const response = await apiAxios.post(`/blogs/${blogId}/likes`, null, getConfig(token));
+        const response = await apiAxios.post(`/blogs/${blogId}/likes`, null);
     }
 };
 
-const editIntroduce = async (introduce, blogId, token) => {
+const editIntroduce = async (introduce, blogId) => {
     
     const body = {
         introduce,
     }
-    const response = await apiAxios.put(`/blogs/${blogId}`, body, getConfig(token));
+    const response = await apiAxios.put(`/blogs/${blogId}`, body);
     return response.data;
     
 }
 
-const saveBoard = async (boardId, formData, token) => {
+const saveBoard = async (boardId, formData) => {
     const result = boardId ?
-        await apiAxios.put(`/boards/${boardId}`, formData, getConfig(token)) :
-        await apiAxios.post(`/boards`, formData, getConfig(token));
+        await apiAxios.put(`/boards/${boardId}`, formData) :
+        await apiAxios.post(`/boards`, formData);
 
     return result.data;
 }
 
-const fetchBoardDataByBoardId = async (boardId, token) => {
-    const result = await apiAxios.get(`/boards/${boardId}`, getConfig(token));
+const fetchBoardDataByBoardId = async (boardId) => {
+    const result = await apiAxios.get(`/boards/${boardId}`);
 
     return result.data;
 }
 
-const getBoardDetailWithLike = async (boardId, token) => {
-    const result = await apiAxios.get(`/boards/${boardId}?includeLike=true`, getConfig(token));
+const getBoardDetailWithLike = async (boardId) => {
+    const result = await apiAxios.get(`/boards/${boardId}?includeLike=true`);
 
     return result.data;
 }
