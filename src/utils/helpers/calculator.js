@@ -16,7 +16,7 @@ const calcTotalPeriod = (startAt, endAt) => {
     const end = new Date(endAt);
     const start = new Date(startAt);
     const diff = end - start;
-    return Math.floor(diff / (1000 * 60 * 60 * 24));
+    return Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
 };
 
 const calcDay = (date) => {
