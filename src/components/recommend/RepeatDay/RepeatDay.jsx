@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import styles from 'pages/recommend/exercise/ExerciseRepeatsDay/ExerciseRepeatsDay.module.css';
+import styles from './RepeatDay.module.css';
 import input from 'assets/styles/common/input.module.css';
 import label from 'assets/styles/common/label.module.css';
 import error from 'assets/styles/common/error.module.css';
