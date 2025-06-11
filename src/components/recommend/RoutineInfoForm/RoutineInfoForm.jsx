@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from 'utils/hooks/debounce';
-import styles from './RecommendForm.module.css';
+import styles from './RoutineInfoForm.module.css';
 import buttonStyles from 'assets/styles/common/button.module.css';
 import errorStyles from 'assets/styles/common/error.module.css';
 import formStyles from 'assets/styles/common/form.module.css';
@@ -74,14 +74,7 @@ const getValidationErrors = async (formData) => {
     return errors;
 };
 
-const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
-    // const [formData, setFormData] = useState({
-    //     purpose: '',
-    //     startDate: '',
-    //     endDate: '',
-    //     tdee: '',
-    //     goalWeight: '',
-    // });
+const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
 
     const [errors, setErrors] = useState({
         purpose: '',
@@ -246,4 +239,4 @@ const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
     );
 };
 
-export default RecommendForm;
+export default RoutineInfoForm;
