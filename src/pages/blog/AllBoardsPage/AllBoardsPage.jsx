@@ -8,15 +8,15 @@ import styles from './AllBoardsPage.module.css';
  * 전체 게시판 페이지
  */
 function AllBoardsPage() {
-    const [category, setCategory] = useState('free');
+    const [category, setCategory] = useState('ALL');
     const [order, setOrder] = useState('like');
 
 
     const categoryOptions = [
-        { value: 'free', label: '자유' },
-        { value: 'muscle', label: '근육 증진' },
-        { value: 'diet', label: '체중 감량' },
-        { value: 'stamina', label: '체력 증진' },
+        { value: 'ALL', label: '자유' },
+        { value: 'STRENGTH', label: '근육 증진' },
+        { value: 'DIET', label: '체중 감량' },
+        { value: 'ENDURANCE', label: '체력 증진' },
     ];
 
     const changeBoardsByCategory = (e) => {
