@@ -77,7 +77,8 @@
 
 ### 개발 도구
 \- ERD Cloud (DB 테이블 설계) <br>
-\- Figma (UI/UX 설계)
+\- Figma (UI/UX 설계) <br>
+\- Github (형상 관리)
 
 ### 외부 연계 서비스
 \- Google / Apple 소셜 로그인 <br>
