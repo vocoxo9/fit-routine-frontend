@@ -6,14 +6,14 @@ import styles from './BoardsPaging.module.css';
 /**
  * 게시물 페이징 컴포넌트 - 전체 게시판 페이지, 블로그 페이지 사용
  *
- * @param {string} nickname @nullable - 블로그 페이지일 경우 닉네임 데이터가 들어오면 그 유저의 게시물만 가져옴
- * @param {string} order 게시물 나열 순서 - latest:최신순(기본값) / like:좋아요순
+ * @param {string} [nickname] - 블로그 페이지일 경우 닉네임 데이터가 들어오면 그 유저의 게시물만 가져옴
+ * @param {string} order 게시물 나열 순서 - like:좋아요순(기본값) / latest:최신순
  * @param {string} category 게시물 카테고리 - free:모두(기본값) / muscle:근육증진 / diet:체중감량 / stamina:체력증진
  */
 function BoardsPaging({
     nickname,
-    order = 'latest',
-    category = 'free',
+    order = 'like',
+    category = 'ALL',
 }) {
     const [boardList, setBoardList] = useState([]); // 게시물 목록
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
