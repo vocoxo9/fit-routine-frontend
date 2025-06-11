@@ -79,6 +79,7 @@
 \- ERD Cloud (DB 테이블 설계) <br>
 \- Figma (UI/UX 설계) <br>
 \- Github (형상 관리)
+\- Notion (초안 아이디어 및 규칙 정리, 일정 및 역할 관리)
 
 ### 외부 연계 서비스
 \- Google / Apple 소셜 로그인 <br>
