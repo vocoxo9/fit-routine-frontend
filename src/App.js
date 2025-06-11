@@ -16,7 +16,6 @@ import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
 
-
 function App() {
     return (
         <>
