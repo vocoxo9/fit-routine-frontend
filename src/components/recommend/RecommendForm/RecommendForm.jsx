@@ -10,10 +10,10 @@ import selectStyles from 'assets/styles/common/select.module.css';
 
 const PURPOSE_OPTIONS = [
     { value: 'none', label: '선택' },
-    { value: 'physical', label: '체력 강화' },
-    { value: 'strength', label: '근력 증진' },
-    { value: 'healthy', label: '건강 유지' },
-    { value: 'diet', label: '체중 감량' },
+    { value: 'ENDURANCE', label: '체력 강화' },
+    { value: 'STRENGTH', label: '근력 증진' },
+    { value: 'MAINTENANCE', label: '건강 유지' },
+    { value: 'DIET', label: '체중 감량' },
 ];
 
 const TDEE_LIST = [
@@ -41,7 +41,7 @@ const getMissingRequiredErrors = (formData) => {
         errors.endDate = '종료일을 입력해주세요.';
     }
 
-    if (purpose === 'diet') {
+    if (purpose === 'DIET') {
         if (!tdee || tdee === 'none') {
             errors.tdee = '활동 수준을 선택해주세요.';
         }
@@ -64,7 +64,7 @@ const getValidationErrors = async (formData) => {
     }
 
     if (
-        purpose === 'diet' &&
+        purpose === 'DIET' &&
         goalWeight &&
         (goalWeight < 0 || goalWeight > 500)
     ) {
@@ -189,7 +189,7 @@ const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
                 )}
             </div>
 
-            {formData.purpose === 'diet' && (
+            {formData.purpose === 'DIET' && (
                 <>
                     {/* 활동 수준 선택 필드 */}
                     <div className={styles.container}>
