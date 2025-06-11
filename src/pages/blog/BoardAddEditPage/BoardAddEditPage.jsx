@@ -108,7 +108,7 @@ function BoardAddEditPage({
     }
 
     const fetchBoardDetail = async (boardId) => {
-        const data = await fetchBoardDataByBoardId(boardId, 1);   // 1은 토큰값
+        const data = await fetchBoardDataByBoardId(boardId);  
         setBoardData({
             title: data.title,
             category: data.category,
@@ -169,7 +169,7 @@ function BoardAddEditPage({
             formData.append('deleteImageIds', id);
         });
 
-        const result = await saveBoard(boardId, formData, 1);   // 1은 토큰값
+        const result = await saveBoard(boardId, formData); 
 
         result === 'success' ? alert('추가 성공!') : alert('실패');
         navigate('/board');

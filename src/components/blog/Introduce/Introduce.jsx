@@ -21,7 +21,7 @@ function Introduce({intro, blogId}) {
 
     // 소개글 수정 후 수정버튼까지 클릭했을때
     const handleEditCompleteClick = async (content) => {
-        const result = await editIntroduce(content, blogId, 4);
+        const result = await editIntroduce(content, blogId);
 
         if(result === 'success'){
             setIntroduce(content);
