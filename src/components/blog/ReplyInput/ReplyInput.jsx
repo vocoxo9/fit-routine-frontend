@@ -14,11 +14,9 @@ import textarea from 'assets/styles/common/textarea.module.css';
  */
 function ReplyInput({ boardId, size, reCommentId=null, addReply }) {
     const [content, setContent] = useState('');
-    const inputRef = useRef(null);
 
     // 버튼 누르면 댓글 입력 요청 및 입력창 초기화 함수
     const replyHandler = async () => {
-        const textarea = inputRef.current.value;
 
         // const login = axios-token;
         // if (login) { axios-boardId, reCommentId, content }
