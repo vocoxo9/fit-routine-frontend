@@ -70,5 +70,5 @@ export {
     fetchExerciseOpenDataList,
     fetchExerciseRandomRoutine,
     fetchGetExerciseById,
-    fetchTodoDataByTodoId
+    fetchTodoDataByTodoId,
 };
