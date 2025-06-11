@@ -15,7 +15,6 @@ import ReSign from 'components/member/mypage/ReSign/ReSign';
 import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
-import RecommendExercise from 'pages/recommend/exercise/RecommendExercise/RecommendExercise';
 
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
                 <Header />
 
                 <div className={styles.layout}>
-                    <RecommendExercise/>
                     <Routes>
                         <Route path={"/"} element={<MainPage/>} />
                         <Route path={"/signUp"} element={<SignUpPage/>} />
