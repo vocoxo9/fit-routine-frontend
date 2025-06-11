@@ -12,11 +12,9 @@ import OnesTodoPage from 'pages/blog/OnesTodoPage/OnesTodoPage';
 import MyPage from 'pages/member/MyPage/MyPage';
 import ExerciseInputInfo from 'pages/recommend/exercise/ExerciseInputInfo/ExerciseInputInfo';
 import ReSign from 'components/member/mypage/ReSign/ReSign';
-import InfoEdit from 'components/member/mypage/InfoEdit';
 import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
-import LoginPage from 'pages/member/LoginPage/LoginPage';
 
 function App() {
     return (
@@ -25,10 +23,8 @@ function App() {
                 <Header />
 
                 <div className={styles.layout}>
-                    <AllExercisePages/>
-                    <OnesBlogPage/>
                     <Routes>
-                        {/* <Route path={"/"} element={<MainPage/>} /> */}
+                        <Route path={"/"} element={<MainPage/>} />
                         <Route path={"/signUp"} element={<SignUpPage/>} />
                         <Route path={"/mypage"} element={<MyPage/>} />
                         <Route path={"/resign"} element={<ReSign/>} />
