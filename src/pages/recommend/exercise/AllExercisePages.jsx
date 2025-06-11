@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ExerciseInputInfo from './ExerciseInputInfo/ExerciseInputInfo';
 import ExerciseRepeatsDay from './ExerciseRepeatsDay/ExerciseRepeatsDay';
 import RecommendExercise from './RecommendExercise/RecommendExercise';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchTodoDataByTodoId } from 'utils/api/exerciseApi';
 
 function AllExercisePages() {
     const navigate = useNavigate();
+    const todoId = useParams();
+
+    useEffect(()=> {
+        if(todoId) {
+            fetchTodoDataByTodoId(todoId).then(data => {
+                setFormData(data);
+            });
+        }
+    }, []);
 
     const [formData, setFormData] = useState({
         startDate: '',
@@ -31,29 +41,41 @@ function AllExercisePages() {
 
     return (
         <>
-            {step === 0 && (
-                <ExerciseInputInfo
-                    goToNext={goToNext}
-                    formData={formData}
-                    setFormData={setFormData}
-                />
-            )}
+        {!todoId && (
+            <>
+                {step === 0 && (
+                    <ExerciseInputInfo
+                        goToNext={goToNext}
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
+                )}
 
-            {step === 1 && (
-                <ExerciseRepeatsDay
-                    goToNext={goToNext}
-                    formData={formData}
-                    setFormData={setFormData}
-                />
-            )}
+                {step === 1 && (
+                    <ExerciseRepeatsDay
+                        goToNext={goToNext}
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
+                )}
 
-            {step === 2 && (
-                <RecommendExercise
-                    goToNext={goToNext}
-                    formData={formData}
-                    setFormData={setFormData}
-                />
-            )}
+                {step === 2 && (
+                    <RecommendExercise
+                        goToNext={goToNext}
+                        formData={formData}
+                        setFormData={setFormData}
+                    />
+                )}
+            </>
+        )}
+
+        {todoId &&
+            <RecommendExercise
+                goToNext={performData}
+                formData={formData}
+                setFormData={setFormData}
+            />
+        }
         </>
     );
 }

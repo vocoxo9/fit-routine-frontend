@@ -57,8 +57,18 @@ const fetchGetExerciseById = async (id) => {
     }
 };
 
+const fetchTodoDataByTodoId = async (todoId) => {
+    try {
+        const response = await apiAxios.get(`/exercises/todos/${todoId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export {
     fetchExerciseOpenDataList,
     fetchExerciseRandomRoutine,
     fetchGetExerciseById,
+    fetchTodoDataByTodoId
 };
