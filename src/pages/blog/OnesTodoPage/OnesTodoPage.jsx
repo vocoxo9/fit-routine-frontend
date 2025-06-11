@@ -20,7 +20,7 @@ function OnesTodoPage() {
     const navigate = useNavigate();
 
     const fetchBoardsByToken = async () => {
-        // const data = axios.get('blog/todoList',{context의 토큰값 혹은 아이디값});
+        // const data = axios.get('blog/todoList');
         const data = {
             '2025-05-01': [
                 { id: 1, title: '오운완아진짜아 알베겼어' },
@@ -34,7 +34,7 @@ function OnesTodoPage() {
     };
 
     const fetchInfoByToken = async () => {
-        // const data = axios.get('blog/userInfo',{context의 토큰값 혹은 아이디값});
+        // const data = axios.get('blog/userInfo');
 
         /* 더미데이터 입니다 */
         setData({
