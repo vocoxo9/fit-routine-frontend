@@ -23,10 +23,10 @@ const calcDay = (date) => {
     const now = new Date();
     const day = now - date;
     return Math.floor(day / (1000 * 60 * 60 * 24));
-}
-
-export {
-    calcTotalCalorie,
-    calcTotalPeriod,
-    calcDay,
 };
+
+const getTodayDate = () => {
+    return new Date().toISOString().substring(0, 10);
+};
+
+export { calcTotalCalorie, calcTotalPeriod, calcDay, getTodayDate };

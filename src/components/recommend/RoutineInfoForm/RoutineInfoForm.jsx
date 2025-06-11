@@ -7,6 +7,7 @@ import formStyles from 'assets/styles/common/form.module.css';
 import inputStyles from 'assets/styles/common/input.module.css';
 import labelStyles from 'assets/styles/common/label.module.css';
 import selectStyles from 'assets/styles/common/select.module.css';
+import { getTodayDate } from 'utils/helpers/calculator';
 
 const PURPOSE_OPTIONS = [
     { value: 'none', label: '선택' },
@@ -158,6 +159,7 @@ const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
                     name="startedAt"
                     value={formData.startedAt}
                     onChange={handleChange}
+                    min={getTodayDate()}
                 />
                 {errors.startedAt && (
                     <p className={errorStyles.error}>{errors.startedAt}</p>
@@ -176,6 +178,7 @@ const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
                     name="endedAt"
                     value={formData.endedAt}
                     onChange={handleChange}
+                    min={getTodayDate()}
                 />
                 {errors.endedAt && (
                     <p className={errorStyles.error}>{errors.endedAt}</p>
