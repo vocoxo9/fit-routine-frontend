@@ -35,7 +35,7 @@ function App() {
                         <Route path={"/board/add"} element={<BoardAddEditPage buttonText='등록'/>} />
                         <Route path={"/board/edit/:boardId"} element={<BoardAddEditPage buttonText='수정'/>} />
                         <Route path={"/board/detail/:boardId"} element={<BoardDetail/>} />
-                        <Route path={"/exercise"} element={<AllExercisePages/>} />
+                        <Route path={"/exercise/:todoId"} element={<AllExercisePages/>} />
                         <Route path={"/food"} element={<ExerciseInputInfo/>} />
                     </Routes>
                 </div>
