@@ -21,7 +21,7 @@ const calculateCarolie = (exerciseList, weight) => {
     }, 0);
 };
 
-function RecommendExercise({ goToNext, formData, setFormData }) {
+function RecommendExercise({ todoId, goToNext, formData, setFormData }) {
     const [data, setData] = useState([]);
     const [openDataList, setOpenDataList] = useState([]);
     const [checkedItems, setCheckedItems] = useState({});
@@ -51,7 +51,9 @@ function RecommendExercise({ goToNext, formData, setFormData }) {
     // 렌더링과 동시에 가져 올 데이터 샘플 및 초기 kcal 계산
     useEffect(() => {
         const loadInitialRoutine = async () => {
-            const routineData = await fetchExerciseRandomRoutine(formData);
+            const routineData = todoId ? 
+                formData : 
+                await fetchExerciseRandomRoutine(formData);
 
             // 초기에 체크 상태일 데이터 리스트
             const initialCheckedData = {};

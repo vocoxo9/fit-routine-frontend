@@ -71,6 +71,7 @@ function AllExercisePages() {
 
         {todoId &&
             <RecommendExercise
+                todoId={todoId}
                 goToNext={performData}
                 formData={formData}
                 setFormData={setFormData}
