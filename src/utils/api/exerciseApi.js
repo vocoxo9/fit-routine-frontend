@@ -6,9 +6,10 @@ const apiAxios = axios.create({
     withCredentials: true,
 });
 
+// 임의의 토큰 값 부여
 localStorage.setItem(
     'token',
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0XzFAZ21haWwuY29tIiwiaWF0IjoxNzQ5NTQ2NDY5LCJleHAiOjE3NDk2MzI4Njl9.pSgl34uLxe5cI_VfYPbwgmF_omDuqL07J8nWVAhPEoo',
+    '1',    
 );
 
 // 요청 시 토큰 저장
