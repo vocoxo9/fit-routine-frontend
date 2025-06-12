@@ -42,10 +42,10 @@
 .button {
     border: solid 2px #334EAC;
     border-radius: 0.3rem;
-    width : 15rem;
-    height: 2.3rem;
-    font-size: 1rem;
-    font-weight: 600;
+    width : 4.6rem;
+    height: 1.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
     cursor: pointer;
     background-color: #D0E3FF;
     color: #334EAC;

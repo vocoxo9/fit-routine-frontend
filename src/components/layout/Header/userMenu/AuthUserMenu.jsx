@@ -14,8 +14,6 @@ export default function AuthUserMenu() {
 
     return (
         <div className={styles.headerRight}>
-            <button className={styles.button}>로그아웃</button>
-
             <div className={styles.icons}>
                 <Link to="mypage">
                     <FaUser className={styles.icon} />
@@ -31,7 +29,9 @@ export default function AuthUserMenu() {
                         <BellNotifications />
                     </div>
                 </div>
+                <button className={styles.button}>로그아웃</button>
             </div>
+            <div style={{border: 'solid 1px #D9D9D9', padding: '0.5rem'}}>운동 - 바벨로우</div>
         </div>
     );
 }
