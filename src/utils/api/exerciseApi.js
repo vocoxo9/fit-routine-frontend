@@ -6,6 +6,28 @@ const apiAxios = axios.create({
     withCredentials: true,
 });
 
+// 임의의 토큰 값 부여
+localStorage.setItem(
+    'token',
+    '1',    
+);
+
+// 요청 시 토큰 저장
+apiAxios.interceptors.request.use(
+    function (config) {
+        const token = localStorage.getItem('token');
+
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+
+        return config;
+    },
+    function (error) {
+        return Promise.reject(error);
+    },
+);
+
 // 통신 오류 발생 시 처리
 apiAxios.interceptors.response.use(
     (response) => {
@@ -32,13 +54,13 @@ const fetchExerciseOpenDataList = async () => {
 
 // 랜덤 추출할 루틴 정보
 const fetchExerciseRandomRoutine = async (formData) => {
-    // 사용자가 선택한 반복일수
-    const dayRepeat = formData.dayRepeat;
-
     await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
         const response = await apiAxios.get('/exercises/random-routine', {
-            params: { dayRepeat: dayRepeat },
+            params: {
+                dayRepeat: formData.dayRepeat,
+                purpose: formData.purpose,
+            },
         });
         return response.data;
     } catch (error) {
