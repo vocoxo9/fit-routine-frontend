@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ExerciseInputInfo from './ExerciseInputInfo/ExerciseInputInfo';
-import ExerciseRepeatsDay from './ExerciseRepeatsDay/ExerciseRepeatsDay';
+import ExerciseRepeatDay from './ExerciseRepeatDay/ExerciseRepeatDay';
 import RecommendExercise from './RecommendExercise/RecommendExercise';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchTodoDataByTodoId } from 'utils/api/exerciseApi';
@@ -18,8 +18,8 @@ function AllExercisePages() {
     }, []);
 
     const [formData, setFormData] = useState({
-        startDate: '',
-        endDate: '',
+        startedAt: '',
+        endedAt: '',
         purpose: '',
         category: 'exercise',
         tdee: '',
@@ -52,7 +52,7 @@ function AllExercisePages() {
                 )}
 
                 {step === 1 && (
-                    <ExerciseRepeatsDay
+                    <ExerciseRepeatDay
                         goToNext={goToNext}
                         formData={formData}
                         setFormData={setFormData}
@@ -64,6 +64,7 @@ function AllExercisePages() {
                         goToNext={goToNext}
                         formData={formData}
                         setFormData={setFormData}
+                        buttonText='루틴 등록'
                     />
                 )}
             </>
@@ -75,6 +76,7 @@ function AllExercisePages() {
                 goToNext={performData}
                 formData={formData}
                 setFormData={setFormData}
+                buttonText='루틴 수정'
             />
         }
         </>
