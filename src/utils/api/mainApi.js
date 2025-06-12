@@ -12,7 +12,6 @@ const getPopularBoardTop3 = async () => {
 
 // Routine을 이번달 가장 많이 등록한 회원 3명을 조회하는 api 함수
 const getMvpRank = async () => {
-    // api 함수 : TODO
     const response = await apiAxios.get('/routine-rankings/monthly');
     return response.data;
 }
