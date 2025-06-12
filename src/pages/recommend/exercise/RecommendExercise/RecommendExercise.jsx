@@ -182,7 +182,7 @@ function RecommendExercise({ todoId, goToNext, formData, setFormData }) {
                 return;
             }
 
-            if (formData.purpose === 'diet' && oneDayKcal < DAILY_BURN_KCAL) {
+            if (formData.purpose === 'DIET' && oneDayKcal < DAILY_BURN_KCAL) {
                 alert(`${dayRepeat}일차 칼로리가 부족합니다.`);
                 return;
             }
@@ -220,7 +220,7 @@ function RecommendExercise({ todoId, goToNext, formData, setFormData }) {
                             }
                         />
 
-                        {formData.purpose === 'diet' &&
+                        {formData.purpose === 'DIET' &&
                             oneDayKcal < DAILY_BURN_KCAL && (
                                 <div className={styles.message}>
                                     <p className={error.error}>
