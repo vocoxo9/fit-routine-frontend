@@ -45,17 +45,6 @@ export default function AuthUserMenu() {
                             <div className={styles.card}>식단 - 시금치</div>
                         </div>
                     </div>
-                    {/* 위와 동일한 카드 목록 복제 */}
-                    {/* <div className={styles.group}>
-                        <div className={styles.category}>
-                            <div className={styles.card}>운동 - 바벨로우</div>
-                            <div className={styles.card}>운동 - 시티드로우</div>
-                        </div>
-                        <div className={styles.category}>
-                            <div className={styles.card}>식단 - 김치찌개</div>
-                            <div className={styles.card}>식단 - 시금치</div>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>
