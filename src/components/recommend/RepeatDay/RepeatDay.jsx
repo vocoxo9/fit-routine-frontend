@@ -21,7 +21,7 @@ const checkRepeatRequired = (repeat) => {
 function ExerciseRepeatsDay({ goToNext, formData, setFormData }) {
     const [errors, setErrors] = useState({});
 
-    const dayDiff = calcTotalPeriod(formData.startDate, formData.endDate);
+    const dayDiff = calcTotalPeriod(formData.startedAt, formData.endedAt);
     const dayRepeat = Array.from({ length: dayDiff }, (_, i) => i + 1);
 
     const handleChange = (event) => {

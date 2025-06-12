@@ -18,8 +18,8 @@ function AllExercisePages() {
     }, []);
 
     const [formData, setFormData] = useState({
-        startDate: '',
-        endDate: '',
+        startedAt: '',
+        endedAt: '',
         purpose: '',
         category: 'exercise',
         tdee: '',

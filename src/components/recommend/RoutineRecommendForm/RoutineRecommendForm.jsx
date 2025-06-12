@@ -21,6 +21,13 @@ const calculateCarolie = (exerciseList, weight) => {
     }, 0);
 };
 
+const CATEGORY_LIST = [
+    { text: '상체', value: 'UPPER' },
+    { text: '하체', value: 'LOWER' },
+    { text: '유산소', value: 'CARDIO' },
+    { text: '생활운동', value: 'LIFE' },
+];
+
 function RoutineRecommendForm({
     todoId,
     goToNext,
@@ -37,13 +44,6 @@ function RoutineRecommendForm({
 
     // kcal 상태 추가
     const [dailyKcal, setDailyKcal] = useState({});
-
-    const categoryList = [
-        { text: '상체', name: 'UPPER', value: 'UPPER' },
-        { text: '하체', name: 'LOWER', value: 'LOWER' },
-        { text: '유산소', name: 'CARDIO', value: 'CARDIO' },
-        { text: '생활운동', name: 'LIFE', value: 'LIFE' },
-    ];
 
     // 렌더링 동시에 운동 공공데이터 가져오기
     useEffect(() => {
@@ -188,7 +188,7 @@ function RoutineRecommendForm({
                 return;
             }
 
-            if (formData.purpose === 'diet' && oneDayKcal < DAILY_BURN_KCAL) {
+            if (formData.purpose === 'DIET' && oneDayKcal < DAILY_BURN_KCAL) {
                 alert(`${dayRepeat}일차 칼로리가 부족합니다.`);
                 return;
             }
@@ -240,7 +240,7 @@ function RoutineRecommendForm({
 
                         {showCategory[dayRepeat] && (
                             <div className={styles.category}>
-                                {categoryList.map((category, index) => (
+                                {CATEGORY_LIST.map((category, index) => (
                                     <Category
                                         key={`${category.name}_${index}`}
                                         text={category.text}
