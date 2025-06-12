@@ -3,7 +3,8 @@ import styles from 'components/layout/Header/Header.module.css';
 import { FaBell, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BellNotifications from '../Notification/BellNotifications';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getExeRoutines, getFoodRoutines } from 'utils/api/headerApi.js';
 
 export default function AuthUserMenu() {
     const [exeRoutines, setExeRoutines] = useState(
@@ -19,6 +20,17 @@ export default function AuthUserMenu() {
             // {category: '식단', content: '시금치'}, 
         ]
     );
+
+    useEffect(() => {
+        const fetchRoutines = async () => {
+            const exercise = await getExeRoutines();
+            setExeRoutines(exercise);
+            
+            const food = await getFoodRoutines();
+            setFoodRoutines(food);
+        }
+        fetchRoutines();
+    }, [exeRoutines, foodRoutines]);
 
     const [isOpen, setIsOpen] = useState(false);
 
