@@ -35,7 +35,6 @@ function BarChart() {
                 // 루틴 테이블에서 아이디 별로 그룹화한 것 중에 수가 가장 많은
                 // 3개의 아이디를 구해서 해당 회원의 닉네임 가져오는 함수
                 const result = await getRoutineMvpUser();
-                alert(result);
                 setMvpData (result);
                 
                 // 임시 처리
