@@ -31,7 +31,11 @@ function RoutineMvp() {
                 </div>
             </div>
             <div className={styles.rank}>
-                <BarChart />
+            {(mvpRank && mvpRank.length !== 0) &&
+                <BarChart
+                    mvpRank={mvpRank} 
+                />
+            }
             </div>
         </>
     );
