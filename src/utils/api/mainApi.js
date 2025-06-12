@@ -6,7 +6,7 @@ const apiAxios = axios.create({
 });
 
 const getPopularBoardTop3 = async () => {
-    const response = await apiAxios.get('/board/popular');
+    const response = await apiAxios.get('/posts/popular');
     return response.data;
 }
 
