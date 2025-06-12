@@ -34,7 +34,7 @@ function PopularPost() {
                         )
                     })
                 }
-                {(!postData ||postData === 0) &&
+                {(!postData || postData.length === 0) &&
                     <p className={styles.error}>아직 조회되는 게시글이 없습니다.</p>
                 }
             </div>
