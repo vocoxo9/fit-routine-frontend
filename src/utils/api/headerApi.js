@@ -19,13 +19,13 @@ apiAxios.interceptors.response.use(
 );
 
 const getExeRoutines = async () => {
-    const response = await apiAxios.get('/member/me/exercise-routine/today');
-    return response.data;
+    // const response = await apiAxios.get('/member/me/exercise-routine/today');
+    // return response.data;
 }
 
 const getFoodRoutines = async () => {
-    const response = await apiAxios.get('/member/me/food-routine/today');
-    return response.data;
+    // const response = await apiAxios.get('/member/me/food-routine/today');
+    // return response.data;
 }
 
 export {
