@@ -30,7 +30,7 @@ export default function AuthUserMenu() {
             setFoodRoutines(food);
         }
         fetchRoutines();
-    }, [exeRoutines, foodRoutines]);
+    }, []);
 
     const [isOpen, setIsOpen] = useState(false);
 
