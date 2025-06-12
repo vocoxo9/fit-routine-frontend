@@ -6,13 +6,12 @@ import button from 'assets/styles/common/button.module.css';
  * @param {Object} props - 컴포넌트에 전달되는 props
  * @param {string} props.text - 버튼 내 글자 (예: 상체, 하체, 생활운동, 밥, 반찬)
  */
-function Category({ text, name, value, onClick }) {
+function Category({ text, value, onClick }) {
     return (
         <button
             type='button'
             className={`${button.button} ${styles.button}`}
             onClick={onClick}
-            name={name}
             value={value}>
             {text}
         </button>

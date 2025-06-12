@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useDebounce from 'utils/hooks/debounce';
-import styles from './RecommendForm.module.css';
+import styles from './RoutineInfoForm.module.css';
 import buttonStyles from 'assets/styles/common/button.module.css';
 import errorStyles from 'assets/styles/common/error.module.css';
 import formStyles from 'assets/styles/common/form.module.css';
@@ -18,27 +18,27 @@ const PURPOSE_OPTIONS = [
 
 const TDEE_LIST = [
     { value: 'none', label: '선택' },
-    { value: '1', label: '거의 하지 않음' },
-    { value: '2', label: '주 1~3회 운동' },
-    { value: '3', label: '주 4~5회 운동' },
-    { value: '4', label: '주 6~7회 운동' },
+    { value: '1.2', label: '거의 하지 않음' },
+    { value: '1.375', label: '주 1~3회 운동' },
+    { value: '1.55', label: '주 4~5회 운동' },
+    { value: '1.725', label: '주 6~7회 운동' },
 ];
 
 const getMissingRequiredErrors = (formData) => {
     const errors = {};
 
-    const { purpose, startDate, endDate, tdee, goalWeight } = formData;
+    const { purpose, startedAt, endedAt, tdee, goalWeight } = formData;
 
     if (!purpose || purpose === 'none') {
         errors.purpose = '목적을 선택해주세요.';
     }
 
-    if (!startDate) {
-        errors.startDate = '시작일을 입력해주세요.';
+    if (!startedAt) {
+        errors.startedAt = '시작일을 입력해주세요.';
     }
 
-    if (!endDate) {
-        errors.endDate = '종료일을 입력해주세요.';
+    if (!endedAt) {
+        errors.endedAt = '종료일을 입력해주세요.';
     }
 
     if (purpose === 'DIET') {
@@ -57,10 +57,10 @@ const getMissingRequiredErrors = (formData) => {
 const getValidationErrors = async (formData) => {
     const errors = {};
 
-    const { purpose, startDate, endDate, goalWeight } = formData;
+    const { purpose, startedAt, endedAt, goalWeight } = formData;
 
-    if (startDate && endDate && startDate > endDate) {
-        errors.endDate = '종료일이 시작일보다 이릅니다.';
+    if (startedAt && endedAt && startedAt > endedAt) {
+        errors.endedAt = '종료일이 시작일보다 이릅니다.';
     }
 
     if (
@@ -74,19 +74,12 @@ const getValidationErrors = async (formData) => {
     return errors;
 };
 
-const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
-    // const [formData, setFormData] = useState({
-    //     purpose: '',
-    //     startDate: '',
-    //     endDate: '',
-    //     tdee: '',
-    //     goalWeight: '',
-    // });
+const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
 
     const [errors, setErrors] = useState({
         purpose: '',
-        startDate: '',
-        endDate: '',
+        startedAt: '',
+        endedAt: '',
         tdee: '',
         goalWeight: '',
     });
@@ -155,37 +148,37 @@ const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
 
             {/* 시작일 입력 필드 */}
             <div className={styles.container}>
-                <label className={labelStyles.label} htmlFor="startDate">
+                <label className={labelStyles.label} htmlFor="startedAt">
                     시작일
                 </label>
                 <input
                     className={`${inputStyles.input} ${inputStyles.long}`}
                     type="date"
-                    id="startDate"
-                    name="startDate"
-                    value={formData.startDate}
+                    id="startedAt"
+                    name="startedAt"
+                    value={formData.startedAt}
                     onChange={handleChange}
                 />
-                {errors.startDate && (
-                    <p className={errorStyles.error}>{errors.startDate}</p>
+                {errors.startedAt && (
+                    <p className={errorStyles.error}>{errors.startedAt}</p>
                 )}
             </div>
 
             {/* 종료일 입력 필드 */}
             <div className={styles.container}>
-                <label className={labelStyles.label} htmlFor="endDate">
+                <label className={labelStyles.label} htmlFor="endedAt">
                     종료일
                 </label>
                 <input
                     className={`${styles.fixInput} ${inputStyles.input} ${inputStyles.long}`}
                     type="date"
-                    id="endDate"
-                    name="endDate"
-                    value={formData.endDate}
+                    id="endedAt"
+                    name="endedAt"
+                    value={formData.endedAt}
                     onChange={handleChange}
                 />
-                {errors.endDate && (
-                    <p className={errorStyles.error}>{errors.endDate}</p>
+                {errors.endedAt && (
+                    <p className={errorStyles.error}>{errors.endedAt}</p>
                 )}
             </div>
 
@@ -246,4 +239,4 @@ const RecommendForm = ({ title, goToNext, formData, setFormData }) => {
     );
 };
 
-export default RecommendForm;
+export default RoutineInfoForm;
