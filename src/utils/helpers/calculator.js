@@ -29,4 +29,8 @@ const getTodayDate = () => {
     return new Date().toISOString().substring(0, 10);
 };
 
-export { calcTotalCalorie, calcTotalPeriod, calcDay, getTodayDate };
+export { calcTotalCalorie, 
+        calcTotalPeriod, 
+        calcDay, 
+        getTodayDate 
+};
