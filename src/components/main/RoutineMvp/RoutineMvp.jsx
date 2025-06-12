@@ -20,7 +20,7 @@ function RoutineMvp() {
             setMvpRank(result);
         }
         fetchMvpData();
-    },[myRank, mvpRank]);
+    },[]);
 
     return (
         <>
