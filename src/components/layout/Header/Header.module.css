@@ -231,3 +231,7 @@
     display: flex;
     align-items: center;
 }
+
+.routineError {
+    color: #787878;
+}
