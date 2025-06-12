@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './PopularPosts.module.css';
 import BoardPreview from 'components/blog/BoardPreview/BoardPreview';
-import { getPopularBoardTop3 } from 'utils/api/mainApi';
+import { getPopularPostTop3 } from 'utils/api/mainApi.js';
 
 function PopularPost() {
     const [postData, setPostData] = useState(
@@ -12,7 +12,7 @@ function PopularPost() {
 
     useEffect(() => {
         const getboard = async () => {
-            const result = await getPopularBoardTop3();
+            const result = await getPopularPostTop3();
             setPostData(result);
             // alert("api 요청 후 결과 :: " + JSON.stringify(result));
         }

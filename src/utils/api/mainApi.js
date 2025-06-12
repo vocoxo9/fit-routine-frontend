@@ -5,7 +5,7 @@ const apiAxios = axios.create({
     withCredentials: true // 쿠키 또는 인증 헤더를 포함하여 요청할 것인지에 대한 설정
 });
 
-const getPopularBoardTop3 = async () => {
+const getPopularPostTop3 = async () => {
     const response = await apiAxios.get('/posts/popular');
     return response.data;
 }
@@ -33,5 +33,5 @@ const getMyRank = async () => {
 export {
     getMyRank, 
     getMvpRank,
-    getPopularBoardTop3,
+    getPopularPostTop3,
 };
