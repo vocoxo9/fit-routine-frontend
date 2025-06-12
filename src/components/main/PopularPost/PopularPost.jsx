@@ -4,7 +4,11 @@ import BoardPreview from 'components/blog/BoardPreview/BoardPreview';
 import { getPopularBoardTop3 } from 'utils/api/mainApi';
 
 function PopularPost() {
-    const [postData, setPostData] = useState();
+    const [postData, setPostData] = useState(
+        [
+
+        ]
+    );
 
     useEffect(() => {
         const getboard = async () => {
@@ -30,7 +34,7 @@ function PopularPost() {
                         )
                     })
                 }
-                {!postData &&
+                {(!postData ||postData === 0) &&
                     <p className={styles.error}>아직 조회되는 게시글이 없습니다.</p>
                 }
             </div>
