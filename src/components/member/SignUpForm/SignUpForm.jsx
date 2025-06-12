@@ -19,6 +19,7 @@ import {
     validateWeight,
 } from 'utils/helpers/validation';
 import useDebounce from 'utils/hooks/debounce';
+import { getTodayDate } from 'utils/helpers/calculator';
 
 const checkForm = (formData) => {
     const errors = {};
@@ -288,6 +289,7 @@ const SignUpForm = () => {
                     name="birthdate"
                     value={formData.birthdate}
                     onChange={handleChange}
+                    max={getTodayDate()}
                 />
                 {errors.birthdate && (
                     <p className={`${errorStyles.error}`}>
