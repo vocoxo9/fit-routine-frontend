@@ -1,3 +1,5 @@
+import axiosInstance from './axios';
+
 const checkEmailDuplicate = async (email) => {
     // 임시 API
     await new Promise((resolve) => setTimeout(resolve, 500));
