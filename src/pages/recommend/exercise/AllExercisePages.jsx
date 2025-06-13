@@ -3,19 +3,16 @@ import ExerciseInputInfo from './ExerciseInputInfo/ExerciseInputInfo';
 import ExerciseRepeatDay from './ExerciseRepeatDay/ExerciseRepeatDay';
 import RecommendExercise from './RecommendExercise/RecommendExercise';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchTodoDataByTodoId } from 'utils/api/exerciseApi';
+import {
+    fetchMemberDetail,
+    fetchRegistExerciseRoutine,
+    fetchTodoDataByTodoId,
+} from 'utils/api/exerciseApi';
 
 function AllExercisePages() {
     const navigate = useNavigate();
-    const todoId = useParams();
-
-    useEffect(()=> {
-        if(todoId) {
-            fetchTodoDataByTodoId(todoId).then(data => {
-                setFormData(data);
-            });
-        }
-    }, []);
+    const { todoId } = useParams();
+    const [step, setStep] = useState(0);
 
     const [formData, setFormData] = useState({
         startedAt: '',
@@ -28,10 +25,25 @@ function AllExercisePages() {
         // exerciseList: [],
     });
 
-    const [step, setStep] = useState(0);
+    const [memberDetail, setMemberDetail] = useState({});
+
+    useEffect(() => {
+        if (todoId) {
+            fetchTodoDataByTodoId(todoId).then((data) => {
+                setFormData(data);
+            });
+        }
+
+        fetchMemberDetail().then((data) => {
+            setMemberDetail(data);
+        });
+    }, [todoId]);
 
     const performData = () => {
         alert('운동 루틴이 저장되었습니다!');
+        console.log(formData);
+        const response = fetchRegistExerciseRoutine(formData);
+        console.log(response);
         navigate('/todo');
     };
 
@@ -41,44 +53,47 @@ function AllExercisePages() {
 
     return (
         <>
-        {!todoId && (
-            <>
-                {step === 0 && (
-                    <ExerciseInputInfo
-                        goToNext={goToNext}
-                        formData={formData}
-                        setFormData={setFormData}
-                    />
-                )}
+            {!todoId && (
+                <>
+                    {step === 0 && (
+                        <ExerciseInputInfo
+                            goToNext={goToNext}
+                            formData={formData}
+                            setFormData={setFormData}
+                            weight={memberDetail.weight}
+                        />
+                    )}
 
-                {step === 1 && (
-                    <ExerciseRepeatDay
-                        goToNext={goToNext}
-                        formData={formData}
-                        setFormData={setFormData}
-                    />
-                )}
+                    {step === 1 && (
+                        <ExerciseRepeatDay
+                            goToNext={goToNext}
+                            formData={formData}
+                            setFormData={setFormData}
+                        />
+                    )}
 
-                {step === 2 && (
-                    <RecommendExercise
-                        goToNext={goToNext}
-                        formData={formData}
-                        setFormData={setFormData}
-                        buttonText='루틴 등록'
-                    />
-                )}
-            </>
-        )}
+                    {step === 2 && (
+                        <RecommendExercise
+                            goToNext={goToNext}
+                            formData={formData}
+                            setFormData={setFormData}
+                            memberDetail={memberDetail}
+                            buttonText="루틴 등록"
+                        />
+                    )}
+                </>
+            )}
 
-        {todoId &&
-            <RecommendExercise
-                todoId={todoId}
-                goToNext={performData}
-                formData={formData}
-                setFormData={setFormData}
-                buttonText='루틴 수정'
-            />
-        }
+            {todoId && (
+                <RecommendExercise
+                    todoId={todoId}
+                    goToNext={performData}
+                    formData={formData}
+                    setFormData={setFormData}
+                    memberDetail={memberDetail}
+                    buttonText="루틴 수정"
+                />
+            )}
         </>
     );
 }

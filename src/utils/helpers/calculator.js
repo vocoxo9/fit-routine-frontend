@@ -29,8 +29,25 @@ const getTodayDate = () => {
     return new Date().toISOString().substring(0, 10);
 };
 
-export { calcTotalCalorie, 
-        calcTotalPeriod, 
-        calcDay, 
-        getTodayDate 
+const calcDailyBurnKcal = (weight, goalWeight, startedAt, endedAt) => {
+    const DAY_DIFF = calcTotalPeriod(startedAt, endedAt);
+    const TOTAL_LOSE_KCAL = (weight - goalWeight) * 7700;
+    const DAILY_BURN_KCAL = Math.floor(TOTAL_LOSE_KCAL / DAY_DIFF);
+    return DAILY_BURN_KCAL;
+};
+
+const calcExerciseTotalCalorie = (exerciseList, weight) => {
+    const EXERCISE_TIME = 0.25;
+    return exerciseList.reduce((total, exercise) => {
+        return total + exercise.met * weight * EXERCISE_TIME;
+    }, 0);
+};
+
+export {
+    calcTotalCalorie,
+    calcTotalPeriod,
+    calcDay,
+    getTodayDate,
+    calcDailyBurnKcal,
+    calcExerciseTotalCalorie,
 };
