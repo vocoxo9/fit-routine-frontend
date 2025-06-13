@@ -7,7 +7,7 @@ import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchBoardDataByBoardId, saveBoard } from 'utils/api/blogApi';
+import { createPost, deleteImage, fetchBoardDataByBoardId, getBlogIdByToken, saveImage, updatePost } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -146,34 +146,39 @@ function BoardAddEditPage({
     };
 
     const handleSubmitClick = async () => {
+        
         if (!validateImagesCount(images) ||
             !validateTitle(boardData.title) ||
             !validateContent(boardData.content)
         ) {
             return;
         }
-        
-        const formData = new FormData();
 
-        formData.append('title', boardData.title);
-        formData.append('category', boardData.category);
-        formData.append('content', boardData.content);
+        const blogId = await getBlogIdByToken();
 
-        images.forEach((image) => {
-            if (image instanceof File){
-                formData.append('images', image);
-            }
-        });
+        const payload = {
+            title: boardData.title,
+            category: boardData.category,
+            content: boardData.content,
+        };
 
-        deletedImageIds.forEach(id => {
-            formData.append('deleteImageIds', id);
-        });
+        const postId = boardId ? 
+            await updatePost(boardId, payload) :
+            await createPost(blogId, payload);
 
-        const result = await saveBoard(boardId, formData); 
+        await Promise.all(
+            images.map((image) => {
+                if (image instanceof File) {
+                return saveImage(postId, image);
+                }
+                return null;
+            })
+        );
 
-        result === 'success' ? alert('추가 성공!') : alert('실패');
+        await Promise.all(
+            deletedImageIds.map((imageId) => deleteImage(imageId))
+        );
         navigate('/board');
-
     }
 
     const handleRemoveImage = (index) => {

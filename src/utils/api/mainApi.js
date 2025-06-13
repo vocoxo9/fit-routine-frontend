@@ -13,7 +13,7 @@ const getMvpRank = async () => {
 
 // 나의 RoutineMvp순위를 조회하는 api요청
 const getMyRank = async () => {
-    const response = await apiAxios.get('/routine-rankings/monthly/me');
+    const response = await axiosInstance.get('/routine-rankings/monthly/me');
     return response.data;
 }
 

@@ -9,55 +9,63 @@ import TodoList from 'components/blog/TodoList/TodoList';
 import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
 import buttons from 'assets/styles/common/button.module.css';
+import { getBlogDetailByBlogId, getBlogIdByToken, getExerciseTodoList, getMenuTodoList, getPostListByBlogId } from 'utils/api/blogApi';
 
 /**
  * TODO 페이지
  */
 function OnesTodoPage() {
     const [dateData, setDateData] = useState({});
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        nickname: '',
+        grade: 0,
+        menuTodoList: {
+            list: [],
+        },
+        exerciseTodoList: {
+            list: [],
+        },
+    });
 
     const navigate = useNavigate();
 
-    const fetchBoardsByToken = async () => {
-        // const data = axios.get('blog/todoList');
-        const data = {
-            '2025-05-01': [
-                { id: 1, title: '오운완아진짜아 알베겼어' },
-                { id: 2, title: '오식완' },
-                { id: 3, title: '가' },
-            ],
-            '2025-05-03': [{ id: 3, title: '회식' }],
-            '2025-05-10': [{ id: 4, title: '스터디' }],
-        };
-        return data;
-    };
+    const fetchInfoByToken = async (blogId) => {
+        const { nickname, grade } = await getBlogDetailByBlogId(blogId);
 
-    const fetchInfoByToken = async () => {
-        // const data = axios.get('blog/userInfo');
-
-        /* 더미데이터 입니다 */
+        setData(prevData => ({
+            ...prevData,
+            nickname,
+            grade,
+        }));
+        
+        const menuData = await getMenuTodoList(blogId);
+        const exerciseData = await getExerciseTodoList(blogId);
+        console.log(data);
+        
         setData({
             nickname: '일김현',
             grade: 150,
             menuTodoList: {
-                /* 자세한 정보는 더미데이터 입니다 */ todoId: 2,
+                todoId: 2,
                 category: 'menu',
                 startAt: new Date().toLocaleDateString(),
                 endAt: new Date(2026, 1, 22).toLocaleDateString(),
                 list: [
-                    {
-                        name: '흰쌀밥(250kcal) + 고등어구이(160kcal) + 미역국(200kcal)',
-                        calorie: 610,
-                    },
-                    {
-                        name: '현미밥(220kcal) + 닭다리조림(179kcal) + 된장국(220kcal)',
-                        calorie: 619,
-                    },
-                    {
-                        name: '잡곡밥(230kcal) + 북어조림(182kcal) + 소고기무국(220kcal)',
-                        calorie: 632,
-                    },
+                    [
+                        { food: '흰쌀밥', calorie: 250 },
+                        { food: '고등어구이', calorie: 160 },
+                        { food: '미역국', calorie: 200 }
+                    ],
+                    [
+                        { food: '현미밥', calorie: 220 },
+                        { food: '닭다리조림', calorie: 179 },
+                        { food: '된장국', calorie: 220 }
+                    ],
+                    [
+                        { food: '잡곡밥', calorie: 230 },
+                        { food: '북어조림', calorie: 182 },
+                        { food: '소고기무국', calorie: 220 }
+                    ]
                 ],
             },
             exerciseTodoList: {
@@ -77,20 +85,36 @@ function OnesTodoPage() {
     };
 
     // 전체 날짜별 데이터 세팅
-    const loadInitialData = async () => {
-        const data = await fetchBoardsByToken();
-        setDateData(data);
+    const loadInitialData = async (blogId) => {
+        const data = await getPostListByBlogId(blogId);
+        const grouped = data.reduce((acc, post) => {
+                const date = post.createdAt.split('T')[0]; // 날짜만 추출
+
+                if (!acc[date]) {
+                    acc[date] = [];
+                }
+
+                acc[date].push({
+                    postId: post.postId,
+                    title: post.title,
+                });
+
+                return acc;
+            }, {});
+        setDateData(grouped);
     };
 
     useEffect(() => {
-        fetchInfoByToken();
-        loadInitialData();
+        getBlogIdByToken().then(data => {
+            fetchInfoByToken(data.blogId);
+            loadInitialData(data.blogId);
+        });
+        
     }, []);
 
     // 캘린더의 제목 클릭시 해당 게시글 상세 페이지로 이동
-    const handleTitleClick = (boardId) => {
-        // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
-        // navigate('/blog/boardDetail/'+boardId);
+    const handleTitleClick = (postId) => {
+        navigate('/board/detail/'+postId);
     };
 
     // 달력에 표시할 제목이 너무 길면 ...으로 축약
@@ -160,9 +184,9 @@ function OnesTodoPage() {
                                         {dateData[currDate]?.map((todo) => (
                                             <div
                                                 className={styles.registedBoard}
-                                                key={todo.id}
+                                                key={todo.postId}
                                                 onClick={() => {
-                                                    handleTitleClick(todo.id);
+                                                    handleTitleClick(todo.postId);
                                                 }}>
                                                 {overTitle(todo.title)}
                                             </div>
