@@ -5,8 +5,10 @@ import errorStyles from 'assets/styles/common/error.module.css';
 import formStyles from 'assets/styles/common/form.module.css';
 import inputStyles from 'assets/styles/common/input.module.css';
 import labelStyles from 'assets/styles/common/label.module.css';
+import { login } from 'utils/api/loginApi';
 import { validateEmail, validatePassword } from 'utils/helpers/validation';
 import useDebounce from 'utils/hooks/debounce';
+import { useNavigate } from 'react-router-dom';
 
 const getMissingRequiredErrors = (formData) => {
     const errors = {};
@@ -43,6 +45,8 @@ const getValidationErrors = async (formData) => {
 };
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -82,8 +86,9 @@ const SignUpForm = () => {
             return;
         }
 
-        // 임시 로직
-        alert('제출 성공!');
+        const { email, password } = formData;
+        await login({ email, password })
+        navigate('/', { replace: true });
     };
 
     return (

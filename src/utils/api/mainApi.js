@@ -1,9 +1,4 @@
-import axios from "axios";
-
-const apiAxios = axios.create({
-    baseURL: 'http://localhost:8080',
-    withCredentials: true // 쿠키 또는 인증 헤더를 포함하여 요청할 것인지에 대한 설정
-});
+import axiosInstance from './axios';
 
 const getPopularPostTop3 = async () => {
     // const response = await apiAxios.get('/posts/popular');
@@ -12,7 +7,7 @@ const getPopularPostTop3 = async () => {
 
 // Routine을 이번달 가장 많이 등록한 회원 3명을 조회하는 api 함수
 const getMvpRank = async () => {
-    const response = await apiAxios.get('/routine-rankings/monthly');
+    const response = await axiosInstance.get('/routine-rankings/monthly');
     return response.data;
 }
 
