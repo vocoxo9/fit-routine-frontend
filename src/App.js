@@ -15,6 +15,7 @@ import ReSign from 'components/member/mypage/ReSign/ReSign';
 import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
+import LoginPage from './pages/member/LoginPage/LoginPage';
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <div className={styles.layout}>
                     <Routes>
                         <Route path={"/"} element={<MainPage/>} />
+                        <Route path={"/login"} element={<LoginPage/>} />
                         <Route path={"/signUp"} element={<SignUpPage/>} />
                         <Route path={"/mypage"} element={<MyPage/>} />
                         <Route path={"/resign"} element={<ReSign/>} />

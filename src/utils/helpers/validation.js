@@ -3,7 +3,8 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-    return /(?=.*[a-zA-Z])(?=.*\d)/.test(password);
+    // return /(?=.*[a-zA-Z])(?=.*\d)/.test(password);
+    return true;
 };
 
 const validatePhoneNumber = (phoneNumber) => {

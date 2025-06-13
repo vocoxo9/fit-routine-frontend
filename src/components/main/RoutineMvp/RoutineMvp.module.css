@@ -14,6 +14,7 @@
 
 .rank {
     width: 50rem;
+    min-height: 15rem;
     margin: 0 auto;
     margin-bottom: 5rem;
 }
