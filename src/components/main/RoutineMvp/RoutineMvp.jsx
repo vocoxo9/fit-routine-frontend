@@ -6,7 +6,7 @@ import { getMyRank, getMvpRank } from 'utils/api/mainApi.js';
 function RoutineMvp() {
     const [myRank, setMyRank] = useState(0);
 
-    const [mvpRank, setMvpRank] = useState();
+    const [mvpRank, setMvpRank] = useState([]);
 
     useEffect(() => {
         const fetchMyRank = async () => {
@@ -31,7 +31,11 @@ function RoutineMvp() {
                 </div>
             </div>
             <div className={styles.rank}>
-                <BarChart />
+            {mvpRank && mvpRank.length !== 0 &&
+                <BarChart
+                    mvpRank={mvpRank} 
+                />
+            }
             </div>
         </>
     );

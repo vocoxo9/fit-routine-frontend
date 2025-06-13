@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './BarChart.module.css';
-import { getRoutineMvpUser } from 'utils/api/mainApi.js';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -21,20 +20,33 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
  * @param {number[]} props.data - 각 항목의 값
  * @param {string[]} [props.colors] - 각 항목의 색상
  */
-function BarChart() {
+function BarChart({ mvpRank }) {
     // MVP 3인의 데이터
-    const [mvpData, setMvpData] = useState(
-        {won: '다이어트는 내일부터', second: '홍길동', third: '헬린이'}
-    );
+    const [mvpData, setMvpData] = useState([]);
     // 로딩 상태
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (Array.isArray(mvpRank) && mvpRank.length > 0) {
+            setMvpData(mvpRank);
+        }
+    }, [mvpRank]);
+
+    useEffect(() => {
+        setLoading(false);
+    }, [mvpData]);
 
     if (loading) {
         return <p className={styles.loadingMsg}>차트 생성 중...</p>;
     }
 
+    const label = mvpData.map(mvp => 
+        `${mvp.nickname} (${mvp.count}건)`
+    );
+
+
     const data = {
-        labels: [mvpData.won, mvpData.second, mvpData.third],
+        labels: [label[1], label[0], label[2]],
         datasets: [
             {
                 label: 'Data',
@@ -88,7 +100,8 @@ function BarChart() {
         },
     };
 
-    return <Bar data={data} options={options} />;
+    return <Bar data={data} options={options} />
+
 }
 
 export default BarChart;
