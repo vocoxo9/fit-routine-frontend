@@ -48,12 +48,7 @@ function OnesBlogPage() {
             isLiked: !prev.isLiked,
         });
 
-        try {
-            await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
-        } catch (error) {
-            setBlogLike(prev);
-            alert('좋아요 처리에 실패했습니다.');
-        }
+        await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
     };
 
 
