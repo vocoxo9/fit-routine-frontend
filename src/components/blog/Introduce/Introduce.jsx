@@ -23,13 +23,8 @@ function Introduce({intro, blogId}) {
     const handleEditCompleteClick = async (content) => {
         const result = await editIntroduce(content, blogId);
 
-        if(result === 'success'){
-            setIntroduce(content);
-            setIsEditClick(false);
-        } else {
-            alert('오류');
-            setIsEditClick(false);
-        }
+        setIntroduce(result.introduce);
+        setIsEditClick(false);
     }
     
     const cancelClick = () => {

@@ -5,7 +5,7 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
-import { getBlogDetailByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
+import { getBlogDetailByBlogId, getIsLikedByBlogId, getLikeCountByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
 import { useParams } from 'react-router-dom';
 
 /**
@@ -26,15 +26,19 @@ function OnesBlogPage() {
             introduce: data.introduce,
             blogGrade: data.grade,
         });
+
+        const likeCount = await getLikeCountByBlogId(blogId);
+        const isLiked = await getIsLikedByBlogId(blogId);
+        
         setBlogLike({
-            likeCount:data.likeCount,
-            isLiked:data.liked,
+            likeCount:likeCount.count,
+            isLiked:isLiked.followed,
         });
     };
 
     useEffect(() => {
         blogDetail();
-    }, [blogId]); 
+    }, [blogId]);
 
     const handleLikeClick = async () => {
         const prev = blogLike;
@@ -44,12 +48,7 @@ function OnesBlogPage() {
             isLiked: !prev.isLiked,
         });
 
-        try {
-            await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
-        } catch (error) {
-            setBlogLike(prev);
-            alert('좋아요 처리에 실패했습니다.');
-        }
+        await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
     };
 
 
@@ -65,12 +64,14 @@ function OnesBlogPage() {
                                     {blog.nickname}'s Blog
                                 </div>
                                 <div className={styles.follow}>
-                                    <Likes
+                                    {blogLike &&
+                                        <Likes
                                         count={blogLike.likeCount}
                                         isBig={true}
                                         isLiked={blogLike.isLiked}
                                         onClick={handleLikeClick}
-                                    />
+                                        />
+                                    }
                                 </div>
                             </div>
                             <hr />

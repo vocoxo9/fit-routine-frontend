@@ -2,29 +2,36 @@ import axiosInstance from './axios';
 
 const getBlogDetailByBlogId = async (blogId) => {
     const response = await axiosInstance.get(`/blogs/${blogId}`);
+    return response.data;
+};
 
+const getLikeCountByBlogId = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/followers/count`);
+    return response.data;
+};
+
+const getIsLikedByBlogId = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/follow`);
     return response.data;
 };
 
 const likeOrUnlikeBlogAPI = async (isLiked, blogId) => {
-
     if (isLiked) {
         // 관심 해제
-        const response = await axiosInstance.delete(`/blogs/${blogId}/likes`);
+        const response = await axiosInstance.delete(`/blogs/${blogId}/follow`);
     } else {
         // 관심 등록
-        const response = await axiosInstance.post(`/blogs/${blogId}/likes`, null);
+        const response = await axiosInstance.post(`/blogs/${blogId}/follow`);
     }
 };
 
 const editIntroduce = async (introduce, blogId) => {
-    
     const body = {
         introduce,
     }
-    const response = await axiosInstance.put(`/blogs/${blogId}`, body);
+
+    const response = await axiosInstance.patch(`/blogs/${blogId}`, body);
     return response.data;
-    
 }
 
 const saveBoard = async (boardId, formData) => {
@@ -48,4 +55,13 @@ const getBoardDetailWithLike = async (boardId) => {
 }
 
 
-export { getBlogDetailByBlogId, likeOrUnlikeBlogAPI, editIntroduce, saveBoard, fetchBoardDataByBoardId, getBoardDetailWithLike };
+export { 
+    getBlogDetailByBlogId, 
+    likeOrUnlikeBlogAPI, 
+    editIntroduce, 
+    saveBoard, 
+    fetchBoardDataByBoardId, 
+    getBoardDetailWithLike, 
+    getLikeCountByBlogId,
+    getIsLikedByBlogId
+ };
