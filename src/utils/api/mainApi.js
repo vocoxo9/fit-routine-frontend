@@ -6,8 +6,8 @@ const apiAxios = axios.create({
 });
 
 const getPopularBoardTop3 = async () => {
-    const response = await apiAxios.get('/board/popular');
-    return response.data;
+    // const response = await apiAxios.get('/board/popular');
+    // return response.data;
 }
 
 // Routine을 이번달 가장 많이 등록한 회원 3명을 조회하는 api 함수
