@@ -9,17 +9,20 @@ function RoutineMvp() {
     const [mvpRank, setMvpRank] = useState([]);
 
     useEffect(() => {
-        const fetchMyRank = async () => {
-            const result = await getMyRank();
-            setMyRank(`${result.rank}등 (${result.count}건)`);
+        const fetchRoutineMvp = async () => {
+            const fetchMyRank = async () => {
+                const result = await getMyRank();
+                setMyRank(`${result.rank}등 (${result.count}건)`);
+            }
+            await fetchMyRank();
+            
+            const fetchMvpData = async () => {
+                const result = await getMvpRank();
+                setMvpRank(result);
+            }
+            await fetchMvpData();
         }
-        fetchMyRank();
-
-        const fetchMvpData = async () => {
-            const result = await getMvpRank();
-            setMvpRank(result);
-        }
-        fetchMvpData();
+        fetchRoutineMvp();
     },[]);
 
     return (
