@@ -1,12 +1,16 @@
 import styles from 'components/layout/Header/Header.module.css';
 
 import { FaBell, FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BellNotifications from '../Notification/BellNotifications';
 import { useEffect, useState } from 'react';
 import { getExeRoutines, getFoodRoutines } from 'utils/api/headerApi.js';
+import { logout } from 'utils/api/loginApi';
+import { isLoggedIn } from 'utils/helpers/token';
 
 export default function AuthUserMenu() {
+    const navigate = useNavigate();
+
     const [exeRoutines, setExeRoutines] = useState(
         [
             // {category: '운동', content: '바벨로우'}, 
@@ -25,7 +29,7 @@ export default function AuthUserMenu() {
         const fetchRoutines = async () => {
             const exercise = await getExeRoutines();
             setExeRoutines(exercise);
-            
+
             const food = await getFoodRoutines();
             setFoodRoutines(food);
         }
@@ -36,6 +40,17 @@ export default function AuthUserMenu() {
 
     const handleNOtificationOpen = () => {
         setIsOpen((prev) => !prev);
+    };
+
+    const [loggedIn, setLoggedIn] = useState(isLoggedIn());
+
+    const handleLogin = () => {
+        navigate('/login');
+    };
+
+    const handleLogout = () => {
+        logout();
+        setLoggedIn(false);
     };
 
     return (
@@ -57,7 +72,21 @@ export default function AuthUserMenu() {
                         </div>
                     </div>
                 </div>
-                <button className={styles.button}>로그아웃</button>
+                {loggedIn ? (
+                    <button
+                        className={styles.button}
+                        onClick={handleLogout}
+                    >
+                        로그아웃
+                    </button>
+                ) : (
+                    <button
+                        className={styles.button}
+                        onClick={handleLogin}
+                    >
+                        로그인
+                    </button>
+                )}
             </div>
             <div className={styles.carousel}>
             {(exeRoutines || foodRoutines) &&
