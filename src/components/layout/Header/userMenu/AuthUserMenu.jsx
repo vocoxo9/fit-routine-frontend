@@ -48,6 +48,10 @@ export default function AuthUserMenu() {
         navigate('/login');
     };
 
+    const handleSignUp = () => {
+        navigate('/signup');
+    };
+
     const handleLogout = () => {
         logout();
         setLoggedIn(false);
@@ -80,12 +84,20 @@ export default function AuthUserMenu() {
                         로그아웃
                     </button>
                 ) : (
-                    <button
-                        className={styles.button}
-                        onClick={handleLogin}
-                    >
-                        로그인
-                    </button>
+                    <>
+                        <button
+                            className={styles.button}
+                            onClick={handleLogin}
+                        >
+                            로그인
+                        </button>
+                        <button
+                            className={styles.button}
+                            onClick={handleSignUp}
+                        >
+                            가입
+                        </button>
+                    </>
                 )}
             </div>
             <div className={styles.carousel}>
