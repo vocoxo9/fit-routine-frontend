@@ -2,6 +2,7 @@ import BarChart from 'components/common/BarChart/BarChart';
 import styles from './RoutineMvp.module.css';
 import { useEffect, useState } from 'react';
 import { getMyRank, getMvpRank } from 'utils/api/mainApi.js';
+import { isLoggedIn } from 'utils/helpers/token.js';
 
 function RoutineMvp() {
     const [myRank, setMyRank] = useState(null);
@@ -14,7 +15,7 @@ function RoutineMvp() {
         }
     );
 
-    const token = localStorage.getItem("accessToken");
+    const token = isLoggedIn();
 
     useEffect(() => {
         const fetchRoutineMvp = async () => {
