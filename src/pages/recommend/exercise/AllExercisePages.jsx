@@ -46,7 +46,7 @@ function AllExercisePages() {
     const performData = async (exerciseList) => {
         await submitExerciseRoutine(exerciseList);
         alert('운동 루틴이 저장되었습니다!');
-        // navigate('/todo');
+        navigate('/todo');
     };
 
     const goToNext = () => {
