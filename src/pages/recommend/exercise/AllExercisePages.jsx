@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
     fetchMemberDetail,
     fetchRegistExerciseRoutine,
+    fetchRegistExerciseRoutineInfo,
     fetchTodoDataByTodoId,
 } from 'utils/api/exerciseApi';
 
@@ -18,13 +19,13 @@ function AllExercisePages() {
         startedAt: '',
         endedAt: '',
         purpose: '',
-        category: 'exercise',
+        category: 'EXERCISE',
+        dayRepeat: '',
         tdee: '',
         goalWeight: '',
-        dayRepeat: '',
-        // exerciseList: [],
     });
 
+    const [exerciseList, setExerciseList] = useState([]);
     const [memberDetail, setMemberDetail] = useState({});
 
     useEffect(() => {
@@ -39,16 +40,27 @@ function AllExercisePages() {
         });
     }, [todoId]);
 
-    const performData = () => {
-        alert('운동 루틴이 저장되었습니다!');
-        console.log(formData);
-        const response = fetchRegistExerciseRoutine(formData);
+    const saveData = () => {
+        const response = fetchRegistExerciseRoutineInfo(formData);
         console.log(response);
-        navigate('/todo');
     };
 
+    const performData = () => {
+        alert('운동 루틴이 저장되었습니다!');
+        const response = fetchRegistExerciseRoutine(exerciseList);
+        navigate('/todo');
+    };
+    console.log(exerciseList);
+
     const goToNext = () => {
-        step === 2 ? performData() : setStep(step + 1);
+        if (step === 0) {
+            setStep(step + 1);
+        } else if (step === 1) {
+            saveData();
+            setStep(step + 1);
+        } else if (step === 2) {
+            performData();
+        }
     };
 
     return (
@@ -77,6 +89,8 @@ function AllExercisePages() {
                             goToNext={goToNext}
                             formData={formData}
                             setFormData={setFormData}
+                            exerciseList={exerciseList}
+                            setExerciseList={setExerciseList}
                             memberDetail={memberDetail}
                             buttonText="루틴 등록"
                         />

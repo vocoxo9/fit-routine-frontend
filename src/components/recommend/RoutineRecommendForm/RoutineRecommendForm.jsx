@@ -29,6 +29,8 @@ function RoutineRecommendForm({
     goToNext,
     formData,
     setFormData,
+    exerciseList,
+    setExerciseList,
     memberDetail,
     buttonText,
 }) {
@@ -209,10 +211,10 @@ function RoutineRecommendForm({
             selectedExerciseIds.push(checkedItems[i] || []);
         }
 
-        setFormData((prev) => ({
-            ...prev,
-            exerciseData: selectedExerciseIds,
-        }));
+        setExerciseList(selectedExerciseIds);
+        // setExerciseList((prev) => {
+        //     return selectedExerciseIds;
+        // });
 
         alert('폼 제출 완료');
         goToNext();

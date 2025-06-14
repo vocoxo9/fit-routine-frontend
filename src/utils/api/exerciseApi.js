@@ -1,10 +1,35 @@
 import axiosInstance from './axios';
 
+// TB_TODO 정보 등록
+const saveExerciseRoutineInfo = async (formData) => {
+    try {
+        const response = await axiosInstance.post('/todos/exercise', formData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// 루틴 등록
+const fetchRegistExerciseRoutine = async (exerciseList) => {
+    try {
+        const response = await axiosInstance.post('/todos/exercise/routines', exerciseList);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 // 운동 공공데이터 정보
 const fetchExerciseOpenDataList = async (formData) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
-        const response = await axiosInstance.get('/exercises/open-data');
+        const response = await axiosInstance.get('/exercises/open-data', {
+            params: {
+                purpose: formData.purpose,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('운동 데이터 로딩 실패', error);
@@ -39,6 +64,17 @@ const fetchGetExerciseById = async (id) => {
     }
 };
 
+// 회원의 상세정보 (신장, 체중, 생년월일, 성별) 가져오기
+const fetchMemberDetail = async () => {
+    try {
+        const response = await axiosInstance.get('/members/me/detail');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// todo 수정
 const fetchTodoDataByTodoId = async (todoId) => {
     try {
         const response = await axiosInstance.get(`/exercises/todos/${todoId}`);
@@ -53,6 +89,7 @@ export {
     fetchExerciseRandomRoutine,
     fetchGetExerciseById,
     fetchMemberDetail,
+    fetchRegistExerciseRoutineInfo,
     fetchRegistExerciseRoutine,
     fetchTodoDataByTodoId,
 };
