@@ -7,7 +7,7 @@ import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchBoardDataByBoardId, saveBoard } from 'utils/api/blogApi';
+import { createPost, deleteImage, fetchBoardDataByBoardId, getBlogIdByToken, saveImage } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -152,26 +152,31 @@ function BoardAddEditPage({
         ) {
             return;
         }
+
+        const blogId = await getBlogIdByToken();
+        console.log(blogId);
         
-        const formData = new FormData();
 
-        formData.append('title', boardData.title);
-        formData.append('category', boardData.category);
-        formData.append('content', boardData.content);
+        const payload = {
+            title: boardData.title,
+            content: boardData.content,
+            category: boardData.category,
+        }
 
-        images.forEach((image) => {
+        const postId = await createPost(blogId, payload);
+        console.log(postId);
+        
+
+        images.forEach(async (image) => {
             if (image instanceof File){
-                formData.append('images', image);
+                await saveImage(postId,image);
             }
         });
 
-        deletedImageIds.forEach(id => {
-            formData.append('deleteImageIds', id);
+        deletedImageIds.forEach(async (id) => {
+            await deleteImage(id);
         });
 
-        const result = await saveBoard(boardId, formData); 
-
-        result === 'success' ? alert('추가 성공!') : alert('실패');
         navigate('/board');
 
     }

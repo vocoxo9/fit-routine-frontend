@@ -34,13 +34,36 @@ const editIntroduce = async (introduce, blogId) => {
     return response.data;
 }
 
-const saveBoard = async (boardId, formData) => {
-    const result = boardId ?
-        await axiosInstance.put(`/boards/${boardId}`, formData) :
-        await axiosInstance.post(`/boards`, formData);
+const getBlogIdByToken = async () => {
+    const response = await axiosInstance.get(`/blogs/me`);
+    return response.data;
+};
 
-    return result.data;
-}
+const createPost = async (blogId, payload) => {
+    const response = await axiosInstance.post(`/blogs/${blogId}/posts`, payload);
+    return response.data;
+};
+
+const saveImage = async (postId, image) => {
+    const formData = new FormData();
+    formData.append('multipartFile', image);
+    const response = await axiosInstance.post(`/posts/${postId}/images`, formData);
+
+    return response.data;
+};
+
+const deleteImage = async (imageId) => {
+    const response = await axiosInstance.delete(`/images/${imageId}`);
+    return response.data;
+};
+
+// const saveBoard = async (boardId, formData) => {
+//     const result = boardId ?
+//         await axiosInstance.put(`/boards/${boardId}`, formData) :
+//         await axiosInstance.post(`/boards`, formData);
+
+//     return result.data;
+// }
 
 const fetchBoardDataByBoardId = async (boardId) => {
     const result = await axiosInstance.get(`/boards/${boardId}`);
@@ -59,9 +82,13 @@ export {
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
     editIntroduce, 
-    saveBoard, 
+    // saveBoard, 
     fetchBoardDataByBoardId, 
     getBoardDetailWithLike, 
     getLikeCountByBlogId,
-    getIsLikedByBlogId
+    getIsLikedByBlogId,
+    createPost,
+    getBlogIdByToken,
+    saveImage,
+    deleteImage,
  };
