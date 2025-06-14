@@ -5,8 +5,6 @@ function RecommendExercise({
     goToNext,
     formData,
     setFormData,
-    exerciseList,
-    setExerciseList,
     memberDetail,
     buttonText,
 }) {
@@ -16,8 +14,6 @@ function RecommendExercise({
             goToNext={goToNext}
             formData={formData}
             setFormData={setFormData}
-            exerciseList={exerciseList}
-            setExerciseList={setExerciseList}
             memberDetail={memberDetail}
             buttonText={buttonText}
         />

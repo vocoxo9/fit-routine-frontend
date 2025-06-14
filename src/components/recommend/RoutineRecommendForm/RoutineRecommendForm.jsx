@@ -28,9 +28,6 @@ function RoutineRecommendForm({
     todoId,
     goToNext,
     formData,
-    setFormData,
-    exerciseList,
-    setExerciseList,
     memberDetail,
     buttonText,
 }) {
@@ -188,7 +185,7 @@ function RoutineRecommendForm({
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         for (const day of data) {
@@ -211,13 +208,8 @@ function RoutineRecommendForm({
             selectedExerciseIds.push(checkedItems[i] || []);
         }
 
-        setExerciseList(selectedExerciseIds);
-        // setExerciseList((prev) => {
-        //     return selectedExerciseIds;
-        // });
-
+        goToNext(selectedExerciseIds);
         alert('폼 제출 완료');
-        goToNext();
     };
 
     return (

@@ -39,7 +39,7 @@ const calcDailyBurnKcal = (weight, goalWeight, startedAt, endedAt) => {
 const calcExerciseTotalCalorie = (exerciseList, weight) => {
     const EXERCISE_TIME = 0.25;
     return exerciseList.reduce((total, exercise) => {
-        return total + exercise.met * weight * EXERCISE_TIME;
+        return Math.round(total + exercise.met * weight * EXERCISE_TIME);
     }, 0);
 };
 

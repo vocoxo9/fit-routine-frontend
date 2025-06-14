@@ -5,9 +5,9 @@ import RecommendExercise from './RecommendExercise/RecommendExercise';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
     fetchMemberDetail,
-    fetchRegistExerciseRoutine,
-    fetchRegistExerciseRoutineInfo,
     fetchTodoDataByTodoId,
+    submitExerciseRoutine,
+    saveExerciseRoutineInfo,
 } from 'utils/api/exerciseApi';
 
 function AllExercisePages() {
@@ -25,7 +25,6 @@ function AllExercisePages() {
         goalWeight: '',
     });
 
-    const [exerciseList, setExerciseList] = useState([]);
     const [memberDetail, setMemberDetail] = useState({});
 
     useEffect(() => {
@@ -38,19 +37,17 @@ function AllExercisePages() {
         fetchMemberDetail().then((data) => {
             setMemberDetail(data);
         });
-    }, [todoId]);
+    }, [todoId, step]);
 
     const saveData = () => {
-        const response = fetchRegistExerciseRoutineInfo(formData);
-        console.log(response);
+        saveExerciseRoutineInfo(formData);
     };
 
-    const performData = () => {
+    const performData = async (exerciseList) => {
+        await submitExerciseRoutine(exerciseList);
         alert('운동 루틴이 저장되었습니다!');
-        const response = fetchRegistExerciseRoutine(exerciseList);
-        navigate('/todo');
+        // navigate('/todo');
     };
-    console.log(exerciseList);
 
     const goToNext = () => {
         if (step === 0) {
@@ -58,8 +55,6 @@ function AllExercisePages() {
         } else if (step === 1) {
             saveData();
             setStep(step + 1);
-        } else if (step === 2) {
-            performData();
         }
     };
 
@@ -86,11 +81,9 @@ function AllExercisePages() {
 
                     {step === 2 && (
                         <RecommendExercise
-                            goToNext={goToNext}
+                            goToNext={performData}
                             formData={formData}
                             setFormData={setFormData}
-                            exerciseList={exerciseList}
-                            setExerciseList={setExerciseList}
                             memberDetail={memberDetail}
                             buttonText="루틴 등록"
                         />

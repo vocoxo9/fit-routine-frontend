@@ -1,20 +1,21 @@
 import axiosInstance from './axios';
 
-// TB_TODO 정보 등록
+// TODO 입력 정보 등록
 const saveExerciseRoutineInfo = async (formData) => {
     try {
-        const response = await axiosInstance.post('/todos/exercise', formData);
+        const response = await axiosInstance.post('/todos/info', formData);
         return response.data;
     } catch (error) {
         console.error(error);
     }
 };
 
-// 루틴 등록
-const fetchRegistExerciseRoutine = async (exerciseList) => {
+// TODO 최종 등록
+const submitExerciseRoutine = async (exerciseList) => {
     try {
-        const response = await axiosInstance.post('/todos/exercise/routines', exerciseList);
-        console.log(response.data);
+        const response = await axiosInstance.post('/todos/exercise', {
+            exerciseList: exerciseList,
+        });
         return response.data;
     } catch (error) {
         console.error(error);
@@ -89,7 +90,7 @@ export {
     fetchExerciseRandomRoutine,
     fetchGetExerciseById,
     fetchMemberDetail,
-    fetchRegistExerciseRoutineInfo,
-    fetchRegistExerciseRoutine,
     fetchTodoDataByTodoId,
+    saveExerciseRoutineInfo,
+    submitExerciseRoutine,
 };
