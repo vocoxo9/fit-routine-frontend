@@ -1,4 +1,5 @@
 import axiosInstance from './axios';
+
 const getPopularPostTop3 = async () => {
     // const response = await apiAxios.get('/posts/popular');
     // return response.data;
