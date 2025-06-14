@@ -87,8 +87,19 @@ const SignUpForm = () => {
         }
 
         const { email, password } = formData;
-        await login({ email, password })
-        navigate('/', { replace: true });
+        try {
+            await login({ email, password });
+            window.location.replace('/');
+        } catch (error) {
+            // if (error.response?.status === 403) {
+            //     alert('이메일 또는 비밀번호가 틀립니다.');
+            // } else {
+            //     navigate('/error');
+            // }
+
+            // 추후 백엔드에서 에러 코드 및 메시지가 명확해지면 수정
+            alert('로그인 실패!');
+        }
     };
 
     return (
