@@ -14,7 +14,14 @@
 
 .rank {
     width: 50rem;
-    min-height: 15rem;
+    min-height: 20rem;
     margin: 0 auto;
+    text-align: center;
+    align-content: center;
     margin-bottom: 5rem;
+}
+
+.error {
+    font-size: 1.8rem;
+    color: #787878;
 }
