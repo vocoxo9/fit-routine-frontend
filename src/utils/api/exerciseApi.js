@@ -24,7 +24,6 @@ const submitExerciseRoutine = async (todoId, exerciseList) => {
 
 // 운동 공공데이터 정보
 const fetchExerciseOpenDataList = async (formData) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     try {
         const response = await axiosInstance.get('/exercises/open-data', {
             params: {
@@ -40,7 +39,6 @@ const fetchExerciseOpenDataList = async (formData) => {
 
 // 랜덤 추출할 루틴 정보
 const fetchExerciseRandomRoutine = async (formData) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     try {
         const response = await axiosInstance.get('/exercises/random-routine', {
             params: {
