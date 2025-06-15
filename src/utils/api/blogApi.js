@@ -34,12 +34,14 @@ const editIntroduce = async (introduce, blogId) => {
     return response.data;
 }
 
-const getBlogIdByToken = async () => {
+const getBlogDetailByToken = async () => {
     const response = await axiosInstance.get(`/blogs/me`);
     return response.data;
 };
 
 const createPost = async (blogId, payload) => {
+    console.log(payload);
+    
     const response = await axiosInstance.post(`/blogs/${blogId}/posts`, payload);
     return response.data;
 };
@@ -57,38 +59,106 @@ const deleteImage = async (imageId) => {
     return response.data;
 };
 
-// const saveBoard = async (boardId, formData) => {
-//     const result = boardId ?
-//         await axiosInstance.put(`/boards/${boardId}`, formData) :
-//         await axiosInstance.post(`/boards`, formData);
-
-//     return result.data;
-// }
-
-const fetchBoardDataByBoardId = async (boardId) => {
-    const result = await axiosInstance.get(`/boards/${boardId}`);
-
-    return result.data;
+const getPostDetailByPostId = async (postId) => {
+    const response = await axiosInstance.get(`/posts/${postId}`);
+    return response.data;
 }
 
-const getBoardDetailWithLike = async (boardId) => {
-    const result = await axiosInstance.get(`/boards/${boardId}?includeLike=true`);
-
-    return result.data;
+const getPostLikeByPostId = async (postId) => {
+    const response = await axiosInstance.get(`/posts/${postId}/likes`);
+    return response.data;
 }
 
+const deletePostLikeByPostId = async (postId) => {
+    const response = await axiosInstance.delete(`/posts/${postId}/likes`);
+    return response.data;
+}
+
+const addPostLikeByPostId = async (postId) => {
+    const response = await axiosInstance.post(`/posts/${postId}/likes`);
+    return response.data;
+}
+
+const getReplyListByPostId = async (postId) => {
+    const response = await axiosInstance.get(`/posts/${postId}/replies`);
+    return response.data;
+}
+
+const deletePostByPostId = async (postId) => {
+    const response = await axiosInstance.delete(`/posts/${postId}`);
+    return response.data;
+}
+
+const getReplyLikeByReplyId = async (replyId) => {
+    const response = await axiosInstance.get(`/replies/${replyId}/likes`);
+    return response.data;
+}
+
+const addReplyLikeByReplyId = async (replyId) => {
+    const response = await axiosInstance.post(`/replies/${replyId}/likes`);
+    return response.data;
+}
+
+const deleteReplyLikeByReplyId = async (replyId) => {
+    const response = await axiosInstance.delete(`/replies/${replyId}/likes`);
+    return response.data;
+}
+
+const addReplyByPayload = async (postId, payload) => {
+    const response = await axiosInstance.post(`/posts/${postId}/replies`, payload);
+    return response.data;
+}
+
+const getReplyDataByReplyId = async (replyId) => {
+    const response = await axiosInstance.get(`/replies/${replyId}/details`);
+    return response.data;
+}
+
+const checkPostOwner = async (postId) => {
+    const response = await axiosInstance.get(`/posts/${postId}/permissions`);
+    return response.data;
+}
+
+const checkReplyOwner = async (replyId) => {
+    const response = await axiosInstance.get(`/replies/${replyId}/permissions`);
+    return response.data;
+}
+
+const deleteReplyByReplyId = async (replyId) => {
+    const response = await axiosInstance.delete(`/replies/${replyId}`);
+    return response.data;
+}
+
+const editReplyContentByReplyId = async (payload) => {
+    const response = await axiosInstance.patch(`/replies/${payload.replyId}`, {
+        content: payload.content
+    });
+    return response.data;
+}
 
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
     editIntroduce, 
-    // saveBoard, 
-    fetchBoardDataByBoardId, 
-    getBoardDetailWithLike, 
     getLikeCountByBlogId,
     getIsLikedByBlogId,
     createPost,
-    getBlogIdByToken,
+    getBlogDetailByToken,
     saveImage,
     deleteImage,
+    getPostDetailByPostId,
+    getPostLikeByPostId,
+    deletePostLikeByPostId,
+    addPostLikeByPostId,
+    getReplyListByPostId,
+    deletePostByPostId,
+    getReplyLikeByReplyId,
+    addReplyLikeByReplyId,
+    deleteReplyLikeByReplyId,
+    addReplyByPayload,
+    getReplyDataByReplyId,
+    checkPostOwner,
+    checkReplyOwner,
+    deleteReplyByReplyId,
+    editReplyContentByReplyId,
  };

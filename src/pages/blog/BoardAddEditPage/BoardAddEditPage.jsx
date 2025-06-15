@@ -7,7 +7,7 @@ import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createPost, deleteImage, fetchBoardDataByBoardId, getBlogIdByToken, saveImage } from 'utils/api/blogApi';
+import { createPost, deleteImage, getBlogDetailByToken, getPostDetailByPostId, saveImage } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -108,7 +108,8 @@ function BoardAddEditPage({
     }
 
     const fetchBoardDetail = async (boardId) => {
-        const data = await fetchBoardDataByBoardId(boardId);  
+        const data = await getPostDetailByPostId(boardId);  
+        
         setBoardData({
             title: data.title,
             category: data.category,
@@ -153,18 +154,15 @@ function BoardAddEditPage({
             return;
         }
 
-        const blogId = await getBlogIdByToken();
-        console.log(blogId);
+        const blogId = await getBlogDetailByToken();
         
-
         const payload = {
             title: boardData.title,
             content: boardData.content,
             category: boardData.category,
         }
 
-        const postId = await createPost(blogId, payload);
-        console.log(postId);
+        const postId = await createPost(blogId.blogId, payload);
         
 
         images.forEach(async (image) => {
