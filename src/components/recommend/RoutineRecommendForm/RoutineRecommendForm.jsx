@@ -25,7 +25,6 @@ const CATEGORY_LIST = [
 ];
 
 function RoutineRecommendForm({
-    // todoId,
     paramTodoId,
     goToNext,
     formData,
