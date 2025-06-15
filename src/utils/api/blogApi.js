@@ -136,6 +136,21 @@ const editReplyContentByReplyId = async (payload) => {
     return response.data;
 }
 
+const getMenuTodoByToken = async () => {
+    const response = await axiosInstance.get(`/todos/menu`);
+    return response.data;
+}
+
+const getExerciseTodoByToken = async () => {
+    const response = await axiosInstance.get(`/todos/exercise`);
+    return response.data;
+}
+
+const deleteTodoByTodoId = async (todoId) => {
+    const response = await axiosInstance.delete(`/todos/${todoId}`);
+    return response.data;
+}
+
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
@@ -161,4 +176,7 @@ export {
     checkReplyOwner,
     deleteReplyByReplyId,
     editReplyContentByReplyId,
+    getMenuTodoByToken,
+    getExerciseTodoByToken,
+    deleteTodoByTodoId,
  };

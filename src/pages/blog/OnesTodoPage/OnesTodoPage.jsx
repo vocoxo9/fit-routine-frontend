@@ -9,6 +9,7 @@ import TodoList from 'components/blog/TodoList/TodoList';
 import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
 import buttons from 'assets/styles/common/button.module.css';
+import { getBlogDetailByToken, getExerciseTodoByToken, getMenuTodoByToken } from 'utils/api/blogApi';
 
 /**
  * TODO 페이지
@@ -33,47 +34,14 @@ function OnesTodoPage() {
         return data;
     };
 
-    const fetchInfoByToken = async () => {
-        // const data = axios.get('blog/userInfo');
-
-        /* 더미데이터 입니다 */
-        setData({
-            nickname: '일김현',
-            grade: 150,
-            menuTodoList: {
-                /* 자세한 정보는 더미데이터 입니다 */ todoId: 2,
-                category: 'menu',
-                startAt: new Date().toLocaleDateString(),
-                endAt: new Date(2026, 1, 22).toLocaleDateString(),
-                list: [
-                    {
-                        name: '흰쌀밥(250kcal) + 고등어구이(160kcal) + 미역국(200kcal)',
-                        calorie: 610,
-                    },
-                    {
-                        name: '현미밥(220kcal) + 닭다리조림(179kcal) + 된장국(220kcal)',
-                        calorie: 619,
-                    },
-                    {
-                        name: '잡곡밥(230kcal) + 북어조림(182kcal) + 소고기무국(220kcal)',
-                        calorie: 632,
-                    },
-                ],
-            },
-            exerciseTodoList: {
-                todoId: 1,
-                category: 'exercise',
-                startAt: new Date().toLocaleDateString(),
-                endAt: new Date(2026, 4, 12).toLocaleDateString(),
-                list: [
-                    { name: '스쿼트', met: 30 },
-                    { name: '벤치프레스', met: 50 },
-                    { name: '달리기', met: 70 },
-                    { name: '풀업', met: 20 },
-                    { name: '레그프레스', met: 130 },
-                ],
-            },
-        });
+    const getTodoList = async () => {
+        const menuData = await getMenuTodoByToken();
+        const exerciseData = await getExerciseTodoByToken();
+        setData(prev => ({
+            ...prev,
+            menuTodoList: menuData,
+            exerciseTodoList: exerciseData,
+        }));
     };
 
     // 전체 날짜별 데이터 세팅
@@ -83,12 +51,18 @@ function OnesTodoPage() {
     };
 
     useEffect(() => {
-        fetchInfoByToken();
-        loadInitialData();
+        getBlogDetailByToken().then(data => {
+            setData({
+                nickname: data.nickname,
+                grade: data.grade,
+            })
+            getTodoList(data.blogId);
+        });
+       
     }, []);
 
     // 캘린더의 제목 클릭시 해당 게시글 상세 페이지로 이동
-    const handleTitleClick = (boardId) => {
+    const handleTitleClick = (postId) => {
         // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
         // navigate('/blog/boardDetail/'+boardId);
     };
@@ -176,7 +150,7 @@ function OnesTodoPage() {
                                 const dayCells = document.querySelectorAll('.fc-daygrid-day');
 
                                 dayCells.forEach((cell) => {
-                                    const dateStr = cell.getAttribute('data-date'); 
+                                    const dateStr = cell.getAttribute('data-date');
                                     const todos = dateData[dateStr];
                                     if (todos?.length === 1) {
                                         cell.classList.add('oneTodo');
@@ -186,14 +160,24 @@ function OnesTodoPage() {
                                         cell.classList.remove('oneTodo', 'multiTodo');
                                     }
                                 });
-                            }, 0); // setTimeout은 async역할을 함
+                            }, 0);
                         }}
                     />
                 </div>
             </div>
             <div className={styles.todoContainer}>
-                {data.exerciseTodoList && <TodoList todoList={data.exerciseTodoList}/>}
-                {data.menuTodoList && <TodoList todoList={data.menuTodoList} />}
+                {data.exerciseTodoList && 
+                    <TodoList
+                        todoList={data.exerciseTodoList}
+                        onDelete={getTodoList} // 삭제 후 상위에서 다시 목록 가져오기
+                    />
+                }
+                {data.menuTodoList && 
+                    <TodoList
+                        todoList={data.menuTodoList}
+                        onDelete={getTodoList}
+                    />
+                }
             </div>
         </div>
     );
