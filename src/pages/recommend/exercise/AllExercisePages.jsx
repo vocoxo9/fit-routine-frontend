@@ -49,10 +49,9 @@ function AllExercisePages() {
     };
 
     const performData = async (exerciseList) => {
-        console.log('현재 todoId 상태: ', todoId);
         await submitExerciseRoutine(todoId, exerciseList);
         alert('운동 루틴이 저장되었습니다!');
-        // navigate('/todo');
+        navigate('/todo');
     };
 
     const goToNext = async () => {
@@ -66,7 +65,7 @@ function AllExercisePages() {
 
     return (
         <>
-            {!todoId && (
+            {!paramTodoId && (
                 <>
                     {step === 0 && (
                         <ExerciseInputInfo
@@ -98,9 +97,9 @@ function AllExercisePages() {
                 </>
             )}
 
-            {todoId && (
+            {paramTodoId && (
                 <RecommendExercise
-                    todoId={paramTodoId}
+                    paramTodoId={paramTodoId}
                     goToNext={performData}
                     formData={formData}
                     setFormData={setFormData}

@@ -4,7 +4,6 @@ import axiosInstance from './axios';
 const saveExerciseRoutineInfo = async (formData) => {
     try {
         const response = await axiosInstance.post('/todos/info', formData);
-        console.log('save result: ', response.data);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -13,8 +12,6 @@ const saveExerciseRoutineInfo = async (formData) => {
 
 // TODO 최종 등록
 const submitExerciseRoutine = async (todoId, exerciseList) => {
-    console.log('submit 진입 시 todoId: ', todoId);
-    console.log(exerciseList);
     try {
         const response = await axiosInstance.post(`/todos/${todoId}`, {
             exerciseList: exerciseList,
