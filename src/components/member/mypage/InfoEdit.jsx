@@ -69,13 +69,16 @@ const validateForm = async (infoData) => {
         }
     }
 
-    if (nickname) {
-        if (!validateNickname(nickname)) {
-            errors.nickname = '닉네임이 유효하지 않습니다.';
-        } else if (await checkNicknameDuplicate(nickname)) {
-            errors.nickname = '이미 사용 중인 닉네임입니다.';
-        }
-    }
+    // if (nickname) {
+    //     if (!validateNickname(nickname)) {
+    //         errors.nickname = '닉네임이 올바르지 않습니다.';
+    //     } else {
+    //         const isDuplicate  = await checkNicknameDuplicate(nickname);
+    //         if (isDuplicate) {
+    //             errors.nickname = '이미 사용 중인 닉네임입니다.';
+    //         }
+    //     }
+    // }
 
     if (height) {
         if (!validateHeight(height)) {
@@ -182,7 +185,7 @@ function InfoEdit({ infoData, setIsEdit }) {
         
         const result = await editUserInfo(updateInfoData);
 
-        if (result === 'success') {
+        if (result) {
             alert("정보수정에 성공하였습니다.");
             setIsEdit(false);
         }
