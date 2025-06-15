@@ -66,7 +66,7 @@ const fetchGetExerciseById = async (id) => {
 // 회원의 상세정보 (신장, 체중, 생년월일, 성별) 가져오기
 const fetchMemberDetail = async () => {
     try {
-        const response = await axiosInstance.get('/members/me/detail');
+        const response = await axiosInstance.get('/members/me');
         return response.data;
     } catch (error) {
         console.error(error);

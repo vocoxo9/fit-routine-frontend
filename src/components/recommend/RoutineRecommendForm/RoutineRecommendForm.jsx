@@ -25,7 +25,8 @@ const CATEGORY_LIST = [
 ];
 
 function RoutineRecommendForm({
-    todoId,
+    // todoId,
+    paramTodoId,
     goToNext,
     formData,
     memberDetail,
@@ -54,7 +55,7 @@ function RoutineRecommendForm({
     // 렌더링과 동시에 가져 올 데이터 샘플 및 초기 kcal 계산
     useEffect(() => {
         const loadInitialRoutine = async () => {
-            const routineData = todoId
+            const routineData = paramTodoId
                 ? formData
                 : await fetchExerciseRandomRoutine(formData);
 

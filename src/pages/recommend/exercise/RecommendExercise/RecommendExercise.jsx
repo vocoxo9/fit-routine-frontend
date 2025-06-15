@@ -1,7 +1,8 @@
 import RoutineRecommendForm from 'components/recommend/RoutineRecommendForm/RoutineRecommendForm';
 
 function RecommendExercise({
-    todoId,
+    // todoId,
+    paramTodoId,
     goToNext,
     formData,
     setFormData,
@@ -10,7 +11,8 @@ function RecommendExercise({
 }) {
     return (
         <RoutineRecommendForm
-            todoId={todoId}
+            // todoId={todoId}
+            paramTodoId={paramTodoId}
             goToNext={goToNext}
             formData={formData}
             setFormData={setFormData}

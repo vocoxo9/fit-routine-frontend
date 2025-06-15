@@ -86,7 +86,7 @@ function AllExercisePages() {
 
                     {step === 2 && (
                         <RecommendExercise
-                            todoId={todoId}
+                            // todoId={todoId}
                             goToNext={performData}
                             formData={formData}
                             setFormData={setFormData}
