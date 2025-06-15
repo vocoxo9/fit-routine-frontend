@@ -13,7 +13,7 @@ const saveExerciseRoutineInfo = async (formData) => {
 // TODO 최종 등록
 const submitExerciseRoutine = async (todoId, exerciseList) => {
     try {
-        const response = await axiosInstance.post(`/todos/${todoId}`, {
+        const response = await axiosInstance.post(`/todos/exercises/${todoId}`, {
             exerciseList: exerciseList,
         });
         return response.data;
@@ -76,7 +76,7 @@ const fetchMemberDetail = async () => {
 // todo 수정
 const fetchTodoDataByTodoId = async (todoId) => {
     try {
-        const response = await axiosInstance.get(`/exercises/todos/${todoId}`);
+        const response = await axiosInstance.get(`/todos/exercises/${todoId}`);
         return response.data;
     } catch (error) {
         console.error(error);
