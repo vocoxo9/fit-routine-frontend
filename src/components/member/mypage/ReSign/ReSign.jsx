@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styles from './ReSign.module.css';
 import label from 'assets/styles/common/label.module.css';
@@ -7,19 +7,56 @@ import textarea from 'assets/styles/common/textarea.module.css';
 import button from 'assets/styles/common/button.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
 import { Link } from 'react-router-dom';
+import { getUserProfile, submitReason, resignUser } from 'utils/api/profileApi.js';
 
 function ReSign() {
     const [info, setInfo] = useState({
-        email: 'squatqueen@gymfit.com',
-        nickName: '스쿼트요정',
+        email: '',
+        nickname: '',
     });
+
+    const [selectedReason, setSelectedReason] = useState([]);
+
+    const [inputReason, setInputReason] = useState('');
+
+    useEffect(() => {
+        const fetchResignUser = async () => {
+            const result = await getUserProfile();
+            setInfo(result);
+        }
+        fetchResignUser();
+    }, []);
+
+    useEffect(() => {
+        console.log(selectedReason);
+    }, [selectedReason]);
+
+        useEffect(() => {
+        console.log(inputReason);
+    }, [inputReason]);
+
+    const handleCheckboxChange = (event) => {
+        const { value, checked } = event.target;
+        if (checked) {
+            // 체크된 항목 추가
+            setSelectedReason(prev => [...prev, value]);
+        } else {
+            // 체크 해제된 항목 제거
+            setSelectedReason(prev => prev.filter(item => item !== value));
+        }
+    };
+
+    const handleSubmit = async () => {
+        const reasonResponse = await submitReason(selectedReason, inputReason);
+        // const resignResponse = await resignUser();
+    };
 
     return (
         <>
             <div className={styles.subTitle}>회원 탈퇴</div>
             <div className={styles.table}>
                 <ReSignInfo text="아이디" info={info.email} />
-                <ReSignInfo text="닉네임" info={info.nickName} />
+                <ReSignInfo text="닉네임" info={info.nickname} />
             </div>
             <div className={styles.reSignReason}>
                 <div className={styles.reasontitle}>
@@ -37,7 +74,8 @@ function ReSign() {
                                 type="checkbox"
                                 id="badService"
                                 name="reSignReason"
-                                value="badService"
+                                value="서비스 불만족"
+                                onChange={handleCheckboxChange}
                             />
                             <label className={label.label} for='badService'>서비스 불만족</label>
                         </div>
@@ -47,7 +85,8 @@ function ReSign() {
                                 type="checkbox"
                                 id="personalInfo"
                                 name="reSignReason"
-                                value="personalInfo"
+                                value="개인정보 보호 우려"
+                                onChange={handleCheckboxChange}
                             />
                             <label className={label.label} for='personalInfo'>개인정보 보호 우려</label>
                         </div>
@@ -57,7 +96,8 @@ function ReSign() {
                                 type="checkbox"
                                 id="downUseFrequency"
                                 name="reSignReason"
-                                value="downUseFrequency"
+                                value="사용 빈도 감소"
+                                onChange={handleCheckboxChange}
                             />
                             <label className={label.label} for='downUseFrequency'>사용 빈도 감소</label>
                         </div>
@@ -67,7 +107,8 @@ function ReSign() {
                                 type="checkbox"
                                 id="lack of contents"
                                 name="reSignReason"
-                                value="lack of contents"
+                                value="콘텐츠 내용 부족"
+                                onChange={handleCheckboxChange}
                             />
                             <label className={label.label} for='lack of contents'>콘텐츠 내용 부족</label>
                         </div>
@@ -77,7 +118,8 @@ function ReSign() {
                                 type="checkbox"
                                 id="other"
                                 name="reSignReason"
-                                value="other"
+                                value="기타"
+                                onChange={handleCheckboxChange}
                             />
                             <label className={label.label} for='other'>기타</label>
                         </div>
@@ -87,7 +129,8 @@ function ReSign() {
                             className={`${textarea.textarea} ${styles.textArea}`} 
                             name="reSignReason" 
                             id="reason" 
-                            text="" 
+                            value={inputReason}
+                            onChange={(event) => setInputReason(event.target.value)} 
                         />
                     </div>
                 </div>
@@ -96,7 +139,9 @@ function ReSign() {
                 <div className={styles.btns}>
                     <Link to='/'>
                         <button 
-                            className={`${button.button} ${styles.smallBtn}`}>
+                            className={`${button.button} ${styles.smallBtn}`}
+                            onClick={handleSubmit}
+                        >
                             회원 탈퇴
                         </button>
                     </Link>

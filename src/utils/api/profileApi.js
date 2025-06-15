@@ -24,9 +24,27 @@ const getLikeList = async () => {
     return response.data;
 }
 
+const submitReason = async (selectedReason, inputReason) => {
+    try {
+        const response = await axiosInstance.post('/members/me/resign', selectedReason, inputReason);
+    } catch (error) {
+        console.error("탈퇴사유 등록에 실패하였습니다.", error);
+    }
+}
+
+const resignUser = async () => {
+    try {
+        const response = await axiosInstance.patch('/members/me/resign');
+    } catch (error) {
+        console.error("회원탈퇴에 실패했습니다.", error);
+    }
+}
+
 export {
     getUserProfile,
     editUserInfo,
     checkCurrentPassword,
     getLikeList, 
+    submitReason, 
+    resignUser, 
 };
