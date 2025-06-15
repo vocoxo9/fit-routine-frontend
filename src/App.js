@@ -16,6 +16,8 @@ import BoardAddEditPage from 'pages/blog/BoardAddEditPage/BoardAddEditPage';
 import BoardDetail from 'pages/blog/BoardDetailPage/BoardDetail';
 import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
 import LoginPage from './pages/member/LoginPage/LoginPage';
+import WelcomePage from './pages/member/WelcomePage/WelcomePage';
+import ErrorPage from './pages/main/ErrorPage/ErrorPage';
 
 function App() {
     return (
@@ -27,7 +29,9 @@ function App() {
                     <Routes>
                         <Route path={"/"} element={<MainPage/>} />
                         <Route path={"/login"} element={<LoginPage/>} />
-                        <Route path={"/signUp"} element={<SignUpPage/>} />
+                        <Route path={"/welcome"} element={<WelcomePage/>} />
+                        <Route path={"/signup"} element={<SignUpPage/>} />
+                        <Route path={"/error"} element={<ErrorPage/>} />
                         <Route path={"/mypage"} element={<MyPage/>} />
                         <Route path={"/resign"} element={<ReSign/>} />
                         <Route path={"/board"} element={<AllBoardsPage/>} />
