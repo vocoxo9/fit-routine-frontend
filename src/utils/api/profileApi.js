@@ -15,6 +15,7 @@ const editUserInfo = async (editInfoData) => {
 // 로그인 한 회원의 비밀번호를 조회하는 api함수
 const checkCurrentPassword = async (password) => {
     const response = await axiosInstance.post('/members/me/verify-password', {password: password});
+    console.log(response.data);
     return response.data;
 }
   
