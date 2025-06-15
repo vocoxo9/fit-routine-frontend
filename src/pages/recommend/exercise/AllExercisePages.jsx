@@ -12,7 +12,8 @@ import {
 
 function AllExercisePages() {
     const navigate = useNavigate();
-    const { todoId } = useParams();
+    const { todoId: paramTodoId } = useParams();
+    const [todoId, setTodoId] = useState(paramTodoId || null);
     const [step, setStep] = useState(0);
 
     const [formData, setFormData] = useState({
@@ -28,32 +29,37 @@ function AllExercisePages() {
     const [memberDetail, setMemberDetail] = useState({});
 
     useEffect(() => {
-        if (todoId) {
-            fetchTodoDataByTodoId(todoId).then((data) => {
+        if (paramTodoId) {
+            fetchTodoDataByTodoId(paramTodoId).then((data) => {
                 setFormData(data);
             });
         }
+    }, [paramTodoId]);
 
+    useEffect(() => {
         fetchMemberDetail().then((data) => {
             setMemberDetail(data);
         });
-    }, [todoId, step]);
+    }, []);
 
-    const saveData = () => {
-        saveExerciseRoutineInfo(formData);
+    const saveData = async () => {
+        const result = await saveExerciseRoutineInfo(formData);
+        setTodoId(result);
+        return result;
     };
 
     const performData = async (exerciseList) => {
-        await submitExerciseRoutine(exerciseList);
+        console.log('현재 todoId 상태: ', todoId);
+        await submitExerciseRoutine(todoId, exerciseList);
         alert('운동 루틴이 저장되었습니다!');
-        navigate('/todo');
+        // navigate('/todo');
     };
 
-    const goToNext = () => {
+    const goToNext = async () => {
         if (step === 0) {
             setStep(step + 1);
         } else if (step === 1) {
-            saveData();
+            const result = await saveData();
             setStep(step + 1);
         }
     };
@@ -81,6 +87,7 @@ function AllExercisePages() {
 
                     {step === 2 && (
                         <RecommendExercise
+                            todoId={todoId}
                             goToNext={performData}
                             formData={formData}
                             setFormData={setFormData}
@@ -93,7 +100,7 @@ function AllExercisePages() {
 
             {todoId && (
                 <RecommendExercise
-                    todoId={todoId}
+                    todoId={paramTodoId}
                     goToNext={performData}
                     formData={formData}
                     setFormData={setFormData}
