@@ -8,10 +8,10 @@ const getBlogDetailByBlogId = async (blogId) => {
 const likeOrUnlikeBlogAPI = async (isLiked, blogId) => {
     if (isLiked) {
         // 관심 해제
-        const response = await axiosInstance.delete(`/blogs/${blogId}/likes`);
+        const response = await axiosInstance.delete(`/blogs/${blogId}/follow`);
     } else {
         // 관심 등록
-        const response = await axiosInstance.post(`/blogs/${blogId}/likes`, null);
+        const response = await axiosInstance.post(`/blogs/${blogId}/follow`, null);
     }
 };
 

@@ -77,7 +77,7 @@ function Reply({
     }
 
     const handleNicknameClick = () => {
-        navigate(`/blog/${blogId}`);
+        navigate(`/blog/${replyData.blogId}`);
     }
 
     if (!replyData) return null;
