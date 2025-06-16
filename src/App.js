@@ -18,6 +18,8 @@ import AllExercisePages from 'pages/recommend/exercise/AllExercisePages';
 import LoginPage from './pages/member/LoginPage/LoginPage';
 import WelcomePage from './pages/member/WelcomePage/WelcomePage';
 import ErrorPage from './pages/main/ErrorPage/ErrorPage';
+import RecommendDiet from './pages/recommend/diet/DietRecommend/RecommendDiet';
+import AllDietPages from './pages/recommend/diet/AllDietPages';
 
 function App() {
     return (
@@ -42,6 +44,8 @@ function App() {
                         <Route path={"/board/detail/:boardId"} element={<BoardDetail/>} />
                         <Route path={"/exercise"} element={<AllExercisePages />} />
                         <Route path={"/exercise/:todoId"} element={<AllExercisePages/>} />
+                        <Route path={"/diet"} element={<AllDietPages/>} />
+                        <Route path={"/diet/:todoId"} element={<AllDietPages/>} />
                         <Route path={"/food"} element={<ExerciseInputInfo/>} />
                     </Routes>
                 </div>

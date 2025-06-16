@@ -1,54 +1,24 @@
-const generateDiets = async () => {
-    // 임시 API
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    return {
-        days: [
-            {
-                dayNo: 1,
-                meals: [
-                    { foodIds: [415, 6619, 872] },
-                    { foodIds: [217, 5490, 555] },
-                    { foodIds: [317, 113, 115] },
-                ],
-            },
-            {
-                dayNo: 2,
-                meals: [
-                    { foodIds: [153, 7041, 301] },
-                    { foodIds: [888, 999, 422] },
-                    { foodIds: [341, 71, 3611] },
-                ],
-            },
-        ],
-    };
+import axiosInstance from './axios';
+
+const generateDiets = async (dayRepeat) => {
+    console.log(dayRepeat);
+
+    const response = await axiosInstance.get(`/diets/random`, {
+        params: { dayRepeat: dayRepeat },
+    });
+    return response.data;
 };
 
 const fetchMenu = async (menuId) => {
-    // 임시 API
-    await new Promise((resolve) => setTimeout(resolve, 100));
-    return {
-        name: '샌드위치',
-        calorie: 30,
-        carbohydrate: 10,
-        protein: 10,
-        fat: 10,
-        sodium: 10,
-    };
+    const response = await axiosInstance.get(`/diets/menus/${menuId}`);
+    return response.data;
 };
 
-// 페이징 추가 필요
-const fetchFoodsByCategory = async (category) => {
-    // 임시 API
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    return Array.from({ length: 10 }, (_, index) => ({
-        menuId: index,
-        name: '밥',
-        calorie: 30,
-        carbohydrate: 10,
-        protein: 10,
-        fat: 10,
-        sodium: 10,
-    }));
+const fetchFoodsByCategory = async (category, page, size = 12) => {
+    const response = await axiosInstance.get('/diets/menus', {
+        params: { category, page, size },
+    });
+    return response.data;
 };
 
 export { generateDiets, fetchMenu, fetchFoodsByCategory };
