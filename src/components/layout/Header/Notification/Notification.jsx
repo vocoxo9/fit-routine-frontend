@@ -3,7 +3,7 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import styles from './Notification.module.css';
 import NoticeIcon from 'components/layout/Header/Notification/NoticeIcon/NoticeIcon';
 
-function Notification({ category, data, handleDelete }) {
+function Notification({ category, content, createdAt, nickname, handleDelete }) {
 
     return (
         <>
@@ -13,14 +13,14 @@ function Notification({ category, data, handleDelete }) {
                         <NoticeIcon category={category} />
                     </div>
                     <div className={styles.nickName}>
-                        <div>{data.nickname}</div>
-                        <div>{data.date}</div>
+                        <div>{nickname}</div>
+                        <div>{createdAt}</div>
                     </div>
                     <div className={styles.deleteBtn} onClick={handleDelete}>
                         <TiDeleteOutline />
                     </div>
                 </div>
-                <div className={styles.noticeContent}>{data.message}</div>
+                <div className={styles.noticeContent}>{content}</div>
             </div>
         </>
     );

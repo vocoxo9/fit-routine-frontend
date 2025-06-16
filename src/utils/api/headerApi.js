@@ -10,7 +10,13 @@ const getFoodRoutines = async () => {
     // return response.data;
 }
 
+const getNotification = async () => {
+    const response = await axiosInstance.get('/members/me/notifications');
+    return response.data;
+}
+
 export {
     getExeRoutines, 
     getFoodRoutines, 
+    getNotification, 
 }
