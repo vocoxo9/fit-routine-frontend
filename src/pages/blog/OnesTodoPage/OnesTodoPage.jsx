@@ -17,6 +17,7 @@ import { getBlogDetailByToken, getExerciseTodoByToken, getMenuTodoByToken, getPo
 function OnesTodoPage() {
     const [dateData, setDateData] = useState({});
     const [data, setData] = useState({});
+    
     const navigate = useNavigate();
 
     const getTodoList = async () => {
