@@ -40,7 +40,7 @@ function ReSign() {
 
     const handleSubmit = async () => {
         const reasonResponse = await submitReason(selectedReason, inputReason);
-        // const resignResponse = await resignUser();
+        const resignResponse = await resignUser();
     };
 
     return (
