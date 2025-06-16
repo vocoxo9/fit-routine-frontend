@@ -43,8 +43,6 @@ function ReSign() {
     const handleSubmit = async () => {
         const reasonResponse = await submitReason(selectedReason, inputReason);
         const resignResponse = await resignUser();
-        console.log(reasonResponse);
-        console.log(resignResponse);
         if (reasonResponse && resignResponse) {
             logout();
         }
