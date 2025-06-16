@@ -27,6 +27,12 @@ const getLikeList = async () => {
     return likeBlogs.data;
 }
 
+// 로그인한 회원의 관심 목록 중에 선택하여 삭제하는 api 함수
+const deleteFollow = async (blogId) => {
+    const response = await axiosInstance.delete(`/blogs/${blogId}/follow`);
+    return response.data;
+}
+
 const submitReason = async (selectedReason, inputReason) => {
     try {
         const response = await axiosInstance.post('/members/me/withdraw-reasons', {selectedReason: selectedReason, inputReason: inputReason});
@@ -48,6 +54,7 @@ export {
     editUserInfo,
     checkCurrentPassword,
     getLikeList, 
+    deleteFollow, 
     submitReason, 
     resignUser, 
 };
