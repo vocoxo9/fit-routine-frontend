@@ -20,8 +20,11 @@ const calcTotalPeriod = (startAt, endAt) => {
 };
 
 const calcDay = (date) => {
+    const original = new Date(date);
+
     const now = new Date();
-    const day = now - date;
+    const day = now - new Date(original.getFullYear(), original.getMonth(), original.getDate());
+    
     return Math.floor(day / (1000 * 60 * 60 * 24));
 };
 

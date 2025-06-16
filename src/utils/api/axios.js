@@ -3,7 +3,7 @@ import axios from 'axios';
 const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     timeout: 10_000,
-    withCredentials: false,
+    withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
