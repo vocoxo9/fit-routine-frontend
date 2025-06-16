@@ -16,7 +16,16 @@ import { getBlogDetailByToken, getExerciseTodoByToken, getMenuTodoByToken } from
  */
 function OnesTodoPage() {
     const [dateData, setDateData] = useState({});
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        nickname: '',
+        grade: 0,
+        menuTodoList: {
+            list: [],
+        },
+        exerciseTodoList: {
+            list: [],
+        },
+    });
 
     const navigate = useNavigate();
 
@@ -45,9 +54,23 @@ function OnesTodoPage() {
     };
 
     // 전체 날짜별 데이터 세팅
-    const loadInitialData = async () => {
-        const data = await fetchBoardsByToken();
-        setDateData(data);
+    const loadInitialData = async (blogId) => {
+        const data = await getPostListByBlogId(blogId);
+        const grouped = data.reduce((acc, post) => {
+                const date = post.createdAt.split('T')[0]; // 날짜만 추출
+
+                if (!acc[date]) {
+                    acc[date] = [];
+                }
+
+                acc[date].push({
+                    postId: post.postId,
+                    title: post.title,
+                });
+
+                return acc;
+            }, {});
+        setDateData(grouped);
     };
 
     useEffect(() => {
@@ -134,9 +157,9 @@ function OnesTodoPage() {
                                         {dateData[currDate]?.map((todo) => (
                                             <div
                                                 className={styles.registedBoard}
-                                                key={todo.id}
+                                                key={todo.postId}
                                                 onClick={() => {
-                                                    handleTitleClick(todo.id);
+                                                    handleTitleClick(todo.postId);
                                                 }}>
                                                 {overTitle(todo.title)}
                                             </div>
