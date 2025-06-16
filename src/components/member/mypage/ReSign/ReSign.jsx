@@ -52,7 +52,7 @@ function ReSign() {
 
     const logout = () => {
         localStorage.removeItem("accessToken");
-        window.location.href = "/login"; // 로그인 페이지로 리다이렉트
+        window.location.href = "/"; // 메인으로 리다이렉트
     };
 
     return (
