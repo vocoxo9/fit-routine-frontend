@@ -1,0 +1,35 @@
+.title {
+    color: #334eac;
+
+    font-size: 2.0rem;
+    font-weight: 600;
+
+    padding: 2.5rem 0;
+}
+
+.content {
+    font-size: 1.25rem;
+    font-weight: 400;
+
+    text-align: center;
+}
+
+.strong {
+    font-weight: 700;
+}
+
+.button {
+    margin-top: 10.0rem;
+    margin-bottom: 2.5rem;
+}
+
+.container {
+    display : flex;
+    flex-direction: column;
+    gap : 0.5rem;
+}
+
+.outer {
+    display : flex;
+    justify-content: center;
+}

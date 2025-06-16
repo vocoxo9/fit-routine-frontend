@@ -9,6 +9,7 @@ import {
     checkEmailDuplicate,
     checkPhoneNumberDuplicate,
     checkNicknameDuplicate,
+    createMember,
 } from 'utils/api/memberApi';
 import {
     validateEmail,
@@ -20,6 +21,7 @@ import {
 } from 'utils/helpers/validation';
 import useDebounce from 'utils/hooks/debounce';
 import { getTodayDate } from 'utils/helpers/calculator';
+import { useNavigate } from 'react-router-dom';
 
 const checkForm = (formData) => {
     const errors = {};
@@ -121,6 +123,8 @@ const validateForm = async (formData) => {
 };
 
 const SignUpForm = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -172,8 +176,31 @@ const SignUpForm = () => {
             return;
         }
 
-        // 임시 로직
-        alert('제출 성공!');
+        const memberData = {
+            email: formData.email,
+            password: formData.password,
+            nickname: formData.nickname,
+            gender: (formData.gender === 'male' && 'M') ||
+                (formData.gender === 'female' && 'F'),
+            birthAt: formData.birthdate,
+            phone: formData.phoneNumber,
+            height: formData.height,
+            weight: formData.weight,
+        };
+
+        try {
+            const response = await createMember(memberData);
+            navigate(
+                '/welcome',
+                {
+                    state: {
+                        nickname: response.nickname,
+                    },
+                },
+            );
+        } catch (error) {
+            navigate('/error');
+        }
     };
 
     return (

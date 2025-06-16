@@ -18,8 +18,18 @@ const checkNicknameDuplicate = async (nickname) => {
     return nickname === 'mouse';
 };
 
+const createMember = async (member) => {
+    try {
+        const response = await axiosInstance.post('/members', member);
+        return response.data; // MemberCreateResponse 객체 반환
+    } catch (error) {
+        throw error;
+    }
+};
+
 export {
     checkEmailDuplicate,
     checkPhoneNumberDuplicate,
     checkNicknameDuplicate,
+    createMember,
 };

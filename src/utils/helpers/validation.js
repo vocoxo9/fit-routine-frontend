@@ -1,18 +1,26 @@
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+const PASSWORD_REGEX =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+=\-{}\[\]|:;"'<>,.?/~`]{8,}$/;
+
+const PHONE_NUMBER_REGEX = /^0\d{1,2}-\d{3,4}-\d{4}$/;
+
+const NICKNAME_REGEX = /^[a-zA-Z0-9]{2,16}$/;
+
 const validateEmail = (email) => {
-    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    return EMAIL_REGEX.test(email);
 };
 
 const validatePassword = (password) => {
-    // return /(?=.*[a-zA-Z])(?=.*\d)/.test(password);
-    return true;
+    return PASSWORD_REGEX.test(password);
 };
 
 const validatePhoneNumber = (phoneNumber) => {
-    return /^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$/.test(phoneNumber);
+    return PHONE_NUMBER_REGEX.test(phoneNumber);
 };
 
 const validateNickname = (nickname) => {
-    return /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/.test(nickname);
+    return NICKNAME_REGEX.test(nickname);
 };
 
 const validateHeight = (height) => {

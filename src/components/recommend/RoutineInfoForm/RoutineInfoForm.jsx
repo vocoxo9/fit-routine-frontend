@@ -55,7 +55,7 @@ const getMissingRequiredErrors = (formData) => {
     return errors;
 };
 
-const getValidationErrors = async (formData) => {
+const getValidationErrors = async (formData, weight) => {
     const errors = {};
 
     const { purpose, startedAt, endedAt, goalWeight } = formData;
@@ -66,17 +66,21 @@ const getValidationErrors = async (formData) => {
 
     if (
         purpose === 'DIET' &&
-        goalWeight &&
-        (goalWeight < 0 || goalWeight > 500)
-    ) {
-        errors.goalWeight = '목표 체중이 바르지 않습니다.';
+        goalWeight && 
+        goalWeight >= weight) {
+        errors.goalWeight = `현재 체중보다 작은 값을 입력해 주세요. (현재 체중 : ${weight})`;
     }
 
     return errors;
 };
 
-const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
-
+const RoutineInfoForm = ({
+    title,
+    goToNext,
+    formData,
+    setFormData,
+    weight,
+}) => {
     const [errors, setErrors] = useState({
         purpose: '',
         startedAt: '',
@@ -89,10 +93,10 @@ const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
 
     useEffect(() => {
         // noinspection JSCheckFunctionSignatures
-        getValidationErrors(debouncedFormData).then((errors) =>
+        getValidationErrors(debouncedFormData, weight).then((errors) =>
             setErrors(errors),
         );
-    }, [debouncedFormData]);
+    }, [debouncedFormData, weight]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -109,7 +113,7 @@ const RoutineInfoForm = ({ title, goToNext, formData, setFormData }) => {
             return;
         }
 
-        const validationErrors = await getValidationErrors(formData);
+        const validationErrors = await getValidationErrors(formData, weight);
         setErrors(validationErrors);
 
         if (Object.keys(validationErrors).length > 0) {

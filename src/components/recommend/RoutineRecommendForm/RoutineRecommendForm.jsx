@@ -12,14 +12,10 @@ import {
     fetchExerciseOpenDataList,
     fetchGetExerciseById,
 } from 'utils/api/exerciseApi';
-
-const DAILY_BURN_KCAL = 400; // 하루 소모 칼로리(임의)
-const EXERCISE_TIME = 0.25; // 운동 시간
-const calculateCarolie = (exerciseList, weight) => {
-    return exerciseList.reduce((total, exercise) => {
-        return total + exercise.met * weight * EXERCISE_TIME;
-    }, 0);
-};
+import {
+    calcDailyBurnKcal,
+    calcExerciseTotalCalorie,
+} from 'utils/helpers/calculator';
 
 const CATEGORY_LIST = [
     { text: '상체', value: 'UPPER' },
@@ -32,7 +28,7 @@ function RoutineRecommendForm({
     todoId,
     goToNext,
     formData,
-    setFormData,
+    memberDetail,
     buttonText,
 }) {
     const [data, setData] = useState([]);
@@ -44,11 +40,12 @@ function RoutineRecommendForm({
 
     // kcal 상태 추가
     const [dailyKcal, setDailyKcal] = useState({});
+    const [dailyBurnKcal, setDailyBurnKcal] = useState(0);
 
     // 렌더링 동시에 운동 공공데이터 가져오기
     useEffect(() => {
         const loadOpenData = async () => {
-            const exerciseOpenData = await fetchExerciseOpenDataList();
+            const exerciseOpenData = await fetchExerciseOpenDataList(formData);
             setOpenDataList(exerciseOpenData);
         };
         loadOpenData();
@@ -83,7 +80,7 @@ function RoutineRecommendForm({
                     );
 
                     return {
-                        weight: routineData.weight || 60,
+                        weight: memberDetail.weight || 60,
                         dayRepeat: dayRepeat,
                         exerciseList: exercises.filter(Boolean),
                     };
@@ -95,16 +92,28 @@ function RoutineRecommendForm({
             const initialDailyKcal = {};
             routinePerDay.forEach((dayRoutine) => {
                 const dayRepeat = dayRoutine.dayRepeat;
-                const weight = routineData.weight || 60;
-                initialDailyKcal[dayRepeat] = calculateCarolie(
+                const weight = memberDetail.weight || 60;
+                initialDailyKcal[dayRepeat] = calcExerciseTotalCalorie(
                     dayRoutine.exerciseList,
                     weight,
                 );
             });
             setDailyKcal(initialDailyKcal);
+
+            if (formData.purpose === 'DIET') {
+                setDailyBurnKcal(
+                    calcDailyBurnKcal(
+                        memberDetail.weight,
+                        formData.goalWeight,
+                        formData.startedAt,
+                        formData.endedAt,
+                    ),
+                );
+            }
         };
+
         loadInitialRoutine();
-    }, [formData.dayRepeat]);
+    }, [formData.dayRepeat, memberDetail]);
 
     // 카테고리 표시
     const handleShowCategory = (dayRepeat) => {
@@ -165,8 +174,8 @@ function RoutineRecommendForm({
 
             const newDailyKcal = {};
             newData.forEach((dayData) => {
-                const weight = 60;
-                newDailyKcal[dayData.dayRepeat] = calculateCarolie(
+                const weight = memberDetail.weight;
+                newDailyKcal[dayData.dayRepeat] = calcExerciseTotalCalorie(
                     dayData.exerciseList,
                     weight,
                 );
@@ -176,7 +185,7 @@ function RoutineRecommendForm({
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         for (const day of data) {
@@ -188,7 +197,7 @@ function RoutineRecommendForm({
                 return;
             }
 
-            if (formData.purpose === 'DIET' && oneDayKcal < DAILY_BURN_KCAL) {
+            if (formData.purpose === 'DIET' && oneDayKcal < dailyBurnKcal) {
                 alert(`${dayRepeat}일차 칼로리가 부족합니다.`);
                 return;
             }
@@ -199,13 +208,8 @@ function RoutineRecommendForm({
             selectedExerciseIds.push(checkedItems[i] || []);
         }
 
-        setFormData((prev) => ({
-            ...prev,
-            exerciseData: selectedExerciseIds,
-        }));
-
+        goToNext(selectedExerciseIds);
         alert('폼 제출 완료');
-        goToNext();
     };
 
     return (
@@ -226,14 +230,14 @@ function RoutineRecommendForm({
                             }
                         />
 
-                        {formData.purpose === 'diet' &&
-                            oneDayKcal < DAILY_BURN_KCAL && (
+                        {formData.purpose === 'DIET' &&
+                            oneDayKcal < dailyBurnKcal && (
                                 <div className={styles.message}>
                                     <p className={error.error}>
                                         칼로리가 부족합니다.
                                     </p>
                                     <p className={styles.burnKcal}>
-                                        {oneDayKcal} /{DAILY_BURN_KCAL}
+                                        {oneDayKcal} /{dailyBurnKcal}
                                     </p>
                                 </div>
                             )}
