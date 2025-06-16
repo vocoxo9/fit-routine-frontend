@@ -21,7 +21,15 @@ const checkCurrentPassword = async (password) => {
   
 // 로그인한 회원의 관심 블로그 목록 조회하는 api 함수
 const getLikeList = async () => {
-    const response = await axiosInstance.get('/members/me/likes');
+    const response = await axiosInstance.get('/blogs/me');
+    const blogId = response.data.blogId;
+    const likeBlogs = await axiosInstance.get(`/blogs/${blogId}/followings`);
+    return likeBlogs.data;
+}
+
+// 로그인한 회원의 관심 목록 중에 선택하여 삭제하는 api 함수
+const deleteFollow = async (blogId) => {
+    const response = await axiosInstance.delete(`/blogs/${blogId}/follow`);
     return response.data;
 }
 
@@ -46,6 +54,7 @@ export {
     editUserInfo,
     checkCurrentPassword,
     getLikeList, 
+    deleteFollow, 
     submitReason, 
     resignUser, 
 };
