@@ -27,7 +27,7 @@ const getLikeList = async () => {
 
 const submitReason = async (selectedReason, inputReason) => {
     try {
-        const response = await axiosInstance.post('/members/me/resign', selectedReason, inputReason);
+        const response = await axiosInstance.post('/members/me/resign', {selectedReason: selectedReason, inputReason: inputReason});
     } catch (error) {
         console.error("탈퇴사유 등록에 실패하였습니다.", error);
     }

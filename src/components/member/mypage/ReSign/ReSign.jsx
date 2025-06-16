@@ -17,7 +17,7 @@ function ReSign() {
 
     const [selectedReason, setSelectedReason] = useState([]);
 
-    const [inputReason, setInputReason] = useState('');
+    const [inputReason, setInputReason] = useState(null);
 
     useEffect(() => {
         const fetchResignUser = async () => {
@@ -28,11 +28,11 @@ function ReSign() {
     }, []);
 
     useEffect(() => {
-        console.log(selectedReason);
+        console.log("선택 사유", selectedReason);
     }, [selectedReason]);
 
         useEffect(() => {
-        console.log(inputReason);
+        console.log("입력사유", inputReason);
     }, [inputReason]);
 
     const handleCheckboxChange = (event) => {
