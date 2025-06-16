@@ -88,8 +88,6 @@ const fetchTodoDataByTodoId = async (todoId) => {
 
 // TODO EXERCISE 수정 요청
 const updateExerciseRoutine = async (todoId, exerciseList) => {
-    console.log(todoId);
-    console.log(exerciseList);
     try {
         const response = await axiosInstance.patch(
             `/todos/exercises/${todoId}`,
