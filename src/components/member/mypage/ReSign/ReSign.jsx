@@ -27,14 +27,6 @@ function ReSign() {
         fetchResignUser();
     }, []);
 
-    useEffect(() => {
-        console.log("선택 사유", selectedReason);
-    }, [selectedReason]);
-
-        useEffect(() => {
-        console.log("입력사유", inputReason);
-    }, [inputReason]);
-
     const handleCheckboxChange = (event) => {
         const { value, checked } = event.target;
         if (checked) {
