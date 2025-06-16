@@ -28,7 +28,7 @@ function LikeList() {
 
     const handleDelete = async (blogId) => {
         try {
-            await deleteFollow(blogId);
+            // await deleteFollow(blogId);
             // 삭제 후 상태 갱신
             setLikeList((prev) => prev.filter((item) => item.blogId !== blogId));
         } catch (error) {
