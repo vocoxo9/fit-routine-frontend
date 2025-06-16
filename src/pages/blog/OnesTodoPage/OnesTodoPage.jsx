@@ -9,6 +9,7 @@ import TodoList from 'components/blog/TodoList/TodoList';
 import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
 import buttons from 'assets/styles/common/button.module.css';
+import { getTodoIdByToken } from 'utils/api/exerciseApi';
 
 /**
  * TODO 페이지
@@ -16,8 +17,13 @@ import buttons from 'assets/styles/common/button.module.css';
 function OnesTodoPage() {
     const [dateData, setDateData] = useState({});
     const [data, setData] = useState({});
-
+    const [todoId, setTodoId] = useState();
     const navigate = useNavigate();
+
+    const getTodoId = async () => {
+        const data = await getTodoIdByToken();
+        setTodoId(data);
+    };
 
     const fetchBoardsByToken = async () => {
         // const data = axios.get('blog/todoList');
@@ -85,6 +91,7 @@ function OnesTodoPage() {
     useEffect(() => {
         fetchInfoByToken();
         loadInitialData();
+        getTodoId();
     }, []);
 
     // 캘린더의 제목 클릭시 해당 게시글 상세 페이지로 이동
@@ -192,7 +199,7 @@ function OnesTodoPage() {
                 </div>
             </div>
             <div className={styles.todoContainer}>
-                {data.exerciseTodoList && <TodoList todoList={data.exerciseTodoList}/>}
+                {data.exerciseTodoList && <TodoList todoList={data.exerciseTodoList} todoId={todoId}/>}
                 {data.menuTodoList && <TodoList todoList={data.menuTodoList} />}
             </div>
         </div>

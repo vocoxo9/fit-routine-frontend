@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import axiosInstance from './axios';
 
 // 운동 공공데이터 정보
@@ -61,7 +62,7 @@ const saveExerciseRoutineInfo = async (formData) => {
     }
 };
 
-// TODO 최종 등록
+// TODO EXERCISE  최종 등록
 const submitExerciseRoutine = async (todoId, exerciseList) => {
     try {
         const response = await axiosInstance.post(`/todos/exercises/${todoId}`, {
@@ -73,10 +74,34 @@ const submitExerciseRoutine = async (todoId, exerciseList) => {
     }
 };
 
-// todo 수정
+// TODO EXERCISE 수정
 const fetchTodoDataByTodoId = async (todoId) => {
     try {
         const response = await axiosInstance.get(`/todos/exercises/${todoId}`);
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        Navigate('/error');
+        console.error(error);
+    }
+};
+
+// TODO EXERCISE 삭제
+const fetchDeleteTodo = async (todoId) => {
+    console.log("delete todo :: " + todoId);
+    try {
+        const response = await axiosInstance.delete(`/todos/exercises/${todoId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// MEMBER_ID로 TODO_ID 가져오기
+const getTodoIdByToken = async () =>{
+    try {
+        const response = await axiosInstance.get('/todos/exercises');
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error(error);
@@ -84,11 +109,13 @@ const fetchTodoDataByTodoId = async (todoId) => {
 };
 
 export {
+    saveExerciseRoutineInfo,
+    submitExerciseRoutine,
+    getTodoIdByToken,
+    fetchMemberDetail,
     fetchExerciseOpenDataList,
     fetchExerciseRandomRoutine,
     fetchGetExerciseById,
-    fetchMemberDetail,
     fetchTodoDataByTodoId,
-    saveExerciseRoutineInfo,
-    submitExerciseRoutine,
+    fetchDeleteTodo
 };
