@@ -19,7 +19,7 @@ const editIntroduce = async (introduce, blogId) => {
     const body = {
         introduce,
     };
-    const response = await axiosInstance.put(`/blogs/${blogId}`, body);
+    const response = await axiosInstance.patch(`/blogs/${blogId}`, body);
     return response.data;
 };
 
@@ -160,6 +160,11 @@ const getPostsTitles = async () => {
     return response.data;
 }
 
+const checkBlogOwner = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/permissions`);
+    return response.data;
+}
+
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
@@ -190,4 +195,5 @@ export {
     deleteTodoByTodoId,
     getPostListByToken,
     getPostsTitles,
+    checkBlogOwner,
  };
