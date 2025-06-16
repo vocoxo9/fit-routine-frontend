@@ -21,16 +21,24 @@ const checkCurrentPassword = async (password) => {
   
 // 로그인한 회원의 관심 블로그 목록 조회하는 api 함수
 const getLikeList = async () => {
-    const response = await axiosInstance.get('/blogs/me');
-    const blogId = response.data.blogId;
-
-    const response2 = await axiosInstance.get(`/blogs/${blogId}/followings`);
-    return response2.data;
+    const response = await axiosInstance.get('/members/me/likes');
+    return response.data;
 }
 
-// 선택한 회원의 블로그 관심을 삭제하는 api 함수
-const deleteFollow = async (blogId) => {
-    const response = await axiosInstance.delete(`/blogs/${blogId}/follow`);
+const submitReason = async (selectedReason, inputReason) => {
+    try {
+        const response = await axiosInstance.post('/members/me/resign', selectedReason, inputReason);
+    } catch (error) {
+        console.error("탈퇴사유 등록에 실패하였습니다.", error);
+    }
+}
+
+const resignUser = async () => {
+    try {
+        const response = await axiosInstance.patch('/members/me/resign');
+    } catch (error) {
+        console.error("회원탈퇴에 실패했습니다.", error);
+    }
 }
 
 export {
@@ -38,5 +46,6 @@ export {
     editUserInfo,
     checkCurrentPassword,
     getLikeList, 
-    deleteFollow, 
+    submitReason, 
+    resignUser, 
 };
