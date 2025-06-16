@@ -1,46 +1,54 @@
 import { useEffect, useState } from 'react';
-import { calcTotalCalorie, calcTotalPeriod } from 'utils/helpers/calculator';
+import { calcTotalCalorie, calcTotalPeriod, formatDate } from 'utils/helpers/calculator';
 import styles from './TodoList.module.css';
 import buttons from 'assets/styles/common/button.module.css';
+import { useNavigate } from 'react-router-dom';
+import { deleteTodoByTodoId } from 'utils/api/blogApi';
 
 /**
  * Blog의 Todo페이지에서 개인이 정한 식단 및 운동을 보여주는 컴포넌트
  *
  * @param todoList 개인이 설정한 TodoList
  */
-function TodoList({ todoList }) {
+function TodoList({ todoList, onDelete }) {
+    const navigate = useNavigate();
     const [header, setHeader] = useState('');
     const [total, setTotal] = useState({
         calorie: 0,
         period: 0,
     });
-    const { startAt, endAt } = todoList;
+    const { startedAt, endedAt } = todoList;
 
     const changeHeader = (category) => {
-        category === 'menu' ? setHeader('식단') : setHeader('운동');
+        category === 'MENU' ? setHeader('식단') : setHeader('운동');
     };
 
     const liContent = (item) => {
-        return todoList.category === 'menu'
-            ? ` ${item.name}`
+        return todoList.category === 'MENU'
+            ? ` ${item.name} (${item.calorie}kcal)`
             : `${item.name}(${item.met}kcal)`;
     };
 
     const handleEditClick = (todoId) => {
-        alert(todoId + '수정페이지 이동');
+        todoList.category === 'MENU' ? 
+            navigate(`/menu/${todoId}`) :
+            navigate(`/exercise/${todoId}`);
     };
 
-    const handleDeleteClick = (todoId) => {
+    const handleDeleteClick = async (todoId) => {
         // eslint-disable-next-line
-        const answer = confirm(header + ' 리스트를 삭제하시겠습니까?');
-        answer ? alert(todoId + '삭제') : alert('삭제 취소');
+        if (confirm(header + ' 리스트를 삭제하시겠습니까?')) {
+            await deleteTodoByTodoId(todoId);
+            alert('삭제완료');
+            onDelete(); 
+        }
     };
 
     useEffect(() => {
         changeHeader(todoList.category);
         const totalObject = {
             calorie: calcTotalCalorie(todoList),
-            period: calcTotalPeriod(startAt, endAt),
+            period: calcTotalPeriod(startedAt, endedAt),
         };
         setTotal(totalObject);
     }, []);
@@ -50,13 +58,13 @@ function TodoList({ todoList }) {
             <div className={styles.headerContainer}>
                 <div className={styles.headerText}>TODO {header}</div>
                 <div className={styles.periodText}>
-                    *기간 : {startAt} ~ {endAt} (총{total.period}일)
+                    *기간 : {formatDate(startedAt)} ~ {formatDate(endedAt)} (총{total.period}일)
                 </div>
             </div>
             <div className={styles.todayList}>
                 오늘의 {header} (총 {total.calorie}kcal)
                 <ul className={styles.ul}>
-                    {todoList.list.map((item, index) => {
+                    {todoList.todos.map((item, index) => {
                         return <li key={index}>{liContent(item)}</li>;
                     })}
                 </ul>

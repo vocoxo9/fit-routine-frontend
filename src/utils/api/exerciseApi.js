@@ -1,27 +1,5 @@
 import axiosInstance from './axios';
 
-// TODO 입력 정보 등록
-const saveExerciseRoutineInfo = async (formData) => {
-    try {
-        const response = await axiosInstance.post('/todos/info', formData);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-// TODO 최종 등록
-const submitExerciseRoutine = async (todoId, exerciseList) => {
-    try {
-        const response = await axiosInstance.post(`/todos/${todoId}`, {
-            exerciseList: exerciseList,
-        });
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-};
-
 // 운동 공공데이터 정보
 const fetchExerciseOpenDataList = async (formData) => {
     try {
@@ -66,7 +44,29 @@ const fetchGetExerciseById = async (id) => {
 // 회원의 상세정보 (신장, 체중, 생년월일, 성별) 가져오기
 const fetchMemberDetail = async () => {
     try {
-        const response = await axiosInstance.get('/members/me/detail');
+        const response = await axiosInstance.get('/members/me');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// TODO 입력 정보 등록
+const saveExerciseRoutineInfo = async (formData) => {
+    try {
+        const response = await axiosInstance.post('/todos/info', formData);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// TODO 최종 등록
+const submitExerciseRoutine = async (todoId, exerciseList) => {
+    try {
+        const response = await axiosInstance.post(`/todos/exercises/${todoId}`, {
+            exerciseList: exerciseList,
+        });
         return response.data;
     } catch (error) {
         console.error(error);
@@ -76,7 +76,7 @@ const fetchMemberDetail = async () => {
 // todo 수정
 const fetchTodoDataByTodoId = async (todoId) => {
     try {
-        const response = await axiosInstance.get(`/exercises/todos/${todoId}`);
+        const response = await axiosInstance.get(`/todos/exercises/${todoId}`);
         return response.data;
     } catch (error) {
         console.error(error);
