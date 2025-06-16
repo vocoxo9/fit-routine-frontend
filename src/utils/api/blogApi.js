@@ -23,15 +23,15 @@ const editIntroduce = async (introduce, blogId) => {
     return response.data;
 };
 
-const getBlogIdByToken = async () => {
-    const response = await axiosInstance.get(`/blogs/me`);
-    return response.data;
-};
-
 const getLikeCountByBlogId = async (blogId) => {
     const response = await axiosInstance.get(`/blogs/${blogId}/followers/count`);
     return response.data;
 }
+
+const getIsLikedByBlogId = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/follow`);
+    return response.data;
+};
 
 const getBlogDetailByToken = async () => {
     const response = await axiosInstance.get(`/blogs/me`);
@@ -150,6 +150,16 @@ const deleteTodoByTodoId = async (todoId) => {
     return response.data;
 }
 
+const getPostListByToken = async () => {
+    const response = await axiosInstance.get(`/posts`);
+    return response.data;
+}
+
+const getPostsTitles = async () => {
+    const response = await axiosInstance.get(`/posts/simple`);
+    return response.data;
+}
+
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
@@ -178,4 +188,6 @@ export {
     getMenuTodoByToken,
     getExerciseTodoByToken,
     deleteTodoByTodoId,
+    getPostListByToken,
+    getPostsTitles,
  };

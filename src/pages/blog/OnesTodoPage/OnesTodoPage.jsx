@@ -9,68 +9,26 @@ import TodoList from 'components/blog/TodoList/TodoList';
 import './FullCalendar.css';
 import styles from './OnesTodoPage.module.css';
 import buttons from 'assets/styles/common/button.module.css';
-import { getBlogDetailByToken, getExerciseTodoByToken, getMenuTodoByToken } from 'utils/api/blogApi';
+import { getBlogDetailByToken, getExerciseTodoByToken, getMenuTodoByToken, getPostsTitles } from 'utils/api/blogApi';
 
 /**
  * TODO 페이지
  */
 function OnesTodoPage() {
     const [dateData, setDateData] = useState({});
-    const [data, setData] = useState({
-        nickname: '',
-        grade: 0,
-        menuTodoList: {
-            list: [],
-        },
-        exerciseTodoList: {
-            list: [],
-        },
-    });
+    const [data, setData] = useState({});
 
     const navigate = useNavigate();
-
-    const fetchBoardsByToken = async () => {
-        // const data = axios.get('blog/todoList');
-        const data = {
-            '2025-05-01': [
-                { id: 1, title: '오운완아진짜아 알베겼어' },
-                { id: 2, title: '오식완' },
-                { id: 3, title: '가' },
-            ],
-            '2025-05-03': [{ id: 3, title: '회식' }],
-            '2025-05-10': [{ id: 4, title: '스터디' }],
-        };
-        return data;
-    };
 
     const getTodoList = async () => {
         const menuData = await getMenuTodoByToken();
         const exerciseData = await getExerciseTodoByToken();
+        
         setData(prev => ({
             ...prev,
             menuTodoList: menuData,
             exerciseTodoList: exerciseData,
         }));
-    };
-
-    // 전체 날짜별 데이터 세팅
-    const loadInitialData = async (blogId) => {
-        const data = await getPostListByBlogId(blogId);
-        const grouped = data.reduce((acc, post) => {
-                const date = post.createdAt.split('T')[0]; // 날짜만 추출
-
-                if (!acc[date]) {
-                    acc[date] = [];
-                }
-
-                acc[date].push({
-                    postId: post.postId,
-                    title: post.title,
-                });
-
-                return acc;
-            }, {});
-        setDateData(grouped);
     };
 
     useEffect(() => {
@@ -79,15 +37,16 @@ function OnesTodoPage() {
                 nickname: data.nickname,
                 grade: data.grade,
             })
-            getTodoList(data.blogId);
         });
-       
+        getTodoList();
+        getPostsTitles().then(data => {
+            setDateData(data);
+        });
     }, []);
 
     // 캘린더의 제목 클릭시 해당 게시글 상세 페이지로 이동
     const handleTitleClick = (postId) => {
-        // <Route path="/blog/boardDetail/:boardId" element={<BoardDetail />} />
-        // navigate('/blog/boardDetail/'+boardId);
+        navigate(`/board/detail/${postId}`);
     };
 
     // 달력에 표시할 제목이 너무 길면 ...으로 축약
