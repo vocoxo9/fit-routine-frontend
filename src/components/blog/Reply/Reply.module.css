@@ -7,6 +7,7 @@
     display: flex;
     position: relative;
 }
+
 .headerdiv {
     width: 86%;
     display: flex;
@@ -18,22 +19,25 @@
 }
 
 .replyWriter {
-    /* width: 3rem; */
     font-weight: 700;
     font-size: 1.1rem;
     margin-left: 4rem;
     cursor: pointer;
 }
 
+.buttonDiv {
+    display: flex;
+    position: absolute;
+    right: 5rem;
+}
 .edit {
     font-size: 1.3rem;
-    /* margin-left: 39rem; */
+    margin-right: 1rem;
     cursor: pointer;
 }
 
 .trash {
     font-size: 1.3rem;
-    margin-left: 1rem;
     cursor: pointer;
 }
 
@@ -51,6 +55,7 @@
 }
 
 .replyContent {
+    white-space: pre-line;
     align-content: center;
     width: 85%;
     margin-left: 1rem;

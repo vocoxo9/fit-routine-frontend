@@ -9,7 +9,7 @@ import {
     checkPhoneNumberDuplicate,
     checkNicknameDuplicate,
 } from 'utils/api/memberApi';
-import { editUserInfo } from 'utils/api/profileApi.js';
+import { editUserInfo, checkCurrentPassword } from 'utils/api/profileApi.js';
 import {
     validateNickname,
     validatePassword,
@@ -50,7 +50,7 @@ const checkForm = (infoData) => {
     return errors;
 };
 
-const validateForm = async (infoData) => {
+const validateForm = async (infoData, setCurrentPwdValid) => {
     const errors = {};
 
     const { email, password, phoneNumber, nickname, height, weight } = infoData;
@@ -58,6 +58,16 @@ const validateForm = async (infoData) => {
     if (password) {
         if (!validatePassword(password)) {
             errors.password = '비밀번호가 유효하지 않습니다.';
+            setCurrentPwdValid(false);
+        } else {
+        const isValid = await checkCurrentPassword(password);
+        
+        if (!isValid) {
+            errors.password = '기존 비밀번호와 일치 하지 않습니다.';
+            setCurrentPwdValid(false);
+        } else {
+            setCurrentPwdValid(true);
+        }
         }
     }
 
@@ -69,13 +79,16 @@ const validateForm = async (infoData) => {
         }
     }
 
-    if (nickname) {
-        if (!validateNickname(nickname)) {
-            errors.nickname = '닉네임이 유효하지 않습니다.';
-        } else if (await checkNicknameDuplicate(nickname)) {
-            errors.nickname = '이미 사용 중인 닉네임입니다.';
-        }
-    }
+    // if (nickname) {
+    //     if (!validateNickname(nickname)) {
+    //         errors.nickname = '닉네임이 올바르지 않습니다.';
+    //     } else {
+    //         const isDuplicate  = await checkNicknameDuplicate(nickname);
+    //         if (isDuplicate) {
+    //             errors.nickname = '이미 사용 중인 닉네임입니다.';
+    //         }
+    //     }
+    // }
 
     if (height) {
         if (!validateHeight(height)) {
@@ -99,6 +112,8 @@ const hasErrors = (errors) => {
 function InfoEdit({ infoData, setIsEdit }) {
     const [isInitialized, setIsInitialized] = useState(false);
     const [isInfoChanged, setIsInfoChanged] = useState(false);
+    const [currentPwdValid, setCurrentPwdValid] = useState(false);
+    const [newPwdValid, setNewPwdValid] = useState(false);
 
     const [editInfoData, setEditInfoData] = useState(
         {
@@ -124,9 +139,9 @@ function InfoEdit({ infoData, setIsEdit }) {
         },
     );
 
-    const validateAll = async () => {
+    const validateAll = async (editInfoData, setCurrentPwdValid) => {
         const formErrors = checkForm(editInfoData);
-        const validateErrors = await validateForm(editInfoData);
+        const validateErrors = await validateForm(editInfoData, setCurrentPwdValid);
         const errors = { ...formErrors, ...validateErrors };
 
         setErrors(errors);
@@ -147,9 +162,10 @@ function InfoEdit({ infoData, setIsEdit }) {
             return;
         }
 
-        validateAll();
+        validateAll(editInfoData, setCurrentPwdValid);
 
-        const isPasswordChanged = !!(editInfoData.newPassword || editInfoData.checkPassword);
+        const isPasswordChanged = async () => !!( (editInfoData.newPassword && await checkCurrentPassword(editInfoData.newPassword)) || 
+                                    (editInfoData.checkPassword && await checkCurrentPassword(editInfoData.newPassword)) );
 
         const isOtherChanged = !!(
             editInfoData.nickname !== infoData.nickname ||
@@ -158,11 +174,99 @@ function InfoEdit({ infoData, setIsEdit }) {
             Number(editInfoData.weight) !== Number(infoData.weight)
         );
         
-        setIsInfoChanged(isPasswordChanged || isOtherChanged);
+        setIsInfoChanged(!isPasswordChanged || isOtherChanged);
+    }, [
+        editInfoData.nickname,
+        editInfoData.password,
+        editInfoData.phone,
+        editInfoData.height,
+        editInfoData.weight,
+        ]
+    );
 
-        checkForm(editInfoData);
-        validateForm(editInfoData);
-    }, [editInfoData, infoData]);
+    useEffect(() => {
+        const checkNewPassword = async () => {
+            if (!editInfoData.newPassword) {
+                setNewPwdValid(false);
+                return;
+            }
+            
+            if (!validatePassword(editInfoData.newPassword)) {
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    newPassword: '비밀번호 형식이 올바르지 않습니다.'
+                }));
+                setNewPwdValid(false);
+                return;
+            }
+
+            const isValid = await checkCurrentPassword(editInfoData.newPassword);
+            if (isValid) {
+                setNewPwdValid(false);
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    newPassword: "기존 비밀번호와 동일합니다."
+                }));
+            } else {
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    newPassword: ""
+                }));
+                setNewPwdValid(true);
+            }
+        }
+        checkNewPassword();
+    }, [editInfoData.newPassword]);
+
+    useEffect(() => {
+        const checkPassword = async () => {
+            if (!editInfoData.checkPassword) {
+                setIsInfoChanged(false);
+                return;
+            }
+            
+            if (!validatePassword(editInfoData.checkPassword)) {
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    checkPassword: '비밀번호 형식이 올바르지 않습니다.'
+                }));
+                setIsInfoChanged(false);
+                return;
+            }
+
+            const isValid = editInfoData.newPassword === editInfoData.checkPassword;
+            if (!isValid) {
+                setIsInfoChanged(false);
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    checkPassword: "기존 비밀번호와 동일합니다."
+                }));
+            } else {
+                setErrors(prevErrors => ({
+                    ...prevErrors,
+                    checkPassword: ""
+                }));
+                setIsInfoChanged(true);
+            }
+        }
+        checkPassword();
+
+        const isPasswordChanged = !!(
+            editInfoData.password &&
+            editInfoData.newPassword &&
+            editInfoData.checkPassword &&
+            editInfoData.newPassword === editInfoData.checkPassword
+        );
+
+        const isOtherChanged = !!(
+            editInfoData.nickname !== infoData.nickname ||
+            editInfoData.phone !== infoData.phone ||
+            Number(editInfoData.height) !== Number(infoData.height) ||
+            Number(editInfoData.weight) !== Number(infoData.weight)
+        );
+        setIsInfoChanged(isPasswordChanged || isOtherChanged);
+    }, [editInfoData.checkPassword]);
+
 
     const handleOnChange = (event) => {
         const { name, value } = event.target;
@@ -182,7 +286,7 @@ function InfoEdit({ infoData, setIsEdit }) {
         
         const result = await editUserInfo(updateInfoData);
 
-        if (result === 'success') {
+        if (result) {
             alert("정보수정에 성공하였습니다.");
             setIsEdit(false);
         }
@@ -271,7 +375,7 @@ function InfoEdit({ infoData, setIsEdit }) {
                             id="newPassword"
                             name="newPassword"
                             onChange={handleOnChange}
-                            readOnly={true}
+                            readOnly={!currentPwdValid}
                         />
                         {errors.newPassword && (
                             <p className={`${error.error}`}>
@@ -291,7 +395,7 @@ function InfoEdit({ infoData, setIsEdit }) {
                             id="checkPassword"
                             name="checkPassword"
                             onChange={handleOnChange}
-                            readOnly={true}
+                            readOnly={!newPwdValid}
                         />
                         {errors.checkPassword && (
                             <p className={`${error.error}`}>

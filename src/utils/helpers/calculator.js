@@ -1,15 +1,19 @@
 const calcTotalCalorie = (prop) => {
     let sum = 0;
-    if (prop.category === 'menu') {
-        prop.list.forEach((element) => {
+    if (prop.category === 'MENU') {
+        prop.todos.forEach((element) => {
             sum += element.calorie;
         });
-    } else if (prop.category == 'exercise') {
-        prop.list.forEach((element) => {
+    } else {
+        prop.todos.forEach((element) => {
             sum += element.met;
         });
     }
     return sum;
+};
+
+const formatDate = (isoString) => {
+  return new Date(isoString).toISOString().split('T')[0];
 };
 
 const calcTotalPeriod = (startAt, endAt) => {
@@ -20,8 +24,11 @@ const calcTotalPeriod = (startAt, endAt) => {
 };
 
 const calcDay = (date) => {
+    const original = new Date(date);
+
     const now = new Date();
-    const day = now - date;
+    const day = now - new Date(original.getFullYear(), original.getMonth(), original.getDate());
+    
     return Math.floor(day / (1000 * 60 * 60 * 24));
 };
 
@@ -50,4 +57,5 @@ export {
     getTodayDate,
     calcDailyBurnKcal,
     calcExerciseTotalCalorie,
+    formatDate,
 };

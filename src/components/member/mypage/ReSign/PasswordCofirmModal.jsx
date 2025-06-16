@@ -2,9 +2,9 @@ import styles from './PasswordConfirmModal.module.css';
 import input from 'assets/styles/common/input.module.css';
 import button from 'assets/styles/common/button.module.css';
 import errorStyles from 'assets/styles/common/error.module.css';
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { checkPassword } from 'utils/api/profileApi.js'; 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { checkCurrentPassword } from 'utils/api/profileApi.js'; 
 
 function PasswordConfirmModal ({ email }) {
     const navigate = useNavigate();
@@ -18,15 +18,10 @@ function PasswordConfirmModal ({ email }) {
 
     const [error, setError] = useState();
 
-    const [existingPwd, setExistingPwd] = useState('');
-
-    useEffect(() => {
-        const verifyPassword = async () => {
-            const result = await checkPassword();
-            setExistingPwd(result);
-        }
-        verifyPassword();
-    }, []);
+    const verifyPassword = async (password) => {
+        const result = await checkCurrentPassword(password);
+        return result;
+    }
 
     const onChange = (event) => {
         setData(prev => ({
@@ -35,8 +30,9 @@ function PasswordConfirmModal ({ email }) {
         }));
     };
 
-    const handleConfirm = () => {
-        (data.password === existingPwd) ? 
+    const handleConfirm = async () => {
+        const isValid = await verifyPassword(data.password);
+        (isValid) ? 
             navigate('/resign') : 
             setError('비밀번호가 일치하지 않습니다');
     };

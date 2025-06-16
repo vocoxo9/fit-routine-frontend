@@ -4,7 +4,7 @@ import button from 'assets/styles/common/button.module.css';
 import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import { useNavigate } from 'react-router-dom';
 
-function Like({ blogId, gender, nickName, grade }) {
+function Like({ blogId, gender, nickName, grade, onDelete }) {
     const navigate = useNavigate();
 
     return (
@@ -27,7 +27,9 @@ function Like({ blogId, gender, nickName, grade }) {
             </div>
             <div className={styles.cutBtn}>
                 <button
-                    className={`${button.button} ${styles.deleteBtn}`}>
+                    className={`${button.button} ${styles.deleteBtn}`}
+                    onClick={() => onDelete(blogId)}
+                >
                     관심 끊기
                 </button>
             </div>
