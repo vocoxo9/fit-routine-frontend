@@ -70,16 +70,12 @@ function TodoList({ todoList, onDelete }) {
                 </ul>
             </div>
             <div className={styles.btnArea}>
-                <button
-                    className={`${buttons.button} ${buttons.short}`}
-                    onClick={(event) => handleEditClick(todoList.todoId)}>
-                    수정
-                </button>
-                <button
-                    className={`${buttons.button} ${buttons.short}`}
-                    onClick={(event) => handleDeleteClick(todoList.todoId)}>
-                    삭제
-                </button>
+                <button className={`${buttons.button} ${buttons.short}`}
+                    onClick={(event) => handleEditClick(todoList.todoId)}
+                >수정</button>
+                <button className={`${buttons.button} ${buttons.short}`}
+                    onClick={(event) => handleDeleteClick(todoList.todoId)}
+                >삭제</button>
             </div>
         </div>
     );
