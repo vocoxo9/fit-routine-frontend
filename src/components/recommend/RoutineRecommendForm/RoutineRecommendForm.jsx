@@ -29,6 +29,7 @@ function RoutineRecommendForm({
     goToNext,
     formData,
     memberDetail,
+    exerciseList,
     buttonText,
 }) {
     const [data, setData] = useState([]);
@@ -55,12 +56,12 @@ function RoutineRecommendForm({
     useEffect(() => {
         const loadInitialRoutine = async () => {
             const routineData = paramTodoId
-                ? formData
+                ? exerciseList
                 : await fetchExerciseRandomRoutine(formData);
 
             // 초기에 체크 상태일 데이터 리스트
             const initialCheckedData = {};
-            routineData.exerciseList.forEach((exercise, index) => {
+            routineData.exerciseList?.forEach((exercise, index) => {
                 initialCheckedData[index + 1] = exercise;
             });
             setCheckedItems(initialCheckedData);

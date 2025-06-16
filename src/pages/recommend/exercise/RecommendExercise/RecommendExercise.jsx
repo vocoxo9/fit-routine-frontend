@@ -6,6 +6,7 @@ function RecommendExercise({
     formData,
     setFormData,
     memberDetail,
+    exerciseList,
     buttonText,
 }) {
     return (
@@ -15,6 +16,7 @@ function RecommendExercise({
             formData={formData}
             setFormData={setFormData}
             memberDetail={memberDetail}
+            exerciseList={exerciseList}
             buttonText={buttonText}
         />
     );

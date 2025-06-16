@@ -8,6 +8,8 @@ import {
     fetchTodoDataByTodoId,
     submitExerciseRoutine,
     saveExerciseRoutineInfo,
+    updateExerciseRoutine,
+    getTodoIdByToken,
 } from 'utils/api/exerciseApi';
 
 function AllExercisePages() {
@@ -26,13 +28,27 @@ function AllExercisePages() {
         goalWeight: '',
     });
 
+    const [exerciseList, setExerciseList] = useState({});
     const [memberDetail, setMemberDetail] = useState({});
 
     useEffect(() => {
         if (paramTodoId) {
             fetchTodoDataByTodoId(paramTodoId).then((data) => {
-                setFormData(data);
+                setFormData(data.routineInfo);
+                setExerciseList(data.exerciseRoutineList);
             });
+        } else {
+            const fetchAndNavigate = async () => {
+                try {
+                    const result = await getTodoIdByToken();
+                    if (result) {
+                        navigate(`/exercise/${result}`);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+            fetchAndNavigate();
         }
     }, [paramTodoId]);
 
@@ -51,6 +67,12 @@ function AllExercisePages() {
     const performData = async (exerciseList) => {
         await submitExerciseRoutine(todoId, exerciseList);
         alert('운동 루틴이 저장되었습니다!');
+        navigate('/todo');
+    };
+
+    const updateData = async (exerciseList) => {
+        await updateExerciseRoutine(paramTodoId, exerciseList);
+        alert('운동 루틴이 수정되었습니다!');
         navigate('/todo');
     };
 
@@ -99,10 +121,11 @@ function AllExercisePages() {
             {paramTodoId && (
                 <RecommendExercise
                     paramTodoId={paramTodoId}
-                    goToNext={performData}
+                    goToNext={updateData}
                     formData={formData}
                     setFormData={setFormData}
                     memberDetail={memberDetail}
+                    exerciseList={exerciseList}
                     buttonText="루틴 수정"
                 />
             )}
