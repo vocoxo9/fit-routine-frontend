@@ -5,34 +5,33 @@ const getBlogDetailByBlogId = async (blogId) => {
     return response.data;
 };
 
-const getLikeCountByBlogId = async (blogId) => {
-    const response = await axiosInstance.get(`/blogs/${blogId}/followers/count`);
-    return response.data;
-};
-
-const getIsLikedByBlogId = async (blogId) => {
-    const response = await axiosInstance.get(`/blogs/${blogId}/follow`);
-    return response.data;
-};
-
 const likeOrUnlikeBlogAPI = async (isLiked, blogId) => {
     if (isLiked) {
         // 관심 해제
         const response = await axiosInstance.delete(`/blogs/${blogId}/follow`);
     } else {
         // 관심 등록
-        const response = await axiosInstance.post(`/blogs/${blogId}/follow`);
+        const response = await axiosInstance.post(`/blogs/${blogId}/follow`, null);
     }
 };
 
 const editIntroduce = async (introduce, blogId) => {
     const body = {
         introduce,
-    }
-
+    };
     const response = await axiosInstance.patch(`/blogs/${blogId}`, body);
     return response.data;
+};
+
+const getLikeCountByBlogId = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/followers/count`);
+    return response.data;
 }
+
+const getIsLikedByBlogId = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/follow`);
+    return response.data;
+};
 
 const getBlogDetailByToken = async () => {
     const response = await axiosInstance.get(`/blogs/me`);
@@ -136,6 +135,36 @@ const editReplyContentByReplyId = async (payload) => {
     return response.data;
 }
 
+const getMenuTodoByToken = async () => {
+    const response = await axiosInstance.get(`/todos/menu`);
+    return response.data;
+}
+
+const getExerciseTodoByToken = async () => {
+    const response = await axiosInstance.get(`/todos/exercise`);
+    return response.data;
+}
+
+const deleteTodoByTodoId = async (todoId) => {
+    const response = await axiosInstance.delete(`/todos/${todoId}`);
+    return response.data;
+}
+
+const getPostListByToken = async () => {
+    const response = await axiosInstance.get(`/posts`);
+    return response.data;
+}
+
+const getPostsTitles = async () => {
+    const response = await axiosInstance.get(`/posts/simple`);
+    return response.data;
+}
+
+const checkBlogOwner = async (blogId) => {
+    const response = await axiosInstance.get(`/blogs/${blogId}/permissions`);
+    return response.data;
+}
+
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
@@ -161,4 +190,10 @@ export {
     checkReplyOwner,
     deleteReplyByReplyId,
     editReplyContentByReplyId,
+    getMenuTodoByToken,
+    getExerciseTodoByToken,
+    deleteTodoByTodoId,
+    getPostListByToken,
+    getPostsTitles,
+    checkBlogOwner,
  };

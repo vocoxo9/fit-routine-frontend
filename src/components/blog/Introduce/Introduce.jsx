@@ -11,7 +11,7 @@ import { editIntroduce } from 'utils/api/blogApi';
  * @param {string} intro 블로그 소개글 내용
  *  
  */
-function Introduce({intro, blogId}) {
+function Introduce({intro, blogId, isOwner}) {
     const [isEditClick, setIsEditClick] = useState(false);
     const [introduce, setIntroduce] = useState(intro);
 
@@ -36,9 +36,11 @@ function Introduce({intro, blogId}) {
             { !isEditClick && 
                 <div>
                     <div className={styles.introduceHeader}>
-                        <button className={`${buttons.button} ${styles.editBtn}`} onClick={handleEditClick}>
-                            <VscEdit/>
-                        </button>
+                        {isOwner && 
+                            <button className={`${buttons.button} ${styles.editBtn}`} onClick={handleEditClick}>
+                                <VscEdit/>
+                            </button>
+                        }
                     </div>
                     <div className={styles.introduceText}>
                         {introduce}

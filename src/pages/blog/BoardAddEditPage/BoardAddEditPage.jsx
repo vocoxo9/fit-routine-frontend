@@ -147,6 +147,7 @@ function BoardAddEditPage({
     };
 
     const handleSubmitClick = async () => {
+        
         if (!validateImagesCount(images) ||
             !validateTitle(boardData.title) ||
             !validateContent(boardData.content)
@@ -176,7 +177,6 @@ function BoardAddEditPage({
         });
 
         navigate('/board');
-
     }
 
     const handleRemoveImage = (index) => {

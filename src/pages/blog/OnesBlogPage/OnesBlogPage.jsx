@@ -5,7 +5,7 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
-import { getBlogDetailByBlogId, getIsLikedByBlogId, getLikeCountByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
+import { checkBlogOwner, getBlogDetailByBlogId, getIsLikedByBlogId, getLikeCountByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
 import { useParams } from 'react-router-dom';
 
 /**
@@ -15,6 +15,7 @@ function OnesBlogPage() {
     const { blogId } = useParams(); 
     const [blog, setBlog] = useState(null);
     const [blogLike, setBlogLike] = useState(null);
+    const [isOwner, setIsOwner] = useState(false);
 
     // blogId과 로그인유저의 토큰(좋아요 확인용)으로 blog정보 api요청
     const blogDetail = async () => {
@@ -38,6 +39,9 @@ function OnesBlogPage() {
 
     useEffect(() => {
         blogDetail();
+        checkBlogOwner(blogId).then(data => {
+            setIsOwner(data);
+        });
     }, [blogId]);
 
     const handleLikeClick = async () => {
@@ -48,7 +52,12 @@ function OnesBlogPage() {
             isLiked: !prev.isLiked,
         });
 
-        await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
+        try {
+            await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
+        } catch (error) {
+            alert('자신의 블로그는 팔로우 할 수 없습니다.');
+            setBlogLike(prev);
+        }
     };
 
 
@@ -75,7 +84,7 @@ function OnesBlogPage() {
                                 </div>
                             </div>
                             <hr />
-                            <Introduce intro={blog.introduce} blogId={blogId}/>
+                            <Introduce isOwner={isOwner} intro={blog.introduce} blogId={blogId}/>
                         </div>
                         <div className={styles.gradeContainer}>
                             <BlogGrade grade={blog.blogGrade} />
