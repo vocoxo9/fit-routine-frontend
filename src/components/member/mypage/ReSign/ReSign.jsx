@@ -6,10 +6,12 @@ import input from 'assets/styles/common/input.module.css';
 import textarea from 'assets/styles/common/textarea.module.css';
 import button from 'assets/styles/common/button.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getUserProfile, submitReason, resignUser } from 'utils/api/profileApi.js';
 
 function ReSign() {
+    const navigate = useNavigate();
+
     const [info, setInfo] = useState({
         email: '',
         nickname: '',
@@ -41,6 +43,16 @@ function ReSign() {
     const handleSubmit = async () => {
         const reasonResponse = await submitReason(selectedReason, inputReason);
         const resignResponse = await resignUser();
+        console.log(reasonResponse);
+        console.log(resignResponse);
+        if (reasonResponse && resignResponse) {
+            logout();
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem("accessToken");
+        window.location.href = "/login"; // 로그인 페이지로 리다이렉트
     };
 
     return (
