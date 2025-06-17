@@ -3,6 +3,8 @@ import axios from 'axios';
 import BoardPreview from '../BoardPreview/BoardPreview';
 import styles from './BoardsPaging.module.css';
 import axiosInstance from '../../../utils/api/axios';
+import { getPostImagesByPostId, getPostListByBlogId } from 'utils/api/blogApi';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * 게시물 페이징 컴포넌트 - 전체 게시판 페이지, 블로그 페이지 사용
@@ -20,31 +22,37 @@ function BoardsPaging(
 ) {
     const [page, setPage] = useState(0);
     const [posts, setPosts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const params = {
-            page: page,
-            size: 6,
-        };
+    const fetchPostsWithImages = async () => {
+            const params = { page, size: 6 };
+            const postsData = await getPostListByBlogId(blogId, params);
 
-        axiosInstance
-            .get(
-                blogId ? `/blogs/${blogId}/posts` : '/posts',
-                { params },
-            )
-            .then(response => {
-                setPosts(response.data);
-            })
-            .catch(() => {
-                window.location.href = '/';
-            });
+            const postsWithImages = await Promise.all(
+                postsData.map(async (post) => {
+                    const imageRes = await getPostImagesByPostId(post.postId);
+                    return {
+                        ...post,
+                        image: `${process.env.REACT_APP_IMAGE_BASE_URL}${imageRes[0]?.changeName}` || null,
+                    };
+                })
+            );
+            setPosts(postsWithImages);
+        };
+        fetchPostsWithImages();
     }, [page, blogId, order, category]);
 
     const chunked = [];
-    for (let i = 0; i < posts.length; i += 3) {
-        chunked.push(
-            posts.slice(i, i + 3),
-        );
+    if(Array.isArray(posts)){
+        for (let i = 0; i < posts.length; i += 3) {
+            chunked.push(
+                posts.slice(i, i + 3),
+            );
+    }}
+
+    const handlePostClick =(postId) => {
+        navigate(`/board/detail/${postId}`);
     }
 
     return (
@@ -59,8 +67,10 @@ function BoardsPaging(
                             <td
                                 key={`inner_${innerIndex}`}
                                 className={styles.td}
+                                onClick={()=>handlePostClick(post.postId)}
                             >
                                 <BoardPreview
+                                    imgSrc={post.image}
                                     boardWriter={post.nickname}
                                     boardTitle={post.title}
                                     boardId={post.postId}

@@ -173,6 +173,15 @@ const getPostImagesByPostId = async (postId) => {
     return response.data;
 }
 
+const getPostListByBlogId = async (blogId, params) => {
+    const response = await axiosInstance
+                .get(
+                    blogId ? `/blogs/${blogId}/posts` : '/posts',
+                    { params },
+                );
+    return response.data;
+}
+
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
@@ -206,4 +215,5 @@ export {
     checkBlogOwner,
     getPostImagesByPostId,
     editPost,
+    getPostListByBlogId,
  };
