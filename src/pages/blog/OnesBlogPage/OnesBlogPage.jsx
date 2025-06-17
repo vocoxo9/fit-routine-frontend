@@ -5,48 +5,63 @@ import BlogGrade from 'components/common/BlogGrade/BlogGrade';
 import GenderImage from 'components/common/GenderImage/GenderImage';
 import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
-import { checkBlogOwner, getBlogDetailByBlogId, getIsLikedByBlogId, getLikeCountByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
+import { checkBlogOwner, getBlogDetailByBlogId, getBlogDetailByToken, getIsLikedByBlogId, getLikeCountByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
 import { useParams } from 'react-router-dom';
 
-/**
- * 블로그 페이지
- */
 function OnesBlogPage() {
-    const { blogId } = useParams(); 
+    const { blogIds } = useParams(); // URL의 :blogIds
+    const [blogId, setBlogId] = useState(null);
     const [blog, setBlog] = useState(null);
     const [blogLike, setBlogLike] = useState(null);
     const [isOwner, setIsOwner] = useState(false);
 
-    // blogId과 로그인유저의 토큰(좋아요 확인용)으로 blog정보 api요청
-    const blogDetail = async () => {
-        const data = await getBlogDetailByBlogId(blogId);
-        
-        setBlog({
-            nickname: data.nickname,
-            gender: data.gender === 'M'? 'male':'female',
-            introduce: data.introduce,
-            blogGrade: data.grade,
-        });
-
-        const likeCount = await getLikeCountByBlogId(blogId);
-        const isLiked = await getIsLikedByBlogId(blogId);
-        
-        setBlogLike({
-            likeCount:likeCount.count,
-            isLiked:isLiked.followed,
-        });
-    };
-
     useEffect(() => {
-        blogDetail();
-        checkBlogOwner(blogId).then(data => {
-            setIsOwner(data);
-        });
-    }, [blogId]);
+    const fetchBlogData = async () => {
+            let data;
+            let currentBlogId;
+
+            if (blogIds) {
+                // 다른 사람 블로그
+                currentBlogId = blogIds;
+                data = await getBlogDetailByBlogId(currentBlogId);
+            } else {
+                // 내 블로그
+                const myBlog = await getBlogDetailByToken();
+                currentBlogId = myBlog.blogId;
+                data = myBlog;
+                setIsOwner(true); 
+            }
+
+            setBlogId(currentBlogId);
+
+            setBlog({
+                nickname: data.nickname,
+                gender: data.gender === 'M' ? 'male' : 'female',
+                introduce: data.introduce,
+                blogGrade: data.grade,
+            });
+
+            const likeCount = await getLikeCountByBlogId(currentBlogId);
+            const isLiked = await getIsLikedByBlogId(currentBlogId);
+
+            setBlogLike({
+                likeCount: likeCount.count,
+                isLiked: isLiked.followed,
+            });
+
+            // 남의 블로그일 경우에만 소유자 여부 확인
+            if (blogIds) {
+                const owner = await checkBlogOwner(currentBlogId);
+                setIsOwner(owner);
+            }
+        };
+
+        fetchBlogData();
+    }, [blogIds]);
 
     const handleLikeClick = async () => {
         const prev = blogLike;
-        
+
         setBlogLike({
             likeCount: prev.isLiked ? prev.likeCount - 1 : prev.likeCount + 1,
             isLiked: !prev.isLiked,
@@ -75,10 +90,10 @@ function OnesBlogPage() {
                                 <div className={styles.follow}>
                                     {blogLike &&
                                         <Likes
-                                        count={blogLike.likeCount}
-                                        isBig={true}
-                                        isLiked={blogLike.isLiked}
-                                        onClick={handleLikeClick}
+                                            count={blogLike.likeCount}
+                                            isBig={true}
+                                            isLiked={blogLike.isLiked}
+                                            onClick={handleLikeClick}
                                         />
                                     }
                                 </div>
