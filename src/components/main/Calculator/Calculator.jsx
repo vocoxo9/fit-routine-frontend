@@ -268,7 +268,7 @@ function Calculator() {
                     </div>
                     <div className={styles.buttonArea}>
                         <div className={styles.btn}>
-                            <Link to='food'>
+                            <Link to='diet'>
                                 <button
                                     className={`${button.button} ${button.bold}`}
                                     onClick={handleNavigateFoodRecommend}>
