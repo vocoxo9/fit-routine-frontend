@@ -55,35 +55,37 @@ export default function AuthUserMenu() {
     const handleLogout = () => {
         logout();
         setLoggedIn(false);
-        window.location.href='/';
+        window.location.href = '/';
     };
 
     return (
         <div className={styles.headerRight}>
             <div className={styles.icons}>
-                <div className={styles.iconsArea}>
-                    <Link to="mypage">
-                        <FaUser className={styles.icon} />
-                    </Link>
-                    <div>
-                        <FaBell
-                            className={styles.icon}
-                            onClick={handleNOtificationOpen}
-                            />
-                        <span className={styles.notification}>33</span>
-                        <div
-                            className={`${styles.bellNotifications} ${isOpen ? '' : styles.hide}`}>
-                            <BellNotifications />
-                        </div>
-                    </div>
-                </div>
                 {loggedIn ? (
-                    <button
-                        className={styles.button}
-                        onClick={handleLogout}
-                    >
-                        로그아웃
-                    </button>
+                    <>
+                        <div className={styles.iconsArea}>
+                            <Link to="mypage">
+                                <FaUser className={styles.icon} />
+                            </Link>
+                            <div>
+                                <FaBell
+                                    className={styles.icon}
+                                    onClick={handleNOtificationOpen}
+                                />
+                                
+                                <div
+                                    className={`${styles.bellNotifications} ${isOpen ? '' : styles.hide}`}>
+                                    <BellNotifications />
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            className={styles.button}
+                            onClick={handleLogout}
+                        >
+                            로그아웃
+                        </button>
+                    </>
                 ) : (
                     <>
                         <button
@@ -102,12 +104,12 @@ export default function AuthUserMenu() {
                 )}
             </div>
             <div className={styles.carousel}>
-            {(exeRoutines || foodRoutines) &&
-                <div className={styles.track}>
+                {(exeRoutines || foodRoutines) &&
+                    <div className={styles.track}>
                         <div className={styles.group}>
                             <div className={styles.category}>
                                 {exeRoutines.map(exercise => {
-                                    return(
+                                    return (
                                         <div className={styles.card}>
                                             <span>{exercise.category} - {exercise.content}</span>
                                         </div>
@@ -116,7 +118,7 @@ export default function AuthUserMenu() {
                             </div>
                             <div className={styles.category}>
                                 {foodRoutines.map(food => {
-                                    return(
+                                    return (
                                         <div className={styles.card}>
                                             <span>{food.category} - {food.content}</span>
                                         </div>
@@ -124,13 +126,13 @@ export default function AuthUserMenu() {
                                 })}
                             </div>
                         </div>
-                </div>
-            }
-            {( (!exeRoutines || exeRoutines.length === 0 ) && (!foodRoutines || foodRoutines.length === 0) ) &&
-                <div className={styles.routineError}>
-                    등록된 루틴이 없습니다.
-                </div>
-            }
+                    </div>
+                }
+                {((!exeRoutines || exeRoutines.length === 0) && (!foodRoutines || foodRoutines.length === 0)) &&
+                    <div className={styles.routineError}>
+                        등록된 루틴이 없습니다.
+                    </div>
+                }
             </div>
         </div>
     );
