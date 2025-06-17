@@ -6,7 +6,7 @@ import input from 'assets/styles/common/input.module.css';
 import textarea from 'assets/styles/common/textarea.module.css';
 import button from 'assets/styles/common/button.module.css';
 import ReSignInfo from 'components/common/Info/ResignInfo';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUserProfile, submitReason, resignUser } from 'utils/api/profileApi.js';
 
 function ReSign() {
