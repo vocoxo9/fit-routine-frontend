@@ -7,7 +7,7 @@ import inputs from 'assets/styles/common/input.module.css';
 import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createPost, deleteImage, getBlogDetailByToken, getPostDetailByPostId, saveImage } from 'utils/api/blogApi';
+import { createPost, deleteImage, editPost, getBlogDetailByToken, getPostDetailByPostId, getPostImagesByPostId, saveImage } from 'utils/api/blogApi';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -15,7 +15,6 @@ import { createPost, deleteImage, getBlogDetailByToken, getPostDetailByPostId, s
 
 function BoardAddEditPage({
     buttonText, 
-    //<Route path="/board/edit/:boardId" element={<AddEditPage />} />
 }) {
     const {boardId} = useParams();
     const [boardData, setBoardData] = useState({
@@ -108,14 +107,15 @@ function BoardAddEditPage({
     }
 
     const fetchBoardDetail = async (boardId) => {
-        const data = await getPostDetailByPostId(boardId);  
-        
+        const data = await getPostDetailByPostId(boardId);
+        const imageList = await getPostImagesByPostId(boardId);
+
         setBoardData({
             title: data.title,
             category: data.category,
             content: data.content,
         });
-        setImages(data.images);
+        setImages(imageList);
     }
 
     useEffect(()=>{
@@ -163,7 +163,7 @@ function BoardAddEditPage({
             category: boardData.category,
         }
 
-        const data = await createPost(blogId.blogId, payload);
+        const data = boardId ? await editPost(boardId, payload) : await createPost(blogId.blogId, payload);
         
 
         images.forEach(async (image) => {
@@ -172,9 +172,11 @@ function BoardAddEditPage({
             }
         });
 
-        deletedImageIds.forEach(async (id) => {
-            await deleteImage(id);
-        });
+        if(boardId) {
+            deletedImageIds.forEach(async (id) => {
+                await deleteImage(id);
+            });
+        }
 
         navigate('/board');
     }
@@ -186,7 +188,7 @@ function BoardAddEditPage({
         if (!(target instanceof File)) {
             setDeletedImageIds(previous => [...previous, target.imageId]);
         }
-
+        
         setImages(previous => previous.filter((_, i) => i !== index));
     };
 
@@ -224,6 +226,7 @@ function BoardAddEditPage({
                                 const updateImages = [...previous, ...newFiles];
                                 return updateImages.slice(0, 8);
                             });
+                            
                         }}
                     />
                     <label htmlFor="fileInput" className={`${buttons.button} ${buttons.short} ${styles.attachButton}`}>
@@ -244,7 +247,7 @@ function BoardAddEditPage({
                                             <>
                                                 <div className={styles.cancel} onClick={() => handleRemoveImage(index)}><MdCancelPresentation/></div>
                                                 <img
-                                                    src={file instanceof File ? URL.createObjectURL(file) : file.changeName}
+                                                    src={file instanceof File ? URL.createObjectURL(file) : `${process.env.REACT_APP_IMAGE_BASE_URL}${file.changeName}`}
                                                     alt={`image-${index}`}
                                                     
                                                     className={styles.previewImg}
@@ -285,7 +288,9 @@ function BoardAddEditPage({
                         type='button'   // form으로 둘러쌓여 있어서
                                         // submit으로 적용되어 임시로 type='button'추가
                         className={`${buttons.button} ${buttons.short}`}
-                        onClick={() => navigate(-1)}
+                        onClick={() => {
+                            navigate(-1);
+                        }}
                     >
                         취소
                     </button>

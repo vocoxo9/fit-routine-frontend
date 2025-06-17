@@ -39,11 +39,14 @@ const getBlogDetailByToken = async () => {
 };
 
 const createPost = async (blogId, payload) => {
-    console.log(payload);
-    
     const response = await axiosInstance.post(`/blogs/${blogId}/posts`, payload);
     return response.data;
 };
+
+const editPost = async (postId, payload) => {
+    const response = await axiosInstance.patch(`/posts/${postId}`, payload);
+    return response.data;
+}
 
 const saveImage = async (postId, image) => {
     const formData = new FormData();
@@ -202,4 +205,5 @@ export {
     getPostsTitles,
     checkBlogOwner,
     getPostImagesByPostId,
+    editPost,
  };
