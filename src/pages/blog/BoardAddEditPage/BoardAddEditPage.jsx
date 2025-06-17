@@ -8,6 +8,8 @@ import textareas from 'assets/styles/common/textarea.module.css';
 import errors from 'assets/styles/common/error.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createPost, deleteImage, editPost, getBlogDetailByToken, getPostDetailByPostId, getPostImagesByPostId, saveImage } from 'utils/api/blogApi';
+import { toast } from 'react-toastify';
+import { successAlert } from 'utils/helpers/toastUtils';
 
 /**
  * 게시물 추가 및 수정 페이지
@@ -177,6 +179,9 @@ function BoardAddEditPage({
                 await deleteImage(id);
             });
         }
+        
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        successAlert('게시물이 추가되었습니다!');
 
         navigate('/board');
     }
