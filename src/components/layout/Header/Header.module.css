@@ -5,7 +5,6 @@
 
 .headerContainer a {
     text-decoration: none;
-    margin-bottom: 3rem;
 }
 
 .headerContainer p {
@@ -66,7 +65,7 @@
 .icons {
     display: flex;
     width: 13rem;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 1rem;
 }
 
@@ -206,6 +205,7 @@
     position: relative;
     border: solid 2px #D0E3FF;
     padding: 0.5rem;
+    margin-top : 1rem;
 }
 
 .track {
