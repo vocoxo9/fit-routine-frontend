@@ -61,7 +61,7 @@ export default function AuthUserMenu() {
     return (
         <div className={styles.headerRight}>
             <div className={styles.icons}>
-                {!loggedIn ? (
+                {loggedIn ? (
                     <>
                         <div className={styles.iconsArea}>
                             <Link to="mypage">
