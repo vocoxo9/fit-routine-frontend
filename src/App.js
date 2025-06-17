@@ -21,10 +21,12 @@ import ErrorPage from './pages/main/ErrorPage/ErrorPage';
 import RecommendDiet from './pages/recommend/diet/DietRecommend/RecommendDiet';
 import AllDietPages from './pages/recommend/diet/AllDietPages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
     return (
         <>
+            <ToastContainer/>
             <BrowserRouter>
                 <Header />
 

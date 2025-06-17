@@ -16,6 +16,7 @@ import {
     calcDailyBurnKcal,
     calcExerciseTotalCalorie,
 } from 'utils/helpers/calculator';
+import { warningAlert } from 'utils/helpers/toastUtils';
 
 const CATEGORY_LIST = [
     { text: '상체', value: 'UPPER' },
@@ -194,12 +195,12 @@ function RoutineRecommendForm({
             const oneDayKcal = dailyKcal[dayRepeat] || 0;
 
             if (!checkedItems[dayRepeat]?.length) {
-                alert(`${dayRepeat}일차에 선택된 운동이 존재하지 않습니다.`);
+                warningAlert(`${dayRepeat}일차에 선택된 운동이 존재하지 않습니다.`);
                 return;
             }
 
             if (formData.purpose === 'DIET' && oneDayKcal < dailyBurnKcal) {
-                alert(`${dayRepeat}일차 칼로리가 부족합니다.`);
+                warningAlert(`${dayRepeat}일차 칼로리가 부족합니다.`);
                 return;
             }
         }

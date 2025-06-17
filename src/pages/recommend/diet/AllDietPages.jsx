@@ -38,7 +38,7 @@ function AllDietPages() {
     }, []);
 
     const performData = async () => {
-        alert('식단이 저장되었습니다! (미구현)');
+        successAlert('식단이 저장되었습니다! (미구현)');
         navigate('/todo');
     };
 

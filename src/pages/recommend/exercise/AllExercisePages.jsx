@@ -11,6 +11,7 @@ import {
     updateExerciseRoutine,
     getTodoIdByToken,
 } from 'utils/api/exerciseApi';
+import { successAlert } from 'utils/helpers/toastUtils';
 
 function AllExercisePages() {
     const navigate = useNavigate();
@@ -66,13 +67,13 @@ function AllExercisePages() {
 
     const performData = async (exerciseList) => {
         await submitExerciseRoutine(todoId, exerciseList);
-        alert('운동 루틴이 저장되었습니다!');
+        successAlert('운동 루틴이 저장되었습니다!');
         navigate('/todo');
     };
 
     const updateData = async (exerciseList) => {
         await updateExerciseRoutine(paramTodoId, exerciseList);
-        alert('운동 루틴이 수정되었습니다!');
+        successAlert('운동 루틴이 수정되었습니다!');
         navigate('/todo');
     };
 
