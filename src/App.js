@@ -20,6 +20,7 @@ import WelcomePage from './pages/member/WelcomePage/WelcomePage';
 import ErrorPage from './pages/main/ErrorPage/ErrorPage';
 import RecommendDiet from './pages/recommend/diet/DietRecommend/RecommendDiet';
 import AllDietPages from './pages/recommend/diet/AllDietPages';
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 
 function App() {
     return (
@@ -29,25 +30,27 @@ function App() {
 
                 <div className={styles.layout}>
                     <Routes>
-                        <Route path={"/"} element={<MainPage/>} />
-                        <Route path={"/login"} element={<LoginPage/>} />
-                        <Route path={"/welcome"} element={<WelcomePage/>} />
-                        <Route path={"/signup"} element={<SignUpPage/>} />
-                        <Route path={"/error"} element={<ErrorPage/>} />
-                        <Route path={"/mypage"} element={<MyPage/>} />
-                        <Route path={"/resign"} element={<ReSign/>} />
-                        <Route path={"/board"} element={<AllBoardsPage/>} />
-                        <Route path={"/blog/:blogIds"} element={<OnesBlogPage/>} />
-                        <Route path={"/blog"} element={<OnesBlogPage/>} />
-                        <Route path={"/todo"} element={<OnesTodoPage/>} />
-                        <Route path={"/board/add"} element={<BoardAddEditPage buttonText='등록'/>} />
-                        <Route path={"/board/edit/:boardId"} element={<BoardAddEditPage buttonText='수정'/>} />
-                        <Route path={"/board/detail/:boardId"} element={<BoardDetail/>} />
-                        <Route path={"/exercise"} element={<AllExercisePages />} />
-                        <Route path={"/exercise/:todoId"} element={<AllExercisePages/>} />
-                        <Route path={"/diet"} element={<AllDietPages/>} />
-                        <Route path={"/diet/:todoId"} element={<AllDietPages/>} />
-                        <Route path={"/food"} element={<ExerciseInputInfo/>} />
+                        <Route path={"/"} element={<MainPage />} />
+                        <Route path={"/login"} element={<LoginPage />} />
+                        <Route path={"/welcome"} element={<WelcomePage />} />
+                        <Route path={"/signup"} element={<SignUpPage />} />
+                        <Route path={"/error"} element={<ErrorPage />} />
+                        <Route element={<PrivateRoute />}>
+                            <Route path={"/mypage"} element={<MyPage />} />
+                            <Route path={"/resign"} element={<ReSign />} />
+                            <Route path={"/board"} element={<AllBoardsPage />} />
+                            <Route path={"/blog/:blogIds"} element={<OnesBlogPage/>} />
+                            <Route path={"/blog"} element={<OnesBlogPage/>} />
+                            <Route path={"/todo"} element={<OnesTodoPage />} />
+                            <Route path={"/board/add"} element={<BoardAddEditPage buttonText='등록' />} />
+                            <Route path={"/board/edit/:boardId"} element={<BoardAddEditPage buttonText='수정' />} />
+                            <Route path={"/board/detail/:boardId"} element={<BoardDetail />} />
+                            <Route path={"/exercise"} element={<AllExercisePages />} />
+                            <Route path={"/exercise/:todoId"} element={<AllExercisePages />} />
+                            <Route path={"/diet"} element={<AllDietPages />} />
+                            <Route path={"/diet/:todoId"} element={<AllDietPages />} />
+                            <Route path={"/food"} element={<ExerciseInputInfo />} />
+                        </Route>
                     </Routes>
                 </div>
 
