@@ -3,12 +3,17 @@ import button from 'assets/styles/common/button.module.css';
 import Notification from 'components/layout/Header/Notification/Notification';
 import { useEffect, useState } from 'react';
 import { getNotification, deleteNotice, deleteNoticeAll } from 'utils/api/headerApi.js';
+import { isLoggedIn } from 'utils/helpers/token.js';
 
 function BellNotifications() {
     const [data, setData] = useState([]);
 
+    
     useEffect(() => {
-        fetchNotification();
+        const token = isLoggedIn();
+        if (token) {
+            fetchNotification();
+        }
     }, []);
 
     const fetchNotification = async () => {
