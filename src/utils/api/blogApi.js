@@ -165,6 +165,11 @@ const checkBlogOwner = async (blogId) => {
     return response.data;
 }
 
+const getPostImagesByPostId = async (postId) => {
+    const response = await axiosInstance.get(`/posts/${postId}/images`);
+    return response.data;
+}
+
 export { 
     getBlogDetailByBlogId, 
     likeOrUnlikeBlogAPI, 
@@ -196,4 +201,5 @@ export {
     getPostListByToken,
     getPostsTitles,
     checkBlogOwner,
+    getPostImagesByPostId,
  };

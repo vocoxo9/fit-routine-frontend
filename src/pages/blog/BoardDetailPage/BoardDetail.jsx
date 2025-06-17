@@ -14,6 +14,7 @@ import {
     deletePostLikeByPostId,
     deleteReplyLikeByReplyId,
     getPostDetailByPostId,
+    getPostImagesByPostId,
     getPostLikeByPostId,
     getReplyLikeByReplyId,
     getReplyListByPostId
@@ -50,10 +51,14 @@ function BoardDetail() {
         });
 
         getPostDetailByPostId(boardId).then(data => {
-            setBoardData({
-                ...data,
-                images: data.images || [],
-            });
+            setBoardData(data);
+        });
+
+        getPostImagesByPostId(boardId).then(data => {
+            setBoardData(prev=> ({
+                ...prev,
+                images: data || [],
+            }));
         });
 
         getPostLikeByPostId(boardId).then(data => {
@@ -196,23 +201,23 @@ function BoardDetail() {
             </div>
 
             <div className={styles.flex}>
-                <div className={styles.imageContainer}>
-                    <button className={styles.imgBtn} onClick={boardData.images.length ? prevImgHandler : undefined}>
-                        <VscTriangleLeft />
-                    </button>
-                    <div className={styles.image}>
-                        {boardData.images?.length > 0 && (
-                            <img
-                                className={styles.img}
-                                src={boardData.images[imgCount].changeName}
-                                alt={boardData.images[imgCount].originName}
-                            />
-                        )}
+                {Array.isArray(boardData.images) && boardData.images.length > 0 && (
+                    <div className={styles.imageContainer}>
+                        <button className={styles.imgBtn} onClick={boardData.images.length ? prevImgHandler : undefined}>
+                            <VscTriangleLeft />
+                        </button>
+                        <div className={styles.image}>
+                                <img
+                                    className={styles.img}
+                                    src={`${process.env.REACT_APP_IMAGE_BASE_URL}${boardData.images[imgCount].changeName}`}
+                                    alt={boardData.images[imgCount].originName}
+                                />
+                        </div>
+                        <button className={styles.imgBtn} onClick={boardData.images.length ? nextImgHandler : undefined}>
+                            <VscTriangleRight />
+                        </button>
                     </div>
-                    <button className={styles.imgBtn} onClick={boardData.images.length ? nextImgHandler : undefined}>
-                        <VscTriangleRight />
-                    </button>
-                </div>
+                )}
             </div>
 
             <br />

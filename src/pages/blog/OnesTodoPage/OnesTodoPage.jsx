@@ -104,7 +104,6 @@ function OnesTodoPage() {
                                             className={`${styles.addBoard} ${buttons.button}`}
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                alert(`${currDate} 클릭됨`);
                                             }}
                                             disabled={isOverBoard(
                                                 dateData[currDate] || [],
