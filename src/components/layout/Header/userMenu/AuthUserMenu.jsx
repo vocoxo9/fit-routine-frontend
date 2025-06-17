@@ -28,9 +28,7 @@ export default function AuthUserMenu() {
         setIsToken(token);
         const fetchRoutines = async () => {
             const exercise = await getExeRoutines();
-            console.log("요청 하기전");
             setExeRoutines(exercise);
-            console.log("요청 하고옴");
 
             // const food = await getFoodRoutines();
             // setFoodRoutines(food);
