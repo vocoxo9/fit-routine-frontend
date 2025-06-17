@@ -2,7 +2,7 @@ import styles from './BellNotifications.module.css';
 import button from 'assets/styles/common/button.module.css';
 import Notification from 'components/layout/Header/Notification/Notification';
 import { useEffect, useState } from 'react';
-import { getNotification } from 'utils/api/headerApi.js';
+import { getNotification, deleteNotice, deleteNoticeAll } from 'utils/api/headerApi.js';
 
 function BellNotifications() {
     const [data, setData] = useState([]);
@@ -19,6 +19,7 @@ function BellNotifications() {
     // 알림 데이터를 삭제하고,
     // 알림 테이블의 데이터를 삭제하는 핸들러
     const handleDeleteAll = () => {
+        deleteNoticeAll();
         setData([]);
         // 알림 테이블 삭제
     };
@@ -26,7 +27,8 @@ function BellNotifications() {
     // 해당 인덱스의 데이터를 삭제하고,
     // 해당 인덱스 번호의 알림번호를 삭제하는 핸들러
     const handleNoticeDelete = (noticeId) => {
-        // 전달받은 noticeId는 해당 알림의 noticeId(PK값)
+        deleteNotice(noticeId);
+        
         setData((prev) =>
             prev.filter((notice) => notice.noticeId !== noticeId),
         );

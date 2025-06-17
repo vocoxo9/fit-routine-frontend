@@ -15,8 +15,20 @@ const getNotification = async () => {
     return response.data;
 }
 
+const deleteNotice = async (noticeId) => {
+    const response = await axiosInstance.delete(`/members/me/notice/${noticeId}`);
+    return response;
+}
+
+const deleteNoticeAll = async () => {
+    const response = await axiosInstance.delete('/members/me/notices');
+    return response;
+}
+
 export {
     getExeRoutines, 
     getFoodRoutines, 
     getNotification, 
+    deleteNotice, 
+    deleteNoticeAll, 
 }
