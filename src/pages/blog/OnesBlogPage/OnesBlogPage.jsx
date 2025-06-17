@@ -107,7 +107,7 @@ function OnesBlogPage() {
                         </div>
                     </div>
                     <div className={styles.boardsContainer}>
-                        <BoardsPaging nickname={blog.nickname} />
+                        <BoardsPaging blogId={blogId} />
                     </div>
                 </> :
                 <>
