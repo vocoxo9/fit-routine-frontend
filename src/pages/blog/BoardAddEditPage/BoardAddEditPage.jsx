@@ -289,8 +289,6 @@ function BoardAddEditPage({
                                         // submit으로 적용되어 임시로 type='button'추가
                         className={`${buttons.button} ${buttons.short}`}
                         onClick={() => {
-                            console.log(images);
-                            
                             navigate(-1);
                         }}
                     >
