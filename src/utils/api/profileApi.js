@@ -36,16 +36,20 @@ const deleteFollow = async (blogId) => {
 const submitReason = async (selectedReason, inputReason) => {
     try {
         const response = await axiosInstance.post('/members/me/withdraw-reasons', {selectedReason: selectedReason, inputReason: inputReason});
+        return response.status === 200;
     } catch (error) {
         console.error("탈퇴사유 등록에 실패하였습니다.", error);
+        return false;
     }
 }
 
 const resignUser = async () => {
     try {
         const response = await axiosInstance.delete('/members/me');
+        return response.status === 200;
     } catch (error) {
         console.error("회원탈퇴에 실패했습니다.", error);
+        return false;
     }
 }
 

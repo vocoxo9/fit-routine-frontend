@@ -41,6 +41,14 @@ function ReSign() {
     const handleSubmit = async () => {
         const reasonResponse = await submitReason(selectedReason, inputReason);
         const resignResponse = await resignUser();
+        if (reasonResponse && resignResponse) {
+            logout();
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem("accessToken");
+        window.location.href = "/"; // 메인으로 리다이렉트
     };
 
     return (
