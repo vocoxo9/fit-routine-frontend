@@ -6,7 +6,7 @@ import label from 'assets/styles/common/label.module.css';
 import DoughnutChart from 'components/common/DoughnutChart/DoughnutChart';
 import { FcCalculator } from 'react-icons/fc';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // 유효성 검사
 const checkForm = (FormData) => {
@@ -39,6 +39,9 @@ const checkForm = (FormData) => {
 };
 
 function Calculator() {
+
+    const navigate = useNavigate();
+
     // 입력한 사용자의 정보 (나이, 성별, 신장, 체중)
     const [userData, setUserData] = useState({
         age: '', // 나이
@@ -129,7 +132,7 @@ function Calculator() {
 
     // 식단 추천 페이지로 이동 핸들러
     const handleNavigateFoodRecommend = () => {
-        alert('식단 추천 페이지로 이동');
+        navigate('/diet');
     };
 
     return (

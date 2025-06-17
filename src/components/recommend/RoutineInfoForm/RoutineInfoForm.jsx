@@ -120,8 +120,6 @@ const RoutineInfoForm = ({
             return;
         }
 
-        // 임시 로직
-        alert('제출 성공!');
         goToNext();
     };
 

@@ -4,6 +4,7 @@ import styles from './TodoList.module.css';
 import buttons from 'assets/styles/common/button.module.css';
 import { useNavigate } from 'react-router-dom';
 import { deleteTodoByTodoId } from 'utils/api/blogApi';
+import { successAlert } from 'utils/helpers/toastUtils';
 
 /**
  * Blog의 Todo페이지에서 개인이 정한 식단 및 운동을 보여주는 컴포넌트
@@ -39,7 +40,7 @@ function TodoList({ todoList, onDelete }) {
         // eslint-disable-next-line
         if (confirm(header + ' 리스트를 삭제하시겠습니까?')) {
             await deleteTodoByTodoId(todoId);
-            alert('삭제완료');
+            successAlert('삭제가 완료되었습니다.');
             onDelete(); 
         }
     };

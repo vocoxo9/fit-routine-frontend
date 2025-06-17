@@ -19,6 +19,7 @@ import {
     getReplyLikeByReplyId,
     getReplyListByPostId
 } from 'utils/api/blogApi';
+import { successAlert } from 'utils/helpers/toastUtils';
 
 function BoardDetail() {
     const { boardId } = useParams();
@@ -113,7 +114,7 @@ function BoardDetail() {
         event.preventDefault();
         if (window.confirm('해당 게시물을 삭제하시겠습니까?')) {
             await deletePostByPostId(boardId);
-            alert('삭제되었습니다.');
+            successAlert('삭제되었습니다.');
             navigate('/blog'); // 삭제 후 이동
         }
     };

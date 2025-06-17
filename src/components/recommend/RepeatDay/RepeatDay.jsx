@@ -40,7 +40,6 @@ function ExerciseRepeatsDay({ goToNext, formData, setFormData }) {
             return;
         }
 
-        alert('제출 성공');
         goToNext();
     };
 

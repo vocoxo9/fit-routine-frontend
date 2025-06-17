@@ -4,6 +4,7 @@ import DietRepeatDay from './DietRepeatDay/DietRepeatDay';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchMemberDetail, fetchTodoDataByTodoId } from 'utils/api/exerciseApi';
 import RecommendDiet from './DietRecommend/RecommendDiet';
+import { successAlert } from 'utils/helpers/toastUtils';
 
 function AllDietPages() {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ function AllDietPages() {
     }, []);
 
     const performData = async () => {
-        alert('식단이 저장되었습니다! (미구현)');
+        successAlert('식단이 저장되었습니다! (구현 중...)');
         navigate('/todo');
     };
 

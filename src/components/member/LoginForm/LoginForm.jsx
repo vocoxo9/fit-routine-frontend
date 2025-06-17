@@ -9,6 +9,7 @@ import { login } from 'utils/api/loginApi';
 import { validateEmail, validatePassword } from 'utils/helpers/validation';
 import useDebounce from 'utils/hooks/debounce';
 import { useNavigate } from 'react-router-dom';
+import { errorAlert } from 'utils/helpers/toastUtils';
 
 const getMissingRequiredErrors = (formData) => {
     const errors = {};
@@ -98,7 +99,7 @@ const SignUpForm = () => {
             // }
 
             // 추후 백엔드에서 에러 코드 및 메시지가 명확해지면 수정
-            alert('로그인 실패!');
+            errorAlert('로그인에 실패하였습니다');
         }
     };
 

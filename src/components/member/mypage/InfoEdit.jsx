@@ -17,6 +17,7 @@ import {
     validateHeight,
     validateWeight,
 } from 'utils/helpers/validation';
+import { successAlert } from 'utils/helpers/toastUtils';
 
 const checkForm = (infoData) => {
     const errors = {};
@@ -287,7 +288,7 @@ function InfoEdit({ infoData, setIsEdit }) {
         const result = await editUserInfo(updateInfoData);
 
         if (result) {
-            alert("정보수정에 성공하였습니다.");
+            successAlert("정보수정에 성공하였습니다.");
             setIsEdit(false);
         }
     }

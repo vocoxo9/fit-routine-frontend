@@ -21,10 +21,13 @@ import ErrorPage from './pages/main/ErrorPage/ErrorPage';
 import RecommendDiet from './pages/recommend/diet/DietRecommend/RecommendDiet';
 import AllDietPages from './pages/recommend/diet/AllDietPages';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
     return (
         <>
+            <ToastContainer
+                limit={1} />
             <BrowserRouter>
                 <Header />
 
@@ -39,8 +42,8 @@ function App() {
                             <Route path={"/mypage"} element={<MyPage />} />
                             <Route path={"/resign"} element={<ReSign />} />
                             <Route path={"/board"} element={<AllBoardsPage />} />
-                            <Route path={"/blog/:blogIds"} element={<OnesBlogPage/>} />
-                            <Route path={"/blog"} element={<OnesBlogPage/>} />
+                            <Route path={"/blog/:blogIds"} element={<OnesBlogPage />} />
+                            <Route path={"/blog"} element={<OnesBlogPage />} />
                             <Route path={"/todo"} element={<OnesTodoPage />} />
                             <Route path={"/board/add"} element={<BoardAddEditPage buttonText='등록' />} />
                             <Route path={"/board/edit/:boardId"} element={<BoardAddEditPage buttonText='수정' />} />

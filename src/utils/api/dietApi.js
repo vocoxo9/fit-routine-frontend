@@ -1,8 +1,6 @@
 import axiosInstance from './axios';
 
 const generateDiets = async (dayRepeat) => {
-    console.log(dayRepeat);
-
     const response = await axiosInstance.get(`/diets/random`, {
         params: { dayRepeat: dayRepeat },
     });
