@@ -14,7 +14,6 @@ function PopularPost() {
         const getboard = async () => {
             const result = await getPopularPostTop3();
             setPostData(result);
-            // alert("api 요청 후 결과 :: " + JSON.stringify(result));
         }
         getboard();
     }, []);

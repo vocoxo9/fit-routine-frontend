@@ -40,7 +40,7 @@ function TodoList({ todoList, onDelete }) {
         // eslint-disable-next-line
         if (confirm(header + ' 리스트를 삭제하시겠습니까?')) {
             await deleteTodoByTodoId(todoId);
-            successAlert('삭제완료');
+            successAlert('삭제가 완료되었습니다.');
             onDelete(); 
         }
     };

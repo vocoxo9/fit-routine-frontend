@@ -60,7 +60,6 @@
 \- CSS Modules (스타일링) <br>
 \- FullCalendar (업로드 게시물 관리) <br>
 \- chartjs-2 (순위, 영양소 계산 시각화) <br>
-\- SweetAlert2 (사용자 의사 확인 알림용) <br>
 \- Toastify (간단 피드백 메세지 알림용)
 
 ### Backend

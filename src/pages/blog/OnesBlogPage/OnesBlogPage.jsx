@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Introduce from 'components/blog/Introduce/Introduce';
 import { checkBlogOwner, getBlogDetailByBlogId, getBlogDetailByToken, getIsLikedByBlogId, getLikeCountByBlogId, likeOrUnlikeBlogAPI } from 'utils/api/blogApi';
 import { useParams } from 'react-router-dom';
+import { warningAlert } from 'utils/helpers/toastUtils';
 
 function OnesBlogPage() {
     const { blogIds } = useParams(); // URL의 :blogIds
@@ -70,7 +71,7 @@ function OnesBlogPage() {
         try {
             await likeOrUnlikeBlogAPI(blogLike.isLiked, blogId);
         } catch (error) {
-            alert('자신의 블로그는 팔로우 할 수 없습니다.');
+            warningAlert('자신의 블로그는 팔로우 할 수 없습니다.');
             setBlogLike(prev);
         }
     };

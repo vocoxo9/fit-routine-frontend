@@ -16,7 +16,7 @@ import {
     calcDailyBurnKcal,
     calcExerciseTotalCalorie,
 } from 'utils/helpers/calculator';
-import { warningAlert } from 'utils/helpers/toastUtils';
+import { successAlert, warningAlert } from 'utils/helpers/toastUtils';
 
 const CATEGORY_LIST = [
     { text: '상체', value: 'UPPER' },
@@ -211,7 +211,7 @@ function RoutineRecommendForm({
         }
 
         goToNext(selectedExerciseIds);
-        alert('폼 제출 완료');
+        successAlert('루틴을 등록하였습니다!');
     };
 
     return (

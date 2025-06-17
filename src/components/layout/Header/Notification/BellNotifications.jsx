@@ -12,8 +12,12 @@ function BellNotifications() {
     }, []);
 
     const fetchNotification = async () => {
-        const result = await getNotification();
-        setData(result);
+        try {
+            const result = await getNotification();
+            setData(result);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     // 알림 데이터를 삭제하고,
@@ -28,7 +32,7 @@ function BellNotifications() {
     // 해당 인덱스 번호의 알림번호를 삭제하는 핸들러
     const handleNoticeDelete = (noticeId) => {
         deleteNotice(noticeId);
-        
+
         setData((prev) =>
             prev.filter((notice) => notice.noticeId !== noticeId),
         );
