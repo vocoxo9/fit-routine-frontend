@@ -21,7 +21,7 @@ export default function Header() {
                             <Link to="/">HOME</Link>
                         </li>
                         <li className={styles.menuItem}>
-                            <Link to="/food">식단 추천</Link>
+                            <Link to="/diet">식단 추천</Link>
                         </li>
                         <li className={styles.menuItem}>
                             <Link to="/exercise">운동 추천</Link>

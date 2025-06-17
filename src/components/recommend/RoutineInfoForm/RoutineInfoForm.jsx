@@ -132,7 +132,7 @@ const RoutineInfoForm = ({
             {/* 목적 선택 필드 */}
             <div className={styles.container}>
                 <label className={labelStyles.label} htmlFor="purpose">
-                    운동 목적
+                    목적
                 </label>
                 <select
                     className={`${selectStyles.select} ${selectStyles.common}`}
