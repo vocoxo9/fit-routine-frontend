@@ -10,8 +10,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getUserProfile, submitReason, resignUser } from 'utils/api/profileApi.js';
 
 function ReSign() {
-    const navigate = useNavigate();
-
     const [info, setInfo] = useState({
         email: '',
         nickname: '',
