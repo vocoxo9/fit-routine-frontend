@@ -1,8 +1,11 @@
 import axiosInstance from './axios';
 
 const getExeRoutines = async () => {
-    // const response = await axiosInstance.get('/member/me/exercise-routine/today');
-    // return response.data;
+    console.log("루틴 조회 api 요청 들어옴");
+    const response = await axiosInstance.get('/todos/me/exe-routine/today');
+    console.log("루틴 조회 api 요청 하고옴");
+    console.log("조회한 루틴 배열 :: " + JSON.stringify(response.data));
+    return response.data;
 }
 
 const getFoodRoutines = async () => {
