@@ -31,7 +31,7 @@ const fetchExerciseRandomRoutine = async (formData) => {
     }
 };
 
-// 운동 id로 공공데이터 정보 불러오기
+// 운동 ID로 공공데이터 정보 불러오기
 const fetchGetExerciseById = async (id) => {
     try {
         const response = await axiosInstance.get(`/exercises/${id}`);
@@ -41,7 +41,7 @@ const fetchGetExerciseById = async (id) => {
     }
 };
 
-// 회원의 상세정보 (신장, 체중, 생년월일, 성별) 가져오기
+// 회원의 상세정보 가져오기
 const fetchMemberDetail = async () => {
     try {
         const response = await axiosInstance.get('/members/me');
@@ -61,19 +61,22 @@ const saveExerciseRoutineInfo = async (formData) => {
     }
 };
 
-// TODO 최종 등록
+// TODO EXERCISE  최종 등록
 const submitExerciseRoutine = async (todoId, exerciseList) => {
     try {
-        const response = await axiosInstance.post(`/todos/exercises/${todoId}`, {
-            exerciseList: exerciseList,
-        });
+        const response = await axiosInstance.post(
+            `/todos/exercises/${todoId}`,
+            {
+                exerciseList: exerciseList,
+            },
+        );
         return response.data;
     } catch (error) {
         console.error(error);
     }
 };
 
-// todo 수정
+// TODO EXERCISE 수정할 정보
 const fetchTodoDataByTodoId = async (todoId) => {
     try {
         const response = await axiosInstance.get(`/todos/exercises/${todoId}`);
@@ -83,12 +86,37 @@ const fetchTodoDataByTodoId = async (todoId) => {
     }
 };
 
+// TODO EXERCISE 수정 요청
+const updateExerciseRoutine = async (todoId, exerciseList) => {
+    try {
+        const response = await axiosInstance.patch(
+            `/todos/exercises/${todoId}`,
+            { exerciseList: exerciseList },
+        );
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// MEMBER_ID로 TODO_ID 가져오기
+const getTodoIdByToken = async () => {
+    try {
+        const response = await axiosInstance.get('/todos/exercises');
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export {
+    saveExerciseRoutineInfo,
+    submitExerciseRoutine,
+    getTodoIdByToken,
+    fetchMemberDetail,
     fetchExerciseOpenDataList,
     fetchExerciseRandomRoutine,
     fetchGetExerciseById,
-    fetchMemberDetail,
     fetchTodoDataByTodoId,
-    saveExerciseRoutineInfo,
-    submitExerciseRoutine,
+    updateExerciseRoutine,
 };
