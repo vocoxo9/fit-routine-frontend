@@ -163,12 +163,12 @@ function BoardAddEditPage({
             category: boardData.category,
         }
 
-        const postId = await createPost(blogId.blogId, payload);
+        const data = await createPost(blogId.blogId, payload);
         
 
         images.forEach(async (image) => {
             if (image instanceof File){
-                await saveImage(postId,image);
+                await saveImage(data.postId,image);
             }
         });
 
