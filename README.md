@@ -1,93 +1,78 @@
-# 📌 Fit Routine
+# Fit-Routine
+* [주요 개발 기능](#-주요-개발-기능)
+* [개발 환경](#개발-환경)
+* [프로젝트 구조](#프로젝트-구조)
 
-## 👨‍👩‍👦 팀명/팀원
+<br><br>
 
-**BASIC 팀**  
-김일현(팀장), 안민영, 유성재, 정혜영
+## 팀명 : I UNION I
+> KH 정보교육원 (디지털컨버전스) 공공데이터 융합 자바개발자 양성과정<br>개발기간 : 2025.04.21 ~ 2025.06.18
 
-## 🗓️ 개발 기간
+<br><br>
 
-**2025.04.21 ~ 2025.06.17**
+## 📌 주요 개발 기능
+- 프로젝트
+    - 이슈 관리
+    - 화면설계서 작성
+    - 공공데이터 가공 및 가공 내역서 작성
+- UI
+    - 헤더 및 푸터 제작
+    - 운동 목적 입력 페이지
+    - 반복일 입력 페이지
+    - 운동 추천 페이지
+    - 운동 수정 페이지
+- 기능 개발
+    - 운동 추천 기능
+    - 운동 루틴 등록 기능
+    - 운동 루틴 수정 기능
+    - 운동 루틴 삭제 기능
 
-## 📝 프로젝트 개요
+<br><br>
 
-**Fit Routine**은 사용자의 운동 목표에 맞춰 식단과 운동을 추천받고, 이를 토대로 직접 계획을 설정하며, 인증 사진을 공유하고 소통할 수 있는 건강 관리 플랫폼입니다.
+## 개발 환경
 
-## 🎯 개발 배경 및 목적
-
-### 배경
-
-- 매일 내가 해야 할 운동과 식단을 찾는 것이 번거로움
-- 건강 관리가 익숙하지 않은 사람은 무엇을 어떻게 시작해야 할지 모름
-- 결심은 했지만 지속하는 것이 어려움 (3일의 벽)
-
-### 목적
-
-- 사용자 맞춤형 운동과 식단을 제공하여 **건강한 루틴 형성**을 돕고
-- **커뮤니티 및 블로그** 기능으로 **동기 부여** 및 **지속적인 활동 유도**
-  <br><br>
-
-## 👤 주요 사용자
-
-- 건강 관리에 관심은 있지만 지속이 어려운 사람
-- 운동 및 식단 관리가 막막한 일반 유저
-  <br><br>
-
-## 🧩 핵심 기능
-
-1. **소셜 로그인 및 회원가입**  
-   Google 소셜 로그인으로 **간편 가입 및 사용자 데이터 관리**
-
-2. **맞춤 운동/식단 추천 및 설정**  
-   사용자의 **신체 정보와 목표**를 기반으로 자동 추천 및 직접 설정
-
-3. **운동/식단 인증 업로드**  
-   사용자 본인의 식단, 운동 사진 등을 인증하여 기록
-
-4. **커뮤니티 공유 기능**  
-   다른 사용자들과 **게시물 소통** 및 **공감 활동**
-
-5. **활동 히스토리 관리**  
-    내 블로그에서 **나의 루틴과 게시물 이력**을 확인
-   <br><br>
-
-## 🛠️ 사용 기술 스택
-
-### Frontend 
-\- React <br>
-\- React Router <br>
-\- Axios (API 통신) <br>
-\- CSS Modules (스타일링) <br>
-\- FullCalendar (업로드 게시물 관리) <br>
-\- chartjs-2 (순위, 영양소 계산 시각화) <br>
-\- Toastify (간단 피드백 메세지 알림용)
-
-### Backend
-\- Spring <br>
-\- Spring Boot <br>
-\- MyBatis <br>
-\- Oracle JDBC <br>
-\- Lombok <br>
-\- JWT (토큰 기반 인증) <br>
+| 항목 | 내용 |
+|:----------:|---|
+| **백엔드**    | ![Java](https://img.shields.io/badge/JAVA-007396?logo=java&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=spring&logoColor=white) ![MyBatis](https://img.shields.io/badge/MyBatis-1F6E43?logo=java&logoColor=white) ![Lombok](https://img.shields.io/badge/Lombok-EA1B1B?logo=java&logoColor=white) ![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?logo=spring&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?logo=jsonwebtokens&logoColor=white) |
+| **프론트엔드** | ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black) ![React Router](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?logo=axios&logoColor=white) |
+| **개발 툴**   | ![IntelliJ IDEA](https://img.shields.io/badge/IDE-IntelliJ-2C2255?logo=intellij&logoColor=white) ![VS Code](https://img.shields.io/badge/IDE-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white)                                                      |
+| **서버**     | ![Apache Tomcat](https://img.shields.io/badge/Apache%20Tomcat-F8DC75?logo=apachetomcat&logoColor=black)                                                                                                                   |
+| **UI 라이브러리** | ![Toastify](https://img.shields.io/badge/Toastify-FF6F61?logo=toastdotnet&logoColor=white) ![React Icons](https://img.shields.io/badge/React%20Icons-61DAFB?logo=react&logoColor=black) ![FullCalendar](https://img.shields.io/badge/FullCalendar-3788d8?logo=fullcalendar&logoColor=white) ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?logo=chartdotjs&logoColor=white) |
+| **코드 품질 도구** | ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=white)                                                                                                     |
+| **데이터베이스** | ![Oracle DB](https://img.shields.io/badge/Oracle%20DB-F80000?logo=oracle&logoColor=white)                                                                                                                              |
+| **협업 도구**  | ![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-000000?logo=notion&logoColor=white) ![ERD Cloud](https://img.shields.io/badge/ERD%20Cloud-0052CC?logo=database&logoColor=white) ![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white) |
 
 
-### Database 
-\- Oracle
 
-### 개발 도구
-\- ERD Cloud (DB 테이블 설계) <br>
-\- Figma (UI/UX 설계) <br>
-\- Github (형상 관리)
-\- Notion (초안 아이디어 및 규칙 정리, 일정 및 역할 관리)
+<br><br>
 
-### 외부 연계 서비스
-\- Google / Apple 소셜 로그인 <br>
-\- 공공데이터 포털 OPEN API (운동·식단 정보)
-      <br><br>
-
-## 🗂️ 화면/기능 흐름
-
-1. **회원가입 / 로그인**
-2. **운동 · 식단 목표 설정 (TODO)**
-3. **인증 게시물 작성 (운동 · 식단 기록)**
-4. **게시판, 블로그를 통한 공유 및 소통**
+## 프로젝트 구조
+```
+📦 fit-routine-backend
+├── .github/ # GitHub 워크플로우 및 설정 파일
+├── .gradle/ # Gradle 관련 캐시 및 설정
+├── .idea/ # IntelliJ 설정
+├── gradle/ # Gradle 래퍼 스크립트
+├── 📂src
+│   └── 📂main
+│       ├── 📂java
+│       │   └── 📂 kr.co.khedu.fitroutine
+│       │       ├── 📂 auth/           # 인증/인가 관련
+│       │       ├── 📂 blog/           # 블로그 기능
+│       │       ├── 📂 config/         # 공통 설정 파일
+│       │       ├── 📂 diet/           # 식단 기능
+│       │       ├── 📂 exercise/       # 운동 기능
+│       │       ├── 📂 member/         # 회원 기능
+│       │       ├── 📂 post/           # 게시글 기능
+│       │       ├── 📂 security/       # 토큰 관련
+│       │       ├── 📂 storage/        # 이미지 관련 기능
+│       │       ├── 📂 todo/           # Todo 기능
+│       │       └── Application.java 
+│       └── 📂 resources
+│           ├── 📂 mapper                # SQL 
+│           ├── application.properties   # 애플리케이션 설정
+│           ├── data.sql                 # 초기 데이터 삽입 SQL
+│           └── schema.sql               # DB 스키마 정의 SQL
+├── .gitignore
+└── build.gradle                         # Gradle 빌드 스크립트
+```
